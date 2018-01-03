@@ -1,3 +1,43 @@
-baseURL = "http://example.org/"
+baseURL = "https://blog.no42.org"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "... search for answer"
+theme = "HugoMDL"
+MetaDataFormat = "yaml"
+
+[permalinks]
+	page = "/:title/"
+	about = "/:filename/"
+
+[params]
+  author = "Ronny Trommer"
+  avatar = "/images/avatar.png"
+  background = "/images/background.jpg"
+  description = "A place to publish my incomprehensible ramblings" #meta description
+  image = "/images/avatar-192x210.png" #for frontpage profile card
+  mdlPrimary = "cyan"
+  mdlSecondary = "red"
+  website = "https://blog.no42.org"
+  email = "ronny@no42.org"
+  twitter = "https://twitter.com/indigo423"
+  github = "https://github.com/indigo423"
+  linkedin = "https://linkedin.com/in/firstname_lastname/"
+  copyrightyear = "2018"
+  frontpageposts = 6 #number of post cards to display on frontpage
+
+# Fully customizable header menu
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = -200
+[[menu.main]]
+  name = "Articles"
+  url = "/post/"
+  weight = -180
+[[menu.main]]
+  name = "Projects"
+  url = "/project/"
+  weight = -160
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = "-140"
