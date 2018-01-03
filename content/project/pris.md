@@ -3,7 +3,7 @@ title: "PRIS"
 date: "2018-01-03"
 description: "OpenNMS Provisioning Integration Server"
 cardbackground: "#7cb342"
-web: "https://github.com/OpenNMS/opennms-provisioning-integration-server"
+web: "https://pris.opennms.eu"
 repo: "https://github.com/OpenNMS/opennms-provisioning-integration-server"
 "author":
     name: "Ronny Trommer"
