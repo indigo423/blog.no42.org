@@ -20,7 +20,8 @@ MetaDataFormat = "yaml"
   email = "ronny@no42.org"
   twitter = "https://twitter.com/indigo423"
   github = "https://github.com/indigo423"
-  linkedin = "https://linkedin.com/in/firstname_lastname/"
+  linkedin = "https://www.linkedin.com/in/ronnytrommer/"
+  xing = "https://www.xing.com/profile/Ronny_Trommer"
   copyrightyear = "2018"
   frontpageposts = 6 #number of post cards to display on frontpage
 

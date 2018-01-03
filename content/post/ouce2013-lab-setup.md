@@ -4,19 +4,21 @@ description: "Description how to set up the OUCE 2013 lab environment"
 date: "2013-03-15"
 categories:
     - "post"
-    - "ouce"
 tags:
     - "conference"
+    - "ouce"
     - "ouce2013"
     - "opennms"
-    
-#cardimagelg: "/images/default.jpg"
-#cardimagesm: "/images/default.jpg"
-cardbackground: "#838238" #optional: overwrites default #263238, only shows when no image specified.
+cardheaderimage: "/images/default.jpg"
+cardbackground: "#005cb2"
 "author":
     name: "Ronny Trommer"
     description: "Writer of stuff"
     website: "https://blog.no42.org"
+    email: "ronny@no42.org"
+    twitter: "https://twitter.com/indigo423"
+    github: "https://github.com/indigo423"
+    image: "/images/avatar-64x64.png"
 ---
 
 # System
