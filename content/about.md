@@ -1,7 +1,7 @@
 ---
 title: "About Me"
 description: "All About Me"
-date: "2015-08-18"
+date: "2018-01-03"
 type: "about"
 layout: "single"
 categories:
@@ -10,7 +10,7 @@ categories:
     - "meta"
 tags:
     - "bio"
-blurb: "Just a city boy, born and raised in South Detroit"
+blurb: "Technology evangelist and documentarian with OpenNMS in Europe."
 recentposts: 5
 recentprojects: 5
 photo: "/images/avatar.png"
@@ -18,23 +18,18 @@ cardheaderimage: "/images/default.jpg" #optional: default solid color if unset
 cardbackground: "#263238" #optional: card background color; only shows when no image specified
 ---
 
-90's slow-carb Schlitz Shoreditch mixtape typewriter, wayfarers Austin keffiyeh 
-Helvetica artisan flexitarian. Health goth vinyl scenester pickled kitsch. 
-Organic slow-carb stumptown freegan, PBR ugh chia Intelligentsia pork belly 
-locavore retro kale chips. Tofu put a bird on it squid tattooed beard master 
-cleanse, mumblecore keytar mustache blog direct trade PBR&B quinoa.
+Work in Open Source and grown up with an Amiga 500 in early 90s, full time contributor [@opennms](https://twitter.com/opennms), Co-Founder: [mcl2k.de](http://www.mcl2k.de), [opennms.eu](http://www.opennms.eu), [mag.lab.sh](https://mag.lab.sh)
 
 #### Education
 
-- 2015 - Master of Arts in Wine Tasting, University of British Columbia
-
-- 2013 - Bachelor of Arts , University of British Columbia
- 
+- 2001 - Diplom-Inform. (HS), University of Applied Sciences in Fulda, Telecommunication / Network Engineering
 
 #### Publications
 
-- Painting with condiments (2015) 
+- OpenNMS - Netzwerkmanagement mit freier Software 
 
 #### Places I've worked
-
-I don't work :(
+ 
+- Scientific University of Applied Sciences Fulda
+- NETHINKS GmbH
+- Drimalski & Partner GmbH
