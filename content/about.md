@@ -18,7 +18,7 @@ cardheaderimage: "/images/default.jpg" #optional: default solid color if unset
 cardbackground: "#263238" #optional: card background color; only shows when no image specified
 ---
 
-Work in Open Source and grown up with an Amiga 500 in early 90s, full time contributor [@opennms](https://twitter.com/opennms), Co-Founder: [mcl2k.de](http://www.mcl2k.de), [opennms.eu](http://www.opennms.eu), [mag.lab.sh](https://mag.lab.sh)
+Work in Open Source and grow up with an Amiga 500 in the early 90s, full-time contributor [@opennms](https://twitter.com/opennms), Co-Founder: [mcl2k.de](http://www.mcl2k.de), [opennms.eu](http://www.opennms.eu), [mag.lab.sh](https://mag.lab.sh)
 
 #### Education
 
