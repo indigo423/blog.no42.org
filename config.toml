@@ -43,3 +43,7 @@ MetaDataFormat = "yaml"
   name = "About"
   url = "/about/"
   weight = "-140"
+[[menu.main]]
+  name = "Privacy Policy"
+  url = "/privacy/"
+  weight = "-140"
