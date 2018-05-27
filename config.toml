@@ -3,7 +3,27 @@ languageCode = "en-us"
 title = "... search for answer"
 theme = "HugoMDL"
 MetaDataFormat = "yaml"
-# googleAnalytics = "UA-73787628-1"
+googleAnalytics = "UA-73787628-1"
+
+[privacy]
+  [privacy.disqus]
+    disable = true
+  [privacy.googleAnalytics]
+    anonymizeIP = true
+    disable = false
+    respectDoNotTrack = true
+    useSessionStorage = false
+  [privacy.instagram]
+    disable = true
+  [privacy.speakerDeck]
+    disable = true
+  [privacy.twitter]
+    disable = true
+  [privacy.vimeo]
+    disable = true
+  [privacy.youtube]
+    disable = false
+    privacyEnhanced = true
 
 [permalinks]
 	page = "/:title/"
