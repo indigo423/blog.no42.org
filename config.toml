@@ -11,7 +11,7 @@ DefaultContentLanguage = "en"
 googleAnalytics = ""
 
 # Enable / Disable comments on the articles via Disqus.
-disqusShortname = "bilberry-hugo-theme"
+#disqusShortname ="bilberry-hugo-theme"
 
 [params]
   # Favicon for the browser's favorites and tabs
@@ -59,7 +59,7 @@ disqusShortname = "bilberry-hugo-theme"
   copyrightUseCurrentYear = true  # set to true to always display the current year in the copyright
   copyrightYearOverride = "2018"
   copyrightUrl = "https://github.com/Lednerb"
-  creditsText = "Bilberry Hugo Theme"
+  creditsText = ""
   creditsUrl = "https://github.com/Lednerb/bilberry-hugo-theme"
 
   # social media profile urls for the footer links
