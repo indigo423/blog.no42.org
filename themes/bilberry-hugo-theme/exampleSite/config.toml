@@ -1,5 +1,5 @@
-title = "no42"
-baseURL = "https://blog.no42.org"
+title = "My cool new Blog"
+baseURL = "https://example.com"
 theme = "bilberry-hugo-theme"
 
 enableRobotsTXT = true
@@ -25,56 +25,61 @@ disqusShortname = "bilberry-hugo-theme"
   js_modules = []
 
   # Description and meta data for the search engines
-  author = "Ronny Trommer"
-  description = "Private blog around tech and live."
+  author = "Lednerb"
+  description = "Bilberry Premium Theme for Hugo."
   keywords = "blog,personal,responsive,search,font awesome,pages,posts,multilingual,highlight.js,syntax highlighting,premium,shortcuts"
 
   # How many articles should be displayed at once?
-  paginate = 10
+  paginate = 7
 
   # Enable / Disable MathJax
   enable_mathjax    = false
 
   # Enable / Disable algolia search
-  algolia_search    = false
+  algolia_search    = true
+  algolia_appId     = "Y2C4RWMPXW"
+  algolia_apiKey    = "50ea7f8c41c0ad233926e0be2b769ed1"
+  algolia_indexName = "default-content"
+    # Set this option to false if you want to search within all articles in all languages at once
+    algolia_currentLanguageOnly = true
 
   # Header configuration
-  # your subtitle if you want to use any
-  # subtitle = "... search for answer?"
+    # your subtitle if you want to use any
+    subtitle = "Hello World! This is the most epic subtitle ever."
 
-  # if you want to use gravatar for the header image
-  gravatarEMail = "ronny@no42.org"
+    # if you want to use gravatar for the header image
+    gravatarEMail = ""
 
-  # set an path to the image file you want to use | overwrites gravatar
-  customImage = ""
+    # set an path to the image file you want to use | overwrites gravatar
+    customImage = ""
 
-  # always display the top navigation (with pages and search) on non-mobile screens
-  permanentTopNav = false
+    # always display the top navigation (with pages and search) on non-mobile screens
+    permanentTopNav = false
 
-  # show a language chooser in the header
-  showHeaderLanguageChooser = true
+    # show a language chooser in the header
+    showHeaderLanguageChooser = true
 
-  # credits line configuration
-  copyrightBy = "by Lednerb"
-  copyrightUseCurrentYear = true  # set to true to always display the current year in the copyright
-  copyrightYearOverride = "2018"
-  copyrightUrl = "https://github.com/Lednerb"
-  creditsText = "Bilberry Hugo Theme"
-  creditsUrl = "https://github.com/Lednerb/bilberry-hugo-theme"
+    # credits line configuration
+    copyrightBy = "by Lednerb"
+    copyrightUseCurrentYear = false  # set to true to always display the current year in the copyright
+    copyrightYearOverride = "2017"
+    copyrightUrl = "https://github.com/Lednerb"
+    creditsText = "Bilberry Hugo Theme"
+    creditsUrl = "https://github.com/Lednerb/bilberry-hugo-theme"
 
   # social media profile urls for the footer links
   showSocialMedia = true
   facebook   = ""
-  twitter    = "https://twitter.com/indigo423"
+  twitter    = "https://twitter.com/TheRealLednerb"
   googleplus = ""
   pinterest  = ""
   instagram  = ""
   tumblr     = ""
   youtube    = ""
   vimeo      = ""
-  github     = "https://github.com/indigo423"
-  xing       = "https://www.xing.com/profile/Ronny_Trommer"
-  linkedin   = "https://www.linkedin.com/in/ronnytrommer/"
+  github     = "https://github.com/Lednerb"
+  xing       = ""
+  linkedin   = ""
 
 # customize your available languages for your multi-langual site
 # or delete the [Languages] blog to use the theme with only one supported language
@@ -83,7 +88,8 @@ disqusShortname = "bilberry-hugo-theme"
     weight = 1
   [Languages.de]
     weight = 2
-    title = "no42"
+    title = "Mein cooler neuer Blog"
+    subtitle = "Hallo Welt! Dies ist der epischste Untertitel aller Zeiten."
 
 # don't change anything below
 [taxonomies]
