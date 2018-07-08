@@ -46,7 +46,7 @@ googleAnalytics = "UA-73787628-1"
   gravatarEMail = "ronny@no42.org"
 
   # set an path to the image file you want to use | overwrites gravatar
-  customImage = ""
+  customImage = "/images/gravatar.jpg"
 
   # always display the top navigation (with pages and search) on non-mobile screens
   permanentTopNav = false
