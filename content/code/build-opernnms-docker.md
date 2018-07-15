@@ -89,7 +89,7 @@ We just mount `.m2/repository/org/opennms` directory to a dedicated place in the
 
 That way we can leverage from a shared local Maven repository and have branch specific places for OpenNMS Horizon artifacts.
 
-I've put things described here in a convinient little [bash script](https://gist.github.com/indigo423/013599281a7771fc200aacb5a7a614ae) which can be run from a workspace directory.
+I've put things described here in a convinient [bash script](https://github.com/opennms-forge/build-workbench/blob/master/docker-build.sh) which can be run from a workspace directory.
 
 ```sh
 ./docker-build.sh -b jira/NMS-9858
@@ -115,9 +115,9 @@ volumes:
   - ./opennms/target/opennms-23.0.0-SNAPSHOT:/opt/opennms
 ```
 
-You can download a working [docker-compose.yml](https://gist.github.com/indigo423/56550d7f74be263b2ed37bb68fd6a806) and adjust to your needs.
-It is built to run from a branch directory.
-The ports for the webapp are published to dynamic addresses, so you can run multiple instances on one machine.
+Feel free to download and make them better by checking them out from the [GitHub Repository](https://github.com/opennms-forge/build-workbench).
+
+The ports for the webapp are by default published to dynamic addresses, so you can run multiple stacks of OpenNMS Horizon on the same host.
 You can see the port mapping by running `docker ps`, in this example the TCP port 32787 is mapped to the Horizon webapp and you can access the webui with http://hostip:32787.
 
 Happy Dockering
