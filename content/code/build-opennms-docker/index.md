@@ -115,9 +115,9 @@ volumes:
   - ./opennms/target/opennms-23.0.0-SNAPSHOT:/opt/opennms
 ```
 
-Feel free to download and make them better by checking them out from the [GitHub Repository](https://github.com/opennms-forge/build-workbench).
-
 The ports for the webapp are by default published to dynamic addresses, so you can run multiple stacks of OpenNMS Horizon on the same host.
 You can see the port mapping by running `docker ps`, in this example the TCP port 32787 is mapped to the Horizon webapp and you can access the webui with http://hostip:32787.
+
+Feel free to download and make them better in our [GitHub Repository](https://github.com/opennms-forge/build-workbench).
 
 Happy Dockering
