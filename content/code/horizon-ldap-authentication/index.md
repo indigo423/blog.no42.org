@@ -6,9 +6,9 @@ author: "Ronny Trommer"
 noSummary: false
 ---
 
-Centralized authentication is a core service as soon you have a network with more the 3 computers.
-How do you authenticate a OpenNMS Horizon 22.0.1 against an Active Directory provided on a Microsoft Windows Server 2016.
-We focus here on the Active Directory and Spring authentication parts, securing the connection with LDAPS and using self-signed certificates in Java is another topic.
+Centralized authentication is a core service as soon you have a network with more than 3 computers.
+This article is about how to authenticate a OpenNMS Horizon 22.0.1 against an Active Directory provided on a Microsoft Windows Server 2016.
+I'll focus here on the Active Directory and Spring configuration parts, securing the connection with LDAPS and using self-signed certificates in Java is another topic and not covered here.
 
 In this example the domain is called `labmonkeys.local` and the Microsoft Windows Server has the IP address `192.168.178.220`.
 The user name for the bind user is `OpenNMS Bind User` with the password `MyPass123!`.
