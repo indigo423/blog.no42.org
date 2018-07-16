@@ -10,7 +10,7 @@ Centralized authentication is a core service as soon you have a network with mor
 How do you authenticate a OpenNMS Horizon 22.0.1 against an Active Directory provided on a Microsoft Windows Server 2016.
 We focus here on the Active Directory and Spring authentication parts, securing the connection with LDAPS and using self-signed certificates in Java is another topic.
 
-In this example the domain is called `labmonkeys.local` and the Microsoft Windows Server has the IP address 192.168.178.220.
+In this example the domain is called `labmonkeys.local` and the Microsoft Windows Server has the IP address `192.168.178.220`.
 The user name for the bind user is `OpenNMS Bind User` with the password `MyPass123!`.
 
 We want to have two Active Directory groups, one named `OpenNMS-Admins` and a second one name `OpenNMS-Users` and we only want to allow users in these groups to login to the OpenNMS Horizon web application.
