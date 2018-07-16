@@ -31,20 +31,20 @@ As soon you have a box which has a running Docker daemon running you can use our
 
 This example gives you the possiblity to build and run multiple branches, so every branch gets his own directory with the branch name as a namespace.
 
-Step 1: Make a workspace directory where we mess around.
+***Step 1: Make a workspace directory where we mess around.***
 ```sh
 cd ${HOME}
 mkdir workspace
 cd workspace
 ```
 
-Step 2: Checkout the OpenNMS Horizon source code from GitHub
+***Step 2: Checkout the OpenNMS Horizon source code from GitHub***
 ```sh
 git clone https://github.com/OpenNMS/opennms.git develop/opennms
 # Develop is checkout by default, if you want a custom branch check it out with git checkout origin/<branch-name>
 ```
 
-Step 3: Compile OpenNMS Horizon and tag the running docker instance to make it easier to identify the running build process
+***Step 3: Compile OpenNMS Horizon and tag the running docker instance to make it easier to identify the running build process***
 ```sh
 docker run --rm \
     -l "branch=develop" \
@@ -54,7 +54,7 @@ docker run --rm \
     opennms/build-env:latest /usr/bin/perl compile.pl -DskipTests
 ```
 
-Step 4: Assemble OpenNMS Horizon so it can be started from /opt/opennms
+***Step 4: Assemble OpenNMS Horizon so it can be started from /opt/opennms***
 ```sh
 docker run --rm \
     -l "branch=develop" \
