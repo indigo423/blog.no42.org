@@ -1,7 +1,7 @@
 ---
 title: "Authenticate OpenNMS Horizon with Active Directory on Windows Server 2016"
 date: "2018-07-16"
-tags: ['opennms', 'dokcer', 'microsoft windows', 'active directory', 'ldap']
+tags: ['opennms', 'docker', 'microsoft windows', 'active directory', 'ldap']
 author: "Ronny Trommer"
 noSummary: false
 ---
