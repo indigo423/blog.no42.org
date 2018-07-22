@@ -10,7 +10,7 @@ Centralized authentication is a core service as soon you have a network with mor
 This article is about how to authenticate a OpenNMS Horizon 22.0.2 using RADIUS provided by a FreeRADIUS service.
 
 In this example the FreeRADIUS server is configured to provide 3 users.
-A dictionary is configured which returns 2 roles, _ROLE_USER_ and _ROLE_ADMIN_ which can be used to decide which security role is assigned in the OpenNMS Horizon Web UI.
+A dictionary is configured which returns 2 roles, _ROLE\_USER_ and _ROLE\_ADMIN_ which can be used to decide which security role is assigned in the OpenNMS Horizon Web UI.
 
 To run the services locally, you can use all components in a [Docker Compose](https://github.com/indigo423/opennms-radius-auth/blob/master/docker-compose.yml) defined service stack.
 
