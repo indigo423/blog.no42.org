@@ -79,7 +79,7 @@ Monitoring tools do mainly their job in the fault- and performance-management ar
 A lot of them can read _SNMP_ but they don't fully rely on it and bring mostly also their own agents.
 
 Configuration management tools like [Ansible](https://www.ansible.com), [SaltStack](https://saltstack.com), [Chef](https://www.chef.io) and [Puppet](https://puppet.com) are pretty much the industry standard for configuration management.
-... and by the way, instead of using _SNMP_ they come all with their own agents.
+... and guess what, instead of using _SNMP_ they come all with their own agents.
 
 ### to be continued ...
 
