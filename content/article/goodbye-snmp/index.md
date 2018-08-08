@@ -6,7 +6,8 @@ tags: [ 'snmp', 'monitoring' ]
 noSummary: false
 ---
 
-If you operate networks there is a big chance you had to deal with SNMP - the Simple Network Management Protocol and all started with a big bang.
+If you operate networks there is a big chance you had to deal with SNMP - the Simple Network Management Protocol.
+If you ever wondered where it came from, it started with a big bang.
 
 > On October 27, 1980, there was an unusual occurrence on the ARPANET.
 > For a period of several hours, the network appeared  to be unusable, due to what was later diagnosed as a high priority software process running out of control.
