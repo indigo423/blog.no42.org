@@ -85,4 +85,4 @@ Configuration management tools like [Ansible](https://www.ansible.com), [SaltSta
 
 Nevertheless, _SNMP_ is still the only agent available which is shipped with your cheap hardware and this is the reason why we still don't have fancy things.
 But the days are numbered and if you look at all the things happening in next generation technologies e.g. Server Virtualization, Containerization, SDN, NFV, you won't find _SNMP_ and you have to face it, _SNMP_ is dead.
-The new world in monitoring is model driven streaming telemetry which pushes data and is not polled and this is covered in my next article.
+The new world in monitoring is model driven streaming telemetry which pushes data and is not polled and this is covered in another article.
