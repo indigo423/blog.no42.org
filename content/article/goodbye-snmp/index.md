@@ -47,12 +47,12 @@ One goal of _SNMP_ was to make devices and configuration discoverable.
 That means a network monitoring system can go and see how many disks or network interfaces are installed and how they are configured.
 You can also go further and ask in a regular base how many bytes where transferred or how full is your disk
 
-This design implies a specific design for a monitoring system which needs to build an inventory about those entities with a life cycle.
-This works for very static and smaller networks.
+This design implies a specific design for a monitoring system which needs to build a centralized inventory about those entities with a life cycle.
+This works for very static networks.
 You can try to keep the inventory in sync by polling the SNMP agents on a regular base, but you can imagine, the bigger and more dynamic a network gets, the more often your world will fell apart.
 For a monitoring system is this very critical, cause the information provided get less and less trustworthy and this is where you start to think replacing your current monitoring system with a different one.
 
-For the reason of the bad implementation of _SNMP_ a lot of monitoring tools deploy their own agents and reimplement these functionality with proprietary protocols which didn't made the world better.
+For the reason of the bad implementation of _SNMP_ a lot of monitoring tools deploy their own agents and reimplement these functionality with proprietary protocols which made their world better, but not for all of us.
 Additionally the world has changed dramatically since the last years with virtualization and deploying and running applications in containers.
 The infrastructure changes now so often and is so dynamic, there is no chance to poll all these things from a central scheduled place and provide an up-to-date inventory.
 
