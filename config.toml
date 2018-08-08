@@ -40,7 +40,7 @@ googleAnalytics = "UA-73787628-1"
 
   # Header configuration
   # your subtitle if you want to use any
-  # subtitle = "... search for answer?"
+  subtitle = "... search for answer?"
 
   # if you want to use gravatar for the header image
   gravatarEMail = "ronny@no42.org"
