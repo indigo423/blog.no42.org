@@ -58,7 +58,7 @@ googleAnalytics = "UA-73787628-1"
   copyrightBy = "by Ronny Trommer"
   copyrightUseCurrentYear = true  # set to true to always display the current year in the copyright
   copyrightYearOverride = "2018"
-  copyrightUrl = "https://github.com/Lednerb"
+  copyrightUrl = "https://github.com/indigo423"
   creditsText = ""
   creditsUrl = "https://github.com/Lednerb/bilberry-hugo-theme"
 
