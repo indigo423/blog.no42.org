@@ -37,7 +37,7 @@ It is extremely hard to build a really good User Experience for complex applicat
 Do you seriously think having multiple bad User Interfaces makes the world for your users any better?
 
 Web applications built in the early 2000 didn't had that luxury.
-If you start building and Open Source tool you should seriously have a look free and Open Source UI frameworks.
+If you start building and Open Source tool you should seriously have a look at free and Open Source UI frameworks.
 That way you have at least a chance to get a working homogeneous look and feel.
 
 * [PatternFly](https://www.patternfly.org)
