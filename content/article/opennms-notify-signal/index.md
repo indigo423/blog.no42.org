@@ -137,4 +137,6 @@ The changes will be picked up automatically and you don't need a restart.
 <KeyValuePair key="notifd"               value="WARN" />
 ```
 
+If you have very flaky devices over DSL lines you can set an initial delay which ensures you only get notifications when the outage exists for a certain amount of time.
+
 gl & hf
