@@ -7,12 +7,11 @@ author: "Ronny Trommer"
 noSummary: false
 ---
 
-For some reasons I would like have notifications from my OpenNMS not via Mail, I want it in a separate channel on my smartphone and I don't want to pay for SMS.
-I'm a [Signal](https://signal.org) user and found [signal-cli](https://github.com/AsamK/signal-cli/releases) which runs also on my CentOS 7.
-Here is what is needed to use the signal-cli binary as a binary Notification Command in your OpenNMS instance.
+In some cases it is nice to have notifications from OpenNMS in a separate channel on a smartphone and you don't want to pay for SMS.
+Here is a tutorial where I use [Signal](https://signal.org) using the [signal-cli](https://github.com/AsamK/signal-cli/releases).
 
-This How-To will describe how to download the latest signal-cli tool, link it to your existing Signal account and how to configure OpenNMS to use it as a notification target.
-You should have already an OpenNMS Horizon or Meridian running and you need to have a Signal account with the Signal app installed and configured on your smartphone.
+This Howto will describe how to download the latest signal-cli tool, link it to your existing Signal account and how to configure OpenNMS to use it as a notification target.
+You should have already an OpenNMS Horizon or Meridian running and you need a Signal account with the Signal app installed and configured on your smartphone.
 
 #### Configuration
 
@@ -128,15 +127,14 @@ Check if you get a notification for a node outage and a resolved message.
 
 #### Troubleshooting
 
-If you have issues, to get the integration running, the *Notifd* is the main component which drives the bits and pieces in OpenNMS.
-The daemon *Notifd* writes log files to `${OPENNMS_HOME/logs/notfid`.
-If you need a more verbose output you can increase log output in `${OPENNMS_HOME/etc/log4j2.xml` by setting the log level from `WARN` to `DEBUG`.
+If you have issues getting the integration running, *Notifd* is the main component which drives the bits and pieces and writes log files to `${OPENNMS_HOME/logs/notfid`.
+In case you need a more verbose output you can increase the log level in `${OPENNMS_HOME/etc/log4j2.xml` by setting it from `WARN` to `DEBUG`.
 The changes will be picked up automatically and you don't need a restart.
 
 ```xml
-<KeyValuePair key="notifd"               value="WARN" />
+<KeyValuePair key="notifd" value="DEBUG" />
 ```
 
-If you have very flaky devices over DSL lines you can set an initial delay which ensures you only get notifications when the outage exists for a certain amount of time.
+If you have devices on very unreliable internet connections, you can set an initial delay which ensures you only get notifications when the outage exists for a certain amount of time.
 
 gl & hf
