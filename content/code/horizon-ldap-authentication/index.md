@@ -86,7 +86,15 @@ cp activeDirectory.xml.disabled activeDirectory.xml
 </beans:bean>
 ```
 
-***Step 9: Restart OpenNMS Horizon and login with your Active Directory User***
+***Step 9: Set the search path for groups for role mapping***
+```xml
+  <beans:bean id="userGroupLdapAuthoritiesPopulator" class="org.opennms.web.springframework.security.UserGroupLdapAuthoritiesPopulator">
+    <beans:constructor-arg ref="contextSource"/>
+    <!-- Common LDAP container for the user and admin groups listed below -->
+    <beans:constructor-arg value="cn=Users" />
+```
+
+***Step 10: Restart OpenNMS Horizon and login with your Active Directory User***
 
 For troubleshooting you can watch the Jetty web log.
 ```sh
