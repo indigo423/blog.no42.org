@@ -136,26 +136,4 @@ By default the DNSResolution Monitor will use the _Node Label_ as lookup for an 
 The IP interface doesn't matter, the test will use the system DNS configuration.
 If you want a more customized DNS test, have a look at the [DNSResolutionMonitor documentation]/http://docs.opennms.org/opennms/releases/latest/guide-admin/guide-admin.html#poller-dns-resolution-monitor).
 
-### Getting notified by SSL certificate expiration
-
-Running SSL is pretty much the default thanks to [letsencrypt](https://letsencrypt.org).
-It is important to know if a SSL certificate is going to expire before it actually happens.
-OpenNMS comes with a built in SSL Certificate monitor which can be used for a web site in the current setup as well.
-
-```xml
-<service name="SSL-Cert-HTTPS-443" interval="7200000" user-defined="false" status="on">
-    <parameter key="retry" value="2"/>
-    <parameter key="timeout" value="3000"/>
-    <parameter key="port" value="443"/>
-    <parameter key="days" value="2"/>
-    <parameter key="ds-name" value="sslCertHttps"/>
-    <parameter key="server-name" value="${nodelabel}"/>
-</service>
-
-<monitor service="SSL-Cert-HTTPS-443" class-name="org.opennms.netmgt.poller.monitors.SSLCertMonitor"/>
-```
-
-The `server-name` is passed as _SNI_ for the _GET Request_ in case you have multiple websites on the same hosts and evaluates the appropriate SSL certificate.
-In this example you get a service down when the certificate expires in 2 days.
-
 Happy Monitoring
