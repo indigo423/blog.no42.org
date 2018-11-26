@@ -103,7 +103,7 @@ They will always be reachable and respond to ICMP by the systems local IP stack.
 ![Node Provisioning for websites](provision-node.png)
 
 Assign the _Web-Page-Landing-SSL_ monitor to the loopback IP.
-If you want to have a more detailed error message and not just a _nodeDown_ event in case the website is unavailable, provision the _ICMP_ service the loopback IP.
+If you want to have a more detailed error message and not just a _nodeDown_ event in case the website is unavailable, provision the _ICMP_ service on the loopback IP.
 The _ICMP_ service will always be available and you will get a _nodeLostService_ with a more detailed error message why the _Web-Page-Landing-SSL_ service went down.
 
 ### Add diagnostic test for DNS resolution
