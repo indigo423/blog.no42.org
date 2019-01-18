@@ -134,6 +134,6 @@ With a similar pattern you can add a test to resolve the websites hostname as ad
 
 By default the DNSResolution Monitor will use the _Node Label_ as lookup for an _A record_.
 The IP interface doesn't matter, the test will use the system DNS configuration.
-If you want a more customized DNS test, have a look at the [DNSResolutionMonitor documentation]/http://docs.opennms.org/opennms/releases/latest/guide-admin/guide-admin.html#poller-dns-resolution-monitor).
+If you want a more customized DNS test, have a look at the [DNSResolutionMonitor documentation](http://docs.opennms.org/opennms/releases/latest/guide-admin/guide-admin.html#poller-dns-resolution-monitor).
 
 Happy Monitoring
