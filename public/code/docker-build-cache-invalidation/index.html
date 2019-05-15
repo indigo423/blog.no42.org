@@ -7,12 +7,12 @@
         <meta name="description" content="Private blog around tech and live.">
         <meta name="keywords" content="blog,personal,responsive,search,font awesome,pages,posts,multilingual,highlight.js,syntax highlighting,premium,shortcuts">
         <meta name="generator" content="Hugo 0.55.4" />
-        <title> Docker, Caching, Build | no42</title>
-        <meta name="description" content="Docker, Caching, Build - Private blog around tech and live.">
-        <meta itemprop="name" content="Docker, Caching, Build">
-        <meta itemprop="description" content="Docker, Caching, Build - Private blog around tech and live.">
-        <meta property="og:title" content="Docker, Caching, Build">
-        <meta property="og:description" content="Docker, Caching, Build - Private blog around tech and live.">
+        <title> Docker build and cache invalidation | no42</title>
+        <meta name="description" content="Docker build and cache invalidation - Private blog around tech and live.">
+        <meta itemprop="name" content="Docker build and cache invalidation">
+        <meta itemprop="description" content="Docker build and cache invalidation - Private blog around tech and live.">
+        <meta property="og:title" content="Docker build and cache invalidation">
+        <meta property="og:description" content="Docker build and cache invalidation - Private blog around tech and live.">
         <meta property="og:image" content="https://www.gravatar.com/avatar/7f19843706ee328d5b1dfbf9b2a73a73?size=200">
         <meta property="og:url" content="https://blog.no42.org/code/docker-build-cache-invalidation/">
         <meta property="og:site_name" content="no42">
@@ -114,7 +114,7 @@
 
 
     <div class="content">
-    <h3><a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a></h3>
+    <h3><a href="/code/docker-build-cache-invalidation/">Docker build and cache invalidation</a></h3>
     <div class="meta">
         
             
@@ -134,11 +134,7 @@
     </div>
 
     
-        
-
-<h1 id="docker-build-and-cache-invalidation">Docker build and cache invalidation</h1>
-
-<p>Right now I&rsquo;m working with my work mates @opennms integrating the docker image building in our CI/CD environment.
+        <p>Right now I&rsquo;m working with my work mates @opennms integrating the docker image building in our CI/CD environment.
 We build our container image based on CentOS and we noticed the caching doesn&rsquo;t work for ${reasons}.</p>
 
 <p>Running a <code>docker build -t myimage .</code> ended up always in installing packages from the official yum repositories even we haven&rsquo;t changed anything in the Dockerfile.</p>
@@ -232,7 +228,7 @@ The second run hits the caches and finishes in under a second.</p>
                 <ul>
                 
                     <li>
-                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                        <a href="/code/docker-build-cache-invalidation/">Docker build and cache invalidation</a>
                     </li>
                 
                     <li>

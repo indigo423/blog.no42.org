@@ -129,12 +129,82 @@
     </div>
 
     
-        We are all happy when we are able to get IPv6 connectivity for our new servers. In case the network is provided by someone else and some kernel settings you can get in some tricky situations.
-With IPv6 there are so many addresses your Laptop and Mobile can have a unique public IPv6 address forever - pretty cool huh? The downside is, it would be pretty easy to trace every connection you ever do back to your device - this really not what you want!
+        <p>We are all happy when we are able to get IPv6 connectivity for our new servers.
+In case the network is provided by someone else and some kernel settings you can get in some tricky situations.</p>
 
-        
-            <a href="/code/ipv6-and-monitoring/" class="more">Continue reading</a>
-        
+<p>With IPv6 there are so many addresses your Laptop and Mobile can have a unique public IPv6 address forever - pretty cool huh?
+The downside is, it would be pretty easy to trace every connection you ever do back to your device - this really not what you want!
+When you provide a service this behavior is not so useful.
+Otherwise there are several ways to autoconfigure your IPv6 configuration, beside DHCPv6 the interesting one is stateless address configuration.</p>
+
+<p>Stateless address configuration means, your server is allowed to construct himself an IPv6 address without the need of DHCPv6 server.
+Simple explained, a router with IPv6 runs the Router Advertisement daemon.
+He sends via link local router advertisement (RA) packets and inform others &ldquo;Hey! I&rsquo;m the default router for the 2001::/64 network&rdquo;.
+This advertisements are sent out at a certain interval and this way your server gets the information what the LAN IPv6 network is.</p>
+
+<p>The RA packets can have some flags:</p>
+
+<ul>
+<li><code>A</code>: Autonomous Address Autoconfiguration tells your server it should perform a <a href="http://tools.ietf.org/html/rfc4862">stateless address assignment</a></li>
+<li><code>M</code>: Managed Address Configuration tells your server it should use stateful DHCPv6 to acquire its address and other DHCPv6 options</li>
+</ul>
+
+<p>With the flag set to <code>A</code> your server will create an IPv6 address in the given network space.
+To make your server &ldquo;untracable&rdquo; the <a href="https://tools.ietf.org/html/rfc4941">Privacy Extensions</a> kicks in and basically randomizes and changes your IPv6 address over time.</p>
+
+<p>You can verify the configuration with</p>
+
+<pre><code class="language-sh">sysctl -a | grep use_temp
+
+net.ipv6.conf.VPN.use_tempaddr = 2
+net.ipv6.conf.all.use_tempaddr = 2
+net.ipv6.conf.default.use_tempaddr = 2
+net.ipv6.conf.em1.use_tempaddr = 2
+net.ipv6.conf.em2.use_tempaddr = 2
+net.ipv6.conf.lo.use_tempaddr = 2
+</code></pre>
+
+<p>In Ubuntu you can set the kernel settings so they survive a restart set the configuration in</p>
+
+<pre><code class="language-sh">cat /etc/sysctl.d/10-ipv6-privacy.conf
+
+net.ipv6.conf.all.use_tempaddr = 2
+net.ipv6.conf.default.use_tempaddr = 2
+</code></pre>
+
+<p>If you want to set the parameter as default for every new network device set</p>
+
+<pre><code class="language-sh">sysctl -w net.ipv6.conf.all.use_tempaddr=0
+sysctl -w net.ipv6.conf.default.use_tempaddr = 0
+</code></pre>
+
+<p>This setting can also be configured for a specific interfaces, here the command for <code>eth0</code></p>
+
+<pre><code class="language-sh">sysctl -w net.ipv6.conf.eth0.use_tempaddr=0
+</code></pre>
+
+<p>If you have the kernel settings set to <code>2</code> means prefer privacy addresses and use them over the normal address.
+Set the kernel parameter to <code>0</code> to disable privacy extensions.</p>
+
+<p>OpenNMS uses SNMP and during the provisioning and discovers IPv6 addresses.
+For the provisioning there are not a lot of possibilities to figure out if an interface is down or doesn&rsquo;t exist anymore.
+If you have Privacy Extentions enabled your server looks somehow like the screenshot below.</p>
+
+<p><img src="/images/ipv6-temporary-address-with-privacy-extensions.png" alt="OpenNMS with IPv6 temporary addresses" /></p>
+
+<p>In this situation you can exclude the IP interfaces with an IP match policy or you disable Privacy Extensions on your server.</p>
+
+<p>Links around this topic:</p>
+
+<ul>
+<li><a href="http://www.finnie.org/2012/06/10/ipv6-autoconfiguration-in-a-nutshell/">IPv6 autoconfiguration in a nutshell</a></li>
+<li><a href="https://community.infoblox.com/t5/IPv6-Center-of-Excellence/Why-You-Must-Use-ICMPv6-Router-Advertisements-RAs/ba-p/3416">ICMPv6 and Router Advertisements</a></li>
+<li><a href="http://computernetworkingnotes.com/ipv6-features-concepts-and-configurations/install-ipv6.html">IPv6 Address Auto configuration Process</a></li>
+<li><a href="https://sites.google.com/site/amitsciscozone/home/important-tips/ipv6/ipv6-stateless-autoconfiguration">IPv6 Stateless Autoconfiguration</a></li>
+<li><a href="https://wiki.ubuntuusers.de/IPv6/Privacy_Extensions/">IPv6 Privacy Extensions</a></li>
+<li><a href="http://docs.opennms.org/opennms/branches/develop/guide-admin/guide-admin.html#_advanced_provisioning_example">OpenNMS Advanced Provisioning Example</a></li>
+</ul>
+
     
 </div>
 
@@ -187,7 +257,7 @@ With IPv6 there are so many addresses your Laptop and Mobile can have a unique p
                 <ul>
                 
                     <li>
-                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                        <a href="/code/docker-build-cache-invalidation/">Docker build and cache invalidation</a>
                     </li>
                 
                     <li>

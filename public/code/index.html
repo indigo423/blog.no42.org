@@ -117,7 +117,7 @@
 
 
     <div class="content">
-    <h3><a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a></h3>
+    <h3><a href="/code/docker-build-cache-invalidation/">Docker build and cache invalidation</a></h3>
     <div class="meta">
         
             
@@ -137,11 +137,7 @@
     </div>
 
     
-        
-
-<h1 id="docker-build-and-cache-invalidation">Docker build and cache invalidation</h1>
-
-<p>Right now I&rsquo;m working with my work mates @opennms integrating the docker image building in our CI/CD environment.
+        <p>Right now I&rsquo;m working with my work mates @opennms integrating the docker image building in our CI/CD environment.
 We build our container image based on CentOS and we noticed the caching doesn&rsquo;t work for ${reasons}.</p>
 
 <p>Running a <code>docker build -t myimage .</code> ended up always in installing packages from the official yum repositories even we haven&rsquo;t changed anything in the Dockerfile.</p>
@@ -255,280 +251,12 @@ The second run hits the caches and finishes in under a second.</p>
     </div>
 
     
+        Running a Java application in a container seems to be very easy. The devil is in the details and I want to shed some light on the PID 1 problem when you run Java applications in containers. In a general running applications in containers should not have any state so you just don&rsquo;t care, but reality is different forces you to have to.
+Signals are used to a running process to behave in a certain ways.
+
         
-
-<p>Running a Java application in a container seems to be very easy.
-The devil is in the details and I want to shed some light on the PID 1 problem when you run Java applications in containers.
-In a general running applications in containers should not have any state so you just don&rsquo;t care, but reality is different forces you to have to.</p>
-
-<p>Signals are used to a running process to behave in a certain ways.
-Some can be caught by a running process and give people possibilities to implement logic to shutdown the application gracefully.
-A common case is to terminate a process nicely sending a <code>SIGTERM</code> to the process identified by the process id using the tool <code>ps</code>.</p>
-
-<p>So when you issue the command <code>kill &lt;pid&gt;</code> you send a SIGTERM to a process.
-When you have a process running in foreground and you hit <code>CTRL + C</code> you send the signal <code>SIGINT</code> to the process.</p>
-
-<h3 id="java-application-and-signals">Java application and signals</h3>
-
-<p>Let&rsquo;s see what this means with a very simple example.
-We have a small Java application, running an infinite loop in foreground.
-Here is the simple sample code.</p>
-
-<script type="application/javascript" src="//gist.github.com/indigo423/53b9060d9e36c138e4a4a91f55343e05.js"></script>
-
-<p>Compile it with <code>javac Main.java</code> and run it with <code>java Main</code> and you will this here:</p>
-
-<pre><code>indigo@blinky ~/pid-example $ java Main
-I'm doing some work ...
-I'm doing some work ...
-I'm doing some work ...
-</code></pre>
-
-<p>No we want to terminate it and hit <code>CTRL + C</code> and display the exit code with <code>echo $?</code>.</p>
-
-<pre><code>indigo@blinky ~/pid-example $ java Main
-I'm doing some work ...
-I'm doing some work ...
-I'm doing some work ...
-^C%
-indigo@blinky ~/pid-example $ echo $?
-130
-</code></pre>
-
-<p>The JVM exits with error code 130 tells us it was terminated with <code>CTRL + C</code> and the JVM handled for us a <code>SIGINT</code>.</p>
-
-<p>Now we try a different approach and terminate our Java app with sending a <code>SIGTERM</code>.
-Start the program and open a second terminal, identify the Java process id (pid) and issue the command <code>kill &lt;pid&gt;</code> and show the exit code.</p>
-
-<pre><code>indigo@blinky ~/pid-example $ java Main
-I'm doing some work ...
-I'm doing some work ...
-I'm doing some work ...
-indigo@blinky ~/pid-example $ echo $?
-143
-</code></pre>
-
-<p>The JVM handled the <code>SIGTERM</code> for us and returned it with exit code <code>143</code>.</p>
-
-<p>Your Linux operating system has a crowbar in your toolbox which is the <code>KILL</code> signal, it is one of the signals you can&rsquo;t listen for in your application.
-If you try to register a handler for a <code>KILL</code> signal your JVM will throw you a runtime exception like this:</p>
-
-<pre><code>Exception in thread &quot;main&quot; java.lang.IllegalArgumentException: Signal already used by VM or OS: SIGKILL
-	at sun.misc.Signal.handle(Signal.java:166)
-	at Main.handleSignal(Main.java:26)
-	at Main.main(Main.java:8)
-</code></pre>
-
-<p>When you kill your application with <code>kill -s KILL &lt;pid&gt;</code> it will give you an exit code <code>137</code>.</p>
-
-<h3 id="handle-the-terminate-signal">Handle the terminate signal</h3>
-
-<p>Now extend our little program and simulate some logic to handle the <code>TERM</code> signal and exit our program normal by returning exit code <code>0</code>.</p>
-
-<script type="application/javascript" src="//gist.github.com/indigo423/cb8994b506934970d5a9784e130351cb.js"></script>
-
-<p>We compile and run it again, identify the PID and kill it with <code>kill &lt;pid&gt;</code> and we get following result:</p>
-
-<pre><code>indigo@blinky ~/pid-example $ java Main
-I'm doing some work ...
-I'm doing some work ...
-I'm doing some work ...
-Signal received: TERM
-Shutdown initiated
-indigo@blinky ~/pid-example $ echo $?
-0
-</code></pre>
-
-<h3 id="dockerize-our-little-app">Dockerize our little app</h3>
-
-<p>Ok we have now a pretty good idea how it behaves on our local system.
-What happens when we run the application in a Docker container image.
-We use the <code>Main.class</code> as an artifact and just run it in a Java container image with a Dockerfile.</p>
-
-<script type="application/javascript" src="//gist.github.com/indigo423/c76ad4d53200eff4052b039dbaa9217d.js"></script>
-
-<p>The <code>java</code> binary becomes the entrypoint and we use a default argument <code>-h</code>.
-By default the working directory is <code>/</code>.
-We can run our application by passing the application name as the first argument and overwrite <code>-h</code>.</p>
-
-<p>Let&rsquo;s build the image and run our application and run it.</p>
-
-<pre><code>indigo@blinky ~/pid-example $ docker build -t test .
-Sending build context to Docker daemon  7.168kB
-Step 1/4 : FROM openjdk:11-slim
- ---&gt; 20be262dd659
-Step 2/4 : COPY Main.class /
- ---&gt; 27dc84a91282
-Step 3/4 : ENTRYPOINT [&quot;java&quot;]
- ---&gt; Running in a87fdb2ed9c4
-Removing intermediate container a87fdb2ed9c4
- ---&gt; 7bc71866d0b2
-Step 4/4 : CMD [&quot;-h&quot;]
- ---&gt; Running in 9ff5086f1c2b
-Removing intermediate container 9ff5086f1c2b
- ---&gt; efe92a0f9f78
-Successfully built efe92a0f9f78
-Successfully tagged test:latest
-indigo@blinky ~/pid-example $ docker run test Main
-I'm doing some work ...
-I'm doing some work ...
-I'm doing some work ...
-</code></pre>
-
-<p>Ok now send some signals into the running container similar what we did in our local example.
-Instead of <code>kill</code> we use <code>docker kill</code> and instead of the process ID we use the container id which can be identified with <code>docker ps</code>.
-The exit state is persisted of stopped containers can be shown with <code>docker ps -a</code></p>
-
-<p>Let&rsquo;s kill the running container and check the exit code:</p>
-
-<pre><code>indigo@blinky ~/pid-example $ docker kill &lt;container-id&gt;
-indigo@blinky ~/pid-example $ docker ps -a
-</code></pre>
-
-<p>Now you may wonder, you see the exit state as <code>Exited (137) About a minute ago</code>.
-By default <code>docker kill</code> is sending the <code>KILL</code> signal and not <code>TERM</code>.
-This is one of the first notions of, applications in containers don&rsquo;t care about state and get killed with a crowbar by default.</p>
-
-<p>Ok we run again and we send a <code>TERM</code> signal and see what happens:</p>
-
-<pre><code>indigo@blinky ~/pid-example $ docker run test Main
-I'm doing some work ...
-I'm doing some work ...
-I'm doing some work ...
-</code></pre>
-
-<p>Now we send a <code>TERM</code> signal:</p>
-
-<pre><code>indigo@blinky ~/pid-example $ docker kill -s TERM &lt;container-id&gt;
-</code></pre>
-
-<p>and voila we shutdown gracefully</p>
-
-<pre><code>I'm doing some work ...
-Signal received: TERM
-Shutdown initiated
-</code></pre>
-
-<p>So there is <code>docker stop</code> and how does it work?
-If you want to be nice to your application use <code>docker stop &lt;container-id&gt;</code> it will send a <code>TERM</code> signal and gives your application 10 seconds by default to terminate gracefully otherwise it get&rsquo;s killed with the <code>KILL</code> signal.</p>
-
-<h3 id="process-ids-inside-the-running-container">Process Ids inside the running container</h3>
-
-<p>We run our application with containers in an isolated space.
-Let&rsquo;s extend our little example  a little bit to see what runs inside.
-We have to add the <code>ps</code> command in the Docker image.</p>
-
-<script type="application/javascript" src="//gist.github.com/indigo423/e8cb5a91454305db30f70576c335b482.js"></script>
-
-<p>Now we extend our Java program with a method to list all running processes inside the container with it&rsquo;s process ids.</p>
-
-<script type="application/javascript" src="//gist.github.com/indigo423/edaf83b61eea5670fc172d8b9dd12d09.js"></script>
-
-<p>We compile the Java class, build a new image and run the app in our container:</p>
-
-<pre><code>indigo@blinky ~/pid-example $ javac Main.java
-indigo@blinky ~/pid-example $ docker build -t test .
-indigo@blinky ~/pid-example $ docker run test Main
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.2 5824432 35544 ?       Ssl  13:30   0:00 java Main
-root        23  0.0  0.0  38384  3072 ?        R    13:30   0:00 ps aux
-I'm doing some work ...
-I'm doing some work ... 
-</code></pre>
-
-<p>We can see our Java application got PID 1 and it has forked the ps command which got PID 23.</p>
-
-<h3 id="using-scripts-as-entrypoint-and-pid-1">Using Scripts as Entrypoint and PID 1</h3>
-
-<p>Some applications are not suited for this use-case and require some logic before the can be started.
-A common pattern is the entrypoint script approache.
-Instead of calling the program directly we use a shell script which gives us some control to influence who the application is started.
-Let&rsquo;s modify our container image using a very simple entry point script.</p>
-
-<script type="application/javascript" src="//gist.github.com/indigo423/07aae0ad15f54ceafb2b668d0b410227.js"></script>
-
-<p>We make the <code>entrypoint.sh</code> executable and add it to our Docker image.</p>
-
-<script type="application/javascript" src="//gist.github.com/indigo423/a2349b1a0739faed6b4e0942b1f97a2c.js"></script>
-
-<p>The entry point script will now take care of starting our application.</p>
-
-<pre><code>indigo@blinky ~/pid-example $ chmod +x entrypoint
-indigo@blinky ~/pid-example $ docker build -t test .
-indigo@blinky ~/pid-example $ docker run test
-Running entry point script
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.0   4288   724 ?        Ss   13:53   0:00 sh /entrypoint.sh
-root         7  0.0  0.2 5824432 35328 ?       Sl   13:53   0:00 java Main
-root        24  0.0  0.0  38384  3096 ?        R    13:53   0:00 ps aux
-I'm doing some work ...
-I'm doing some work ...
-I'm doing some work ...
-I'm doing some work ...
-</code></pre>
-
-<p>We can see now, the PID 1 is our entry point script.
-The Java process gets forked and gets PID 7.
-Let&rsquo;s stop it with <code>docker stop &lt;container-id&gt;</code>.</p>
-
-<pre><code>indigo@blinky ~/pid-example $ docker stop e67b0b239f59
-e67b0b239f59
-</code></pre>
-
-<p>What you will notice, your application does not get the <code>SIGTERM</code> and it takes 10 seconds until it got killed with <code>SIGKILL</code>.</p>
-
-<p>The important part here, is the PID 1 in the container image has the responsibility to deal with signals.
-Your entry point script doesn&rsquo;t whereas running the JVM as PID 1 in the example above does and we broke the behaviour of our little app.</p>
-
-<h3 id="exec-for-the-win">Exec for the win</h3>
-
-<p>When you are familiar with Linux bash you know the <code>exec</code> command.
-Instead of forking a new process from the existing bash it replaces the shell.
-We change our entry point script slightly and see what happens.</p>
-
-<script type="application/javascript" src="//gist.github.com/indigo423/742664640198093bc84e0b1609a996b1.js"></script>
-
-<p>We rebuild the container and run the image and run the <code>docker stop &lt;container-id&gt;</code> command.</p>
-
-<pre><code class="language-plain">indigo@blinky ~/pid-example $ docker build -t test .
-indigo@blinky ~/pid-example $ docker run test
-Running entry point script
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1 21.0  0.2 5824432 36552 ?       Ssl  14:08   0:00 java Main
-root        23  0.0  0.0  38384  3112 ?        R    14:08   0:00 ps aux
-I'm doing some work ...
-I'm doing some work ...
-I'm doing some work ...
-I'm doing some work ...
-Signal received: TERM
-Shutdown initiated
-</code></pre>
-
-<p>Now we are back in business, the entry point bash got replaced by the Java process and can deal with the signal.</p>
-
-<h3 id="i-don-t-want-to-be-pid-1">I don&rsquo;t want to be PID 1</h3>
-
-<p>In Linux PID 1 has some additional responsibilities.
-There are described very nicely in the article <a href="https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/">Docker and the PID 1 zombie reaping problem</a>.
-So there are cases you don&rsquo;t want to be PID 1 cause you don&rsquo;t know how to deal with this problems.</p>
-
-<p>In Docker you can run a tiny init process which deals with this things for you.
-Additionally it forwards signals.
-All you need is to run <code>--init</code> in your <code>docker run</code> command.
-You can send a <code>docker stop</code> and your Java application can deal with the <code>SIGTERM</code> to stop gracefully.</p>
-
-<pre><code>indigo@blinky ~/pid-example $ docker run --init test
-Running entry point script
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.0   1044     4 ?        Ss   14:16   0:00 /dev/init -- /entrypoint.sh
-root         7  0.0  0.2 5824432 36588 ?       Sl   14:16   0:00 java Main
-root        24  0.0  0.0  38384  3192 ?        R    14:16   0:00 ps aux
-I'm doing some work ...
-I'm doing some work ...
-Signal received: TERM
-Shutdown initiated
-</code></pre>
-
+            <a href="/code/docker-java-signals-pid1/" class="more">Continue reading</a>
+        
     
 </div>
 
@@ -1173,7 +901,7 @@ The main topic security is often not considered. SNMP version 1 and 2c transmit 
                 <ul>
                 
                     <li>
-                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                        <a href="/code/docker-build-cache-invalidation/">Docker build and cache invalidation</a>
                     </li>
                 
                     <li>

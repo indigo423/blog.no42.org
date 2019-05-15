@@ -193,49 +193,12 @@ It is possible to fix your computer name for several things using the scutil com
     </div>
 
     
+        I ran in some trouble with my Vodafone Easybox 904 xDSL. Even with 2Ghz and 5Ghz WLAN I had regularly drops. Had to turn on / off the WLAN on the device or had to reboot it to reconnect. Otherwise the VDSL line reguarly got disconnected, also replacing the Easybox from Vodafone didn&rsquo;t helped, so I bought a Zyxel VMG1312-B30A.
+Search through the interwebs and took me a while to figure out what settings are required.
+
         
-
-<p>I ran in some trouble with my Vodafone <em>Easybox 904 xDSL</em>.
-Even with 2Ghz and 5Ghz <em>WLAN</em> I had regularly drops.
-Had to turn on / off the <em>WLAN</em> on the device or had to reboot it to reconnect.
-Otherwise the <em>VDSL</em> line reguarly got disconnected, also replacing the <em>Easybox</em> from Vodafone didn&rsquo;t helped, so I bought a <em>Zyxel VMG1312-B30A</em>.</p>
-
-<p><img src="/images/zyxel.png" alt="Zyxel with Vodafon VDSL 50" /></p>
-
-<p>Search through the interwebs and took me a while to figure out what settings are required.
-In case you want doing the same, I want to share my settings to safe you some time:</p>
-
-<h2 id="broadband-settings">Broadband Settings</h2>
-
-<ul>
-<li>Type: <code>ADSL/VDSL over PTM</code></li>
-<li>Mode: <code>Routing</code></li>
-<li>Encapsulation: <code>PPPoE</code></li>
-<li>IPv6/IPv4 Mode: <code>IPv4 only</code> <em>sigh</em></li>
-<li>PPP-User: <code>vodafone-vdsl.komplett/vb&lt;number&gt;</code></li>
-<li>PPP-Pass: <code>your-pass-here</code></li>
-<li>PPPoE-Service-Name: <code>VODAFONE</code></li>
-<li>VLAN: <code>active</code></li>
-<li>802.1p: <code>1</code></li>
-<li>802.1q: <code>7</code> (<code>7</code>: Telekom line, <code>132</code> for Vodafone line)</li>
-<li>MTU: <code>1492</code></li>
-</ul>
-
-<h2 id="extended-xdsl-settings">Extended xDSL Settings</h2>
-
-<ul>
-<li>ADSL over PTM: <code>deactivated</code></li>
-<li>Annex J: <code>activated</code></li>
-<li>PhyR US:<code>deactivated</code></li>
-<li>PhyR DS: <code>activated</code></li>
-</ul>
-
-<p>Connection went online and speed test gives me 50 MBit downstream and 10 Mbit upstream.
-I run a <em>tinc</em> VPN to have a flat management network for all my servers and runs without any trouble so fare.
-Just to mention, I don&rsquo;t use the <em>Vodafone</em> voice functionality.</p>
-
-<p>So far gl &amp; hf</p>
-
+            <a href="/article/zyxel-vs-easybox/" class="more">Continue reading</a>
+        
     
 </div>
 
@@ -350,7 +313,7 @@ With IPv6 there are so many addresses your Laptop and Mobile can have a unique p
                 <ul>
                 
                     <li>
-                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                        <a href="/code/docker-build-cache-invalidation/">Docker build and cache invalidation</a>
                     </li>
                 
                     <li>

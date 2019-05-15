@@ -129,32 +129,12 @@
     </div>
 
     
-        <p>If you have <a href="http://www.opennms.org/">OpenNMS</a> with <a href="http://www.rrdtool.org/">RRDtool</a> running, you can improve the whole rendering a little bit just by replacing the <code>command.prefix</code> in the following files:</p>
+        If you have OpenNMS with RRDtool running, you can improve the whole rendering a little bit just by replacing the command.prefix in the following files:
+ snmp-graph.properties snmp-adhoc-graph.properties response-graph.properties response-adhoc-graph.properties  command.prefix=/usr/bin/rrdtool graph - --imgformat PNG --font DEFAULT:7 --font TITLE:10 --start {startTime} --end {endTime} -E --width=1000 --height=180  I don’t like the stamp size graphs in OpenNMS, so I changed it for all. It could be problematic if you have grouped graph report (KSC report).
 
-<ul>
-<li><code>snmp-graph.properties</code></li>
-<li><code>snmp-adhoc-graph.properties</code></li>
-<li><code>response-graph.properties</code></li>
-<li><code>response-adhoc-graph.properties</code></li>
-</ul>
-
-<pre><code class="language-sh">command.prefix=/usr/bin/rrdtool graph - --imgformat PNG --font DEFAULT:7 --font TITLE:10 --start {startTime} --end {endTime} -E --width=1000 --height=180
-</code></pre>
-
-<p>I don’t like the stamp size graphs in OpenNMS, so I changed it for all.
-It could be problematic if you have grouped graph report (KSC report).
-So if you have trouble, you can just remove the –width and –height parameter.
-The command will also overwrite the width and height for all graphs, so they have all the same size.
-You have to be careful if you have KSC reports with multiple columns.
-If you have RRDtool running, you can improve the graphs with anti-aliasing using a few additional parameters:</p>
-
-<pre><code class="language-sh">command.prefix=/usr/bin/rrdtool graph - --imgformat PNG -R normal --font-render-mode normal -l 0 -E --font DEFAULT:7 --font TITLE:10 --start {startTime} --end {endTime} -c ARROW#5e5e5e --width=1000 --height=180
-</code></pre>
-
-<p><img src="/images/rrd-graph-default.png" alt="Default graph without anti-aliasing" /></p>
-
-<p><img src="/images/rrd-graph-antialiased.png" alt="Default graph without anti-aliasing" /></p>
-
+        
+            <a href="/code/rrdtool-graph-improvements/" class="more">Continue reading</a>
+        
     
 </div>
 
@@ -205,7 +185,7 @@ If you have RRDtool running, you can improve the graphs with anti-aliasing using
                 <ul>
                 
                     <li>
-                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                        <a href="/code/docker-build-cache-invalidation/">Docker build and cache invalidation</a>
                     </li>
                 
                     <li>

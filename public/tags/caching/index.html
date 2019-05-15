@@ -117,7 +117,7 @@
 
 
     <div class="content">
-    <h3><a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a></h3>
+    <h3><a href="/code/docker-build-cache-invalidation/">Docker build and cache invalidation</a></h3>
     <div class="meta">
         
             
@@ -137,58 +137,13 @@
     </div>
 
     
+        Right now I&rsquo;m working with my work mates @opennms integrating the docker image building in our CI/CD environment. We build our container image based on CentOS and we noticed the caching doesn&rsquo;t work for ${reasons}.
+Running a docker build -t myimage . ended up always in installing packages from the official yum repositories even we haven&rsquo;t changed anything in the Dockerfile.
+To understand things better, I went back to drawing board and started with a simple example and rebuilding things step by step to understand when gets the docker build cache unnecessarily invalidated.
+
         
-
-<h1 id="docker-build-and-cache-invalidation">Docker build and cache invalidation</h1>
-
-<p>Right now I&rsquo;m working with my work mates @opennms integrating the docker image building in our CI/CD environment.
-We build our container image based on CentOS and we noticed the caching doesn&rsquo;t work for ${reasons}.</p>
-
-<p>Running a <code>docker build -t myimage .</code> ended up always in installing packages from the official yum repositories even we haven&rsquo;t changed anything in the Dockerfile.</p>
-
-<p>To understand things better, I went back to drawing board and started with a simple example and rebuilding things step by step to understand when gets the docker build cache unnecessarily invalidated.</p>
-
-<p>The section <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache">Leverage build cache</a> with especially this section was important to me:</p>
-
-<blockquote>
-<p>Aside from the ADD and COPY commands, cache checking does not look at the files in the container to determine a cache match. For example, when processing a RUN apt-get -y update command the files updated in the container are not examined to determine if a cache hit exists. In that case just the command string itself is used to find a match.</p>
-</blockquote>
-
-<p>So this means the outcome of a RUN command doesn&rsquo;t invalidate a cache it&rsquo;s purely checked against the command string itself to find a match.</p>
-
-<p>So lets start with a simple example:</p>
-
-<script type="application/javascript" src="//gist.github.com/indigo423/f9bda3e15d68c37ac454e39b3e508853.js"></script>
-
-<p>Ok testing the build, the initial build works as expected and downloads wget from CentOS mirrors and installs it.
-The second run hits the caches and finishes in under a second.</p>
-
-<p><a href="https://asciinema.org/a/246322"><img src="https://asciinema.org/a/246322.svg" alt="Caching yum install" /></a></p>
-
-<p>We can now change the output in our last echo command and it will use the cache for the yum install wget command. Only the last layer would be rebuild which is quick and works as expected.</p>
-
-<p>We have added some build arguments when running in CI/CD which injects some information like the build number which ends up in labels, so we can give some hints which build created this artefact you have running.</p>
-
-<script type="application/javascript" src="//gist.github.com/indigo423/15bf81f434f518a7ca40407aad2bc142.js"></script>
-
-<p>Running without any changes is not a big deal and caching works as expected.</p>
-
-<p><a href="https://asciinema.org/a/246332"><img src="https://asciinema.org/a/246332.svg" alt="Caching with build argument" /></a></p>
-
-<p>Ok what happens if we inject a build argument like the build number and what is the effect on the cache.</p>
-
-<p><a href="https://asciinema.org/a/246353"><img src="https://asciinema.org/a/246353.svg" alt="Effect on cache with argument" /></a></p>
-
-<p>By observing the behaviour, you can see changing the build argument invalidates the layer above the RUN directive, which has as consequence to rebuild all following layers.</p>
-
-<p>If you move the Line 3 <code>ARG BUILD_NUMBER</code> to the end right before the LABEL you can change it and you get cache hits from the more expensive tasks at the top.</p>
-
-<script type="application/javascript" src="//gist.github.com/indigo423/44543ab21fc690bba0ba77827a112176.js"></script>
-
-<p>In conclusion order in Dockerfile matters and it make sense to group logical commands in RUN statements to make caching more efficient while working on your Dockerfiles.</p>
-
-<p>Happy caching.</p>
-
+            <a href="/code/docker-build-cache-invalidation/" class="more">Continue reading</a>
+        
     
 </div>
 
@@ -239,7 +194,7 @@ The second run hits the caches and finishes in under a second.</p>
                 <ul>
                 
                     <li>
-                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                        <a href="/code/docker-build-cache-invalidation/">Docker build and cache invalidation</a>
                     </li>
                 
                     <li>
