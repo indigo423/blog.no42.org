@@ -1,12 +1,10 @@
 ---
-title: "Docker, Caching, Build"
+title: "Docker build and cache invalidation"
 date: "2019-05-15"
 tags: ['docker', 'caching']
 author: "Ronny Trommer"
 noSummary: false
 ---
-
-# Docker build and cache invalidation
 
 Right now I'm working with my work mates @opennms integrating the docker image building in our CI/CD environment.
 We build our container image based on CentOS and we noticed the caching doesn't work for ${reasons}.
