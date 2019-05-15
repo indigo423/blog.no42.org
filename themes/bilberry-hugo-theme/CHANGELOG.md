@@ -6,6 +6,83 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.13.0] - 2018-10-13
+### Added
+- Functionality to automatically resize and crop images.
+
+### Fixed
+- A bug where the `customImage` is not displayed on multi-language sites. #137
+- Style for the gallery slider controls so they are visible on white backgrounds. #138
+
+
+## [1.12.0] - 2018-10-08
+### Fixed
+- Bug #128 that prevent to build the site.
+- Deprecation warning with SCSS, thanks to @nnja
+- README.md for the latest instructions
+- Font path issues
+
+### Added
+- Feature for a Pinned Post, thanks to @nnja
+- Feature to customize the post icon, also by @nnja
+- Feature to exclude an post from the main page, @nnja again!
+- Hungarian Language, provided by @davidsarkany
+- Turkish Language, provided by @hycakir
+
+
+## [1.11.1] - 2018-09-15
+### Fixed
+- Broken font path since Version 1.10.0 (#114, #115)
+
+## [1.11.0] - 2018-09-14
+### Added
+- Language Brazilian Portuguese, thanks to @marcelocg (#112)
+- Updated Korean language
+
+## [1.10.0] - 2018-09-10
+### Fixed
+- Incorrect rendering of task lists (#108)
+- Displaying the RSS line in the footer
+
+### Added
+- Support for hugo pipes, no longer need for `npm` dependencies (#102)
+- Option to configure the overlayIcon (#56)
+- Option to configure the date format (#53)
+- Option to display the Reading Time (#51)
+
+
+## [1.9.1] - 2018-08-30
+### Fixed
+- Issues with the GoHugo Theme's requirements for the themes.gohugo.io site
+
+
+## [1.9.0] - 2018-08-30
+### Added
+- All-Contributors list to README.md
+- Chinese language, thanks to @AgennyBrof
+- Korean language, thanks to @hithat (user at poeditor.com)
+
+## [1.8.1] - 2018-08-16
+### Added
+- Africans language
+
+### Changed
+- Removed Patreon example content and introduced the new Discord server: <br> [![Discord](https://img.shields.io/discord/479643633814077465.svg?style=for-the-badge&label=Discord%20Chat&colorB=7289da)](https://discord.gg/vZVHJ4j)
+- Language files from `.yaml` to `.toml` and switched to [POEditor](https://poeditor.com/projects/view?id=202795) for translations.
+
+
+## [1.8.0] - 2018-08-09
+### Added
+- Vietnamese language, thanks to @anhchungite
+- Danish language, thanks to @GMpet
+- Open Graph meta data, thanks to @anhchungite again!
+- RSS support, contributed by @NickBusey
+
+### Fixed
+- Displaying custom image (#96 and #103), by @Embraser01 and @gigovich
+- Responsive images in posts
+
+
 ## [1.7.1] - 2018-06-17 | Hotfix
 ### Fixed
 - Broken links in favicon, algolia-logo and `theme.css`
@@ -111,7 +188,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Some typos
 
 
-[Unreleased]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.7.1...master
+[Unreleased]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.13.0...development
+[1.13.0]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.12.0...1.13.0
+[1.12.0]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.11.1...1.12.0
+[1.11.1]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.11.0...1.11.1
+[1.11.0]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.10.0...1.11.0
+[1.10.0]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.9.1...1.10.0
+[1.9.1]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.9.0...1.9.1
+[1.9.0]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.8.1...1.9.0
+[1.8.1]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.8.0...1.8.1
+[1.8.0]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.7.1...1.8.0
 [1.7.1]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.7.0...1.7.1
 [1.7.0]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.6.0...1.7.0
 [1.6.0]: https://github.com/Lednerb/bilberry-hugo-theme/compare/1.5.0...1.6.0

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on no42</title>
+    <link>https://blog.no42.org/tags/docker/</link>
+    <description>Recent content in docker on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 15 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker, Caching, Build</title>
+      <link>https://blog.no42.org/code/docker-build-cache-invalidation/</link>
+      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/docker-build-cache-invalidation/</guid>
+      <description>Docker build and cache invalidation Right now I&amp;rsquo;m working with my work mates @opennms integrating the docker image building in our CI/CD environment. We build our container image based on CentOS and we noticed the caching doesn&amp;rsquo;t work for ${reasons}.
+Running a docker build -t myimage . ended up always in installing packages from the official yum repositories even we haven&amp;rsquo;t changed anything in the Dockerfile.
+To understand things better, I went back to drawing board and started with a simple example and rebuilding things step by step to understand when gets the docker build cache unnecessarily invalidated.</description>
+    </item>
+    
+    <item>
+      <title>Docker, Java, Signals and Pid 1</title>
+      <link>https://blog.no42.org/code/docker-java-signals-pid1/</link>
+      <pubDate>Wed, 20 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/docker-java-signals-pid1/</guid>
+      <description>Running a Java application in a container seems to be very easy. The devil is in the details and I want to shed some light on the PID 1 problem when you run Java applications in containers. In a general running applications in containers should not have any state so you just don&amp;rsquo;t care, but reality is different forces you to have to.
+Signals are used to a running process to behave in a certain ways.</description>
+    </item>
+    
+    <item>
+      <title>Authenticate OpenNMS Horizon with FreeRADIUS</title>
+      <link>https://blog.no42.org/code/horizon-radius-authentication/</link>
+      <pubDate>Sun, 22 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/horizon-radius-authentication/</guid>
+      <description>Centralized authentication is a core service as soon you have a network with more than 3 computers. This article is about how to authenticate a OpenNMS Horizon 22.0.2 using RADIUS provided by a FreeRADIUS service.
+In this example the FreeRADIUS server is configured to provide 3 users. A dictionary is configured which returns 2 roles, ROLE_USER and ROLE_ADMIN which can be used to decide which security role is assigned in the OpenNMS Horizon Web UI.</description>
+    </item>
+    
+    <item>
+      <title>Authenticate OpenNMS Horizon with Active Directory on Windows Server 2016</title>
+      <link>https://blog.no42.org/code/horizon-ldap-authentication/</link>
+      <pubDate>Mon, 16 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/horizon-ldap-authentication/</guid>
+      <description>Centralized authentication is a core service as soon you have a network with more than 3 computers. This article is about how to authenticate a OpenNMS Horizon 22.0.1 against an Active Directory provided on a Microsoft Windows Server 2016. I&amp;rsquo;ll focus here on the Active Directory and Spring configuration parts, securing the connection with LDAPS and using self-signed certificates in Java is another topic and not covered here.
+In this example the domain is called labmonkeys.</description>
+    </item>
+    
+    <item>
+      <title>Build OpenNMS with Docker</title>
+      <link>https://blog.no42.org/code/build-opennms-docker/</link>
+      <pubDate>Sat, 14 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/build-opennms-docker/</guid>
+      <description>Being able to compiling an Open Source project is important. You can change the code, so you should also able to build it.
+Why is there a dedicated Docker image for the build environment? The dependencies running a pre-build OpenNMS Horizon distribution and compiling from source are different. To build OpenNMS Horizon you need Apache Maven and to compile JICMP, JRRD you need a C compiler environment. This is nothing you want to carry when you just want to run OpenNMS Horizon.</description>
+    </item>
+    
+    <item>
+      <title>Scanning for SNMP communities</title>
+      <link>https://blog.no42.org/code/snmp-scanning/</link>
+      <pubDate>Fri, 02 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/snmp-scanning/</guid>
+      <description>Adding devices into monitoring system is easy. Getting all the right SNMP communities for them is harder. People don&amp;rsquo;t give you the right community string or forget to open firewall ports.
+If you have to test a lot of IP&amp;rsquo;s against various IP addresses you can use nmap and a community list file as an input.
+Be aware you talk about permission to run this test otherwise somebody can get angry when you try to brute-force community strings against their devices.</description>
+    </item>
+    
+    <item>
+      <title>Cleaner log with Docker and SNMP</title>
+      <link>https://blog.no42.org/code/snmp-clean-log/</link>
+      <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/snmp-clean-log/</guid>
+      <description>Centralizing logs is important as soon you have more than 2 servers. In my environment the bare metal is monitored with Net-SNMP and my services are deployed as containers with Docker. All system logs are sent to a Graylog2 instance and I quickly noticed a few ugly entries caused by snmpd.
+Cannot statfs /run/docker/netns/...: Permission denied  You will notice a few of them. First approach try to increase the logging level in /etc/default/snmpd from SNMP daemon with</description>
+    </item>
+    
+    <item>
+      <title>Monitoring DevOps and the Status Quo</title>
+      <link>https://blog.no42.org/article/monitoring-devops/</link>
+      <pubDate>Thu, 09 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/monitoring-devops/</guid>
+      <description>As most of us noticed a few companies changed our perspective how to develop software and deploy them as a service. There are quite a few changes between selling every year a box with 10 CD&amp;rsquo;s and develop and deliver your software as a service. This article is a collection of thoughts and ideas I had and wanted to be written.
+Who cares about a version number? User give a shit about version numbers anymore, all what matters needs to be focused on the user.</description>
+    </item>
+    
+    <item>
+      <title>Docker Shell Corner Cases</title>
+      <link>https://blog.no42.org/code/docker-shell-corner-cases/</link>
+      <pubDate>Wed, 18 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/docker-shell-corner-cases/</guid>
+      <description>During work building Docker executables, I ran in an interesting corner case. Fortunately the Docker IRC channel helped me to investigate with special credits to Ravensoul.
+When you build a container as an executable you can use the ENTRYPOINT for your binary to execute and CMD as a default overwritable argument. In most cases the CMD is the --help argument to provide a useful default behavior in case you just run the container without anything specified.</description>
+    </item>
+    
+    <item>
+      <title>Docker and parallel builds</title>
+      <link>https://blog.no42.org/video/docker-parallel-build/</link>
+      <pubDate>Sat, 09 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/video/docker-parallel-build/</guid>
+      <description>I was listening to an interesting talk from Laura Frank from Codeship. In case you build or maintain a Continuous {Integration, Delivery} environment this definitely worth watching and they describe how they used LXC and now Docker to build their CI/CD infrastructure.
+TL;DR Interesting to me, the description in the YAML file reminded me quickly on a course I needed to pass during my study in parallel computing. The exam had one section where you had to describe parallel and sequential processes with some high level constructs.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>microsoft on no42</title>
+    <link>https://blog.no42.org/tags/microsoft/</link>
+    <description>Recent content in microsoft on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 07 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/microsoft/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hipster vs. Microsoft</title>
+      <link>https://blog.no42.org/article/hipster-vs-microsoft/</link>
+      <pubDate>Thu, 07 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/hipster-vs-microsoft/</guid>
+      <description>This week was great, Microsoft bought GitHub! All the Hipsters went crazy and a lot of open source people move now their repos to GitLab. There is even a Hashtag #movingtogitlab floating around.
+
+The GitLab importer showed significant peaks when the news broke out. What the hell happened?
+GitHub is the new SourceForge GitHub was cool, it made Git to shine. GitHub was the platform to collaborate on software development in public and helped to make Git the de-facto standard as a free and decentralized version control system.</description>
+    </item>
+    
+  </channel>
+</rss>

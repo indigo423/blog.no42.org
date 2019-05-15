@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>operation on no42</title>
+    <link>https://blog.no42.org/tags/operation/</link>
+    <description>Recent content in operation on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 08 Aug 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/operation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Guidance to Survive Monitoring</title>
+      <link>https://blog.no42.org/article/guidance-to-survive-monitoring/</link>
+      <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/guidance-to-survive-monitoring/</guid>
+      <description>While working in the monitoring field for a long time, here are some rules I try to follow when requirements go awry.
+Rule #1: Only create an alert when human interaction is required When you setup a monitoring, it tends to get noisy very quickly. The problem is, people want to know everything and want to monitor everything. You tend to build a system which sends you a lot of alarms and you will get alarm fatique.</description>
+    </item>
+    
+  </channel>
+</rss>

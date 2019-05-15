@@ -1,0 +1,460 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Ronny Trommer">
+        <meta name="description" content="Private blog around tech and live.">
+        <meta name="keywords" content="blog,personal,responsive,search,font awesome,pages,posts,multilingual,highlight.js,syntax highlighting,premium,shortcuts">
+        <meta name="generator" content="Hugo 0.55.4" />
+        <title> Monitoring Websites with OpenNMS | no42</title>
+        <meta name="description" content="Monitoring Websites with OpenNMS - Private blog around tech and live.">
+        <meta itemprop="name" content="Monitoring Websites with OpenNMS">
+        <meta itemprop="description" content="Monitoring Websites with OpenNMS - Private blog around tech and live.">
+        <meta property="og:title" content="Monitoring Websites with OpenNMS">
+        <meta property="og:description" content="Monitoring Websites with OpenNMS - Private blog around tech and live.">
+        <meta property="og:image" content="https://www.gravatar.com/avatar/7f19843706ee328d5b1dfbf9b2a73a73?size=200">
+        <meta property="og:url" content="https://blog.no42.org/code/monitoring-websites-with-opennms/">
+        <meta property="og:site_name" content="no42">
+        <meta property="og:type" content="article">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-16x16.png" sizes="16x16">
+
+	
+
+        
+        
+        
+        
+        <link rel="stylesheet" href="https://blog.no42.org/sass/combined.min.6e8351b3ea65d753e797df34276a01509dc8ac2d5d2f5d5b13934de1e37d5d44.css">
+
+        
+
+        
+            
+        
+    </head>
+    <body class="bilberry-hugo-theme">
+        
+<nav>
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="/page/projects/">Projects</a></li>
+                
+            
+                
+                    <li><a href="/page/about/">About Me</a></li>
+                
+            
+                
+                    <li><a href="/page/impressum/">Impressum</a></li>
+                
+            
+                
+                    <li><a href="/page/privacy/">Privacy</a></li>
+                
+            
+        </ul>
+
+        
+    </div>
+</nav>
+
+
+        <header>
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="/images/gravatar.jpg" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title"><a href="/">no42</a></h3>
+            
+                <span class="subtitle">... search for answer?</span>
+            
+        </div>
+
+    
+
+        
+        <div class="toggler">
+        
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+    </div>
+</header>
+
+
+        <div class="main container">
+            
+     
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="/code/monitoring-websites-with-opennms/">
+    <i class="fa fa-fw fa-code"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="/code/monitoring-websites-with-opennms/">
+            
+                <img src="/code/monitoring-websites-with-opennms/featuredImage_hu4da3dbc886dd1b771cb08482d16cb61f_696018_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h3><a href="/code/monitoring-websites-with-opennms/">Monitoring Websites with OpenNMS</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2018-07-27</span>
+            
+        
+
+        
+            <span class="readingTime">4 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        
+
+<p>Monitoring websites is a common requirement.
+Using OpenNMS to monitor websites can be done by using the built in HTTP/HTTPS based monitors.</p>
+
+<p>While a &ldquo;Node&rdquo; can be pretty much everything in a network, the internal model to monitor something is pretty old-fashioned and static.
+Monitoring a service requires to assign a service to an IP address.</p>
+
+<p><img src="node-model.png" alt="OpenNMS Node Model" /></p>
+
+<p>This article describes a pattern how you can monitor web sites with low maintenance and without the need to maintain for each website a monitor which is cumbersome in maintenance.</p>
+
+<h3 id="the-use-case">The Use Case</h3>
+
+<p>We want to monitor the websites landing page from <a href="https://www.opennms.org">https://www.opennms.org</a>.</p>
+
+<p>The landing page is what you get when you type in your browser &ldquo;<a href="https://www.opennms.org/&quot;">https://www.opennms.org/&quot;</a>, the important thing is the path <code>/</code> at the end.</p>
+
+<h3 id="step-1-use-the-nodelabel-variable">Step 1: Use the ${nodelabel} variable</h3>
+
+<p>The Page Sequence Monitor allows you to pass the <code>${nodelabel}</code> into the running monitor.
+I&rsquo;ve called the monitor <em>Web-Landing-Page-SSL</em>.
+It&rsquo;s just a name and you can use a different one as you like, just make sure you provision the correct service name you&rsquo;ve picked.</p>
+
+<p>Here is the full service definition for the <code>poller-configuration.xml</code> to test the websites entry page:</p>
+
+<pre><code class="language-xml">&lt;service name=&quot;Web-Landing-Page-SSL&quot; interval=&quot;300000&quot; user-defined=&quot;true&quot; status=&quot;on&quot;&gt;
+    &lt;parameter key=&quot;retry&quot; value=&quot;1&quot;/&gt;
+    &lt;parameter key=&quot;timeout&quot; value=&quot;5000&quot;/&gt;
+    &lt;parameter key=&quot;rrd-repository&quot; value=&quot;/opt/opennms/share/rrd/response&quot;/&gt;
+    &lt;parameter key=&quot;ds-name&quot; value=&quot;webLandingSsl&quot;/&gt;
+    &lt;parameter key=&quot;page-sequence&quot;&gt;
+        &lt;page-sequence&gt;
+            &lt;page path=&quot;/&quot;
+                    scheme=&quot;https&quot;
+                    port=&quot;443&quot;
+                    host=&quot;${nodelabel}&quot;
+                    virtual-host=&quot;${nodelabel}&quot;
+                    requireIPv4=&quot;false&quot;
+                    requireIPv6=&quot;false&quot;
+                    disable-ssl-verification=&quot;false&quot;
+                    response-range=&quot;200-399&quot;/&gt;
+        &lt;/page-sequence&gt;
+    &lt;/parameter&gt;
+&lt;/service&gt;
+
+&lt;monitor service=&quot;Web-Landing-Page-SSL&quot; class-name=&quot;org.opennms.netmgt.poller.monitors.PageSequenceMonitor&quot;/&gt;
+</code></pre>
+
+<p>The basic test parameters are defined in the beginning and are self explaining:</p>
+
+<pre><code class="language-xml">&lt;service name=&quot;Web-Landing-Page-SSL&quot; interval=&quot;300000&quot; user-defined=&quot;true&quot; status=&quot;on&quot;&gt;
+    &lt;parameter key=&quot;retry&quot; value=&quot;1&quot;/&gt;
+    &lt;parameter key=&quot;timeout&quot; value=&quot;5000&quot;/&gt;
+    &lt;parameter key=&quot;rrd-repository&quot; value=&quot;/opt/opennms/share/rrd/response&quot;/&gt;
+    &lt;parameter key=&quot;ds-name&quot; value=&quot;webLandingSsl&quot;/&gt;
+</code></pre>
+
+<p>When you use <em>RRDTool</em> or <em>JRobin</em>, OpenNMS stores respone time is stored in a file named <code>webLandingSsl{.rrd,.jrb}</code> the directory of the IP interface in <code>{OPENNMS_HOME}/share/rrd/response</code>.
+The test for the website itself is defined in the <code>page sequence</code> section.</p>
+
+<pre><code class="language-xml">&lt;page-sequence&gt;
+    &lt;page path=&quot;/&quot;
+            scheme=&quot;https&quot;
+            port=&quot;443&quot;
+            host=&quot;${nodelabel}&quot;
+            virtual-host=&quot;${nodelabel}&quot;
+            requireIPv4=&quot;false&quot;
+            requireIPv6=&quot;false&quot;
+            disable-ssl-verification=&quot;false&quot;
+            response-range=&quot;200-399&quot;/&gt;
+&lt;/page-sequence&gt;
+</code></pre>
+
+<p>A <em>HTTP GET</em> request would be like this <code>curl -I https://${nodelabel}/</code>, where the parameter <code>${nodelabel}</code> is replaced accordingly on which node the service is running.
+The <em>HTTP Respose Code</em> should be something between <code>200-399</code> to have the service <em>Up</em>, every other response code outside of the range the service goes <em>Down</em>.</p>
+
+<p>For websites you probably want to resolve the host dynamically to an IP address.
+They can change or use Round Robin DNS so the IP would be always different.</p>
+
+<pre><code class="language-xml">requireIPv4=&quot;false&quot;
+requireIPv6=&quot;false&quot;
+</code></pre>
+
+<p>This tells the <em>Page Sequence Monitor</em> to not use the IP address where the service is assigned to and make a DNS lookup using the system configuration and run the test against the resolved IP address.</p>
+
+<h3 id="step-2-provision-a-node-per-website">Step 2: Provision a node per website</h3>
+
+<p>The tricky question is: &ldquo;Which IP should I assign to a node, cause it is mandantory?&rdquo;.
+If you run OpenNMS on a Linux system you can pick a unique IP address for each website from the <code>127/8</code> loopback IP range.
+They will always be reachable and respond to ICMP by the systems local IP stack.</p>
+
+<p><img src="provision-node.png" alt="Node Provisioning for websites" /></p>
+
+<p>Assign the <em>Web-Page-Landing-SSL</em> monitor to the loopback IP.
+If you want to have a more detailed error message and not just a <em>nodeDown</em> event in case the website is unavailable, provision the <em>ICMP</em> service on the loopback IP.
+The <em>ICMP</em> service will always be available and you will get a <em>nodeLostService</em> with a more detailed error message why the <em>Web-Page-Landing-SSL</em> service went down.</p>
+
+<h3 id="add-diagnostic-test-for-dns-resolution">Add diagnostic test for DNS resolution</h3>
+
+<p>With a similar pattern you can add a test to resolve the websites hostname as additional diagnostic information.</p>
+
+<pre><code class="language-xml">&lt;service name=&quot;DNS-Resolution-v4&quot; interval=&quot;300000&quot; user-defined=&quot;false&quot; status=&quot;on&quot;&gt;
+    &lt;parameter key=&quot;retry&quot; value=&quot;2&quot;/&gt;
+    &lt;parameter key=&quot;timeout&quot; value=&quot;2000&quot;/&gt;
+    &lt;parameter key=&quot;resolution-type&quot; value=&quot;v4&quot;/&gt;
+    &lt;parameter key=&quot;rrd-repository&quot; value=&quot;/opt/opennms/share/rrd/response&quot;/&gt;
+    &lt;parameter key=&quot;rrd-base-name&quot; value=&quot;dns-res-v4&quot;/&gt;
+    &lt;parameter key=&quot;ds-name&quot; value=&quot;dns-res-v4&quot;/&gt;
+&lt;/service&gt;
+&lt;service name=&quot;DNS-Resolution-v6&quot; interval=&quot;300000&quot; user-defined=&quot;false&quot; status=&quot;on&quot;&gt;
+    &lt;parameter key=&quot;retry&quot; value=&quot;2&quot;/&gt;
+    &lt;parameter key=&quot;timeout&quot; value=&quot;2000&quot;/&gt;
+    &lt;parameter key=&quot;resolution-type&quot; value=&quot;v6&quot;/&gt;
+    &lt;parameter key=&quot;rrd-repository&quot; value=&quot;/opt/opennms/share/rrd/response&quot;/&gt;
+    &lt;parameter key=&quot;rrd-base-name&quot; value=&quot;dns-res-v6&quot;/&gt;
+    &lt;parameter key=&quot;ds-name&quot; value=&quot;dns-res-v6&quot;/&gt;
+&lt;/service&gt;
+
+&lt;monitor service=&quot;DNS-Resolution-v4&quot; class-name=&quot;org.opennms.netmgt.poller.monitors.DNSResolutionMonitor&quot; /&gt;
+&lt;monitor service=&quot;DNS-Resolution-v6&quot; class-name=&quot;org.opennms.netmgt.poller.monitors.DNSResolutionMonitor&quot; /&gt;
+</code></pre>
+
+<p>By default the DNSResolution Monitor will use the <em>Node Label</em> as lookup for an <em>A record</em>.
+The IP interface doesn&rsquo;t matter, the test will use the system DNS configuration.
+If you want a more customized DNS test, have a look at the <a href="http://docs.opennms.org/opennms/releases/latest/guide-admin/guide-admin.html#poller-dns-resolution-monitor">DNSResolutionMonitor documentation</a>.</p>
+
+<p>Happy Monitoring</p>
+
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/opennms">opennms</a>
+                
+                    <a href="/tags/web">web</a>
+                
+                    <a href="/tags/monitoring">monitoring</a>
+                
+                    <a href="/tags/letsencrypt">letsencrypt</a>
+                
+                    <a href="/tags/ssl">ssl</a>
+                
+                    <a href="/tags/dns">dns</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    
+
+     
+
+        </div>
+
+        
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>Latest posts</strong>
+                <ul>
+                
+                    <li>
+                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/docker-java-signals-pid1/">Docker, Java, Signals and Pid 1</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/ssl-and-java/">SSL and Java</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/opennms-notify-signal/">Send notifications with Signal</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/theming-applications/">Everyone can change it and why you shouldn&#39;t</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/guidance-to-survive-monitoring/">Guidance to Survive Monitoring</a>
+                    </li>
+                
+                    <li>
+                        <a href="/quote/two-hard-things/">Two hard things</a>
+                    </li>
+                
+                </ul>
+        </div>
+        
+
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>Social media</strong>
+
+                
+                
+                    <a href="https://twitter.com/indigo423" target="_blank"><i class="fa fa-twitter-adblock-proof"></i></a>
+                
+                
+                
+                    <a href="https://www.xing.com/profile/Ronny_Trommer" target="_blank"><i class="fa fa-xing"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                    <a href="https://github.com/indigo423" target="_blank"><i class="fa fa-github"></i></a>
+                
+                
+                    <a href="https://www.linkedin.com/in/ronnytrommer/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                
+            </div>
+            
+
+            <div class="languages">
+                    <strong>Other languages</strong>
+                    
+                        
+                            <a href="/en" class="active">en</a>
+                        
+                    
+                        
+                            <a href="/de">de</a>
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/indigo423" target="_blank">
+                &copy;
+                
+                    2019
+                
+                by Ronny Trommer
+            </a>
+	    
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme" target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+        
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-73787628-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/externalDependencies.39c47e10e241eae2947b3fe21809c572.js" integrity="md5-OcR&#43;EOJB6uKUez/iGAnFcg=="></script>
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/theme.ff50ae6dc1bfc220b23bf69dbb41b54e.js" integrity="md5-/1CubcG/wiCyO/adu0G1Tg=="></script>
+
+        <script>
+            $(".moment").each(function() {
+                $(this).text(
+                    moment( $(this).text() )
+                        .locale( "en" )
+                        .format('LL')
+                );
+            });
+
+            $(".footnote-return sup").html("");
+        </script>
+
+        
+            
+        
+
+        
+
+
+    </body>
+</html>

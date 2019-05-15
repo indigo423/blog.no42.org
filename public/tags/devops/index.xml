@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>devops on no42</title>
+    <link>https://blog.no42.org/tags/devops/</link>
+    <description>Recent content in devops on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 09 Mar 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Monitoring DevOps and the Status Quo</title>
+      <link>https://blog.no42.org/article/monitoring-devops/</link>
+      <pubDate>Thu, 09 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/monitoring-devops/</guid>
+      <description>As most of us noticed a few companies changed our perspective how to develop software and deploy them as a service. There are quite a few changes between selling every year a box with 10 CD&amp;rsquo;s and develop and deliver your software as a service. This article is a collection of thoughts and ideas I had and wanted to be written.
+Who cares about a version number? User give a shit about version numbers anymore, all what matters needs to be focused on the user.</description>
+    </item>
+    
+    <item>
+      <title>DevOps Guy</title>
+      <link>https://blog.no42.org/article/devops/</link>
+      <pubDate>Tue, 17 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/devops/</guid>
+      <description>I started in 1998 in IT-Services and I did all the funny stuff – was involved building new networks for companies, migrated software from commercial vendors from version A to B to C to D and I have wasted too much lifetime on broken RAID 5s, backups and restores.
+If you want to learn how to operate a computer network – this is a good place. You will be always called for the complicated problems nobody can solve with a simple Google search.</description>
+    </item>
+    
+  </channel>
+</rss>

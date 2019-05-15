@@ -1,0 +1,1235 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Ronny Trommer">
+        <meta name="description" content="Private blog around tech and live.">
+        <meta name="keywords" content="blog,personal,responsive,search,font awesome,pages,posts,multilingual,highlight.js,syntax highlighting,premium,shortcuts">
+        <meta name="generator" content="Hugo 0.55.4" />
+        <title> ... search for answer? | no42</title>
+        <meta name="description" content="Private blog around tech and live.">
+        <meta itemprop="name" content="... search for answer?">
+        <meta itemprop="description" content="Private blog around tech and live.">
+        <meta property="og:title" content="... search for answer?">
+        <meta property="og:description" content="Private blog around tech and live.">
+        <meta property="og:image" content="https://www.gravatar.com/avatar/7f19843706ee328d5b1dfbf9b2a73a73?size=200">
+        <meta property="og:url" content="https://blog.no42.org/">
+        <meta property="og:site_name" content="no42"><meta property="og:type" content="website">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-16x16.png" sizes="16x16">
+
+	
+	  <link href="https://blog.no42.org/index.xml" rel="alternate" type="application/rss+xml" title="no42" />
+	  <link href="https://blog.no42.org/index.xml" rel="feed" type="application/rss+xml" title="no42" />
+	
+
+        
+        
+        
+        
+        <link rel="stylesheet" href="https://blog.no42.org/sass/combined.min.6e8351b3ea65d753e797df34276a01509dc8ac2d5d2f5d5b13934de1e37d5d44.css">
+
+        
+
+        
+            
+        
+    </head>
+    <body class="bilberry-hugo-theme">
+        
+<nav>
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="/page/projects/">Projects</a></li>
+                
+            
+                
+                    <li><a href="/page/about/">About Me</a></li>
+                
+            
+                
+                    <li><a href="/page/impressum/">Impressum</a></li>
+                
+            
+                
+                    <li><a href="/page/privacy/">Privacy</a></li>
+                
+            
+        </ul>
+
+        
+    </div>
+</nav>
+
+
+        <header>
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="/images/gravatar.jpg" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title"><a href="/">no42</a></h3>
+            
+                <span class="subtitle">... search for answer?</span>
+            
+        </div>
+
+    
+
+        
+        <div class="toggler">
+        
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+    </div>
+</header>
+
+
+        <div class="main container">
+            
+
+
+
+    
+
+    
+        
+    <div class="article-wrapper u-cf">
+        
+            <a class="bubble" href="/code/docker-build-cache-invalidation/">
+    <i class="fa fa-fw fa-code"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="/code/docker-build-cache-invalidation/">
+            
+                <img src="/code/docker-build-cache-invalidation/featuredImage_hue6e896227c7962fca53ed08de84bc25d_573805_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h3><a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2019-05-15</span>
+            
+        
+
+        
+            <span class="readingTime">3 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        
+
+<h1 id="docker-build-and-cache-invalidation">Docker build and cache invalidation</h1>
+
+<p>Right now I&rsquo;m working with my work mates @opennms integrating the docker image building in our CI/CD environment.
+We build our container image based on CentOS and we noticed the caching doesn&rsquo;t work for ${reasons}.</p>
+
+<p>Running a <code>docker build -t myimage .</code> ended up always in installing packages from the official yum repositories even we haven&rsquo;t changed anything in the Dockerfile.</p>
+
+<p>To understand things better, I went back to drawing board and started with a simple example and rebuilding things step by step to understand when gets the docker build cache unnecessarily invalidated.</p>
+
+<p>The section <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache">Leverage build cache</a> with especially this section was important to me:</p>
+
+<blockquote>
+<p>Aside from the ADD and COPY commands, cache checking does not look at the files in the container to determine a cache match. For example, when processing a RUN apt-get -y update command the files updated in the container are not examined to determine if a cache hit exists. In that case just the command string itself is used to find a match.</p>
+</blockquote>
+
+<p>So this means the outcome of a RUN command doesn&rsquo;t invalidate a cache it&rsquo;s purely checked against the command string itself to find a match.</p>
+
+<p>So lets start with a simple example:</p>
+
+<script type="application/javascript" src="//gist.github.com/indigo423/f9bda3e15d68c37ac454e39b3e508853.js"></script>
+
+<p>Ok testing the build, the initial build works as expected and downloads wget from CentOS mirrors and installs it.
+The second run hits the caches and finishes in under a second.</p>
+
+<p><a href="https://asciinema.org/a/246322"><img src="https://asciinema.org/a/246322.svg" alt="Caching yum install" /></a></p>
+
+<p>We can now change the output in our last echo command and it will use the cache for the yum install wget command. Only the last layer would be rebuild which is quick and works as expected.</p>
+
+<p>We have added some build arguments when running in CI/CD which injects some information like the build number which ends up in labels, so we can give some hints which build created this artefact you have running.</p>
+
+<script type="application/javascript" src="//gist.github.com/indigo423/15bf81f434f518a7ca40407aad2bc142.js"></script>
+
+<p>Running without any changes is not a big deal and caching works as expected.</p>
+
+<p><a href="https://asciinema.org/a/246332"><img src="https://asciinema.org/a/246332.svg" alt="Caching with build argument" /></a></p>
+
+<p>Ok what happens if we inject a build argument like the build number and what is the effect on the cache.</p>
+
+<p><a href="https://asciinema.org/a/246353"><img src="https://asciinema.org/a/246353.svg" alt="Effect on cache with argument" /></a></p>
+
+<p>By observing the behaviour, you can see changing the build argument invalidates the layer above the RUN directive, which has as consequence to rebuild all following layers.</p>
+
+<p>If you move the Line 3 <code>ARG BUILD_NUMBER</code> to the end right before the LABEL you can change it and you get cache hits from the more expensive tasks at the top.</p>
+
+<script type="application/javascript" src="//gist.github.com/indigo423/44543ab21fc690bba0ba77827a112176.js"></script>
+
+<p>In conclusion order in Dockerfile matters and it make sense to group logical commands in RUN statements to make caching more efficient while working on your Dockerfiles.</p>
+
+<p>Happy caching.</p>
+
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/docker">docker</a>
+                
+                    <a href="/tags/caching">caching</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    <div class="article-wrapper u-cf">
+        
+            <a class="bubble" href="/code/docker-java-signals-pid1/">
+    <i class="fa fa-fw fa-code"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="/code/docker-java-signals-pid1/">
+            
+                <img src="/code/docker-java-signals-pid1/featuredImage_hufe540f53cc4c4539bf92329655e6bb80_252902_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h3><a href="/code/docker-java-signals-pid1/">Docker, Java, Signals and Pid 1</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2019-02-20</span>
+            
+        
+
+        
+            <span class="readingTime">9 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        
+
+<p>Running a Java application in a container seems to be very easy.
+The devil is in the details and I want to shed some light on the PID 1 problem when you run Java applications in containers.
+In a general running applications in containers should not have any state so you just don&rsquo;t care, but reality is different forces you to have to.</p>
+
+<p>Signals are used to a running process to behave in a certain ways.
+Some can be caught by a running process and give people possibilities to implement logic to shutdown the application gracefully.
+A common case is to terminate a process nicely sending a <code>SIGTERM</code> to the process identified by the process id using the tool <code>ps</code>.</p>
+
+<p>So when you issue the command <code>kill &lt;pid&gt;</code> you send a SIGTERM to a process.
+When you have a process running in foreground and you hit <code>CTRL + C</code> you send the signal <code>SIGINT</code> to the process.</p>
+
+<h3 id="java-application-and-signals">Java application and signals</h3>
+
+<p>Let&rsquo;s see what this means with a very simple example.
+We have a small Java application, running an infinite loop in foreground.
+Here is the simple sample code.</p>
+
+<script type="application/javascript" src="//gist.github.com/indigo423/53b9060d9e36c138e4a4a91f55343e05.js"></script>
+
+<p>Compile it with <code>javac Main.java</code> and run it with <code>java Main</code> and you will this here:</p>
+
+<pre><code>indigo@blinky ~/pid-example $ java Main
+I'm doing some work ...
+I'm doing some work ...
+I'm doing some work ...
+</code></pre>
+
+<p>No we want to terminate it and hit <code>CTRL + C</code> and display the exit code with <code>echo $?</code>.</p>
+
+<pre><code>indigo@blinky ~/pid-example $ java Main
+I'm doing some work ...
+I'm doing some work ...
+I'm doing some work ...
+^C%
+indigo@blinky ~/pid-example $ echo $?
+130
+</code></pre>
+
+<p>The JVM exits with error code 130 tells us it was terminated with <code>CTRL + C</code> and the JVM handled for us a <code>SIGINT</code>.</p>
+
+<p>Now we try a different approach and terminate our Java app with sending a <code>SIGTERM</code>.
+Start the program and open a second terminal, identify the Java process id (pid) and issue the command <code>kill &lt;pid&gt;</code> and show the exit code.</p>
+
+<pre><code>indigo@blinky ~/pid-example $ java Main
+I'm doing some work ...
+I'm doing some work ...
+I'm doing some work ...
+indigo@blinky ~/pid-example $ echo $?
+143
+</code></pre>
+
+<p>The JVM handled the <code>SIGTERM</code> for us and returned it with exit code <code>143</code>.</p>
+
+<p>Your Linux operating system has a crowbar in your toolbox which is the <code>KILL</code> signal, it is one of the signals you can&rsquo;t listen for in your application.
+If you try to register a handler for a <code>KILL</code> signal your JVM will throw you a runtime exception like this:</p>
+
+<pre><code>Exception in thread &quot;main&quot; java.lang.IllegalArgumentException: Signal already used by VM or OS: SIGKILL
+	at sun.misc.Signal.handle(Signal.java:166)
+	at Main.handleSignal(Main.java:26)
+	at Main.main(Main.java:8)
+</code></pre>
+
+<p>When you kill your application with <code>kill -s KILL &lt;pid&gt;</code> it will give you an exit code <code>137</code>.</p>
+
+<h3 id="handle-the-terminate-signal">Handle the terminate signal</h3>
+
+<p>Now extend our little program and simulate some logic to handle the <code>TERM</code> signal and exit our program normal by returning exit code <code>0</code>.</p>
+
+<script type="application/javascript" src="//gist.github.com/indigo423/cb8994b506934970d5a9784e130351cb.js"></script>
+
+<p>We compile and run it again, identify the PID and kill it with <code>kill &lt;pid&gt;</code> and we get following result:</p>
+
+<pre><code>indigo@blinky ~/pid-example $ java Main
+I'm doing some work ...
+I'm doing some work ...
+I'm doing some work ...
+Signal received: TERM
+Shutdown initiated
+indigo@blinky ~/pid-example $ echo $?
+0
+</code></pre>
+
+<h3 id="dockerize-our-little-app">Dockerize our little app</h3>
+
+<p>Ok we have now a pretty good idea how it behaves on our local system.
+What happens when we run the application in a Docker container image.
+We use the <code>Main.class</code> as an artifact and just run it in a Java container image with a Dockerfile.</p>
+
+<script type="application/javascript" src="//gist.github.com/indigo423/c76ad4d53200eff4052b039dbaa9217d.js"></script>
+
+<p>The <code>java</code> binary becomes the entrypoint and we use a default argument <code>-h</code>.
+By default the working directory is <code>/</code>.
+We can run our application by passing the application name as the first argument and overwrite <code>-h</code>.</p>
+
+<p>Let&rsquo;s build the image and run our application and run it.</p>
+
+<pre><code>indigo@blinky ~/pid-example $ docker build -t test .
+Sending build context to Docker daemon  7.168kB
+Step 1/4 : FROM openjdk:11-slim
+ ---&gt; 20be262dd659
+Step 2/4 : COPY Main.class /
+ ---&gt; 27dc84a91282
+Step 3/4 : ENTRYPOINT [&quot;java&quot;]
+ ---&gt; Running in a87fdb2ed9c4
+Removing intermediate container a87fdb2ed9c4
+ ---&gt; 7bc71866d0b2
+Step 4/4 : CMD [&quot;-h&quot;]
+ ---&gt; Running in 9ff5086f1c2b
+Removing intermediate container 9ff5086f1c2b
+ ---&gt; efe92a0f9f78
+Successfully built efe92a0f9f78
+Successfully tagged test:latest
+indigo@blinky ~/pid-example $ docker run test Main
+I'm doing some work ...
+I'm doing some work ...
+I'm doing some work ...
+</code></pre>
+
+<p>Ok now send some signals into the running container similar what we did in our local example.
+Instead of <code>kill</code> we use <code>docker kill</code> and instead of the process ID we use the container id which can be identified with <code>docker ps</code>.
+The exit state is persisted of stopped containers can be shown with <code>docker ps -a</code></p>
+
+<p>Let&rsquo;s kill the running container and check the exit code:</p>
+
+<pre><code>indigo@blinky ~/pid-example $ docker kill &lt;container-id&gt;
+indigo@blinky ~/pid-example $ docker ps -a
+</code></pre>
+
+<p>Now you may wonder, you see the exit state as <code>Exited (137) About a minute ago</code>.
+By default <code>docker kill</code> is sending the <code>KILL</code> signal and not <code>TERM</code>.
+This is one of the first notions of, applications in containers don&rsquo;t care about state and get killed with a crowbar by default.</p>
+
+<p>Ok we run again and we send a <code>TERM</code> signal and see what happens:</p>
+
+<pre><code>indigo@blinky ~/pid-example $ docker run test Main
+I'm doing some work ...
+I'm doing some work ...
+I'm doing some work ...
+</code></pre>
+
+<p>Now we send a <code>TERM</code> signal:</p>
+
+<pre><code>indigo@blinky ~/pid-example $ docker kill -s TERM &lt;container-id&gt;
+</code></pre>
+
+<p>and voila we shutdown gracefully</p>
+
+<pre><code>I'm doing some work ...
+Signal received: TERM
+Shutdown initiated
+</code></pre>
+
+<p>So there is <code>docker stop</code> and how does it work?
+If you want to be nice to your application use <code>docker stop &lt;container-id&gt;</code> it will send a <code>TERM</code> signal and gives your application 10 seconds by default to terminate gracefully otherwise it get&rsquo;s killed with the <code>KILL</code> signal.</p>
+
+<h3 id="process-ids-inside-the-running-container">Process Ids inside the running container</h3>
+
+<p>We run our application with containers in an isolated space.
+Let&rsquo;s extend our little example  a little bit to see what runs inside.
+We have to add the <code>ps</code> command in the Docker image.</p>
+
+<script type="application/javascript" src="//gist.github.com/indigo423/e8cb5a91454305db30f70576c335b482.js"></script>
+
+<p>Now we extend our Java program with a method to list all running processes inside the container with it&rsquo;s process ids.</p>
+
+<script type="application/javascript" src="//gist.github.com/indigo423/edaf83b61eea5670fc172d8b9dd12d09.js"></script>
+
+<p>We compile the Java class, build a new image and run the app in our container:</p>
+
+<pre><code>indigo@blinky ~/pid-example $ javac Main.java
+indigo@blinky ~/pid-example $ docker build -t test .
+indigo@blinky ~/pid-example $ docker run test Main
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.2 5824432 35544 ?       Ssl  13:30   0:00 java Main
+root        23  0.0  0.0  38384  3072 ?        R    13:30   0:00 ps aux
+I'm doing some work ...
+I'm doing some work ... 
+</code></pre>
+
+<p>We can see our Java application got PID 1 and it has forked the ps command which got PID 23.</p>
+
+<h3 id="using-scripts-as-entrypoint-and-pid-1">Using Scripts as Entrypoint and PID 1</h3>
+
+<p>Some applications are not suited for this use-case and require some logic before the can be started.
+A common pattern is the entrypoint script approache.
+Instead of calling the program directly we use a shell script which gives us some control to influence who the application is started.
+Let&rsquo;s modify our container image using a very simple entry point script.</p>
+
+<script type="application/javascript" src="//gist.github.com/indigo423/07aae0ad15f54ceafb2b668d0b410227.js"></script>
+
+<p>We make the <code>entrypoint.sh</code> executable and add it to our Docker image.</p>
+
+<script type="application/javascript" src="//gist.github.com/indigo423/a2349b1a0739faed6b4e0942b1f97a2c.js"></script>
+
+<p>The entry point script will now take care of starting our application.</p>
+
+<pre><code>indigo@blinky ~/pid-example $ chmod +x entrypoint
+indigo@blinky ~/pid-example $ docker build -t test .
+indigo@blinky ~/pid-example $ docker run test
+Running entry point script
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0   4288   724 ?        Ss   13:53   0:00 sh /entrypoint.sh
+root         7  0.0  0.2 5824432 35328 ?       Sl   13:53   0:00 java Main
+root        24  0.0  0.0  38384  3096 ?        R    13:53   0:00 ps aux
+I'm doing some work ...
+I'm doing some work ...
+I'm doing some work ...
+I'm doing some work ...
+</code></pre>
+
+<p>We can see now, the PID 1 is our entry point script.
+The Java process gets forked and gets PID 7.
+Let&rsquo;s stop it with <code>docker stop &lt;container-id&gt;</code>.</p>
+
+<pre><code>indigo@blinky ~/pid-example $ docker stop e67b0b239f59
+e67b0b239f59
+</code></pre>
+
+<p>What you will notice, your application does not get the <code>SIGTERM</code> and it takes 10 seconds until it got killed with <code>SIGKILL</code>.</p>
+
+<p>The important part here, is the PID 1 in the container image has the responsibility to deal with signals.
+Your entry point script doesn&rsquo;t whereas running the JVM as PID 1 in the example above does and we broke the behaviour of our little app.</p>
+
+<h3 id="exec-for-the-win">Exec for the win</h3>
+
+<p>When you are familiar with Linux bash you know the <code>exec</code> command.
+Instead of forking a new process from the existing bash it replaces the shell.
+We change our entry point script slightly and see what happens.</p>
+
+<script type="application/javascript" src="//gist.github.com/indigo423/742664640198093bc84e0b1609a996b1.js"></script>
+
+<p>We rebuild the container and run the image and run the <code>docker stop &lt;container-id&gt;</code> command.</p>
+
+<pre><code class="language-plain">indigo@blinky ~/pid-example $ docker build -t test .
+indigo@blinky ~/pid-example $ docker run test
+Running entry point script
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1 21.0  0.2 5824432 36552 ?       Ssl  14:08   0:00 java Main
+root        23  0.0  0.0  38384  3112 ?        R    14:08   0:00 ps aux
+I'm doing some work ...
+I'm doing some work ...
+I'm doing some work ...
+I'm doing some work ...
+Signal received: TERM
+Shutdown initiated
+</code></pre>
+
+<p>Now we are back in business, the entry point bash got replaced by the Java process and can deal with the signal.</p>
+
+<h3 id="i-don-t-want-to-be-pid-1">I don&rsquo;t want to be PID 1</h3>
+
+<p>In Linux PID 1 has some additional responsibilities.
+There are described very nicely in the article <a href="https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/">Docker and the PID 1 zombie reaping problem</a>.
+So there are cases you don&rsquo;t want to be PID 1 cause you don&rsquo;t know how to deal with this problems.</p>
+
+<p>In Docker you can run a tiny init process which deals with this things for you.
+Additionally it forwards signals.
+All you need is to run <code>--init</code> in your <code>docker run</code> command.
+You can send a <code>docker stop</code> and your Java application can deal with the <code>SIGTERM</code> to stop gracefully.</p>
+
+<pre><code>indigo@blinky ~/pid-example $ docker run --init test
+Running entry point script
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0   1044     4 ?        Ss   14:16   0:00 /dev/init -- /entrypoint.sh
+root         7  0.0  0.2 5824432 36588 ?       Sl   14:16   0:00 java Main
+root        24  0.0  0.0  38384  3192 ?        R    14:16   0:00 ps aux
+I'm doing some work ...
+I'm doing some work ...
+Signal received: TERM
+Shutdown initiated
+</code></pre>
+
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/java">java</a>
+                
+                    <a href="/tags/docker">docker</a>
+                
+                    <a href="/tags/signals">signals</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    <div class="article-wrapper u-cf">
+        
+            <a class="bubble" href="/code/ssl-and-java/">
+    <i class="fa fa-fw fa-code"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="/code/ssl-and-java/">
+            
+                <img src="/code/ssl-and-java/featuredImage_hua0d4d4b24f4da3a102e4452ac738b95f_368661_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h3><a href="/code/ssl-and-java/">SSL and Java</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2018-11-26</span>
+            
+        
+
+        
+            <span class="readingTime">3 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        Running applications with a current Java is not a big deal thanks Let&rsquo;s Encrypt. This article describes what happens if you want to authenticate your OpenNMS against LDAP using SSL with a self-certified certificate.
+First of all I assume you have confiured verything so you can authenticate against LDAP in plaintext and you got a role mapping as you wanted it. If not you can have a look here.
+
+        
+            <a href="/code/ssl-and-java/" class="more">Continue reading</a>
+        
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/ssl">ssl</a>
+                
+                    <a href="/tags/java">java</a>
+                
+                    <a href="/tags/ldaps">ldaps</a>
+                
+                    <a href="/tags/letsencrypt">letsencrypt</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    <div class="article-wrapper u-cf">
+        
+            <a class="bubble" href="/article/opennms-notify-signal/">
+    <i class="fa fa-fw fa-pencil"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="/article/opennms-notify-signal/">
+            
+                <img src="/article/opennms-notify-signal/featuredImage_hue72e3ee10eeaf3488a7bdb9a76864732_234725_700x350_fill_q95_box_smart1.jpeg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h3><a href="/article/opennms-notify-signal/">Send notifications with Signal</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2018-11-01</span>
+            
+        
+
+        
+            <span class="readingTime">3 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        In some cases it is nice to have notifications from OpenNMS in a separate channel on a smartphone and you don&rsquo;t want to pay for SMS. Here is a tutorial where I use Signal using the signal-cli.
+This Howto will describe how to download the latest signal-cli tool, link it to your existing Signal account and how to configure OpenNMS to use it as a notification target. You should have already an OpenNMS Horizon or Meridian running and you need a Signal account with the Signal app installed and configured on your smartphone.
+
+        
+            <a href="/article/opennms-notify-signal/" class="more">Continue reading</a>
+        
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/notifications">notifications</a>
+                
+                    <a href="/tags/howto">howto</a>
+                
+                    <a href="/tags/opennms">opennms</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    <div class="article-wrapper u-cf">
+        
+            <a class="bubble" href="/article/theming-applications/">
+    <i class="fa fa-fw fa-pencil"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="/article/theming-applications/">
+            
+                <img src="/article/theming-applications/featuredImage_hubdd71bfacf4304a5b9a485844e268d72_226666_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h3><a href="/article/theming-applications/">Everyone can change it and why you shouldn&#39;t</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2018-09-27</span>
+            
+        
+
+        
+            <span class="readingTime">3 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        Open Source software is great. If there is something you don&rsquo;t like, you can at least - try to change it. A lot of Open Source software out there is not primarily used by private people. There are many companies who provide professional services around Open Source software. Some of them try to enhance the appearance with custom User Interfaces, their company logo to fit their own Corporate Identity. There are several motivations, mostly they want to be distinguished on the marked or need some easy to maintain little customization which allows their sales guys easier to sell a project and not using the software from the community projects website.
+
+        
+            <a href="/article/theming-applications/" class="more">Continue reading</a>
+        
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/user-experience">User Experience</a>
+                
+                    <a href="/tags/user-interfaces">User Interfaces</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    <div class="article-wrapper u-cf">
+        
+            <a class="bubble" href="/article/guidance-to-survive-monitoring/">
+    <i class="fa fa-fw fa-pencil"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="/article/guidance-to-survive-monitoring/">
+            
+                <img src="/article/guidance-to-survive-monitoring/featuredImage_hu00148cc76f0d86899ce46c5881c283f4_438775_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h3><a href="/article/guidance-to-survive-monitoring/">Guidance to Survive Monitoring</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2018-08-08</span>
+            
+        
+
+        
+            <span class="readingTime">5 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        While working in the monitoring field for a long time, here are some rules I try to follow when requirements go awry.
+Rule #1: Only create an alert when human interaction is required When you setup a monitoring, it tends to get noisy very quickly. The problem is, people want to know everything and want to monitor everything. You tend to build a system which sends you a lot of alarms and you will get alarm fatique.
+
+        
+            <a href="/article/guidance-to-survive-monitoring/" class="more">Continue reading</a>
+        
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/open-source">open source</a>
+                
+                    <a href="/tags/operation">operation</a>
+                
+                    <a href="/tags/monitoring-love">monitoring love</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    <div class="article-wrapper u-cf">
+        
+            <a class="bubble" href="/quote/two-hard-things/">
+    <i class="fa fa-fw fa-quote-right"></i>
+</a>
+
+<article class="quote">
+    
+    <blockquote>
+        <p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
+
+        <cite><a href="/author/phil-karlton">Phil Karlton</a></cite>
+    </blockquote>
+</article>
+
+        
+    </div>
+
+    
+        
+    <div class="article-wrapper u-cf">
+        
+            <a class="bubble" href="/quote/goodbye/">
+    <i class="fa fa-fw fa-quote-right"></i>
+</a>
+
+<article class="quote">
+    
+    <blockquote>
+        <p>If you&rsquo;re brave to say&rsquo; goodbye&rsquo;, life will reward you with a new &lsquo;hello&rsquo;.</p>
+
+        <cite><a href="/author/paulo-coelho">Paulo Coelho</a></cite>
+    </blockquote>
+</article>
+
+        
+    </div>
+
+    
+        
+    <div class="article-wrapper u-cf">
+        
+            <a class="bubble" href="/article/goodbye-snmp/">
+    <i class="fa fa-fw fa-pencil"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="/article/goodbye-snmp/">
+            
+                <img src="/article/goodbye-snmp/featuredImage_huf162551413c8ec04f006d37b93a211c0_284584_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h3><a href="/article/goodbye-snmp/">He&#39;s dead, Jim</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2018-07-30</span>
+            
+        
+
+        
+            <span class="readingTime">5 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        If you operate networks there is a big chance you had to deal with SNMP - the Simple Network Management Protocol. If you ever wondered where it came from, it started with a big bang.
+ On October 27, 1980, there was an unusual occurrence on the ARPANET. For a period of several hours, the network appeared to be unusable, due to what was later diagnosed as a high priority software process running out of control.
+
+        
+            <a href="/article/goodbye-snmp/" class="more">Continue reading</a>
+        
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/snmp">snmp</a>
+                
+                    <a href="/tags/monitoring">monitoring</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    <div class="article-wrapper u-cf">
+        
+            <a class="bubble" href="/code/monitoring-websites-with-opennms/">
+    <i class="fa fa-fw fa-code"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="/code/monitoring-websites-with-opennms/">
+            
+                <img src="/code/monitoring-websites-with-opennms/featuredImage_hu4da3dbc886dd1b771cb08482d16cb61f_696018_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h3><a href="/code/monitoring-websites-with-opennms/">Monitoring Websites with OpenNMS</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2018-07-27</span>
+            
+        
+
+        
+            <span class="readingTime">4 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        Monitoring websites is a common requirement. Using OpenNMS to monitor websites can be done by using the built in HTTP/HTTPS based monitors.
+While a &ldquo;Node&rdquo; can be pretty much everything in a network, the internal model to monitor something is pretty old-fashioned and static. Monitoring a service requires to assign a service to an IP address.
+This article describes a pattern how you can monitor web sites with low maintenance and without the need to maintain for each website a monitor which is cumbersome in maintenance.
+
+        
+            <a href="/code/monitoring-websites-with-opennms/" class="more">Continue reading</a>
+        
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/opennms">opennms</a>
+                
+                    <a href="/tags/web">web</a>
+                
+                    <a href="/tags/monitoring">monitoring</a>
+                
+                    <a href="/tags/letsencrypt">letsencrypt</a>
+                
+                    <a href="/tags/ssl">ssl</a>
+                
+                    <a href="/tags/dns">dns</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+
+    
+    <div class="paginator">
+        
+            <a href="/page/2/" class="older"><i class="fa fa-angle-double-left"></i> Older posts</a>
+        
+
+        
+    </div>
+
+
+
+        </div>
+
+        
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>Latest posts</strong>
+                <ul>
+                
+                    <li>
+                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/docker-java-signals-pid1/">Docker, Java, Signals and Pid 1</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/ssl-and-java/">SSL and Java</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/opennms-notify-signal/">Send notifications with Signal</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/theming-applications/">Everyone can change it and why you shouldn&#39;t</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/guidance-to-survive-monitoring/">Guidance to Survive Monitoring</a>
+                    </li>
+                
+                    <li>
+                        <a href="/quote/two-hard-things/">Two hard things</a>
+                    </li>
+                
+                </ul>
+        </div>
+        
+
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>Social media</strong>
+
+                
+                
+                    <a href="https://twitter.com/indigo423" target="_blank"><i class="fa fa-twitter-adblock-proof"></i></a>
+                
+                
+                
+                    <a href="https://www.xing.com/profile/Ronny_Trommer" target="_blank"><i class="fa fa-xing"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                    <a href="https://github.com/indigo423" target="_blank"><i class="fa fa-github"></i></a>
+                
+                
+                    <a href="https://www.linkedin.com/in/ronnytrommer/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                
+            </div>
+            
+
+            <div class="languages">
+                    <strong>Other languages</strong>
+                    
+                        
+                            <a href="/en" class="active">en</a>
+                        
+                    
+                        
+                            <a href="/de">de</a>
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/indigo423" target="_blank">
+                &copy;
+                
+                    2019
+                
+                by Ronny Trommer
+            </a>
+	    -
+		<a href="https://blog.no42.org/index.xml">RSS</a>
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme" target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+        
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-73787628-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/externalDependencies.39c47e10e241eae2947b3fe21809c572.js" integrity="md5-OcR&#43;EOJB6uKUez/iGAnFcg=="></script>
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/theme.ff50ae6dc1bfc220b23bf69dbb41b54e.js" integrity="md5-/1CubcG/wiCyO/adu0G1Tg=="></script>
+
+        <script>
+            $(".moment").each(function() {
+                $(this).text(
+                    moment( $(this).text() )
+                        .locale( "en" )
+                        .format('LL')
+                );
+            });
+
+            $(".footnote-return sup").html("");
+        </script>
+
+        
+            
+        
+
+        
+
+
+    </body>
+</html>

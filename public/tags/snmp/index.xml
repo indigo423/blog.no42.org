@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>snmp on no42</title>
+    <link>https://blog.no42.org/tags/snmp/</link>
+    <description>Recent content in snmp on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 30 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/snmp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>He&#39;s dead, Jim</title>
+      <link>https://blog.no42.org/article/goodbye-snmp/</link>
+      <pubDate>Mon, 30 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/goodbye-snmp/</guid>
+      <description>If you operate networks there is a big chance you had to deal with SNMP - the Simple Network Management Protocol. If you ever wondered where it came from, it started with a big bang.
+ On October 27, 1980, there was an unusual occurrence on the ARPANET. For a period of several hours, the network appeared to be unusable, due to what was later diagnosed as a high priority software process running out of control.</description>
+    </item>
+    
+    <item>
+      <title>Scanning for SNMP communities</title>
+      <link>https://blog.no42.org/code/snmp-scanning/</link>
+      <pubDate>Fri, 02 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/snmp-scanning/</guid>
+      <description>Adding devices into monitoring system is easy. Getting all the right SNMP communities for them is harder. People don&amp;rsquo;t give you the right community string or forget to open firewall ports.
+If you have to test a lot of IP&amp;rsquo;s against various IP addresses you can use nmap and a community list file as an input.
+Be aware you talk about permission to run this test otherwise somebody can get angry when you try to brute-force community strings against their devices.</description>
+    </item>
+    
+    <item>
+      <title>Net-SNMP version 3 and OpenNMS</title>
+      <link>https://blog.no42.org/code/netsnmp-v3-opennms/</link>
+      <pubDate>Fri, 22 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/netsnmp-v3-opennms/</guid>
+      <description>To monitor your systems you rely heavily on SNMP, it gives out of the box a lot of possibilities getting important performance and status information.
+The main topic security is often not considered. SNMP version 1 and 2c transmit everything in plain text over the wire. There is also no user, password authentication method, just a shared community string which gives access to the information. To address these problems SNMP v3 was introduced.</description>
+    </item>
+    
+    <item>
+      <title>Cleaner log with Docker and SNMP</title>
+      <link>https://blog.no42.org/code/snmp-clean-log/</link>
+      <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/snmp-clean-log/</guid>
+      <description>Centralizing logs is important as soon you have more than 2 servers. In my environment the bare metal is monitored with Net-SNMP and my services are deployed as containers with Docker. All system logs are sent to a Graylog2 instance and I quickly noticed a few ugly entries caused by snmpd.
+Cannot statfs /run/docker/netns/...: Permission denied  You will notice a few of them. First approach try to increase the logging level in /etc/default/snmpd from SNMP daemon with</description>
+    </item>
+    
+  </channel>
+</rss>

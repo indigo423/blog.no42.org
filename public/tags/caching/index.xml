@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>caching on no42</title>
+    <link>https://blog.no42.org/tags/caching/</link>
+    <description>Recent content in caching on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 15 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/caching/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker, Caching, Build</title>
+      <link>https://blog.no42.org/code/docker-build-cache-invalidation/</link>
+      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/docker-build-cache-invalidation/</guid>
+      <description>Docker build and cache invalidation Right now I&amp;rsquo;m working with my work mates @opennms integrating the docker image building in our CI/CD environment. We build our container image based on CentOS and we noticed the caching doesn&amp;rsquo;t work for ${reasons}.
+Running a docker build -t myimage . ended up always in installing packages from the official yum repositories even we haven&amp;rsquo;t changed anything in the Dockerfile.
+To understand things better, I went back to drawing board and started with a simple example and rebuilding things step by step to understand when gets the docker build cache unnecessarily invalidated.</description>
+    </item>
+    
+  </channel>
+</rss>

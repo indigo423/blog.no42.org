@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>freeradius on no42</title>
+    <link>https://blog.no42.org/tags/freeradius/</link>
+    <description>Recent content in freeradius on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 22 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/freeradius/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Authenticate OpenNMS Horizon with FreeRADIUS</title>
+      <link>https://blog.no42.org/code/horizon-radius-authentication/</link>
+      <pubDate>Sun, 22 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/horizon-radius-authentication/</guid>
+      <description>Centralized authentication is a core service as soon you have a network with more than 3 computers. This article is about how to authenticate a OpenNMS Horizon 22.0.2 using RADIUS provided by a FreeRADIUS service.
+In this example the FreeRADIUS server is configured to provide 3 users. A dictionary is configured which returns 2 roles, ROLE_USER and ROLE_ADMIN which can be used to decide which security role is assigned in the OpenNMS Horizon Web UI.</description>
+    </item>
+    
+  </channel>
+</rss>

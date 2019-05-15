@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>macosx on no42</title>
+    <link>https://blog.no42.org/tags/macosx/</link>
+    <description>Recent content in macosx on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 12 Aug 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/macosx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mac OS X and DHCP is screwing your Host Name</title>
+      <link>https://blog.no42.org/code/macosx-and-dhcp/</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/macosx-and-dhcp/</guid>
+      <description>I’m using Mac OS X with iterm2, oh-my-zsh and spend 75% of my time in those terminals. It is totally annoying to me if I connect to a DHCP network and it screws up my hostname. Especially when I&amp;rsquo;m used to looking at the prompt which tells me the host I&amp;rsquo;m connected to.
+It is possible to fix your computer name for several things using the scutil command which requires administration permissions.</description>
+    </item>
+    
+  </channel>
+</rss>

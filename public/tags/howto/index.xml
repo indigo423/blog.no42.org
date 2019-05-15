@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>howto on no42</title>
+    <link>https://blog.no42.org/tags/howto/</link>
+    <description>Recent content in howto on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 01 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/howto/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Send notifications with Signal</title>
+      <link>https://blog.no42.org/article/opennms-notify-signal/</link>
+      <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/opennms-notify-signal/</guid>
+      <description>In some cases it is nice to have notifications from OpenNMS in a separate channel on a smartphone and you don&amp;rsquo;t want to pay for SMS. Here is a tutorial where I use Signal using the signal-cli.
+This Howto will describe how to download the latest signal-cli tool, link it to your existing Signal account and how to configure OpenNMS to use it as a notification target. You should have already an OpenNMS Horizon or Meridian running and you need a Signal account with the Signal app installed and configured on your smartphone.</description>
+    </item>
+    
+  </channel>
+</rss>

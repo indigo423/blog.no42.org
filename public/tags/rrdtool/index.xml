@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rrdtool on no42</title>
+    <link>https://blog.no42.org/tags/rrdtool/</link>
+    <description>Recent content in rrdtool on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 18 Mar 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/rrdtool/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RRDtool graph improvement</title>
+      <link>https://blog.no42.org/code/rrdtool-graph-improvements/</link>
+      <pubDate>Tue, 18 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/rrdtool-graph-improvements/</guid>
+      <description>If you have OpenNMS with RRDtool running, you can improve the whole rendering a little bit just by replacing the command.prefix in the following files:
+ snmp-graph.properties snmp-adhoc-graph.properties response-graph.properties response-adhoc-graph.properties  command.prefix=/usr/bin/rrdtool graph - --imgformat PNG --font DEFAULT:7 --font TITLE:10 --start {startTime} --end {endTime} -E --width=1000 --height=180  I don’t like the stamp size graphs in OpenNMS, so I changed it for all. It could be problematic if you have grouped graph report (KSC report).</description>
+    </item>
+    
+  </channel>
+</rss>

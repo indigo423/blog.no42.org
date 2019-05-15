@@ -1,0 +1,454 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Ronny Trommer">
+        <meta name="description" content="Private blog around tech and live.">
+        <meta name="keywords" content="blog,personal,responsive,search,font awesome,pages,posts,multilingual,highlight.js,syntax highlighting,premium,shortcuts">
+        <meta name="generator" content="Hugo 0.55.4" />
+        <title> Send notifications with Signal | no42</title>
+        <meta name="description" content="Send notifications with Signal - Private blog around tech and live.">
+        <meta itemprop="name" content="Send notifications with Signal">
+        <meta itemprop="description" content="Send notifications with Signal - Private blog around tech and live.">
+        <meta property="og:title" content="Send notifications with Signal">
+        <meta property="og:description" content="Send notifications with Signal - Private blog around tech and live.">
+        <meta property="og:image" content="https://www.gravatar.com/avatar/7f19843706ee328d5b1dfbf9b2a73a73?size=200">
+        <meta property="og:url" content="https://blog.no42.org/article/opennms-notify-signal/">
+        <meta property="og:site_name" content="no42">
+        <meta property="og:type" content="article">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-16x16.png" sizes="16x16">
+
+	
+
+        
+        
+        
+        
+        <link rel="stylesheet" href="https://blog.no42.org/sass/combined.min.6e8351b3ea65d753e797df34276a01509dc8ac2d5d2f5d5b13934de1e37d5d44.css">
+
+        
+
+        
+            
+        
+    </head>
+    <body class="bilberry-hugo-theme">
+        
+<nav>
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="/page/projects/">Projects</a></li>
+                
+            
+                
+                    <li><a href="/page/about/">About Me</a></li>
+                
+            
+                
+                    <li><a href="/page/impressum/">Impressum</a></li>
+                
+            
+                
+                    <li><a href="/page/privacy/">Privacy</a></li>
+                
+            
+        </ul>
+
+        
+    </div>
+</nav>
+
+
+        <header>
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="/images/gravatar.jpg" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title"><a href="/">no42</a></h3>
+            
+                <span class="subtitle">... search for answer?</span>
+            
+        </div>
+
+    
+
+        
+        <div class="toggler">
+        
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+    </div>
+</header>
+
+
+        <div class="main container">
+            
+     
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="/article/opennms-notify-signal/">
+    <i class="fa fa-fw fa-pencil"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="/article/opennms-notify-signal/">
+            
+                <img src="/article/opennms-notify-signal/featuredImage_hue72e3ee10eeaf3488a7bdb9a76864732_234725_700x350_fill_q95_box_smart1.jpeg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h3><a href="/article/opennms-notify-signal/">Send notifications with Signal</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2018-11-01</span>
+            
+        
+
+        
+            <span class="readingTime">3 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        
+
+<p>In some cases it is nice to have notifications from OpenNMS in a separate channel on a smartphone and you don&rsquo;t want to pay for SMS.
+Here is a tutorial where I use <a href="https://signal.org">Signal</a> using the <a href="https://github.com/AsamK/signal-cli/releases">signal-cli</a>.</p>
+
+<p>This Howto will describe how to download the latest signal-cli tool, link it to your existing Signal account and how to configure OpenNMS to use it as a notification target.
+You should have already an OpenNMS Horizon or Meridian running and you need a Signal account with the Signal app installed and configured on your smartphone.</p>
+
+<h4 id="configuration">Configuration</h4>
+
+<p><strong>Step 1: Download and extract the signal-cli tool</strong></p>
+
+<p>We get a copy of the released files and extract the signal-cli to /opt/signal-cli on your OpenNMS server.</p>
+
+<pre><code class="language-bash">cd /opt
+curl -L https://github.com/AsamK/signal-cli/releases/download/v0.6.0/signal-cli-0.6.0.tar.gz | tar xz
+mv signal-cli-0.6.0 signal-cli
+</code></pre>
+
+<p><strong>Step 2: Link your existing Signal account with signal-cli</strong></p>
+
+<pre><code class="language-bash">cd /opt/signal-cli/bin
+./signal-cli link -n my-opennms
+tsdevice:/?uuid=ADW2cD2XjA7IX4arL9U7eQ&amp;pub_key=BTrFfDdAJdaZ%2b%2FB05BsxelnrpQZT5sRJh2S7yb4fp1aO
+</code></pre>
+
+<p>Generate a QR Code from the link, I&rsquo;ve used an online QR code generator <a href="https://www.qrstuff.com">https://www.qrstuff.com</a>.</p>
+
+<p>Use &ldquo;Plain Text&rdquo; and use &ldquo;Static - Embed text into code as-is&rdquo;.
+Paste the tsdevice URL and download the generated QR code image.
+You can now scan it with your Signal app which links your signal-cli to your account which is identified by your phone number.</p>
+
+<p>Test if you can send yourself a message with (<code>-u</code> is your phone number with country code):</p>
+
+<pre><code class="language-bash">./signal-cli -u +4912345789 send -m &quot;This is my first message&quot; +4912345789
+</code></pre>
+
+<p>Important for our integration:</p>
+
+<ul>
+<li><code>-u +4912345789</code>: This is the user which sends the notification</li>
+<li>`-m &ldquo;the message&rdquo;: The message content which will be sent</li>
+<li><code>+4912345789</code>: The phone number of the recipient, in this case I send it myself but can also be your collegue</li>
+</ul>
+
+<p>The encryption and keys for <em>Signal</em> are stored in the home directory of your running as user which is <code>/root/.config</code>.</p>
+
+<p><strong>Step 3: Create a wrapper script which can be used as a custom notification in OpenNMS</strong></p>
+
+<p>To make the integration a little bit easier, I wrapped it up in a small script <code>/opt/signal/bin/signal-cliw.sh</code></p>
+
+<pre><code class="language-bash">#!/bin/bash -e
+
+SIGNAL_BINARY=/opt/signal/bin/signal-cli
+LINKED_USER=+4912345789
+MESSAGE=&quot;${2}&quot;
+RECIPIENT=&quot;${1}&quot;
+CONFIG=/root/.config
+ERROR_LOG=/var/log/signal-cli.log
+
+${SIGNAL_BINARY} -u &quot;${LINKED_USER}&quot; send -m &quot;${MESSAGE}&quot; &quot;${RECIPIENT}&quot; 2&gt;&gt;${ERROR_LOG}
+</code></pre>
+
+<p>Ensure the script is executable with <code>chmod +x signal-cliw.sh</code>.
+You can use it now like that:</p>
+
+<pre><code class="language-bash">./signal-cliw.sh &lt;target-phone-number&gt; &quot;&lt;text message&gt;&quot;
+</code></pre>
+
+<p><strong>Step 4: Integration in OpenNMS</strong></p>
+
+<p>Add a new notification command in <code>${OPENNMS_HOME}/etc/notificationCommands.xml</code>:</p>
+
+<pre><code class="language-xml">&lt;command binary=&quot;true&quot;&gt;
+  &lt;name&gt;signal-cli&lt;/name&gt;
+    &lt;execute&gt;/opt/signal/bin/signal-cliw.sh&lt;/execute&gt;
+    &lt;comment&gt;Signal CLI&lt;/comment&gt;
+    &lt;argument streamed=&quot;false&quot;&gt;
+      &lt;switch&gt;-mphone&lt;/switch&gt;
+    &lt;/argument&gt;
+    &lt;argument streamed=&quot;false&quot;&gt;
+      &lt;switch&gt;-nm&lt;/switch&gt;
+    &lt;/argument&gt;
+&lt;/command&gt;
+</code></pre>
+
+<p>As first argument for the <code>signal-cliw.sh</code> script is the <em>Mobile Phone</em> number used from a configure OpenNMS user.
+The second argument we pass with <code>-nm</code> a short message text to our script which is configured in the the notification itself.
+Restart OpenNMS so the changes will be applied.</p>
+
+<p><strong>Step 5: Create a new Destination Path which uses Signal</strong></p>
+
+<p>Create a notification <em>destination path</em> which uses your newly created <em>signal-cli</em> notification command.</p>
+
+<p><a href="destination-path.gif"><img src="destination-path-thumb.png" alt="" /></a></p>
+
+<p><strong>Step 6: Add a mobile phone number in your user account</strong></p>
+
+<p><a href="mobile-number.gif"><img src="mobile-number-thumb.png" alt="" /></a></p>
+
+<p><strong>Step 7: Configure a notification to use our new destination path</strong></p>
+
+<p><a href="notification.gif"><img src="notification-thumb.png" alt="" /></a></p>
+
+<p><strong>Step 8: Enable Notifications</strong></p>
+
+<p><a href="enable-notification.gif"><img src="enable-notification-thumb.png" alt="" /></a></p>
+
+<p><strong>Step 9: Test Notification</strong></p>
+
+<p><a href="test-notification.gif"><img src="test-notification-thumb.png" alt="" /></a></p>
+
+<p>Check if you get a notification for a node outage and a resolved message.</p>
+
+<p><a href="notification-phone.png"><img src="notification-phone.png" alt="" /></a></p>
+
+<h4 id="troubleshooting">Troubleshooting</h4>
+
+<p>If you have issues getting the integration running, <em>Notifd</em> is the main component which drives the bits and pieces and writes log files to <code>${OPENNMS_HOME/logs/notfid</code>.
+In case you need a more verbose output you can increase the log level in <code>${OPENNMS_HOME/etc/log4j2.xml</code> by setting it from <code>WARN</code> to <code>DEBUG</code>.
+The changes will be picked up automatically and you don&rsquo;t need a restart.</p>
+
+<pre><code class="language-xml">&lt;KeyValuePair key=&quot;notifd&quot; value=&quot;DEBUG&quot; /&gt;
+</code></pre>
+
+<p>If you have devices on very unreliable internet connections, you can set an initial delay which ensures you only get notifications when the outage exists for a certain amount of time.</p>
+
+<p>gl &amp; hf</p>
+
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/notifications">notifications</a>
+                
+                    <a href="/tags/howto">howto</a>
+                
+                    <a href="/tags/opennms">opennms</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    
+
+     
+
+        </div>
+
+        
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>Latest posts</strong>
+                <ul>
+                
+                    <li>
+                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/docker-java-signals-pid1/">Docker, Java, Signals and Pid 1</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/ssl-and-java/">SSL and Java</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/opennms-notify-signal/">Send notifications with Signal</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/theming-applications/">Everyone can change it and why you shouldn&#39;t</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/guidance-to-survive-monitoring/">Guidance to Survive Monitoring</a>
+                    </li>
+                
+                    <li>
+                        <a href="/quote/two-hard-things/">Two hard things</a>
+                    </li>
+                
+                </ul>
+        </div>
+        
+
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>Social media</strong>
+
+                
+                
+                    <a href="https://twitter.com/indigo423" target="_blank"><i class="fa fa-twitter-adblock-proof"></i></a>
+                
+                
+                
+                    <a href="https://www.xing.com/profile/Ronny_Trommer" target="_blank"><i class="fa fa-xing"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                    <a href="https://github.com/indigo423" target="_blank"><i class="fa fa-github"></i></a>
+                
+                
+                    <a href="https://www.linkedin.com/in/ronnytrommer/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                
+            </div>
+            
+
+            <div class="languages">
+                    <strong>Other languages</strong>
+                    
+                        
+                            <a href="/en" class="active">en</a>
+                        
+                    
+                        
+                            <a href="/de">de</a>
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/indigo423" target="_blank">
+                &copy;
+                
+                    2019
+                
+                by Ronny Trommer
+            </a>
+	    
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme" target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+        
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-73787628-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/externalDependencies.39c47e10e241eae2947b3fe21809c572.js" integrity="md5-OcR&#43;EOJB6uKUez/iGAnFcg=="></script>
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/theme.ff50ae6dc1bfc220b23bf69dbb41b54e.js" integrity="md5-/1CubcG/wiCyO/adu0G1Tg=="></script>
+
+        <script>
+            $(".moment").each(function() {
+                $(this).text(
+                    moment( $(this).text() )
+                        .locale( "en" )
+                        .format('LL')
+                );
+            });
+
+            $(".footnote-return sup").html("");
+        </script>
+
+        
+            
+        
+
+        
+
+
+    </body>
+</html>

@@ -1,0 +1,410 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Ronny Trommer">
+        <meta name="description" content="Private blog around tech and live.">
+        <meta name="keywords" content="blog,personal,responsive,search,font awesome,pages,posts,multilingual,highlight.js,syntax highlighting,premium,shortcuts">
+        <meta name="generator" content="Hugo 0.55.4" />
+        <title> He&#39;s dead, Jim | no42</title>
+        <meta name="description" content="He&#39;s dead, Jim - Private blog around tech and live.">
+        <meta itemprop="name" content="He&#39;s dead, Jim">
+        <meta itemprop="description" content="He&#39;s dead, Jim - Private blog around tech and live.">
+        <meta property="og:title" content="He&#39;s dead, Jim">
+        <meta property="og:description" content="He&#39;s dead, Jim - Private blog around tech and live.">
+        <meta property="og:image" content="https://www.gravatar.com/avatar/7f19843706ee328d5b1dfbf9b2a73a73?size=200">
+        <meta property="og:url" content="https://blog.no42.org/article/goodbye-snmp/">
+        <meta property="og:site_name" content="no42">
+        <meta property="og:type" content="article">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-16x16.png" sizes="16x16">
+
+	
+
+        
+        
+        
+        
+        <link rel="stylesheet" href="https://blog.no42.org/sass/combined.min.6e8351b3ea65d753e797df34276a01509dc8ac2d5d2f5d5b13934de1e37d5d44.css">
+
+        
+
+        
+            
+        
+    </head>
+    <body class="bilberry-hugo-theme">
+        
+<nav>
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="/page/projects/">Projects</a></li>
+                
+            
+                
+                    <li><a href="/page/about/">About Me</a></li>
+                
+            
+                
+                    <li><a href="/page/impressum/">Impressum</a></li>
+                
+            
+                
+                    <li><a href="/page/privacy/">Privacy</a></li>
+                
+            
+        </ul>
+
+        
+    </div>
+</nav>
+
+
+        <header>
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="/images/gravatar.jpg" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title"><a href="/">no42</a></h3>
+            
+                <span class="subtitle">... search for answer?</span>
+            
+        </div>
+
+    
+
+        
+        <div class="toggler">
+        
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+    </div>
+</header>
+
+
+        <div class="main container">
+            
+     
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="/article/goodbye-snmp/">
+    <i class="fa fa-fw fa-pencil"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="/article/goodbye-snmp/">
+            
+                <img src="/article/goodbye-snmp/featuredImage_huf162551413c8ec04f006d37b93a211c0_284584_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h3><a href="/article/goodbye-snmp/">He&#39;s dead, Jim</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2018-07-30</span>
+            
+        
+
+        
+            <span class="readingTime">5 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        
+
+<p>If you operate networks there is a big chance you had to deal with SNMP - the Simple Network Management Protocol.
+If you ever wondered where it came from, it started with a big bang.</p>
+
+<blockquote>
+<p>On October 27, 1980, there was an unusual occurrence on the ARPANET.
+For a period of several hours, the network appeared  to be unusable, due to what was later diagnosed as a high priority software process running out of control.
+Network-wide disturbances are extremely unusual in the ARPANET (none has occurred in several years), and as a result, many people have expressed interest in learning more about the etiology of this particular incident.</p>
+</blockquote>
+
+<p>The first post-mortem written in <a href="https://tools.ietf.org/html/rfc789.html">RFC 789</a> expressed a need to manage and monitor a complex networks.</p>
+
+<p>If you dig around in dusty RFC drafts, you can find some for <em>HEMS</em> a High-Level Entity Management System described in <a href="https://tools.ietf.org/html/rfc1021">RFC 1021</a>.
+Later the draft for the Simple Gateway Monitoring Protocol (SGMP) was published as a research project in <a href="https://tools.ietf.org/html/rfc1028">RFC 1028</a>.
+In August 1988 when I was 10 years old, <em>SNMP</em> got his first draft in <a href="https://tools.ietf.org/html/rfc1067">RFC 1067</a> and became the successor of <em>SGMP</em>.</p>
+
+<h3 id="14-years-later">14 years later &hellip;</h3>
+
+<p>In the early years of 2000 it became quite clear, that <em>SNMP</em> was mainly used just for monitoring and not to configure network equipment as planned.
+On the 4th until 6th June 2002 the Internet Architecture Board [IAB] had a meeting and discussed the status quo.
+The full protocol can be read in <a href="https://tools.ietf.org/html/rfc3535">RFC 3535</a>.
+The interesting things are in Section <a href="https://tools.ietf.org/html/rfc3535#section-3">3</a>, <a href="https://tools.ietf.org/html/rfc3535#section-4">4</a> and <a href="https://tools.ietf.org/html/rfc3535#section-6">6</a>.</p>
+
+<p>In a nutshell, they figured out <em>SNMP</em> was not usable to configure devices, you should still better use the <em>CLI</em>.
+They recommended to stop forcing working groups to provide writeable <em>MIB</em> modules.
+The decided to build a group to investigate why <em>MIBS</em> are still crap.
+The figured out, nobody wants <em>ASN.1</em> and decided to form a group to develop and standardize a XML-based device and configuration management technology.</p>
+
+<p>They basically documented already in 2002 why <em>SNMP</em> is no fun to use.
+The whole tool chain has not evolved and was adapted to new programming languages people want to use.</p>
+
+<p><em>Juniper Networks</em> used an XML-based network management approach at a similar time when the <em>IAB</em> discovered the problems with the current status quo and broad it to the <em>IETF</em>.
+The result is the first version of the <em>NETCONF</em> protocol published in 2006 as <a href="https://tools.ietf.org/html/rfc4741">RFC 4741</a>.
+With <em>NETCONF</em> as transport they needed to model things and this is where <a href="https://en.wikipedia.org/wiki/YANG">YANG</a> as a data modelling language comes into play.</p>
+
+<h3 id="configuration-discovery-and-polling">Configuration, Discovery and Polling</h3>
+
+<p>Using <em>SNMP</em> is in first place quite simple and follows the Client/Server approach.
+The network management system is the Server and the <em>SNMP</em> Agent on the network device is the client.</p>
+
+<p>One goal of <em>SNMP</em> was to make devices and configuration discoverable.
+That means a network monitoring system can go and see how many disks or network interfaces are installed and how they are configured.
+You can also go further and ask in a regular base how many bytes where transferred or how full is your disk</p>
+
+<p>This design implies a specific design for a monitoring system which needs to build a centralized inventory about those entities with a life cycle.
+This works for very static networks.
+You can try to keep the inventory in sync by polling the SNMP agents on a regular base, but you can imagine, the bigger and more dynamic a network gets, the more often your world will fell apart.
+For a monitoring system is this very critical, cause the information provided get less and less trustworthy and this is where you start to think replacing your current monitoring system with a different one.</p>
+
+<p>For the reason of the bad implementation of <em>SNMP</em> a lot of monitoring tools deploy their own agents and reimplement these functionality with proprietary protocols which made their world better, but not for all of us.
+Additionally the world has changed dramatically since the last years with virtualization and deploying and running applications in containers.
+The infrastructure changes now so often and is so dynamic, there is no chance to poll all these things from a central scheduled place and provide an up-to-date inventory.</p>
+
+<p>Generic tools which configure devices over <em>SNMP</em> are hard to find and/or expensive.
+It is like peak and poke registers and it has nothing to do with a declearitive approach to define a maintainable configuration state.
+Not speaking of all the problems described in <em>RFC 3535</em>.</p>
+
+<h3 id="the-tool-situation">The Tool-Situation</h3>
+
+<p>In early days the <a href="https://en.wikipedia.org/wiki/International_Organization_for_Standardization">ISO - International Organization for Standardization</a> categorized the management in functional areas for short <a href="https://en.wikipedia.org/wiki/FCAPS">FCAPS</a>:</p>
+
+<ul>
+<li>Fault</li>
+<li>Configuration</li>
+<li>Accounting</li>
+<li>Performance</li>
+<li>Security</li>
+</ul>
+
+<p>As you can imagine just a single area in his own is huge.
+To get a checkmark on all of the you have to look at the tools of the <em>Big Four</em> with BMC, CA, HP and IBM.
+So in reality you don&rsquo;t by one tool from one of these vendors, they try to sell you many tools they bought during the time and munched together as a solution.</p>
+
+<p>The Open Source world followed more or less the one tool for a job approach.
+Monitoring tools do mainly their job in the fault- and performance-management area.
+A lot of them can read <em>SNMP</em> but they don&rsquo;t fully rely on it and bring mostly also their own agents.</p>
+
+<p>Configuration management tools like <a href="https://www.ansible.com">Ansible</a>, <a href="https://saltstack.com">SaltStack</a>, <a href="https://www.chef.io">Chef</a> and <a href="https://puppet.com">Puppet</a> are pretty much the industry standard for configuration management.
+&hellip; and guess what, instead of using <em>SNMP</em> they come all with their own agents.</p>
+
+<h3 id="to-be-continued">to be continued &hellip;</h3>
+
+<p>Nevertheless, <em>SNMP</em> is still the only agent available which is shipped with your cheap hardware and this is the reason why we still don&rsquo;t have fancy things.
+But the days are numbered and if you look at all the things happening in next generation technologies e.g. Server Virtualization, Containerization, SDN, NFV, you won&rsquo;t find <em>SNMP</em> and you have to face it, <em>SNMP</em> is dead.
+The new world in monitoring is model driven streaming telemetry which pushes data and is not polled and this is covered in another article.</p>
+
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/snmp">snmp</a>
+                
+                    <a href="/tags/monitoring">monitoring</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    
+
+     
+
+        </div>
+
+        
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>Latest posts</strong>
+                <ul>
+                
+                    <li>
+                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/docker-java-signals-pid1/">Docker, Java, Signals and Pid 1</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/ssl-and-java/">SSL and Java</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/opennms-notify-signal/">Send notifications with Signal</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/theming-applications/">Everyone can change it and why you shouldn&#39;t</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/guidance-to-survive-monitoring/">Guidance to Survive Monitoring</a>
+                    </li>
+                
+                    <li>
+                        <a href="/quote/two-hard-things/">Two hard things</a>
+                    </li>
+                
+                </ul>
+        </div>
+        
+
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>Social media</strong>
+
+                
+                
+                    <a href="https://twitter.com/indigo423" target="_blank"><i class="fa fa-twitter-adblock-proof"></i></a>
+                
+                
+                
+                    <a href="https://www.xing.com/profile/Ronny_Trommer" target="_blank"><i class="fa fa-xing"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                    <a href="https://github.com/indigo423" target="_blank"><i class="fa fa-github"></i></a>
+                
+                
+                    <a href="https://www.linkedin.com/in/ronnytrommer/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                
+            </div>
+            
+
+            <div class="languages">
+                    <strong>Other languages</strong>
+                    
+                        
+                            <a href="/en" class="active">en</a>
+                        
+                    
+                        
+                            <a href="/de">de</a>
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/indigo423" target="_blank">
+                &copy;
+                
+                    2019
+                
+                by Ronny Trommer
+            </a>
+	    
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme" target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+        
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-73787628-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/externalDependencies.39c47e10e241eae2947b3fe21809c572.js" integrity="md5-OcR&#43;EOJB6uKUez/iGAnFcg=="></script>
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/theme.ff50ae6dc1bfc220b23bf69dbb41b54e.js" integrity="md5-/1CubcG/wiCyO/adu0G1Tg=="></script>
+
+        <script>
+            $(".moment").each(function() {
+                $(this).text(
+                    moment( $(this).text() )
+                        .locale( "en" )
+                        .format('LL')
+                );
+            });
+
+            $(".footnote-return sup").html("");
+        </script>
+
+        
+            
+        
+
+        
+
+
+    </body>
+</html>

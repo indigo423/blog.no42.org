@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cicd on no42</title>
+    <link>https://blog.no42.org/tags/cicd/</link>
+    <description>Recent content in cicd on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 14 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/cicd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Build OpenNMS with Docker</title>
+      <link>https://blog.no42.org/code/build-opennms-docker/</link>
+      <pubDate>Sat, 14 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/build-opennms-docker/</guid>
+      <description>Being able to compiling an Open Source project is important. You can change the code, so you should also able to build it.
+Why is there a dedicated Docker image for the build environment? The dependencies running a pre-build OpenNMS Horizon distribution and compiling from source are different. To build OpenNMS Horizon you need Apache Maven and to compile JICMP, JRRD you need a C compiler environment. This is nothing you want to carry when you just want to run OpenNMS Horizon.</description>
+    </item>
+    
+    <item>
+      <title>Docker and parallel builds</title>
+      <link>https://blog.no42.org/video/docker-parallel-build/</link>
+      <pubDate>Sat, 09 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/video/docker-parallel-build/</guid>
+      <description>I was listening to an interesting talk from Laura Frank from Codeship. In case you build or maintain a Continuous {Integration, Delivery} environment this definitely worth watching and they describe how they used LXC and now Docker to build their CI/CD infrastructure.
+TL;DR Interesting to me, the description in the YAML file reminded me quickly on a course I needed to pass during my study in parallel computing. The exam had one section where you had to describe parallel and sequential processes with some high level constructs.</description>
+    </item>
+    
+  </channel>
+</rss>

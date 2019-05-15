@@ -1,5 +1,6 @@
 title = "no42"
-baseURL = "https://blog.no42.org"
+# Add an trailing slash to ensure that all fonts render correctly.
+baseURL = "https://blog.no42.org/"
 theme = "bilberry-hugo-theme"
 
 enableRobotsTXT = true
@@ -38,6 +39,13 @@ googleAnalytics = "UA-73787628-1"
   # Enable / Disable algolia search
   algolia_search    = false
 
+  # Style configuration
+  # set the width of your site's content
+  siteWidth = "800px"
+
+  # let hugo automatically resize and crop your images to the correct sizes
+  resizeImages = true
+
   # Header configuration
   # your subtitle if you want to use any
   subtitle = "... search for answer?"
@@ -54,6 +62,40 @@ googleAnalytics = "UA-73787628-1"
   # show a language chooser in the header
   showHeaderLanguageChooser = false
 
+  # Content configuration
+  # Enable an optional pinned page to display at the top of the index
+  # pinnedPost = "/content/github/"
+  # Set to true to pin only to the first page, false to all pages
+  # pinOnlyToFirstPage = true
+
+  # enable automatical localization of the article's PublishedDate with momentjs
+  enableMomentJs = true
+
+  # customize the date format | only works if momentjs is disabled | only works with English month names
+  # you can customize it with the options you find here:
+  # https://gohugo.io/functions/format/#hugo-date-and-time-templating-reference
+  dateFormat = "2006-01-02"
+
+  # display the estimated reading time for an article
+  showReadingTime = true
+
+# Footer configuration
+  showFooter = true
+
+  # How many articles should be displayed at latest posts in the footer?
+  # Set to -1 to hide the 'Latest Posts' column
+  amountLatestPostsInFooter = 7
+
+  # How many categories should be displayed in the footer section?
+  # Set to -1 to hide the 'Categories' column
+  amountCategoriesInFooter = 7
+
+  # show a language chooser in the header
+  showFooterLanguageChooser = true
+
+  # social media profile urls for the footer links
+  showSocialMedia = true
+
   # credits line configuration
   copyrightBy = "by Ronny Trommer"
   copyrightUseCurrentYear = true  # set to true to always display the current year in the copyright
@@ -62,8 +104,6 @@ googleAnalytics = "UA-73787628-1"
   creditsText = ""
   creditsUrl = "https://github.com/Lednerb/bilberry-hugo-theme"
 
-  # social media profile urls for the footer links
-  showSocialMedia = true
   facebook   = ""
   twitter    = "https://twitter.com/indigo423"
   googleplus = ""
@@ -92,6 +132,5 @@ googleAnalytics = "UA-73787628-1"
   category = "categories"
 
 [outputs]
-  home = [ "HTML", "JSON" ]
+  home = [ "HTML", "JSON", "RSS" ]
   page = [ "HTML" ]
-

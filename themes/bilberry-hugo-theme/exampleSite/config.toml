@@ -1,5 +1,6 @@
 title = "My cool new Blog"
-baseURL = "https://example.com"
+# Add an trailing slash to ensure that all fonts render correctly.
+baseURL = "https://example.com/"
 theme = "bilberry-hugo-theme"
 
 enableRobotsTXT = true
@@ -43,21 +44,77 @@ disqusShortname = "bilberry-hugo-theme"
     # Set this option to false if you want to search within all articles in all languages at once
     algolia_currentLanguageOnly = true
 
+  # Style configuration
+    # set the width of your site's content
+    siteWidth = "800px"
+
+    # let hugo automatically resize and crop your images to the correct sizes
+    resizeImages = true
+
   # Header configuration
     # your subtitle if you want to use any
     subtitle = "Hello World! This is the most epic subtitle ever."
 
     # if you want to use gravatar for the header image
-    gravatarEMail = ""
+    gravatarEMail = "code@lednerb.de"
 
     # set an path to the image file you want to use | overwrites gravatar
     customImage = ""
+
+    # define the icon you want to use for the overlay for the customImage or gravatar.
+    overlayIcon = "fa-home"
 
     # always display the top navigation (with pages and search) on non-mobile screens
     permanentTopNav = false
 
     # show a language chooser in the header
     showHeaderLanguageChooser = true
+
+  # Content configuration
+    # Enable an optional pinned page to display at the top of the index
+    # pinnedPost = "/content/github/"
+    # Set to true to pin only to the first page, false to all pages
+    # pinOnlyToFirstPage = true
+
+    # enable automatical localization of the article's PublishedDate with momentjs
+    enableMomentJs = true
+
+    # customize the date format | only works if momentjs is disabled | only works with English month names
+    # you can customize it with the options you find here:
+    # https://gohugo.io/functions/format/#hugo-date-and-time-templating-reference
+    dateFormat = "2006-01-02"
+
+    # display the estimated reading time for an article
+    showReadingTime = false
+
+  # Footer configuration
+    showFooter = true
+
+    # How many articles should be displayed at latest posts in the footer?
+    # Set to -1 to hide the 'Latest Posts' column
+    amountLatestPostsInFooter = 7
+
+    # How many categories should be displayed in the footer section?
+    # Set to -1 to hide the 'Categories' column
+    amountCategoriesInFooter = 7
+
+    # show a language chooser in the header
+    showFooterLanguageChooser = true
+
+    # social media profile urls for the footer links
+    showSocialMedia = true
+
+    facebook   = ""
+    twitter    = "https://twitter.com/TheRealLednerb"
+    googleplus = ""
+    pinterest  = ""
+    instagram  = ""
+    tumblr     = ""
+    youtube    = ""
+    vimeo      = ""
+    github     = "https://github.com/Lednerb"
+    xing       = ""
+    linkedin   = ""
 
     # credits line configuration
     copyrightBy = "by Lednerb"
@@ -67,19 +124,6 @@ disqusShortname = "bilberry-hugo-theme"
     creditsText = "Bilberry Hugo Theme"
     creditsUrl = "https://github.com/Lednerb/bilberry-hugo-theme"
 
-  # social media profile urls for the footer links
-  showSocialMedia = true
-  facebook   = ""
-  twitter    = "https://twitter.com/TheRealLednerb"
-  googleplus = ""
-  pinterest  = ""
-  instagram  = ""
-  tumblr     = ""
-  youtube    = ""
-  vimeo      = ""
-  github     = "https://github.com/Lednerb"
-  xing       = ""
-  linkedin   = ""
 
 # customize your available languages for your multi-langual site
 # or delete the [Languages] blog to use the theme with only one supported language
@@ -98,6 +142,6 @@ disqusShortname = "bilberry-hugo-theme"
   category = "categories"
 
 [outputs]
-  home = [ "HTML", "JSON" ]
+  home = [ "HTML", "JSON", "RSS" ]
   page = [ "HTML" ]
 

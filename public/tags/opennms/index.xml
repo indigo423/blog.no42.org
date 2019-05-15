@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>opennms on no42</title>
+    <link>https://blog.no42.org/tags/opennms/</link>
+    <description>Recent content in opennms on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 01 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/opennms/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Send notifications with Signal</title>
+      <link>https://blog.no42.org/article/opennms-notify-signal/</link>
+      <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/opennms-notify-signal/</guid>
+      <description>In some cases it is nice to have notifications from OpenNMS in a separate channel on a smartphone and you don&amp;rsquo;t want to pay for SMS. Here is a tutorial where I use Signal using the signal-cli.
+This Howto will describe how to download the latest signal-cli tool, link it to your existing Signal account and how to configure OpenNMS to use it as a notification target. You should have already an OpenNMS Horizon or Meridian running and you need a Signal account with the Signal app installed and configured on your smartphone.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Websites with OpenNMS</title>
+      <link>https://blog.no42.org/code/monitoring-websites-with-opennms/</link>
+      <pubDate>Fri, 27 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/monitoring-websites-with-opennms/</guid>
+      <description>Monitoring websites is a common requirement. Using OpenNMS to monitor websites can be done by using the built in HTTP/HTTPS based monitors.
+While a &amp;ldquo;Node&amp;rdquo; can be pretty much everything in a network, the internal model to monitor something is pretty old-fashioned and static. Monitoring a service requires to assign a service to an IP address.
+This article describes a pattern how you can monitor web sites with low maintenance and without the need to maintain for each website a monitor which is cumbersome in maintenance.</description>
+    </item>
+    
+    <item>
+      <title>Authenticate OpenNMS Horizon with FreeRADIUS</title>
+      <link>https://blog.no42.org/code/horizon-radius-authentication/</link>
+      <pubDate>Sun, 22 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/horizon-radius-authentication/</guid>
+      <description>Centralized authentication is a core service as soon you have a network with more than 3 computers. This article is about how to authenticate a OpenNMS Horizon 22.0.2 using RADIUS provided by a FreeRADIUS service.
+In this example the FreeRADIUS server is configured to provide 3 users. A dictionary is configured which returns 2 roles, ROLE_USER and ROLE_ADMIN which can be used to decide which security role is assigned in the OpenNMS Horizon Web UI.</description>
+    </item>
+    
+    <item>
+      <title>Authenticate OpenNMS Horizon with Active Directory on Windows Server 2016</title>
+      <link>https://blog.no42.org/code/horizon-ldap-authentication/</link>
+      <pubDate>Mon, 16 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/horizon-ldap-authentication/</guid>
+      <description>Centralized authentication is a core service as soon you have a network with more than 3 computers. This article is about how to authenticate a OpenNMS Horizon 22.0.1 against an Active Directory provided on a Microsoft Windows Server 2016. I&amp;rsquo;ll focus here on the Active Directory and Spring configuration parts, securing the connection with LDAPS and using self-signed certificates in Java is another topic and not covered here.
+In this example the domain is called labmonkeys.</description>
+    </item>
+    
+    <item>
+      <title>Build OpenNMS with Docker</title>
+      <link>https://blog.no42.org/code/build-opennms-docker/</link>
+      <pubDate>Sat, 14 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/build-opennms-docker/</guid>
+      <description>Being able to compiling an Open Source project is important. You can change the code, so you should also able to build it.
+Why is there a dedicated Docker image for the build environment? The dependencies running a pre-build OpenNMS Horizon distribution and compiling from source are different. To build OpenNMS Horizon you need Apache Maven and to compile JICMP, JRRD you need a C compiler environment. This is nothing you want to carry when you just want to run OpenNMS Horizon.</description>
+    </item>
+    
+    <item>
+      <title>Centralized Logging with Graylog2</title>
+      <link>https://blog.no42.org/code/centralized-logging-graylog2/</link>
+      <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/centralized-logging-graylog2/</guid>
+      <description>How many times do you connect with SSH to your remote server and cat, grep, tail and awk through your logs? It probably works for 3 servers and running a handful services, but if you have more, you should definitely spend some time to centralize your logs.
+I personally prefer Graylog2 which can deal very well with different log formats like GELF, Syslog RFC&amp;rsquo;s. Just start some listener with the format and forward them to your Graylog2 instance.</description>
+    </item>
+    
+    <item>
+      <title>Net-SNMP version 3 and OpenNMS</title>
+      <link>https://blog.no42.org/code/netsnmp-v3-opennms/</link>
+      <pubDate>Fri, 22 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/netsnmp-v3-opennms/</guid>
+      <description>To monitor your systems you rely heavily on SNMP, it gives out of the box a lot of possibilities getting important performance and status information.
+The main topic security is often not considered. SNMP version 1 and 2c transmit everything in plain text over the wire. There is also no user, password authentication method, just a shared community string which gives access to the information. To address these problems SNMP v3 was introduced.</description>
+    </item>
+    
+    <item>
+      <title>Pimp my Mail Notifications</title>
+      <link>https://blog.no42.org/article/pimp-my-mail-notification/</link>
+      <pubDate>Mon, 07 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/pimp-my-mail-notification/</guid>
+      <description>Notifications are important if you do monitoring. I never liked mail notifications from monitoring systems where all the information is hidden in non-sense text. Otherwise notifications never look the same, so I&amp;rsquo;m always forced to read all that useless crap again and again. This is an approach to improve the usability of monitoring notifications using more a table pattern which helps me to recognize useful information much quicker.
+Probably a lot of E-Mail guys will hate me for the reason I&amp;rsquo;m using HTML in mails.</description>
+    </item>
+    
+    <item>
+      <title>Material Workshop OpenNMS im Büro 2.0</title>
+      <link>https://blog.no42.org/article/buero2.0-workshop-material/</link>
+      <pubDate>Tue, 31 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/buero2.0-workshop-material/</guid>
+      <description>Am 30.03.2015 haben wir im Büro 2.0 in Berlin einen Workshop mit OpenNMS durchgeführt. Die Zielgruppe waren NeueinsteigerInnen und alle die Interesse an Monitoring mit freier Software haben. Es wurden Installationszenarien, das Provisioning und beispielhaft diverse Monitore für Anwendungen und Dienste eingerichtet.
+Die Slides sind unter einer freien CC-BY 3.0 lizenziert und stehen auf GitHub zur Verfügung.</description>
+    </item>
+    
+    <item>
+      <title>Kickstart Workshop OpenNMS im Büro 2.0</title>
+      <link>https://blog.no42.org/article/buero2.0-workshop/</link>
+      <pubDate>Fri, 27 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/buero2.0-workshop/</guid>
+      <description>Für diejenigen, die kurzentschlossen sind – hier eine letzte Erinnerung für einen kostenfreien Kickstart workshop zu OpenNMS. Die Registrierung und Anfahrt findet ihr unter:
+ Büro 2.0 Veranstaltung Registrierung bei Meetup Anfahrt  </description>
+    </item>
+    
+    <item>
+      <title>Conferences OUCE 2015 and 31c3</title>
+      <link>https://blog.no42.org/article/ouce2015-31c3/</link>
+      <pubDate>Sat, 27 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/ouce2015-31c3/</guid>
+      <description>I spent some time with preparing the OUCE 2015 and we use the free an open source software frab as conference management system. I do most of my server automation with Chef and my playground is running with Vagrant. For this reason I decided to spend some time an built a Vagrant / Chef environment and contributed it back to the frab project. This guys do a really good job and IMHO it is the best free conference management system you can get.</description>
+    </item>
+    
+    <item>
+      <title>Open Source Experience</title>
+      <link>https://blog.no42.org/article/open-source-experience/</link>
+      <pubDate>Sat, 22 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/open-source-experience/</guid>
+      <description>I spend a lot of time in the OpenNMS project and I love to work in free software and the workflows around it. We moved with our project from SourceForge to GitHub a few years ago and I think it was the right decision. There are now some established workflows in this ecosystem and they tear down borders between different open source projects and here is an example of it.</description>
+    </item>
+    
+    <item>
+      <title>OpenNMS and Documentation</title>
+      <link>https://blog.no42.org/article/opennms-and-docs/</link>
+      <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/opennms-and-docs/</guid>
+      <description>To help the OpenNMS project I spent a year together with Alexander Finger and Klaus Thielking-Riechert writing an OpenNMS book. We started with a development version of for 1.8 and tried to find a mixture between consistent slow changing and new concepts in 1.8. It was kind a complicated thing and from my point of view not perfectly done. Nevertheless I’ve thought about something like: &amp;ldquo;It’s about time writing a second edition covering the topics in coming 1.</description>
+    </item>
+    
+    <item>
+      <title>OpenNMS Dev-Jam 2014</title>
+      <link>https://blog.no42.org/article/devjam2014/</link>
+      <pubDate>Wed, 04 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/devjam2014/</guid>
+      <description>We are right in the middle of our 5th season of the year – DevJam. It is always a lot of fun spending one week with people from all over the world on the campus of the University of Minnesota. I’ve put on my personal agenda for this week, spending time with the folks working on the way how we want to document our project. I try also to gather the project ideas and where they contribute the code to the project.</description>
+    </item>
+    
+    <item>
+      <title>OUCE 2014 Review</title>
+      <link>https://blog.no42.org/article/ouce2014-review/</link>
+      <pubDate>Tue, 22 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/ouce2014-review/</guid>
+      <description>We have finished our 6th OpenNMS User Conference Europe. It was the first time we made a conference outside of Germany. We started with the first conference in 2009 when I worked at NETHINKS and begun with OpenNMS professional services. For the 3rd and 4th conference we decided to move the venue closer to the people organizing the conference and the IT center in Fulda was a really good place. In 2013 NETHINKS and the OpenNMS Foundation Europe worked together to move the organization of the conference to the community at the University of Applied Science in Fulda.</description>
+    </item>
+    
+    <item>
+      <title>RRDtool graph improvement</title>
+      <link>https://blog.no42.org/code/rrdtool-graph-improvements/</link>
+      <pubDate>Tue, 18 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/rrdtool-graph-improvements/</guid>
+      <description>If you have OpenNMS with RRDtool running, you can improve the whole rendering a little bit just by replacing the command.prefix in the following files:
+ snmp-graph.properties snmp-adhoc-graph.properties response-graph.properties response-adhoc-graph.properties  command.prefix=/usr/bin/rrdtool graph - --imgformat PNG --font DEFAULT:7 --font TITLE:10 --start {startTime} --end {endTime} -E --width=1000 --height=180  I don’t like the stamp size graphs in OpenNMS, so I changed it for all. It could be problematic if you have grouped graph report (KSC report).</description>
+    </item>
+    
+    <item>
+      <title>OUCE 2013 Lab Setup</title>
+      <link>https://blog.no42.org/code/ouce2013-lab-setup/</link>
+      <pubDate>Fri, 15 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/ouce2013-lab-setup/</guid>
+      <description>System  Ubuntu 12.10 Language: English Keyboard Layout: English Login: opennms Pass: ouce2013  Admins toolbox sudo -s apt-get install openssh-server apt-get install vim tcpdump git-core htop joe nmap iftop apt-get install snmp snmpd snmp-mibs-downloader  Maven2 and Oracle Java 1.6 apt-get install maven2 wget http://files.opennms-edu.net/jdk-6u41-linux-x64.bin chmod +x jdk-6u41-linux-x64.bin ./jdk-6u41-linux-x64.bin mv jdk1.6.0_41 /opt update-alternatives --install &amp;quot;/usr/bin/java&amp;quot; &amp;quot;java&amp;quot; &amp;quot;/opt/jdk1.6.0_41/bin/java&amp;quot; 1 update-alternatives --install &amp;quot;/usr/bin/javac&amp;quot; &amp;quot;javac&amp;quot; &amp;quot;/opt/jdk1.6.0_41/bin/javac&amp;quot; 1 update-alternatives --install &amp;quot;/usr/bin/javaws&amp;quot; &amp;quot;javaws&amp;quot; &amp;quot;/opt/jdk1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>signals on no42</title>
+    <link>https://blog.no42.org/tags/signals/</link>
+    <description>Recent content in signals on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 20 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/signals/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker, Java, Signals and Pid 1</title>
+      <link>https://blog.no42.org/code/docker-java-signals-pid1/</link>
+      <pubDate>Wed, 20 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/docker-java-signals-pid1/</guid>
+      <description>Running a Java application in a container seems to be very easy. The devil is in the details and I want to shed some light on the PID 1 problem when you run Java applications in containers. In a general running applications in containers should not have any state so you just don&amp;rsquo;t care, but reality is different forces you to have to.
+Signals are used to a running process to behave in a certain ways.</description>
+    </item>
+    
+  </channel>
+</rss>

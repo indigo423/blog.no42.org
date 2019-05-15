@@ -1,0 +1,489 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Ronny Trommer">
+        <meta name="description" content="Private blog around tech and live.">
+        <meta name="keywords" content="blog,personal,responsive,search,font awesome,pages,posts,multilingual,highlight.js,syntax highlighting,premium,shortcuts">
+        <meta name="generator" content="Hugo 0.55.4" />
+        <title> OUCE 2013 Lab Setup | no42</title>
+        <meta name="description" content="OUCE 2013 Lab Setup - Private blog around tech and live.">
+        <meta itemprop="name" content="OUCE 2013 Lab Setup">
+        <meta itemprop="description" content="OUCE 2013 Lab Setup - Private blog around tech and live.">
+        <meta property="og:title" content="OUCE 2013 Lab Setup">
+        <meta property="og:description" content="OUCE 2013 Lab Setup - Private blog around tech and live.">
+        <meta property="og:image" content="https://www.gravatar.com/avatar/7f19843706ee328d5b1dfbf9b2a73a73?size=200">
+        <meta property="og:url" content="https://blog.no42.org/code/ouce2013-lab-setup/">
+        <meta property="og:site_name" content="no42">
+        <meta property="og:type" content="article">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-16x16.png" sizes="16x16">
+
+	
+
+        
+        
+        
+        
+        <link rel="stylesheet" href="https://blog.no42.org/sass/combined.min.6e8351b3ea65d753e797df34276a01509dc8ac2d5d2f5d5b13934de1e37d5d44.css">
+
+        
+
+        
+            
+        
+    </head>
+    <body class="bilberry-hugo-theme">
+        
+<nav>
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="/page/projects/">Projects</a></li>
+                
+            
+                
+                    <li><a href="/page/about/">About Me</a></li>
+                
+            
+                
+                    <li><a href="/page/impressum/">Impressum</a></li>
+                
+            
+                
+                    <li><a href="/page/privacy/">Privacy</a></li>
+                
+            
+        </ul>
+
+        
+    </div>
+</nav>
+
+
+        <header>
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="/images/gravatar.jpg" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title"><a href="/">no42</a></h3>
+            
+                <span class="subtitle">... search for answer?</span>
+            
+        </div>
+
+    
+
+        
+        <div class="toggler">
+        
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+    </div>
+</header>
+
+
+        <div class="main container">
+            
+     
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="/code/ouce2013-lab-setup/">
+    <i class="fa fa-fw fa-code"></i>
+</a>
+
+<article class="default article">
+    
+
+    <div class="content">
+    <h3><a href="/code/ouce2013-lab-setup/">OUCE 2013 Lab Setup</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2013-03-15</span>
+            
+        
+
+        
+            <span class="readingTime">3 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        
+
+<h1 id="system">System</h1>
+
+<ul>
+<li>Ubuntu 12.10</li>
+<li>Language: English</li>
+<li>Keyboard Layout: English</li>
+<li>Login: opennms</li>
+<li>Pass: ouce2013</li>
+</ul>
+
+<h1 id="admins-toolbox">Admins toolbox</h1>
+
+<pre><code class="language-sh">sudo -s
+apt-get install openssh-server
+apt-get install vim tcpdump git-core htop joe nmap iftop
+apt-get install snmp snmpd snmp-mibs-downloader
+</code></pre>
+
+<h1 id="maven2-and-oracle-java-1-6">Maven2 and Oracle Java 1.6</h1>
+
+<pre><code class="language-sh">apt-get install maven2
+wget http://files.opennms-edu.net/jdk-6u41-linux-x64.bin
+chmod +x jdk-6u41-linux-x64.bin
+./jdk-6u41-linux-x64.bin
+mv jdk1.6.0_41 /opt
+update-alternatives --install &quot;/usr/bin/java&quot; &quot;java&quot; &quot;/opt/jdk1.6.0_41/bin/java&quot; 1
+update-alternatives --install &quot;/usr/bin/javac&quot; &quot;javac&quot; &quot;/opt/jdk1.6.0_41/bin/javac&quot; 1
+update-alternatives --install &quot;/usr/bin/javaws&quot; &quot;javaws&quot; &quot;/opt/jdk1.6.0_41/bin/javaws&quot; 1
+update-alternatives --install &quot;/usr/bin/jar&quot; &quot;jar&quot; &quot;/opt/jdk1.6.0_41/bin/jar&quot; 1
+update-alternatives --install &quot;/usr/lib/mozilla/plugins/mozilla-javaplugin.so&quot; &quot;mozilla-javaplugin.so&quot; &quot;/opt/jdk1.6.0_41/jre/lib/amd64/libnpjp2.so&quot; 1
+update-alternatives --config java
+</code></pre>
+
+<h1 id="some-privacy-and-data-leak-stuff">Some privacy and data leak stuff</h1>
+
+<pre><code class="language-sh">apt-get remove unity-lens-shopping
+System Settings -&gt; Privacy Include Online Search results OFF / Record Activity OFF
+</code></pre>
+
+<h1 id="installing-opennms">Installing OpenNMS</h1>
+
+<pre><code class="language-sh">update-alternatives --config java
+vi /etc/apt/sources.list.d/opennms.list
+deb http://debian.opennms.org stable main
+deb-src http://debian.opennms.org stable main
+wget -O - http://debian.opennms.org/OPENNMS-GPG-KEY | sudo apt-key add -
+apt-get update
+apt-get install opennms
+echo &quot;export JAVA_HOME=\&quot;/opt/jdk1.6.0_41\&quot;&quot; &gt;&gt; /etc/profile
+echo &quot;export OPENNMS_HOME=\&quot;/usr/share/opennms\&quot;&quot; &gt;&gt; /etc/profile
+source /etc/profile
+/usr/share/opennms/bin/runjava -s
+vi /etc/postgresql/9.1/main/pg_hba.conf
+file:/etc/postgresql/9.1/main/pg_hba.conf
+
+host    all             all             127.0.0.1/32            trust
+service postgresql restart
+/usr/share/opennms/bin/install -dis
+echo JAVA_HEAP_SIZE=768 &gt;&gt; /etc/opennms/opennms.conf
+echo START_TIMEOUT=0 &gt;&gt; /etc/opennms/opennms.conf
+service opennms start
+apt-get install libwww-perl libxml-twig-perl
+</code></pre>
+
+<h1 id="ireport-installieren">iReport installieren</h1>
+
+<pre><code class="language-sh">cd ~
+wget http://files.opennms-edu.net/iReport-3.7.6.tar.gz
+tar xzf iReport-3.7.6.tar.gz
+mv iReport-3.7.6 /opt
+chown opennms:opennms /opt/iReport-3.7.6 -R
+apt-get install --no-install-recommends gnome-panel
+gnome-desktop-item-edit /usr/share/applications/ --create-new
+Name: iReport 3.7.6
+Binary: /opt/iReport-3.7.6/bin/ireport
+Icon: gnome-power-statistics.png
+Comment: Jasper Reports-Report Designer
+</code></pre>
+
+<h1 id="wallpaper">Wallpaper</h1>
+
+<pre><code class="language-sh">cd ~/Pictures
+wget http://files.opennms-edu.net/wallpaper/free-software-ulf.jpg
+cd /usr/share/backgrounds
+wget http://files.opennms-edu.net/warty-final-ubuntu-ouce.png
+sudo -i
+xhost +SI:localuser:lightdm
+su lightdm -s /bin/bash
+gsettings set com.canonical.unity-greeter draw-user-backgrounds 'false'
+gsettings set com.canonical.unity-greeter draw-grid 'false'
+gsettings set com.canonical.unity-greeter background '/usr/share/backgrounds/warty-final-ubuntu-ouce.png'
+</code></pre>
+
+<h1 id="rrd-tool">RRD-Tool</h1>
+
+<pre><code class="language-sh">sudo apt-get install rrdtool
+</code></pre>
+
+<h1 id="groovy">Groovy</h1>
+
+<pre><code class="language-sh">sudo -s
+cd /root
+wget http://files.opennms-edu.net/groovy-binary-2.1.1.zip
+mv groovy-2.1.1 /opt
+echo &quot;export GROOVY_HOME=\&quot;/opt/groovy-2.1.1\&quot;&quot; &gt;&gt; /etc/profile
+source /etc/profile
+ln -s /opt/groovy-2.1.1/bin/groovy /usr/local/bin/groovy
+ln -s /opt/groovy-2.1.1/bin/groovyc /usr/local/bin/groovyc
+ln -s /opt/groovy-2.1.1/bin/groovyConsole /usr/local/bin/groovyConsole
+ln -s /opt/groovy-2.1.1/bin/groovysh /usr/local/bin/groovysh
+</code></pre>
+
+<h1 id="gradle">Gradle</h1>
+
+<pre><code class="language-sh">wget http://files.opennms-edu.net/gradle-1.4-all.zip
+unzip gradle-1.4-all.zip
+mv gradle-1.4 /opt
+echo &quot;export GRADLE_HOME=\&quot;/opt/gradle-1.4\&quot;&quot; &gt;&gt; /etc/profile
+ln -s /opt/gradle-1.4/bin/gradle /usr/local/bin/gradle
+</code></pre>
+
+<h1 id="workshop-rule-based-event-processing">Workshop: Rule based event processing</h1>
+
+<pre><code class="language-bash">cd ~
+git clone http://www.github.com/m-schneider/ouce2013
+cd ouce2013/groovy
+. ./setenv.sh
+cd ./non-gradle
+./change-rules.sh
+</code></pre>
+
+<p>Output should look like:</p>
+
+<pre><code class="language-bash">Wed Mar 06 15:41:05 CET 2013 --- Current severity: 6
+Wed Mar 06 15:41:05 CET 2013 --- Current priority: 2
+Wed Mar 06 15:41:05 CET 2013 --- --- ---
+Wed Mar 06 15:41:05 CET 2013 --- Changed severity: 7
+Wed Mar 06 15:41:05 CET 2013 --- Changed priority: 1
+</code></pre>
+
+<h1 id="snmpv3-workshop">SNMPv3 Workshop</h1>
+
+<pre><code class="language-bash">sudo apt-get install wireshark
+apt-get install libsnmp-perl libnet-snmp-perl libcrypt-des-perl  libcrypt-rijndael-perl libdigest-hmac-perl libdigest-sha-perl  libcrypt-passwdmd5-perl libdigest-md5-file-perl
+</code></pre>
+
+<h1 id="local-mailserver-for-notification">Local Mailserver for notification</h1>
+
+<pre><code class="language-bash">sudo apt-get install postfix
+Set to: local only
+postconf -e home_mailbox=Maildir/
+sudo apt-get install dovecot-imapd
+sudo vi /etc/dovecot/conf.d/10-mail.conf
+File: /etc/dovecot/conf.d/10-mail.conf
+</code></pre>
+
+<pre><code class="language-bash">mail_location = maildir:~/Maildir
+Account: opennms@localhost
+User: opennms
+Pass: ouce2013
+Server localhost
+service dovecot restart
+service postfix restart
+Bluetooth deaktivieren:
+</code></pre>
+
+<pre><code class="language-bash">sudo vi /etc/rc.local
+rfkill block bluetooth
+</code></pre>
+
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/events">events</a>
+                
+                    <a href="/tags/ouce">ouce</a>
+                
+                    <a href="/tags/opennms">opennms</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    
+
+     
+
+        </div>
+
+        
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>Latest posts</strong>
+                <ul>
+                
+                    <li>
+                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/docker-java-signals-pid1/">Docker, Java, Signals and Pid 1</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/ssl-and-java/">SSL and Java</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/opennms-notify-signal/">Send notifications with Signal</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/theming-applications/">Everyone can change it and why you shouldn&#39;t</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/guidance-to-survive-monitoring/">Guidance to Survive Monitoring</a>
+                    </li>
+                
+                    <li>
+                        <a href="/quote/two-hard-things/">Two hard things</a>
+                    </li>
+                
+                </ul>
+        </div>
+        
+
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>Social media</strong>
+
+                
+                
+                    <a href="https://twitter.com/indigo423" target="_blank"><i class="fa fa-twitter-adblock-proof"></i></a>
+                
+                
+                
+                    <a href="https://www.xing.com/profile/Ronny_Trommer" target="_blank"><i class="fa fa-xing"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                    <a href="https://github.com/indigo423" target="_blank"><i class="fa fa-github"></i></a>
+                
+                
+                    <a href="https://www.linkedin.com/in/ronnytrommer/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                
+            </div>
+            
+
+            <div class="languages">
+                    <strong>Other languages</strong>
+                    
+                        
+                            <a href="/en" class="active">en</a>
+                        
+                    
+                        
+                            <a href="/de">de</a>
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/indigo423" target="_blank">
+                &copy;
+                
+                    2019
+                
+                by Ronny Trommer
+            </a>
+	    
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme" target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+        
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-73787628-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/externalDependencies.39c47e10e241eae2947b3fe21809c572.js" integrity="md5-OcR&#43;EOJB6uKUez/iGAnFcg=="></script>
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/theme.ff50ae6dc1bfc220b23bf69dbb41b54e.js" integrity="md5-/1CubcG/wiCyO/adu0G1Tg=="></script>
+
+        <script>
+            $(".moment").each(function() {
+                $(this).text(
+                    moment( $(this).text() )
+                        .locale( "en" )
+                        .format('LL')
+                );
+            });
+
+            $(".footnote-return sup").html("");
+        </script>
+
+        
+            
+        
+
+        
+
+
+    </body>
+</html>

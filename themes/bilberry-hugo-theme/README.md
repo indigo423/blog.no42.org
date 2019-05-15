@@ -1,6 +1,8 @@
 ## Bilberry Hugo Theme
+[![All Contributors](https://img.shields.io/badge/all_contributors-22-orange.svg?style=flat-square)](#contributors)
 [![GitHub version](https://img.shields.io/github/release/Lednerb/bilberry-hugo-theme/all.svg?style=flat-square)](https://github.com/Lednerb/bilberry-hugo-theme/releases)
 [![License](https://img.shields.io/github/license/Lednerb/bilberry-hugo-theme.svg?style=flat-square)](https://github.com/Lednerb/bilberry-hugo-theme/blob/master/LICENSE.md)
+[![Discord](https://img.shields.io/discord/479643633814077465.svg?style=flat-square&label=Discord%20Chat&colorB=7289da)](https://discord.gg/vZVHJ4j)
 [![GitHub stars](https://img.shields.io/github/stars/Lednerb/bilberry-hugo-theme.svg?style=social&label=Stars)](https://github.com/Lednerb/bilberry-hugo-theme)
 
 
@@ -11,11 +13,10 @@ Bilberry is an adaption that comes with different optimizations and little featu
 
 If you like this theme and/or use it for commercial purposes, please support me!
 
-<a href="https://www.patreon.com/Lednerb" target="patreon"><img src="https://github.com/Lednerb/bilberry-hugo-theme/raw/master/images/patreon-button.png" height="40" alt="Become a Patron"></a>
-
 
 ## Table of Contents
 
+- [Requirements](#requirements)
 - [Quick Start](#quick-start)
 - [Configuration](#configuration)
 - [Features](#features)
@@ -26,18 +27,29 @@ If you like this theme and/or use it for commercial purposes, please support me!
     - [Manual Summary Breaks](#manual-summary-breaks)
     - [Disqus Comments](#disqus-comments)
     - [Responsive Design](#responsive-design)
+    - [Automatic Image Resizing](#automatic-image-resizing)
     - [Permanent Top Navigation](#permanent-top-navigation)
     - [MathJAX Markup](#mathjax-markup)
+- [External Images](#external-images)
 - [Custom 404 site](#custom-404-site)
 - [Custom Post Types](#custom-post-types)
+- [Customizing Individual Posts](#customizing-individual-posts)
 - [Custom colors and fonts](#custom-colors-and-fonts)
 - [CSS and JS modules](#css-and-js-modules)
+- [Translations](#translations)
 - [Credits](#credits)
+- [Support and Discussions](#support-and-discussions)
+- [Contributors](#contributors)
 - [License](#license)
-- [Support Me and This Theme](#support-me-and-this-theme)
 
+## Requirements
+
+**Hugo version >= 0.43 Extended**
+
+This theme makes use of Hugo Pipes, and requires at least Hugo version 0.43 **extended**. Please follow the installation instructions for your platform [here](https://gohugo.io/getting-started/installing/).
 
 ## Quick Start
+
 - Create a new hugo site
 ```
 hugo new site my-new-blog
@@ -163,6 +175,12 @@ You can manage and moderate the comments either on your website or at the disqus
 ### Responsive Design
 Bilberry is optimized for desktop and mobile devices (tablets and smartphones).
 
+### Automatic Image Resizing
+The bilberry theme handles image crops and resizes automatically by default.
+However, if you want to disable this functionality in general, you can set `resizeImages: false` in your `config.toml` file.
+
+If you want to disable this functionality just on some posts, you can set `resizeImages: false` in your post's settings.
+
 ### Permanent Top Navigation
 If you want to permanently display the top navigation with the algolia search bar and the `page` entries, you can set the `permanentTopNav` option to `true` in your site's config file.
 
@@ -195,6 +213,33 @@ If you want to use custom Front Matter variables, create a `book.md` archetype i
 
 You can find further information in the official HUGO docs.
 
+## External Images
+If you want to use external images (on another server or installation, etc.) for the `featuredImage` or in the `gallery` post type, you can use them by specifying the following in the post's config within the frontmatter:
+
+`/content/article/my-external-featured-image-post.md`
+```
+featuredImage: "https://example.org/images/my-image.jpg"
+```
+
+`/content/gallery/my-external-gallery-post.md`
+```
+gallery: [
+    "https://example.org/images/gallery-image1.jpg",
+    "https://example.org/images/gallery-image2.jpg",
+    "https://example.org/images/gallery-image3.jpg"
+]
+```
+
+## Customizing Individual Posts
+
+Posts can be customized via a variety of options.
+
+To exclude posts from appearing on your blog index, while still being displayed in categories, add `excludeFromIndex: true` to the post configuration.
+
+The theme also has options for a pinned post. Just uncomment `pinnedPost` in `config.toml`, and point it to the post you'd like permanently pinned to the top of the page. The `pinOnlyToFirstPage` setting lets you control if you'd like to only display the pinned post on the index, or on all pages.
+
+A custom icon can be declared per post, by specifying a font-awesome icon in the post configuration, such as `icon: fa-thumb-tack` for a pinned post.
+
 --------------
 
 If you want to change the default post types (e.g., don't use the pencil icon on the `article` or default type, but another one) copy the original file to your local `layouts/partials/content-type/` directory and edit it there. <br>
@@ -202,25 +247,13 @@ Otherwise, your changes would be overwritten when you update to the latest theme
 
 
 ## Custom colors and fonts
-Bilberry uses SCSS for styling and a Webpack-based workflow to dynamically create the combined and compresses production-ready stylesheets.
+Bilberry uses SCSS for styling, and [Hugo Pipes](https://gohugo.io/hugo-pipes/introduction/) to dynamically create the combined and compressed production-ready stylesheets. Hugo Pipes requires Hugo version >= 0.43 **extended**. Find installation instructions for your platform [here](https://gohugo.io/getting-started/installing/).
 
 If you want to change any colors or fonts, you have follow these steps:
 
 1. Install this theme to your `themes` directory
-2. Install [yarn](https://yarnpkg.com/en/docs/install)
-3. `cd themes/bilberry-hugo-theme/src`
-4. Run `yarn install` to install all necessary dependencies
-5. Modify the `scss/_variables.scss` file to customize your colors. <br> If you want to change the header's color just edit the `$base-color` variable
-6. After finishing your changes, run `yarn run production` to produce your customized stylesheets
-7. Done
-
-If you 're going to change the default fonts (e.g., lack of support for Cyrillic languages), you can use some of the [Google Fonts](https://fonts.google.com).
-Select your favorite fonts and copy the `@import url('...');` directive to the `src/css/fonts.css` file.
-Now you have to modify the `scss/_variables.scss` and set the `$headline-font` and `$content-font` to the selected ones.
-
-Follow the steps 1-7 to implement your custom font to your site.
-
-_Note:_ You don't have to upload the `node_modules` folder to your webspace, this is only created and needed to generate your customized stylesheets.
+1. Modify the `scss/_variables.scss` file to customize your colors. <br> If you want to change the header's color just edit the `$base-color` variable
+1. Done!
 
 
 ## CSS and JS modules
@@ -229,6 +262,12 @@ This theme supports hot-swappable CSS and JavaScript extentions. Modules can be 
 Modules are imported in the order they appear in the list, and immediately after the default Bilberry CSS and JS files are imported.
 
 
+## Translations
+This theme has support for multi-language sites and therefore translations for 10+ languages.
+If you want to contribute and improve this theme for all users, please check our translation project at [POEditor](https://poeditor.com/projects/view?id=202795)
+
+Feel free to submit a request for a new language or improve existing ones!
+
 ## Credits
 Bilberry is inspired by the [WordPress theme Lingonberry](http://www.andersnoren.se/teman/lingonberry-wordpress-theme/), created by Anders Norén.
 
@@ -236,15 +275,27 @@ Bilberry is a theme for the great [HUGO static site generator](https://gohugo.io
 
 A big thank you goes to [@Ipstenu](https://github.com/Ipstenu) for his help in [this thread](https://discourse.gohugo.io/t/search-index-json-file-for-lunr-js/6286/5?u=lednerb) that helped me to create the `index.json` for the algolia export.
 
+## Support and Discussions
+If you enjoy this theme and want to stay up to date or just want to say thanks, have a look at this Discord Channel:
+
+[![Discord](https://img.shields.io/discord/479643633814077465.svg?style=for-the-badge&label=Discord%20Chat&colorB=7289da)](https://discord.gg/vZVHJ4j)
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars1.githubusercontent.com/u/2056876?v=4" width="100px;"/><br /><sub><b>Sascha Brendel</b></sub>](https://sascha-brendel.de)<br />[💬](#question-Lednerb "Answering Questions") [📝](#blog-Lednerb "Blogposts") [💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=Lednerb "Code") [🎨](#design-Lednerb "Design") [📖](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=Lednerb "Documentation") [🌍](#translation-Lednerb "Translation") | [<img src="https://anna-brendel.de/images/background1.jpg" width="100px;"/><br /><sub><b>Anna Brendel</b></sub>](https://anna-brendel.de)<br />[🤔](#ideas "Ideas, Planning, & Feedback") [🌍](#translation "Translation") | [<img src="https://avatars2.githubusercontent.com/u/1560404?v=4" width="100px;"/><br /><sub><b>Givi Khojanashvili</b></sub>](https://www.linkedin.com/in/khojanashvili/)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=gigovich "Code") | [<img src="https://avatars2.githubusercontent.com/u/28822504?v=4" width="100px;"/><br /><sub><b>Chung Tran Anh</b></sub>](https://github.com/anhchungite)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=anhchungite "Code") [🌍](#translation-anhchungite "Translation") | [<img src="https://avatars0.githubusercontent.com/u/3048682?v=4" width="100px;"/><br /><sub><b>Minke Zhang</b></sub>](http://blogzhang.com)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=cripplet "Code") |
+| :---: | :---: | :---: | :---: | :---: |
+| [<img src="https://avatars1.githubusercontent.com/u/16353578?v=4" width="100px;"/><br /><sub><b>Pavel Kanyshev</b></sub>](https://github.com/aerohub)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=aerohub "Code") [🌍](#translation-aerohub "Translation") | [<img src="https://avatars3.githubusercontent.com/u/3541050?v=4" width="100px;"/><br /><sub><b>Marcel Kraus</b></sub>](https://www.marcelkraus.de)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=marcelkraus "Code") | [<img src="https://avatars2.githubusercontent.com/u/280825?v=4" width="100px;"/><br /><sub><b>Nick Busey</b></sub>](http://nickbusey.com/)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=NickBusey "Code") | [<img src="https://avatars1.githubusercontent.com/u/4789253?v=4" width="100px;"/><br /><sub><b>lkorzen</b></sub>](https://github.com/lkorzen)<br />[🌍](#translation-lkorzen "Translation") | [<img src="https://avatars1.githubusercontent.com/u/12019608?v=4" width="100px;"/><br /><sub><b>Chris Stayte</b></sub>](http://www.chrisstayte.com)<br />[🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author%3AChrisStayte "Bug reports") |
+| [<img src="https://avatars0.githubusercontent.com/u/405277?v=4" width="100px;"/><br /><sub><b>Dmitry Matrosov</b></sub>](https://twitter.com/amidos_me)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=meAmidos "Code") | [<img src="https://avatars2.githubusercontent.com/u/8802277?v=4" width="100px;"/><br /><sub><b>Marc-Antoine</b></sub>](https://marca.finch4.xyz/)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=Embraser01 "Code") [🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author%3AEmbraser01 "Bug reports") | [<img src="https://avatars1.githubusercontent.com/u/2030983?v=4" width="100px;"/><br /><sub><b>Nina Zakharenko</b></sub>](http://nnja.io)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nnja "Code") [🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author%3Annja "Bug reports") [📖](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nnja "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/7719018?v=4" width="100px;"/><br /><sub><b>Nisarga</b></sub>](https://github.com/nisargap)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nisargap "Code") | [<img src="https://avatars2.githubusercontent.com/u/2817480?v=4" width="100px;"/><br /><sub><b>Pablo Domingo Rojo</b></sub>](https://github.com/pdoro)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=pdoro "Code") |
+| [<img src="https://avatars3.githubusercontent.com/u/4433144?v=4" width="100px;"/><br /><sub><b>Rob Baruch</b></sub>](https://github.com/rabarar)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=rabarar "Code") | [<img src="https://avatars0.githubusercontent.com/u/9339576?v=4" width="100px;"/><br /><sub><b>Taoshi</b></sub>](https://github.com/GMpet)<br />[🌍](#translation-GMpet "Translation") | [<img src="https://avatars1.githubusercontent.com/u/11535575?v=4" width="100px;"/><br /><sub><b>nonumeros</b></sub>](https://github.com/nonumeros)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nonumeros "Code") | [<img src="https://avatars3.githubusercontent.com/u/56372?v=4" width="100px;"/><br /><sub><b>Marcelo Gonçalves</b></sub>](http://marcelogoncalves.com.br)<br />[🌍](#translation-marcelocg "Translation") | [<img src="https://avatars0.githubusercontent.com/u/9111944?v=4" width="100px;"/><br /><sub><b>Dávid Sárkány</b></sub>](https://sarkanydavid.com)<br />[🌍](#translation-davidsarkany "Translation") |
+| [<img src="https://avatars3.githubusercontent.com/u/43414238?v=4" width="100px;"/><br /><sub><b>meonamz</b></sub>](https://github.com/meonamz)<br />[🌍](#translation-meonamz "Translation") | [<img src="https://avatars3.githubusercontent.com/u/32282514?v=4" width="100px;"/><br /><sub><b>Hamza Yusuf Çakır</b></sub>](https://github.com/hycakir)<br />[🌍](#translation-hycakir "Translation") |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
+
 
 ## License
 The Bilberry Theme for HUGO is licensed under the MIT license.
-
-
-## Support Me and This Theme
-If you enjoy this theme (and especially if you make money with your blog) and want to use it for your site, please consider a small or generous monthly support towards me so I can keep up supporting and maintaining this theme in the future.
-
-<a href="https://www.patreon.com/Lednerb" target="_blank"><img src="https://github.com/Lednerb/bilberry-hugo-theme/raw/master/images/patreon-button.png" height="40" alt="Become a Patron"></a>
-
-You don’t want to use Patreon? <br>
-Just write me a short mail and we’ll find a solution: code@lednerb.de

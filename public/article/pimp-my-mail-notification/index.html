@@ -1,0 +1,349 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Ronny Trommer">
+        <meta name="description" content="Private blog around tech and live.">
+        <meta name="keywords" content="blog,personal,responsive,search,font awesome,pages,posts,multilingual,highlight.js,syntax highlighting,premium,shortcuts">
+        <meta name="generator" content="Hugo 0.55.4" />
+        <title> Pimp my Mail Notifications | no42</title>
+        <meta name="description" content="Pimp my Mail Notifications - Private blog around tech and live.">
+        <meta itemprop="name" content="Pimp my Mail Notifications">
+        <meta itemprop="description" content="Pimp my Mail Notifications - Private blog around tech and live.">
+        <meta property="og:title" content="Pimp my Mail Notifications">
+        <meta property="og:description" content="Pimp my Mail Notifications - Private blog around tech and live.">
+        <meta property="og:image" content="https://www.gravatar.com/avatar/7f19843706ee328d5b1dfbf9b2a73a73?size=200">
+        <meta property="og:url" content="https://blog.no42.org/article/pimp-my-mail-notification/">
+        <meta property="og:site_name" content="no42">
+        <meta property="og:type" content="article">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="https://blog.no42.org/favicon-16x16.png" sizes="16x16">
+
+	
+
+        
+        
+        
+        
+        <link rel="stylesheet" href="https://blog.no42.org/sass/combined.min.6e8351b3ea65d753e797df34276a01509dc8ac2d5d2f5d5b13934de1e37d5d44.css">
+
+        
+
+        
+            
+        
+    </head>
+    <body class="bilberry-hugo-theme">
+        
+<nav>
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="/page/projects/">Projects</a></li>
+                
+            
+                
+                    <li><a href="/page/about/">About Me</a></li>
+                
+            
+                
+                    <li><a href="/page/impressum/">Impressum</a></li>
+                
+            
+                
+                    <li><a href="/page/privacy/">Privacy</a></li>
+                
+            
+        </ul>
+
+        
+    </div>
+</nav>
+
+
+        <header>
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="/images/gravatar.jpg" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title"><a href="/">no42</a></h3>
+            
+                <span class="subtitle">... search for answer?</span>
+            
+        </div>
+
+    
+
+        
+        <div class="toggler">
+        
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+    </div>
+</header>
+
+
+        <div class="main container">
+            
+     
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="/article/pimp-my-mail-notification/">
+    <i class="fa fa-fw fa-pencil"></i>
+</a>
+
+<article class="default article">
+    
+
+    <div class="content">
+    <h3><a href="/article/pimp-my-mail-notification/">Pimp my Mail Notifications</a></h3>
+    <div class="meta">
+        
+            
+                <span class="date moment">2016-03-07</span>
+            
+        
+
+        
+            <span class="readingTime">2 min read</span>
+        
+
+        
+
+        
+            <span class="author"><a href="/author/ronny-trommer">Ronny Trommer</a></span>
+        
+    </div>
+
+    
+        <p>Notifications are important if you do monitoring.
+I never liked mail notifications from monitoring systems where all the information is hidden in non-sense text.
+Otherwise notifications never look the same, so I&rsquo;m always forced to read all that useless crap again and again.
+This is an approach to improve the usability of monitoring notifications using more a table pattern which helps me to recognize useful information much quicker.</p>
+
+<p>Probably a lot of E-Mail guys will hate me for the reason I&rsquo;m using HTML in mails.
+The notifications work so much better for me so I don&rsquo;t care.
+I&rsquo;ve used just inline CSS and there is no JavaScript involved.
+All the things are in the mail and there are no external resources loaded.
+Here is how I work with OpenNMS mail notifications.</p>
+
+<p><img src="/images/pimp-mail-notification.png" alt="Mailbox with OpenNMS notifications" /></p>
+
+<p>I use a tagged subject line <1> to get notifications filtered.
+The severity variable in OpenNMS notification is used to assign a color.</p>
+
+<p>To get quickly to the source of the problem, I created the object information as a link <2>.
+In this case it gets me to the resoure graphs of the node which had the high threshold exceeded notification.</p>
+
+<p>I&rsquo;ve created a inline CSS style named after OpenNMS severities so the status color <3> is correct assigned based on the severity of the event which triggered the notification.
+Additionally the measured value which exceeded the threshold is red colored <4> and added also some context information how the threshold is configured.</p>
+
+<p>The links to the notification and event details jump to the correct places in OpenNMS <5>.</p>
+
+<p>To give some more context what kind of node has a problem, I&rsquo;ve added some asset information which are imported form the OpenNMS Provisioning system.
+I can see what operating system is installed, product number, serial number and where it is located.</p>
+
+<p>I ran into an issue regarding the RESOLVED prefix for resolved notifications.
+The prefix is added not just to the subject, also added as the first line of the original notification.
+Probably there is some code change necessary to get this thing sorted.</p>
+
+<p>If you like mail notifications and you want to give it a try, I&rsquo;ve dropped my configuration in a <a href="https://github.com/opennms-forge/opennms-notification-templates" target="_BLANK">GitHub repository</a>.
+The notifications look also nice on my phone and happy to add some monitoring love to OpenNMS.</p>
+
+<p>Feel free to fork, improve and share.</p>
+
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    <a href="/tags/opennms">opennms</a>
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        
+    
+
+     
+
+        </div>
+
+        
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>Latest posts</strong>
+                <ul>
+                
+                    <li>
+                        <a href="/code/docker-build-cache-invalidation/">Docker, Caching, Build</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/docker-java-signals-pid1/">Docker, Java, Signals and Pid 1</a>
+                    </li>
+                
+                    <li>
+                        <a href="/code/ssl-and-java/">SSL and Java</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/opennms-notify-signal/">Send notifications with Signal</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/theming-applications/">Everyone can change it and why you shouldn&#39;t</a>
+                    </li>
+                
+                    <li>
+                        <a href="/article/guidance-to-survive-monitoring/">Guidance to Survive Monitoring</a>
+                    </li>
+                
+                    <li>
+                        <a href="/quote/two-hard-things/">Two hard things</a>
+                    </li>
+                
+                </ul>
+        </div>
+        
+
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>Social media</strong>
+
+                
+                
+                    <a href="https://twitter.com/indigo423" target="_blank"><i class="fa fa-twitter-adblock-proof"></i></a>
+                
+                
+                
+                    <a href="https://www.xing.com/profile/Ronny_Trommer" target="_blank"><i class="fa fa-xing"></i></a>
+                
+                
+                
+                
+                
+                
+                
+                    <a href="https://github.com/indigo423" target="_blank"><i class="fa fa-github"></i></a>
+                
+                
+                    <a href="https://www.linkedin.com/in/ronnytrommer/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                
+            </div>
+            
+
+            <div class="languages">
+                    <strong>Other languages</strong>
+                    
+                        
+                            <a href="/en" class="active">en</a>
+                        
+                    
+                        
+                            <a href="/de">de</a>
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/indigo423" target="_blank">
+                &copy;
+                
+                    2019
+                
+                by Ronny Trommer
+            </a>
+	    
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme" target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+        
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-73787628-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+        
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/externalDependencies.39c47e10e241eae2947b3fe21809c572.js" integrity="md5-OcR&#43;EOJB6uKUez/iGAnFcg=="></script>
+
+        
+        
+        <script type="text/javascript" src="https://blog.no42.org/js/theme.ff50ae6dc1bfc220b23bf69dbb41b54e.js" integrity="md5-/1CubcG/wiCyO/adu0G1Tg=="></script>
+
+        <script>
+            $(".moment").each(function() {
+                $(this).text(
+                    moment( $(this).text() )
+                        .locale( "en" )
+                        .format('LL')
+                );
+            });
+
+            $(".footnote-return sup").html("");
+        </script>
+
+        
+            
+        
+
+        
+
+
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>events on no42</title>
+    <link>https://blog.no42.org/tags/events/</link>
+    <description>Recent content in events on no42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 31 Mar 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.no42.org/tags/events/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Material Workshop OpenNMS im Büro 2.0</title>
+      <link>https://blog.no42.org/article/buero2.0-workshop-material/</link>
+      <pubDate>Tue, 31 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/buero2.0-workshop-material/</guid>
+      <description>Am 30.03.2015 haben wir im Büro 2.0 in Berlin einen Workshop mit OpenNMS durchgeführt. Die Zielgruppe waren NeueinsteigerInnen und alle die Interesse an Monitoring mit freier Software haben. Es wurden Installationszenarien, das Provisioning und beispielhaft diverse Monitore für Anwendungen und Dienste eingerichtet.
+Die Slides sind unter einer freien CC-BY 3.0 lizenziert und stehen auf GitHub zur Verfügung.</description>
+    </item>
+    
+    <item>
+      <title>Kickstart Workshop OpenNMS im Büro 2.0</title>
+      <link>https://blog.no42.org/article/buero2.0-workshop/</link>
+      <pubDate>Fri, 27 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/buero2.0-workshop/</guid>
+      <description>Für diejenigen, die kurzentschlossen sind – hier eine letzte Erinnerung für einen kostenfreien Kickstart workshop zu OpenNMS. Die Registrierung und Anfahrt findet ihr unter:
+ Büro 2.0 Veranstaltung Registrierung bei Meetup Anfahrt  </description>
+    </item>
+    
+    <item>
+      <title>Conferences OUCE 2015 and 31c3</title>
+      <link>https://blog.no42.org/article/ouce2015-31c3/</link>
+      <pubDate>Sat, 27 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/ouce2015-31c3/</guid>
+      <description>I spent some time with preparing the OUCE 2015 and we use the free an open source software frab as conference management system. I do most of my server automation with Chef and my playground is running with Vagrant. For this reason I decided to spend some time an built a Vagrant / Chef environment and contributed it back to the frab project. This guys do a really good job and IMHO it is the best free conference management system you can get.</description>
+    </item>
+    
+    <item>
+      <title>OpenNMS Dev-Jam 2014</title>
+      <link>https://blog.no42.org/article/devjam2014/</link>
+      <pubDate>Wed, 04 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/devjam2014/</guid>
+      <description>We are right in the middle of our 5th season of the year – DevJam. It is always a lot of fun spending one week with people from all over the world on the campus of the University of Minnesota. I’ve put on my personal agenda for this week, spending time with the folks working on the way how we want to document our project. I try also to gather the project ideas and where they contribute the code to the project.</description>
+    </item>
+    
+    <item>
+      <title>OUCE 2014 Review</title>
+      <link>https://blog.no42.org/article/ouce2014-review/</link>
+      <pubDate>Tue, 22 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/article/ouce2014-review/</guid>
+      <description>We have finished our 6th OpenNMS User Conference Europe. It was the first time we made a conference outside of Germany. We started with the first conference in 2009 when I worked at NETHINKS and begun with OpenNMS professional services. For the 3rd and 4th conference we decided to move the venue closer to the people organizing the conference and the IT center in Fulda was a really good place. In 2013 NETHINKS and the OpenNMS Foundation Europe worked together to move the organization of the conference to the community at the University of Applied Science in Fulda.</description>
+    </item>
+    
+    <item>
+      <title>OUCE 2013 Lab Setup</title>
+      <link>https://blog.no42.org/code/ouce2013-lab-setup/</link>
+      <pubDate>Fri, 15 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.no42.org/code/ouce2013-lab-setup/</guid>
+      <description>System  Ubuntu 12.10 Language: English Keyboard Layout: English Login: opennms Pass: ouce2013  Admins toolbox sudo -s apt-get install openssh-server apt-get install vim tcpdump git-core htop joe nmap iftop apt-get install snmp snmpd snmp-mibs-downloader  Maven2 and Oracle Java 1.6 apt-get install maven2 wget http://files.opennms-edu.net/jdk-6u41-linux-x64.bin chmod +x jdk-6u41-linux-x64.bin ./jdk-6u41-linux-x64.bin mv jdk1.6.0_41 /opt update-alternatives --install &amp;quot;/usr/bin/java&amp;quot; &amp;quot;java&amp;quot; &amp;quot;/opt/jdk1.6.0_41/bin/java&amp;quot; 1 update-alternatives --install &amp;quot;/usr/bin/javac&amp;quot; &amp;quot;javac&amp;quot; &amp;quot;/opt/jdk1.6.0_41/bin/javac&amp;quot; 1 update-alternatives --install &amp;quot;/usr/bin/javaws&amp;quot; &amp;quot;javaws&amp;quot; &amp;quot;/opt/jdk1.</description>
+    </item>
+    
+  </channel>
+</rss>
