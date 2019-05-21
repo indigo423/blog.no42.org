@@ -5,7 +5,7 @@ author: "Ronny Trommer"
 excludeFromTopNav: false
 ---
 
-Work in Open Source and grow up with an Amiga 500 in the early 90s, full-time contributor [@opennms](https://twitter.com/opennms), Co-Founder: [mcl2k.de](http://www.mcl2k.de), [opennms.eu](http://www.opennms.eu), [mag.lab.sh](https://mag.lab.sh)
+Work in Open Source and grew up with an Amiga 500 in the early 90s, full-time contributor [@opennms](https://twitter.com/opennms), Co-Founder: [mcl2k.de](http://www.mcl2k.de), [opennms.eu](http://www.opennms.eu), [mag.lab.sh](https://mag.lab.sh)
 
 #### Education
 
