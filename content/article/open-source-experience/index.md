@@ -1,8 +1,8 @@
 ---
 title: "Open Source Experience"
 date: "2014-11-22"
-categories: ['Technology', 'Open Source']
-tags: ['open source', 'asciidoc', 'opennms']
+categories: ['Technology', 'Open-Source']
+tags: ['open-source', 'asciidoc', 'opennms']
 author: "Ronny Trommer"
 noSummary: false
 ---

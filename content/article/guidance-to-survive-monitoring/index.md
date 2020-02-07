@@ -1,8 +1,8 @@
 ---
 title: "Guidance to Survive Monitoring"
 date: "2018-08-08"
-categories: ['Technology']
-tags: [ 'open source', 'operation', 'monitoring love' ]
+categories: ['Technology', 'Open-Source']
+tags: [ 'open-source', 'operation', 'monitoring love' ]
 author: "Ronny Trommer"
 noSummary: false
 ---
