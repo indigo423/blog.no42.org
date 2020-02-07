@@ -1,6 +1,7 @@
 ---
 title: "Conferences OUCE 2015 and 31c3"
 date: "2014-12-27"
+categories: ['OpenNMS', 'Events']
 tags: ['events', 'ouce', 'opennms', 'ccc']
 author: "Ronny Trommer"
 noSummary: false

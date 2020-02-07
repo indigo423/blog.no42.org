@@ -1,7 +1,9 @@
 ---
 title: "Pimp my Mail Notifications"
 date: "2016-03-07"
+categories: ['Container', 'Tutorial']
 tags: ['opennms']
+categories: ['OpenNMS', 'Events']
 author: "Ronny Trommer"
 noSummary: false
 ---

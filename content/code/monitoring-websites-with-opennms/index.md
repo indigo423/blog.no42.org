@@ -1,6 +1,7 @@
 ---
 title: "Monitoring Websites with OpenNMS"
 date: "2018-07-27"
+categories: ['Tutorial', 'OpenNMS']
 tags: ['opennms', 'web', 'monitoring', 'letsencrypt', 'ssl', 'dns',]
 author: "Ronny Trommer"
 noSummary: false

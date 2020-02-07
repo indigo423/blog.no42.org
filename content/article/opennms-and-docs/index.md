@@ -1,6 +1,7 @@
 ---
 title: "OpenNMS and Documentation"
 date: "2014-07-15"
+categories: ['OpenNMS', 'Technology']
 tags: ['documentation', 'opennms']
 author: "Ronny Trommer"
 noSummary: false

@@ -2,6 +2,7 @@
 title: "He's dead, Jim"
 date: "2018-07-30"
 author: "Ronny Trommer"
+categories: ['Technology']
 tags: [ 'snmp', 'monitoring' ]
 noSummary: false
 ---

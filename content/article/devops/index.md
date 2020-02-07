@@ -1,6 +1,7 @@
 ---
 title: "DevOps Guy"
 date: "2014-06-17"
+categories: ['Technology']
 tags: ['devops']
 author: "Ronny Trommer"
 noSummary: false

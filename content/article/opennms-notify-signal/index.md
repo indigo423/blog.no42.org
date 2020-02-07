@@ -1,7 +1,7 @@
 ---
 title: "Send notifications with Signal"
 date: "2018-11-01"
-
+categories: ['OpenNMS', 'Tutorial']
 tags: ['notifications','howto', 'opennms']
 author: "Ronny Trommer"
 noSummary: false

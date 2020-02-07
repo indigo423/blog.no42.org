@@ -1,6 +1,7 @@
 ---
 title: "Docker and parallel builds"
 date: "2016-07-09"
+categories: ['Technology', 'CICD']
 tags: ['docker', 'cicd']
 author: "Ronny Trommer"
 noSummary: true

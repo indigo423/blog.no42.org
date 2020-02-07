@@ -1,6 +1,7 @@
 ---
 title: "Docker build and cache invalidation"
 date: "2019-05-15"
+categories: ['Container', 'Technology']
 tags: ['docker', 'caching']
 author: "Ronny Trommer"
 noSummary: false

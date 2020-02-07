@@ -1,6 +1,7 @@
 ---
 title: "Docker, Java, Signals and Pid 1"
 date: "2019-02-20"
+categories: ['Container', 'Technology']
 tags: ['java', 'docker', 'signals']
 author: "Ronny Trommer"
 noSummary: false

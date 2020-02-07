@@ -1,6 +1,7 @@
 ---
 title: "Hipster vs. Microsoft"
 date: "2018-06-07"
+categories: ['Technology', 'Open Source']
 tags: ['microsoft', 'open source']
 author: "Ronny Trommer"
 noSummary: false

@@ -1,6 +1,7 @@
 ---
 title: "OUCE 2014 Review"
 date: "2014-04-22"
+categories: ['OpenNMS', 'Events']
 tags: ['events', 'ouce', 'opennms']
 author: "Ronny Trommer"
 noSummary: false

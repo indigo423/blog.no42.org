@@ -1,7 +1,7 @@
 ---
 title: "Zyxel vs. Vodafone Easybox with VDSL 50"
 date: "2016-07-14"
-
+categories: ['Tutorial', 'Technology']
 tags: ['networking']
 author: "Ronny Trommer"
 noSummary: false

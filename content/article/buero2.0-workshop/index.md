@@ -1,6 +1,7 @@
 ---
 title: "Kickstart Workshop OpenNMS im Büro 2.0"
 date: "2015-03-27"
+categories: ['Events', 'OpenNMS']
 tags: ['events', 'opennms']
 author: "Ronny Trommer"
 noSummary: true

@@ -1,6 +1,7 @@
 ---
 title: "Everyone can change it and why you shouldn't"
 date: "2018-09-27"
+categories: ['Open-Source', 'Technology']
 tags: ['User Experience', 'User Interfaces']
 author: "Ronny Trommer"
 noSummary: false

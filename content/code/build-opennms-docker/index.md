@@ -1,6 +1,7 @@
 ---
 title: "Build OpenNMS with Docker"
 date: "2018-07-14"
+categories: ['Tutorial', 'OpenNMS']
 tags: ['opennms', 'docker', 'cicd', 'java']
 author: "Ronny Trommer"
 noSummary: false

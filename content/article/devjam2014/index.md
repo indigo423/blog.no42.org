@@ -1,6 +1,7 @@
 ---
 title: "OpenNMS Dev-Jam 2014"
 date: "2014-06-04"
+categories: ['Events', 'OpenNMS']
 tags: ['events', 'opennms', 'devjam']
 author: "Ronny Trommer"
 noSummary: false

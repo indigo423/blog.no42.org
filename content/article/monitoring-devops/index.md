@@ -1,6 +1,7 @@
 ---
 title: "Monitoring DevOps and the Status Quo"
 date: "2017-03-09"
+categories: ['Technology']
 tags: ['devops', 'monitoring', 'docker']
 author: "Ronny Trommer"
 noSummary: false

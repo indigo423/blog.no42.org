@@ -1,6 +1,7 @@
 ---
 title: "Authenticate OpenNMS Horizon with FreeRADIUS"
 date: "2018-07-22"
+categories: ['Tutorial', 'OpenNMS']
 tags: ['opennms', 'docker', 'radius', 'freeradius']
 author: "Ronny Trommer"
 noSummary: false
