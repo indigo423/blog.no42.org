@@ -30,7 +30,7 @@
         <meta name="author" content="{{ .Site.Params.author }}">
         <meta name="description" content="{{ .Site.Params.description }}">
         <meta name="keywords" content="{{ .Site.Params.keywords }}">
-        {{ .Hugo.Generator }}
+        {{ hugo.Generator }}
         <title>{{ block "title" . }} {{ .Scratch.Get "title" }} | {{ .Site.Title }}{{ end }}</title>
         <meta name="description" content="{{ .Scratch.Get "description" }}">
         <meta itemprop="name" content="{{ .Scratch.Get "title" }}">
@@ -38,7 +38,7 @@
         <meta property="og:title" content="{{ .Scratch.Get "title" }}">
         <meta property="og:description" content="{{ .Scratch.Get "description" }}">
         <meta property="og:image" content="{{ .Scratch.Get "image" }}">
-        <meta property="og:url" content="{{ .URL | absURL }}">
+        <meta property="og:url" content="{{ .Permalink | absURL }}">
         <meta property="og:site_name" content="{{ .Site.Title }}">
         {{- if .IsPage }}
         <meta property="og:type" content="article">
@@ -48,16 +48,16 @@
         <link rel="icon" type="image/png" href="{{ "favicon-32x32.png" | absURL }}" sizes="32x32">
         <link rel="icon" type="image/png" href="{{ "favicon-16x16.png" | absURL }}" sizes="16x16">
 
-	{{ if .RSSLink }}
-	  <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
-	  <link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
+	{{ if .RelPermalink }}
+	  <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+	  <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
 	{{ end }}
 
         {{ $variables := resources.Get "sass/_variables.scss" }}
         {{ $theme := resources.Get "sass/theme.scss" }}
         {{ $combined := slice $variables $theme | resources.Concat "sass/combined.scss" | resources.ExecuteAsTemplate "sass/combined.scss" .  }}
         {{ $style := $combined | toCSS | minify | fingerprint }}
-        <link rel="stylesheet" href="{{ $style.Permalink }}">
+        <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
         {{ partial "twitter-card" . }}
 
@@ -86,11 +86,11 @@
 
         {{ $js := resources.Get "js/externalDependencies.js" }}
         {{ $secureJS := $js | resources.Fingerprint "md5" }}
-        <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+        <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
         {{ $jsTemplate := resources.Get "js/theme.js" }}
         {{ $secureJS := $jsTemplate | resources.ExecuteAsTemplate "js/theme.js" . | fingerprint "md5" }}
-        <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+        <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
         <script>
             $(".moment").each(function() {
