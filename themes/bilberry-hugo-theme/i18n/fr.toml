@@ -31,7 +31,3 @@ other = "continuer la lecture"
 [otherLanguages]
 other = "Autres langues"
 
-[readingTime]
-one = "1 Min. lecture"
-other = "{{.Count}} Min. lecture"
-
