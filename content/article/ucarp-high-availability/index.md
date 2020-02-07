@@ -4,7 +4,7 @@ date: "2020-02-07"
 categories: ['Technology', 'Open-Source']
 tags: ['events', 'open-source', 'ucarp', 'high-availability']
 author: "Ronny Trommer"
-noSummary: true
+noSummary: false
 ---
 
 If you have ever played with BSD you probably ran into [CARP](https://en.wikipedia.org/wiki/Common_Address_Redundancy_Protocol).
