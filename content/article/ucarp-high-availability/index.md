@@ -68,7 +68,7 @@ RemainAfterExit=yes
 WantedBy=multi-user.target
 ```
 
-Make sure you adjust the followinc [ucarp arguments](http://manpages.ubuntu.com/manpages/trusty/man8/ucarp.8.html):
+Make sure you adjust the following [ucarp arguments](http://manpages.ubuntu.com/manpages/trusty/man8/ucarp.8.html):
 
 * `--interface=ens33`: interface name of the physical server
 * `--pass=bYaTxPw2`: set your own shared secret as a password on both servers
@@ -77,9 +77,8 @@ Make sure you adjust the followinc [ucarp arguments](http://manpages.ubuntu.com/
 
 You can now enable and start the service with `systemctl enable ucarp` and `systemctl start ucarp`.
 The IP address 192.168.178.201 should now be available.
-If you want to figure out which is the master and which is the backup, you will see it in the log output from `ucarp`.
-You can check this on both of your servers with watching the ucarp daemon output `journalctl -f -u ucarp`.
+If you want to figure out which is the master and which is the backup, you have to check the log output from `ucarp` using `journalctl -f -u ucarp`.
 
-If you want to test it shutdown you master and the backup should immediately take over and you should see it in the log output.
+If you want to test the behavior, you can shutdown your master and the backup should immediately take over and you should see the switch in the log output.
 
 So long and thanks for all the fish
