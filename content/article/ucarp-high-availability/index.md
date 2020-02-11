@@ -8,18 +8,18 @@ noSummary: false
 ---
 
 If you have ever played with BSD you probably ran into [CARP](https://en.wikipedia.org/wiki/Common_Address_Redundancy_Protocol).
-It allows you to build a high available service which is provided by two physical servers who serve behind a virtual IP address.
-The service defines a master and a backup system.
-A master serves the content and if the master crashes, the backup system takes over automatically reachable with the same virtual IP address.
-This here is a short note on my futureself how this can be done quickly :)
+It allows you to build a high available service which is provided by two physical servers behind a virtual shared IP address.
+The CARP nodes define a master and a backup system.
+A master serves the content and if the master crashes, the backup system takes over automatically the virtual IP (VIP) and the client won't notice.
 
 > **Disclaimer:**
 > You should be aware this setup will not share load and increase your network throughput.
 > It just used to increase availabilty and room to do maintenance without bringing your service down.
 
 The same feature is available on Linux named [UCARP](http://manpages.ubuntu.com/manpages/trusty/man8/ucarp.8.html) which is running in user space.
-I'll give you here a short tutorial how to setup two Linux server running Ubuntu 19.10 with `systemd`.
-The IP and wireing looks something like in the following image.
+This here is a short note on my futureself how this can be done quickly and maybe interesting to others.
+This here is a short tutorial how to setup two Linux servers running Ubuntu 19.10 with `systemd` and setting up a VIP with ucarp.
+The lab setup looks something like in the following image.
 
 ![ucarp-network](/images/carp-setup.svg)
 
