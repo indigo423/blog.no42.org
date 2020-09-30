@@ -1,22 +1,55 @@
-
-<a class="bubble" href="{{ .Permalink }}">
-    <i class="fa fa-fw {{or .Params.icon "fa-video-camera" }}"></i>
+<a class="bubble" href="{{ .ctx.Permalink }}">
+    <i class="fas fa-fw {{or .ctx.Params.icon "fa-video" }}"></i>
 </a>
 
 <article class="video">
-    {{ partial "featured-image" . }}
+    {{ partial "featured-image.html" .ctx }}
 
-    {{ with .Params.youtube }}
+    {{ with .ctx.Params.youtube }}
         <div class="responsive-video youtube">
-            <iframe src="https://www.youtube-nocookie.com/embed/{{ . }}?rel=0" frameborder="0" allowfullscreen></iframe>
-        </div>
-    {{ end }}
-    {{ with .Params.vimeo }}
-        <div class="responsive-video vimeo">
-            <iframe src="https://player.vimeo.com/video/{{ . }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe class="no-js-hidden" src="https://www.youtube-nocookie.com/embed/{{ . }}?rel=0" frameborder="0" allowfullscreen></iframe>
+
+            <div class="no-js-message">
+                The youtube player can not be loaded with disabled javascript. <br>
+                The following video is embedded here: <br>
+
+                <a href="https://youtube.com/watch?v={{ . }}" target="_blank">
+                    https://youtube.com/watch?v={{ . }}
+                </a>
+            </div>
         </div>
     {{ end }}
 
-    {{ partial "default-content.html" . }}
-    {{ partial "article-footer" . }}
+    {{ with .ctx.Params.vimeo }}
+        <div class="responsive-video vimeo">
+            <iframe class="no-js-hidden" src="https://player.vimeo.com/video/{{ . }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+            <div class="no-js-message">
+                The vimeo player can not be loaded with disabled javascript. <br>
+                The following video is embedded here: <br>
+
+                <a href="https://vimeo.com/{{ . }}" target="_blank">
+                    https://vimeo.com/{{ . }}
+                </a>
+            </div>
+        </div>
+    {{ end }}
+
+    {{ with .ctx.Params.prezi }}
+        <div class="responsive-video prezi">
+            <iframe src="https://prezi.com/embed/{{ . }}/" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+    {{ end }}
+
+    {{ if isset .ctx.Params "mp4video" }}
+        <div class="responsive-video local">
+          <video width="100%" controls poster="{{ .ctx.Params.mp4videoImage }}">
+            <source src="{{ .ctx.Params.mp4video }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+    {{ end }}
+
+    {{ partial "default-content.html" (dict "ctx" .ctx "template_type" .template_type) }}
+    {{ partial "article-footer.html" .ctx }}
 </article>

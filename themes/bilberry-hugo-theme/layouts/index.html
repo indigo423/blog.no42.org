@@ -1,20 +1,21 @@
 {{ define "main" }}
-
-{{ $paginator := .Paginate (where (where .Site.RegularPages "Type" "ne" "page" | intersect (where .Site.RegularPages "Params.excludefromindex" "==" nil)) ".Params.draft" "ne" true) (index .Site.Params "paginate" | default 7) }}
+{{ $allNonExcludedPages := where .Site.RegularPages "Params.excludefromindex" "==" nil }}
+{{ $allNonExcludedPagesNotTypePage := (where .Site.RegularPages "Type" "ne" "page" | intersect $allNonExcludedPages) }}
+{{ $paginator := .Paginate $allNonExcludedPagesNotTypePage (index .Site.Params "paginate" | default 7) }}
 
     {{ if .Site.Params.pinnedPost }}
         {{ if (and .Site.Params.pinOnlyToFirstPage (ne $paginator.PageNumber 1)) }}
             {{/* Do nothing if the pinOnlyToFirstPage flag is set and we're not on page 1. */}}
         {{else}}
             {{ range first 1 (where .Data.Pages "URL" .Site.Params.pinnedPost) }}
-                {{ partial "article-wrapper" . }}
+                {{ partial "article-wrapper.html" . }}
             {{end}}
         {{end}}
     {{end}}
 
     {{ range $paginator.Pages }}
-        {{ partial "article-wrapper" . }}
+        {{ partial "article-wrapper.html" . }}
     {{ end }}
 
-    {{ partial "paginator" . }}
+    {{ partial "paginator.html" . }}
 {{ end }}

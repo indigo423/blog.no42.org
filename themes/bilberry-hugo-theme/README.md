@@ -13,40 +13,45 @@ Bilberry is an adaption that comes with different optimizations and little featu
 
 If you like this theme and/or use it for commercial purposes, please support me!
 
-
 ## Table of Contents
 
-- [Requirements](#requirements)
-- [Quick Start](#quick-start)
-- [Configuration](#configuration)
-- [Features](#features)
-    - [Algolia Search](#algolia-search)
-    - [Keyboard Shortcuts](#keyboard-shortcuts)
-    - [Post Types](#post-types)
-    - [Pages and External Links](#pages-and-external-links)
-    - [Manual Summary Breaks](#manual-summary-breaks)
-    - [Disqus Comments](#disqus-comments)
-    - [Responsive Design](#responsive-design)
-    - [Automatic Image Resizing](#automatic-image-resizing)
-    - [Permanent Top Navigation](#permanent-top-navigation)
-    - [MathJAX Markup](#mathjax-markup)
-- [External Images](#external-images)
-- [Custom 404 site](#custom-404-site)
-- [Custom Post Types](#custom-post-types)
-- [Customizing Individual Posts](#customizing-individual-posts)
-- [Custom colors and fonts](#custom-colors-and-fonts)
-- [CSS and JS modules](#css-and-js-modules)
-- [Translations](#translations)
-- [Credits](#credits)
-- [Support and Discussions](#support-and-discussions)
-- [Contributors](#contributors)
-- [License](#license)
+- [Requirements](#Requirements)
+- [Quick Start](#Quick-Start)
+- [Configuration](#Configuration)
+- [Features](#Features)
+  - [Algolia Search](#Algolia-Search)
+    - [Setup](#Setup)
+    - [Update the Search Index](#Update-the-search-index)
+  - [Keyboard Shortcuts](#Keyboard-Shortcuts)
+  - [Post Types](#Post-Types)
+  - [Pages and External Links](#Pages-and-External-Links)
+  - [Reposting an Article / Duplicated Content [SEO]](#Reposting-an-Article--Duplicated-Content-SEO)
+  - [Overwrite the calculated reading time](#Overwrite-the-calculated-reading-time)
+  - [Summary Breaks](#Summary-Breaks)
+  - [Disqus comments](#Disqus-comments)
+  - [Responsive Design](#Responsive-Design)
+  - [Automatic Image Resizing](#Automatic-Image-Resizing)
+  - [Image Modal Zoom](#Image-Modal-Zoom)
+  - [Permanent Top Navigation](#Permanent-Top-Navigation)
+  - [MathJAX Markup](#MathJAX-Markup)
+  - [Disabled Javascript Support](#Disabled-Javascript-Support)
+- [Favicons](#Favicons)
+- [Custom 404 site](#Custom-404-site)
+- [Custom Post Types](#Custom-Post-Types)
+- [External Images](#External-Images)
+- [Customizing Individual Posts](#Customizing-Individual-Posts)
+- [Custom colors and fonts](#Custom-colors-and-fonts)
+- [CSS and JS modules](#CSS-and-JS-modules)
+  - [Adding a Cookie disclaimer](#Adding-a-Cookie-disclaimer)
+- [Translations](#Translations)
+- [Credits](#Credits)
+- [Support and Discussions](#Support-and-Discussions)
+- [Contributors](#Contributors)
+- [License](#License)
 
 ## Requirements
 
-**Hugo version >= 0.53 Extended**
-
-This theme makes use of Hugo Pipes, and requires at least Hugo version 0.53 **extended**. Please follow the installation instructions for your platform [here](https://gohugo.io/getting-started/installing/).
+**Hugo version >= 0.53 required**
 
 ## Quick Start
 
@@ -55,12 +60,12 @@ This theme makes use of Hugo Pipes, and requires at least Hugo version 0.53 **ex
 hugo new site my-new-blog
 ```
 
-- Install this theme
+- Install the latest version of this  theme
 ```
 cd my-new-blog/themes
 git clone https://github.com/Lednerb/bilberry-hugo-theme.git
 ```
-If you don't use git, you can download and extract this theme manually into the themes folder. <br>
+If you don't use git, you can download this theme [HERE](https://github.com/Lednerb/bilberry-hugo-theme/archive/master.zip) and extract it manually into the themes folder. <br>
 Please ensure that the folder is renamed to "bilberry-hugo-theme"
 
 - Copy example content and default config file for a quick start
@@ -81,13 +86,16 @@ hugo server -D
 
 __Important:__ <br>
 Do NOT change the name of the theme folder. <br>
-If you rename the folder the different post types will not work.
+If you rename the folder, the different post types will not work.
 
+Also, check out this [tutorial](https://www.kiroule.com/article/start-blogging-with-github-hugo-and-netlify/) on how to build a Bilberry theme-based website using Hugo, GitHub, and Netlify.
 
 ## Configuration
 To configure your site according to your needs, just open the `config.toml` file in your project folder and adjust the settings.
-All options you can and should customize are commented so it should be no problem for you to get it done.
+All options you can and should customize are commented out, so it should be no problem for you to get it done.
 
+Also, you can read this [write-up](https://www.kiroule.com/article/manage-environment-specific-settings-for-hugo-based-website/) on how to manage
+environment-specific settings for a Hugo-based website.
 
 ## Features
 
@@ -109,19 +117,37 @@ If you want to include the algolia search for your site, you have to follow thes
 4. Switch over to `API Keys` and copy your `Application ID`, `Search-Only API Key` and chosen `Index name` to your `config.toml` file.
 5. Ensure that `algolia_search = true` is set.
 6. Check the next section [Update the search index](#update-the-search-index), follow the steps and come back again
-7. Back in your algolia index, switch to `DISPLAY` and select `language` in the `Attributes for faceting` option.
+7. Go to the tab `Configuration` of your newly created indices, select the `Facets` in the section `FILTERING AND FACETING` and add the `language` attribute with the `filter only` modifier in the `Attributes for faceting` option. If, after adding the `language` attribute, the `Unknown attribute` error is shown, ignore it.
 8. Done.
 
 
-#### Update the search index
+#### Update the Search Index
 You have to repeat this step every time you change a post or publish a new one to update the search index.
 
-1. Publish your changes via the `hugo` command.
-2. Head over to the `public/index.json` file and copy everything in there
-3. Login to your algolia account, open your index and click at `Add records manually`
-4. Paste the copied text from the `index.json` file.
-5. Done.
+Execute the 'hugo' command in the site's root directory to publish your changes.
 
+* Manual Upload
+    * Head over to the `public/index.json` file and copy everything in there.
+    * Login to your Algolia account, open your index and click at `Add records manually`.
+    * Paste the copied text from the `index.json` file.
+    * Verify in the `Browse` tab of your index that the index records were uploaded correctly.
+    * If case you have a multi-language setup, make sure that you repeat the steps above for all `public/{LANG}/index.json` files
+
+* Automated Upload
+    * Prerequisites: installed Python 3 and Algolia API's [Python client](https://github.com/algolia/algoliasearch-client-python). The API Python client can be installed with the following command:
+    ```shell script
+    pip install --upgrade 'algoliasearch>=2.0,<3.0'
+    ```
+    * Execute the `algolia-index-upload.py` from the site's root directory as follows:
+    ```shell script
+    python3 algolia-index-upload.py -f public/index.json -a <algolia-app-id> -k <algolia-admin-api-key> -n <algolia-index-name>
+    ```
+    * The `algolia-admin-api-key` argument, namely your Algolia account's `Admin API Key`, is used to create, update, and delete indices, and it should be kept secret.
+    * Login to your Algolia account and verify in the `Browse` tab of your index that the index records were uploaded correctly.
+    * If case you have a multi-language setup, make sure that you repeat the steps above for all `public/{LANG}/index.json` files
+
+Also, you can read this [write-up](https://www.kiroule.com/article/automate-index-upload-to-algolia-search/) on how to automate
+index upload to Algolia Search if you host your Bilberry theme-based website on Netlify.
 
 ### Keyboard Shortcuts
 If you want to start a search on your blog simply type `s` and the search menu will open.
@@ -131,7 +157,7 @@ To close it again you can enter `esc` at any time.
 
 ### Post Types
 Bilberry comes with a bunch of predefined post types.
-Available post types are `article`, `audio`, `code`, `gallery`, `link`, `page`, `quote` and `video`.
+Available post types are `article`, `audio`, `code`, `gallery`, `link`, `page`, `quote`, `status` and `video`.
 
 To use a post type, just create new content via the hugo command.<br>
 For example:
@@ -151,9 +177,27 @@ A `page` can be a static page (about me or impress site) or a link to another pa
 
 The post type `link` always links to an external site and can be used with or without a background image.
 
+### Reposting an Article / Duplicated Content [SEO]
+If you want to repost an article from another website or have duplicated content on your own site, for SEO reasons it's a good practice to link to the original / `canonical` URL.
 
-### Manual Summary Breaks
-You can influence the summary outpot on the listing pages (such as the home page or the category or tag pages) in three ways:
+If you want to mark one of your content sites as duplicated content you can simply use the following front matter configuration option:
+
+```
+original_url: "https://example.org/path/to/content"
+```
+
+Further Information:
+- [Wikipedia](https://en.wikipedia.org/wiki/Canonical_link_element)
+
+### Overwrite the calculated reading time
+If you want to overwrite the automatically calculated reading time for a post you can use the following front matter confguration option:
+
+```
+readingTime: 7 # integer for the amount of minutes
+```
+
+### Summary Breaks
+You can influence the summary output on the listing pages (such as the home page or the category or tag pages) in different ways:
 
 - You don't set a manual summary break. <br>
 Hugo will care for you and generates a summary as well as a _Continue reading_ link.
@@ -164,13 +208,45 @@ Just write your content and if you want to break use the code snippet to tell Hu
 - You want to display the full article without a _Continue reading_ link <br>
 In this case, set the option `noSummary: true` in the header area (Front Matter) of your `.md` file.
 
+- You can define a summary that differs from the first content lines <br>
+Use the `summary: "Here goes my summary"` Front Matter variable. <br>
+In this case no _Continue reading_ link will be displayed.
 
-### Disqus comments
+### Comments
+Currently [Commento](https://commento.io/) and [Disqus](https://disqus.com) are supported.
+
+#### Commento comments
+If you want to enable the functionality for your users to write comments below your articles, you can either register account at [commento.io](https://commento.io/) or [host Commento yourself](https://docs.commento.io/getting-started/self-hosting/).
+
+To activate Commento in your blog you have to add the URL for the JS-snippet to `commentoJsURL` in your `config.toml`.
+
+**Example:**
+
+Snippet displayed in Commento:
+```html
+<script defer src="http://localhost:8080/js/commento.js"></script>
+<div id="commento"></div>
+```
+
+Your `config.toml`
+```toml
+#[...]
+[params]
+
+    #[...]
+
+    # Commento
+    commentoJsURL = "http://localhost:8080/js/commento.js"
+```
+
+
+#### Disqus comments
 If you want to enable the functionality for your users to write comments below your articles, you can register for a free [Disqus](https://disqus.com) account.
 
 Just create a new site and copy your site's short name to the `config.toml` file at `disqusShortname`.
 
 You can manage and moderate the comments either on your website or at the disqus management panel.
+
 
 ### Responsive Design
 Bilberry is optimized for desktop and mobile devices (tablets and smartphones).
@@ -179,7 +255,10 @@ Bilberry is optimized for desktop and mobile devices (tablets and smartphones).
 The bilberry theme handles image crops and resizes automatically by default.
 However, if you want to disable this functionality in general, you can set `resizeImages: false` in your `config.toml` file.
 
-If you want to disable this functionality just on some posts, you can set `resizeImages: false` in your post's settings.
+If you want to disable this functionality just on some posts, you can set `resizeImages: false` in your post's frontmatter settings.
+
+### Image Modal Zoom
+When including an image that has larger dimensions than the content area, the image gets clickable and a bigger version will open in a lightbox.
 
 ### Permanent Top Navigation
 If you want to permanently display the top navigation with the algolia search bar and the `page` entries, you can set the `permanentTopNav` option to `true` in your site's config file.
@@ -187,8 +266,26 @@ If you want to permanently display the top navigation with the algolia search ba
 Note that on mobile devices the navigation will still be collapsed because otherwise, the navigation menu hides the essential parts of your site.
 
 ### MathJAX Markup
-
 If you want to add [MathJAX](https://www.mathjax.org) markup support, set parameter `enable_mathjax` option to `true` in your site's config file.
+
+### Disabled Javascript Support
+Although this theme has a lot of features that only work with enabled javascript, it also fully supports disabled javascript.
+Disabling javascript will not break any styles or essential functionality on the site.
+
+Just head over to the demo page, disable javascript in your browser and check the results!
+
+## Favicons
+Using favicons nowadays is not a trivial thing.
+There are many different sizes and file types for the various mobile and desktop browsers and for the shortcuts for Android and iOS devices.
+
+This theme makes it easy for you to include all needed files:
+
+1. Visit https://realfavicongenerator.net/ and generate your favicon according to your needs
+2. Copy & Paste the generated files into your `/static` folder
+3. Edit the `/layouts/partials/favicon.html` file and copy & paste the HTML code from the generated instruction
+
+**Important:**
+You have to follow the [Quick Start](#Quick-Start) guideline or manually copy the `/layouts/partials/favicon.html` file from the theme to your site's `/layouts` directory. Otherwise the file is missing.
 
 ## Custom 404 site
 If you want to customize your 404 site, copy the `themes/bilberry-hugo-theme/layouts/404.html` to your local `layouts/404.html` and edit the file.
@@ -204,7 +301,7 @@ If you want to create a `book` post type, for example, you can do the following:
 1. Copy the default `themes/bilberry-hugo-theme/layouts/partials/content-type/article.html` to your site's `layouts/partials/content-type/` folder.
 2. Rename the file to your custom post type. A proper name in the _book scenario_ would be `book.html`
 3. Customize the file. <br> You can change the icon in the bubble with another [Font Awesome Icon](http://fontawesome.io/icons/). <br> In the _book scenario_ we would change the `fa-pencil` class to `fa-book`:
-`<i class="fa fa-fw fa-book"></i>`
+`<i class="fas fa-fw fa-book"></i>`
 
 4. Create your new posts with the post type prefix: `hugo new book/a-very-cool-book.md`
 5. Done.
@@ -247,22 +344,24 @@ Otherwise, your changes would be overwritten when you update to the latest theme
 
 
 ## Custom colors and fonts
-Bilberry uses SCSS for styling, and [Hugo Pipes](https://gohugo.io/hugo-pipes/introduction/) to dynamically create the combined and compressed production-ready stylesheets. Hugo Pipes requires Hugo version >= 0.53 **extended**. Find installation instructions for your platform [here](https://gohugo.io/getting-started/installing/).
+Bilberry uses SCSS for styling and NPM with [Laravel Mix](https://laravel-mix.com/) for dependency management.
 
-If you want to change any colors or fonts, you have follow these steps:
+If you want to change any colors or fonts, you have to follow these steps:
 
 1. Install this theme to your `themes` directory
-1. Modify the `scss/_variables.scss` file to customize your colors. <br> If you want to change the header's color just edit the `$base-color` variable
-1. Done!
+2. `cd themes/bilberry-hugo-theme`
+3. `npm install`
+4. Modify the `scss/_variables.scss` file to customize your colors. <br> If you want to change the header's color just edit the `$base-color` variable
+5. use `npm run dev` for development and preview purposes and `npm run production` when you finished the changes
 
 
 ## CSS and JS modules
-This theme supports hot-swappable CSS and JavaScript extentions. Modules can be specified using the `(css|js)_modules` list parameter. Modules can be specified either relative to the `static` directory (e.g. `exampleSite/static/css/custom.css`) or as a URL.
+This theme supports hot-swappable CSS and JavaScript extensions. Modules can be specified using the `(css|js)_modules` list parameter. Modules can be specified either relative to the `static` directory (e.g. `exampleSite/static/css/custom.css`) or as a URL.
 
 Modules are imported in the order they appear in the list, and immediately after the default Bilberry CSS and JS files are imported.
 
 ### Adding a Cookie disclaimer
-Depending on the type of website you are running with this theme you may also want to add a cookie consent information. The popuplar solution [cookie consent](https://cookieconsent.insites.com/) can be integrated into the theme by loading the resources as external CSS and JS modules.
+Depending on the type of website you are running with this theme you may also want to add a cookie consent information. The popular solution [cookie consent](https://cookieconsent.insites.com/) can be integrated into the theme by loading the resources as external CSS and JS modules.
 
 Use the configurator on the [cookie consent website](https://cookieconsent.insites.com/) to generate the required initialization code and add it to a local `static/init-cookieconsent.js` file e.g.
 
@@ -301,7 +400,7 @@ Bilberry is inspired by the [WordPress theme Lingonberry](http://www.andersnoren
 
 Bilberry is a theme for the great [HUGO static site generator](https://gohugo.io).
 
-A big thank you goes to [@Ipstenu](https://github.com/Ipstenu) for his help in [this thread](https://discourse.gohugo.io/t/search-index-json-file-for-lunr-js/6286/5?u=lednerb) that helped me to create the `index.json` for the algolia export.
+A big thank-you goes to [@Ipstenu](https://github.com/Ipstenu) for his help in [this thread](https://discourse.gohugo.io/t/search-index-json-file-for-lunr-js/6286/5?u=lednerb) that helped me to create the `index.json` for the algolia export.
 
 ## Support and Discussions
 If you enjoy this theme and want to stay up to date or just want to say thanks, have a look at this Discord Channel:
@@ -310,7 +409,7 @@ If you enjoy this theme and want to stay up to date or just want to say thanks, 
 
 ## Contributors
 
-Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+Many thanks go to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
@@ -319,7 +418,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 | [<img src="https://avatars1.githubusercontent.com/u/16353578?v=4" width="100px;"/><br /><sub><b>Pavel Kanyshev</b></sub>](https://github.com/aerohub)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=aerohub "Code") [🌍](#translation-aerohub "Translation") | [<img src="https://avatars3.githubusercontent.com/u/3541050?v=4" width="100px;"/><br /><sub><b>Marcel Kraus</b></sub>](https://www.marcelkraus.de)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=marcelkraus "Code") | [<img src="https://avatars2.githubusercontent.com/u/280825?v=4" width="100px;"/><br /><sub><b>Nick Busey</b></sub>](http://nickbusey.com/)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=NickBusey "Code") | [<img src="https://avatars1.githubusercontent.com/u/4789253?v=4" width="100px;"/><br /><sub><b>lkorzen</b></sub>](https://github.com/lkorzen)<br />[🌍](#translation-lkorzen "Translation") | [<img src="https://avatars1.githubusercontent.com/u/12019608?v=4" width="100px;"/><br /><sub><b>Chris Stayte</b></sub>](http://www.chrisstayte.com)<br />[🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author%3AChrisStayte "Bug reports") |
 | [<img src="https://avatars0.githubusercontent.com/u/405277?v=4" width="100px;"/><br /><sub><b>Dmitry Matrosov</b></sub>](https://twitter.com/amidos_me)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=meAmidos "Code") | [<img src="https://avatars2.githubusercontent.com/u/8802277?v=4" width="100px;"/><br /><sub><b>Marc-Antoine</b></sub>](https://marca.finch4.xyz/)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=Embraser01 "Code") [🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author%3AEmbraser01 "Bug reports") | [<img src="https://avatars1.githubusercontent.com/u/2030983?v=4" width="100px;"/><br /><sub><b>Nina Zakharenko</b></sub>](http://nnja.io)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nnja "Code") [🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author%3Annja "Bug reports") [📖](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nnja "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/7719018?v=4" width="100px;"/><br /><sub><b>Nisarga</b></sub>](https://github.com/nisargap)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nisargap "Code") | [<img src="https://avatars2.githubusercontent.com/u/2817480?v=4" width="100px;"/><br /><sub><b>Pablo Domingo Rojo</b></sub>](https://github.com/pdoro)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=pdoro "Code") |
 | [<img src="https://avatars3.githubusercontent.com/u/4433144?v=4" width="100px;"/><br /><sub><b>Rob Baruch</b></sub>](https://github.com/rabarar)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=rabarar "Code") | [<img src="https://avatars0.githubusercontent.com/u/9339576?v=4" width="100px;"/><br /><sub><b>Taoshi</b></sub>](https://github.com/GMpet)<br />[🌍](#translation-GMpet "Translation") | [<img src="https://avatars1.githubusercontent.com/u/11535575?v=4" width="100px;"/><br /><sub><b>nonumeros</b></sub>](https://github.com/nonumeros)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nonumeros "Code") | [<img src="https://avatars3.githubusercontent.com/u/56372?v=4" width="100px;"/><br /><sub><b>Marcelo Gonçalves</b></sub>](http://marcelogoncalves.com.br)<br />[🌍](#translation-marcelocg "Translation") | [<img src="https://avatars0.githubusercontent.com/u/9111944?v=4" width="100px;"/><br /><sub><b>Dávid Sárkány</b></sub>](https://sarkanydavid.com)<br />[🌍](#translation-davidsarkany "Translation") |
-| [<img src="https://avatars3.githubusercontent.com/u/43414238?v=4" width="100px;"/><br /><sub><b>meonamz</b></sub>](https://github.com/meonamz)<br />[🌍](#translation-meonamz "Translation") | [<img src="https://avatars3.githubusercontent.com/u/32282514?v=4" width="100px;"/><br /><sub><b>Hamza Yusuf Çakır</b></sub>](https://github.com/hycakir)<br />[🌍](#translation-hycakir "Translation") |
+| [<img src="https://avatars3.githubusercontent.com/u/43414238?v=4" width="100px;"/><br /><sub><b>meonamz</b></sub>](https://github.com/meonamz)<br />[🌍](#translation-meonamz "Translation") | [<img src="https://avatars3.githubusercontent.com/u/32282514?v=4" width="100px;"/><br /><sub><b>Hamza Yusuf Çakır</b></sub>](https://github.com/hycakir)<br />[🌍](#translation-hycakir "Translation") | [<img src="https://avatars3.githubusercontent.com/u/15079172?s=460&v=4" width="100px;"/><br /><sub><b>Niclas Roßberger</b></sub>](https://github.com/nidomiro)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nidomiro "Code") [🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author:nidomiro "Bug reports") [🚧](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nidomiro "maintenance") | [<img src="https://www.kiroule.com/img/avatar.png" width="100px;"/><br/><sub><b>Igor Baiborodine</b></sub>](https://kiroule.com)<br/>[📖](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=igor-baiborodine "Documentation")
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
