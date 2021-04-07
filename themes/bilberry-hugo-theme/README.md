@@ -28,6 +28,8 @@ If you like this theme and/or use it for commercial purposes, please support me!
   - [Reposting an Article / Duplicated Content [SEO]](#Reposting-an-Article--Duplicated-Content-SEO)
   - [Overwrite the calculated reading time](#Overwrite-the-calculated-reading-time)
   - [Summary Breaks](#Summary-Breaks)
+  - [Table of Contents(TOC)](#table-of-contentstoc)
+  - [Series Taxonomy](#series-taxonomy)
   - [Disqus comments](#Disqus-comments)
   - [Responsive Design](#Responsive-Design)
   - [Automatic Image Resizing](#Automatic-Image-Resizing)
@@ -35,6 +37,7 @@ If you like this theme and/or use it for commercial purposes, please support me!
   - [Permanent Top Navigation](#Permanent-Top-Navigation)
   - [MathJAX Markup](#MathJAX-Markup)
   - [Disabled Javascript Support](#Disabled-Javascript-Support)
+  - [Videos](#Videos)
 - [Favicons](#Favicons)
 - [Custom 404 site](#Custom-404-site)
 - [Custom Post Types](#Custom-Post-Types)
@@ -172,6 +175,7 @@ Just discover the entries from the `exampleSite` folder to get an overview of th
 
 ### Pages and External Links
 The post type `page` is the only one that appears in the top navigation (when you click on the navigation button on the top right).
+Pages can be ordered using the `weight` front matter variable, which should be set to a non-zero value. A page with a lower `weight` will be displayed first.
 
 A `page` can be a static page (about me or impress site) or a link to another page as it is used in the demo to link to the Bilberry GitHub repository.
 
@@ -211,6 +215,24 @@ In this case, set the option `noSummary: true` in the header area (Front Matter)
 - You can define a summary that differs from the first content lines <br>
 Use the `summary: "Here goes my summary"` Front Matter variable. <br>
 In this case no _Continue reading_ link will be displayed.
+
+### Table of Contents(TOC)
+To enable the automatic creation of a table of contents(TOC), set the `toc` front matter variable to true in your article. If the article's markdown contains appropriate headings, Hugo will generate a table of content at the beginning of the article. 
+
+By default, a TOC is generated if the content's word count is greater than **400**. The `tocMinWordCount` parameter defines this value in the `config.toml` configuration file. 
+
+The headings that are taken into account for a TOC are from _H2_ (##) to _H5_ (#####) inclusive. Also, if you want to display a TOC at a specific point in your article, set the `toc` front matter variable to false, and use the `toc` shortcode like this:
+```markdown
+{{< toc >}}
+```
+
+### Series Taxonomy ###
+In case you want to group some articles as a series, you have to add the `series` front matter variable to each article and set its value to the name of the series, for example, `series: "My New Super Series"`.
+
+The page at `<site-base-url>/series/` will list all the series. To list all articles for a particular series within markdown, you can use the `series` shortcode with the series name in question, for instance: 
+```markdown
+{{< series "My New Super Series" >}}
+```
 
 ### Comments
 Currently [Commento](https://commento.io/) and [Disqus](https://disqus.com) are supported.
@@ -274,6 +296,48 @@ Disabling javascript will not break any styles or essential functionality on the
 
 Just head over to the demo page, disable javascript in your browser and check the results!
 
+### Videos
+The following video hosting providers are supported: `YouTube`, `Vimeo`, and `Prezi`. Videos in the `MP4` format, either stored externally or within the site's `static` folder, are also supported. There are two options to display videos. 
+
+The first one is to use a post of the `video` type.  Use the following command to create your video post:
+```bash
+hugo new video/<post-name>.md
+```
+
+Then set the corresponding front matter variable:
+```markdown
+youtube: "<youtube-video-id>"            # https://www.youtube.com/watch?v=M7IjJiZUutk -> "M7IjJiZUutk"
+vimeo: "<vimeo-video-id>"                # https://vimeo.com/239830182 -> "239830182"
+prezi: "<prezi-video-id"                 # https://prezi.com/v/5z9shnq7jzxs/what-to-study/ -> "5z9shnq7jzxs"
+mp4video: "<video-file-url>"             # location of video file (only mp4) 
+mp4videoImage: "<image-video-file-url>"  # location of poster image 
+```
+
+If the `MP4` video and its image are stored in the `static` folder, you can set variables as follows:
+```markdown
+mp4video: "/<video-file-name>.mp4"
+mp4videoImage: "/<image-video-file-name>.png"
+```
+
+The second option is to use the `video` shortcode within markdown content in a post of the `article` type as follows:
+```markdown
+<!-- YouTube -->
+{{< video type="youtube" id="<youtube-video-id>" >}}
+
+<!-- Vimeo -->
+{{< video type="vimeo" id="<vimeo-video-id>" >}}
+
+<!-- Prezi -->
+{{< video type="prezi" id="<prezi-video-id>" >}}
+
+<!-- MP4 external -->
+{{< video type="mp4" url="<video-file-url>" imageUrl="<image-video-file-url>" >}}
+
+<!-- MP4 in site's static folder -->
+{{< video type="mp4" url="/<video-file-name>.mp4" imageUrl="/<image-video-file-name>.png" >}}
+
+```
+
 ## Favicons
 Using favicons nowadays is not a trivial thing.
 There are many different sizes and file types for the various mobile and desktop browsers and for the shortcuts for Android and iOS devices.
@@ -333,7 +397,7 @@ Posts can be customized via a variety of options.
 
 To exclude posts from appearing on your blog index, while still being displayed in categories, add `excludeFromIndex: true` to the post configuration.
 
-The theme also has options for a pinned post. Just uncomment `pinnedPost` in `config.toml`, and point it to the post you'd like permanently pinned to the top of the page. The `pinOnlyToFirstPage` setting lets you control if you'd like to only display the pinned post on the index, or on all pages.
+If you'd like to pin one or several posts to the top of the index page, uncomment the `pinnedPost` param in `config.toml`. Then set its value to the post's relative URL, for example, `/article/installing-bilberry-theme/`. When pinning multiple posts, the relative URL values should be separated by a comma. The `pinOnlyToFirstPage` parameter allows you to choose whether to display pinned posts on the index page only or on all pages.
 
 A custom icon can be declared per post, by specifying a font-awesome icon in the post configuration, such as `icon: fa-thumb-tack` for a pinned post.
 
@@ -351,8 +415,8 @@ If you want to change any colors or fonts, you have to follow these steps:
 1. Install this theme to your `themes` directory
 2. `cd themes/bilberry-hugo-theme`
 3. `npm install`
-4. Modify the `scss/_variables.scss` file to customize your colors. <br> If you want to change the header's color just edit the `$base-color` variable
-5. use `npm run dev` for development and preview purposes and `npm run production` when you finished the changes
+4. Modify the `assets/sass/_variables.scss` file to customize your colors. <br> If you want to change the header's color just edit the `$base-color` variable
+5. Use `npm run dev` for development and preview purposes and `npm run production` when you finished the changes
 
 
 ## CSS and JS modules
@@ -418,7 +482,7 @@ Many thanks go to these wonderful people ([emoji key](https://github.com/kentcdo
 | [<img src="https://avatars1.githubusercontent.com/u/16353578?v=4" width="100px;"/><br /><sub><b>Pavel Kanyshev</b></sub>](https://github.com/aerohub)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=aerohub "Code") [🌍](#translation-aerohub "Translation") | [<img src="https://avatars3.githubusercontent.com/u/3541050?v=4" width="100px;"/><br /><sub><b>Marcel Kraus</b></sub>](https://www.marcelkraus.de)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=marcelkraus "Code") | [<img src="https://avatars2.githubusercontent.com/u/280825?v=4" width="100px;"/><br /><sub><b>Nick Busey</b></sub>](http://nickbusey.com/)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=NickBusey "Code") | [<img src="https://avatars1.githubusercontent.com/u/4789253?v=4" width="100px;"/><br /><sub><b>lkorzen</b></sub>](https://github.com/lkorzen)<br />[🌍](#translation-lkorzen "Translation") | [<img src="https://avatars1.githubusercontent.com/u/12019608?v=4" width="100px;"/><br /><sub><b>Chris Stayte</b></sub>](http://www.chrisstayte.com)<br />[🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author%3AChrisStayte "Bug reports") |
 | [<img src="https://avatars0.githubusercontent.com/u/405277?v=4" width="100px;"/><br /><sub><b>Dmitry Matrosov</b></sub>](https://twitter.com/amidos_me)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=meAmidos "Code") | [<img src="https://avatars2.githubusercontent.com/u/8802277?v=4" width="100px;"/><br /><sub><b>Marc-Antoine</b></sub>](https://marca.finch4.xyz/)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=Embraser01 "Code") [🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author%3AEmbraser01 "Bug reports") | [<img src="https://avatars1.githubusercontent.com/u/2030983?v=4" width="100px;"/><br /><sub><b>Nina Zakharenko</b></sub>](http://nnja.io)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nnja "Code") [🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author%3Annja "Bug reports") [📖](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nnja "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/7719018?v=4" width="100px;"/><br /><sub><b>Nisarga</b></sub>](https://github.com/nisargap)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nisargap "Code") | [<img src="https://avatars2.githubusercontent.com/u/2817480?v=4" width="100px;"/><br /><sub><b>Pablo Domingo Rojo</b></sub>](https://github.com/pdoro)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=pdoro "Code") |
 | [<img src="https://avatars3.githubusercontent.com/u/4433144?v=4" width="100px;"/><br /><sub><b>Rob Baruch</b></sub>](https://github.com/rabarar)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=rabarar "Code") | [<img src="https://avatars0.githubusercontent.com/u/9339576?v=4" width="100px;"/><br /><sub><b>Taoshi</b></sub>](https://github.com/GMpet)<br />[🌍](#translation-GMpet "Translation") | [<img src="https://avatars1.githubusercontent.com/u/11535575?v=4" width="100px;"/><br /><sub><b>nonumeros</b></sub>](https://github.com/nonumeros)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nonumeros "Code") | [<img src="https://avatars3.githubusercontent.com/u/56372?v=4" width="100px;"/><br /><sub><b>Marcelo Gonçalves</b></sub>](http://marcelogoncalves.com.br)<br />[🌍](#translation-marcelocg "Translation") | [<img src="https://avatars0.githubusercontent.com/u/9111944?v=4" width="100px;"/><br /><sub><b>Dávid Sárkány</b></sub>](https://sarkanydavid.com)<br />[🌍](#translation-davidsarkany "Translation") |
-| [<img src="https://avatars3.githubusercontent.com/u/43414238?v=4" width="100px;"/><br /><sub><b>meonamz</b></sub>](https://github.com/meonamz)<br />[🌍](#translation-meonamz "Translation") | [<img src="https://avatars3.githubusercontent.com/u/32282514?v=4" width="100px;"/><br /><sub><b>Hamza Yusuf Çakır</b></sub>](https://github.com/hycakir)<br />[🌍](#translation-hycakir "Translation") | [<img src="https://avatars3.githubusercontent.com/u/15079172?s=460&v=4" width="100px;"/><br /><sub><b>Niclas Roßberger</b></sub>](https://github.com/nidomiro)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nidomiro "Code") [🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author:nidomiro "Bug reports") [🚧](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nidomiro "maintenance") | [<img src="https://www.kiroule.com/img/avatar.png" width="100px;"/><br/><sub><b>Igor Baiborodine</b></sub>](https://kiroule.com)<br/>[📖](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=igor-baiborodine "Documentation")
+| [<img src="https://avatars3.githubusercontent.com/u/43414238?v=4" width="100px;"/><br /><sub><b>meonamz</b></sub>](https://github.com/meonamz)<br />[🌍](#translation-meonamz "Translation") | [<img src="https://avatars3.githubusercontent.com/u/32282514?v=4" width="100px;"/><br /><sub><b>Hamza Yusuf Çakır</b></sub>](https://github.com/hycakir)<br />[🌍](#translation-hycakir "Translation") | [<img src="https://avatars3.githubusercontent.com/u/15079172?s=460&v=4" width="100px;"/><br /><sub><b>Niclas Roßberger</b></sub>](https://github.com/nidomiro)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nidomiro "Code") [🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues?q=author:nidomiro "Bug reports") [🚧](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=nidomiro "maintenance") | [<img src="https://www.kiroule.com/img/avatar.png" width="100px;"/><br/><sub><b>Igor Baiborodine</b></sub>](https://kiroule.com)<br />[💻](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=igor-baiborodine "Code") [🐛](https://github.com/Lednerb/bilberry-hugo-theme/issues/created_by/igor-baiborodine "Bug reports") [📖](https://github.com/Lednerb/bilberry-hugo-theme/commits?author=igor-baiborodine "Documentation")
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!

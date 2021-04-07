@@ -76,7 +76,7 @@ disqusShortname = "bilberry-hugo-theme"
 
   # Content configuration
     # Enable an optional pinned page to display at the top of the index
-    # pinnedPost = "/content/github/"
+    # pinnedPost = "/article/installing-bilberry-theme/"
     # Set to true to pin only to the first page, false to all pages
     # pinOnlyToFirstPage = true
 
@@ -90,6 +90,9 @@ disqusShortname = "bilberry-hugo-theme"
 
     # display the estimated reading time for an article
     showReadingTime = false
+
+    # Minimum word count to display the Table of Contents
+    tocMinWordCount = 400
 
   # Footer configuration
     showFooter = true
@@ -140,8 +143,14 @@ disqusShortname = "bilberry-hugo-theme"
   author   = "author"
   tag      = "tags"
   category = "categories"
+  series   = "series"
 
 [outputs]
   home = [ "HTML", "JSON", "RSS" ]
   page = [ "HTML" ]
 
+[markup]
+  [markup.tableOfContents]
+    endLevel = 5
+    ordered = false
+    startLevel = 2

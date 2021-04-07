@@ -5,14 +5,24 @@
 {{- end -}}
 
 {{- range $name, $taxonomy := .Site.Taxonomies.author -}}
-    {{- $.Scratch.Add "index" (dict "url" (print "/author/" $name | absURL) "title" ($name | humanize) "iconClass" "fa-user" "type" "author" "objectID" (print "/author/" $name | absURL) ) -}}
+    {{- $author_name := $name -}}
+    {{- $author_path := (printf "/author/%s" (urlize $name)) -}}
+    {{- $author_page := site.GetPage $author_path -}}
+    {{- if $author_page -}}
+        {{- $author_name = $author_page.Title -}}
+    {{- end -}}
+    {{- $.Scratch.Add "index" (dict "url" ($author_path | absURL) "title" $author_name "iconClass" "fa-user" "type" "author" "objectID" ($author_path | absURL) ) -}}
 {{- end -}}
 
 {{- range $name, $taxonomy := .Site.Taxonomies.tags -}}
     {{- $.Scratch.Add "index" (dict "url" (print "/tags/" $name | absURL) "title" ($name | humanize) "iconClass" "fa-tag" "type" "tag" "objectID" (print "/tags/" $name | absURL) ) -}}
 {{- end -}}
 
-{{- range where .Site.RegularPages "Type" "not in" (slice "page" "json") -}}
+{{- range $name, $taxonomy := .Site.Taxonomies.series -}}
+    {{- $.Scratch.Add "index" (dict "url" (print "/series/" $name | absURL) "title" ($name | humanize) "iconClass" "fa-list-alt" "type" "series" "objectID" (print "/series/" $name | absURL) ) -}}
+{{- end -}}
+
+{{- range where .Site.RegularPages "Type" "not in" (slice "page" "json" "status") -}}
     {{- $iconClass := "" -}}
     {{- if and (isset .Params "icon") (ne .Params.icon "") -}}
         {{- $iconClass = .Params.icon -}}
