@@ -28,7 +28,7 @@ To make your server "untracable" the [Privacy Extensions](https://tools.ietf.org
 
 You can verify the configuration with
 
-```sh
+```terminal
 sysctl -a | grep use_temp
 
 net.ipv6.conf.VPN.use_tempaddr = 2
@@ -41,7 +41,7 @@ net.ipv6.conf.lo.use_tempaddr = 2
 
 In Ubuntu you can set the kernel settings so they survive a restart set the configuration in
 
-```sh
+```terminal
 cat /etc/sysctl.d/10-ipv6-privacy.conf
 
 net.ipv6.conf.all.use_tempaddr = 2
@@ -50,14 +50,14 @@ net.ipv6.conf.default.use_tempaddr = 2
 
 If you want to set the parameter as default for every new network device set
 
-```sh
+```terminal
 sysctl -w net.ipv6.conf.all.use_tempaddr=0
 sysctl -w net.ipv6.conf.default.use_tempaddr = 0
 ```
 
 This setting can also be configured for a specific interfaces, here the command for `eth0`
 
-```sh
+```terminal
 sysctl -w net.ipv6.conf.eth0.use_tempaddr=0
 ```
 

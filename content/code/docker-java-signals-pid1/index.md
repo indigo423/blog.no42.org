@@ -28,7 +28,7 @@ Here is the simple sample code.
 
 Compile it with `javac Main.java` and run it with `java Main` and you will this here:
 
-```
+```terminal
 indigo@blinky ~/pid-example $ java Main
 I'm doing some work ...
 I'm doing some work ...
@@ -37,7 +37,7 @@ I'm doing some work ...
 
 No we want to terminate it and hit `CTRL + C` and display the exit code with `echo $?`.
 
-```
+```terminal
 indigo@blinky ~/pid-example $ java Main
 I'm doing some work ...
 I'm doing some work ...
@@ -52,7 +52,7 @@ The JVM exits with error code 130 tells us it was terminated with `CTRL + C` and
 Now we try a different approach and terminate our Java app with sending a `SIGTERM`.
 Start the program and open a second terminal, identify the Java process id (pid) and issue the command `kill <pid>` and show the exit code.
 
-```
+```terminal
 indigo@blinky ~/pid-example $ java Main
 I'm doing some work ...
 I'm doing some work ...
@@ -66,7 +66,7 @@ The JVM handled the `SIGTERM` for us and returned it with exit code `143`.
 Your Linux operating system has a crowbar in your toolbox which is the `KILL` signal, it is one of the signals you can't listen for in your application.
 If you try to register a handler for a `KILL` signal your JVM will throw you a runtime exception like this:
 
-```
+```terminal
 Exception in thread "main" java.lang.IllegalArgumentException: Signal already used by VM or OS: SIGKILL
 	at sun.misc.Signal.handle(Signal.java:166)
 	at Main.handleSignal(Main.java:26)
@@ -84,7 +84,7 @@ Now extend our little program and simulate some logic to handle the `TERM` signa
 
 We compile and run it again, identify the PID and kill it with `kill <pid>` and we get following result:
 
-```
+```terminal
 indigo@blinky ~/pid-example $ java Main
 I'm doing some work ...
 I'm doing some work ...
@@ -109,7 +109,7 @@ We can run our application by passing the application name as the first argument
 
 Let's build the image and run our application and run it.
 
-```
+```terminal
 indigo@blinky ~/pid-example $ docker build -t test .
 Sending build context to Docker daemon  7.168kB
 Step 1/4 : FROM openjdk:11-slim
@@ -138,7 +138,7 @@ The exit state is persisted of stopped containers can be shown with `docker ps -
 
 Let's kill the running container and check the exit code:
 
-```
+```terminal
 indigo@blinky ~/pid-example $ docker kill <container-id>
 indigo@blinky ~/pid-example $ docker ps -a
 ```
@@ -149,7 +149,7 @@ This is one of the first notions of, applications in containers don't care about
 
 Ok we run again and we send a `TERM` signal and see what happens:
 
-```
+```terminal
 indigo@blinky ~/pid-example $ docker run test Main
 I'm doing some work ...
 I'm doing some work ...
@@ -158,13 +158,13 @@ I'm doing some work ...
 
 Now we send a `TERM` signal:
 
-```
+```terminal
 indigo@blinky ~/pid-example $ docker kill -s TERM <container-id>
 ```
 
 and voila we shutdown gracefully
 
-```
+```terminal
 I'm doing some work ...
 Signal received: TERM
 Shutdown initiated
@@ -190,7 +190,7 @@ Now we extend our Java program with a method to list all running processes insid
 
 We compile the Java class, build a new image and run the app in our container:
 
-```
+```terminal
 indigo@blinky ~/pid-example $ javac Main.java
 indigo@blinky ~/pid-example $ docker build -t test .
 indigo@blinky ~/pid-example $ docker run test Main
@@ -218,7 +218,7 @@ We make the `entrypoint.sh` executable and add it to our Docker image.
 
 The entry point script will now take care of starting our application.
 
-```
+```terminal
 indigo@blinky ~/pid-example $ chmod +x entrypoint
 indigo@blinky ~/pid-example $ docker build -t test .
 indigo@blinky ~/pid-example $ docker run test
@@ -237,7 +237,7 @@ We can see now, the PID 1 is our entry point script.
 The Java process gets forked and gets PID 7.
 Let's stop it with `docker stop <container-id>`.
 
-```
+```terminal
 indigo@blinky ~/pid-example $ docker stop e67b0b239f59
 e67b0b239f59
 ```
@@ -257,7 +257,7 @@ We change our entry point script slightly and see what happens.
 
 We rebuild the container and run the image and run the `docker stop <container-id>` command.
 
-```plain
+```terminal
 indigo@blinky ~/pid-example $ docker build -t test .
 indigo@blinky ~/pid-example $ docker run test
 Running entry point script
@@ -285,7 +285,7 @@ Additionally it forwards signals.
 All you need is to run `--init` in your `docker run` command.
 You can send a `docker stop` and your Java application can deal with the `SIGTERM` to stop gracefully.
 
-```
+```terminal
 indigo@blinky ~/pid-example $ docker run --init test
 Running entry point script
 USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
