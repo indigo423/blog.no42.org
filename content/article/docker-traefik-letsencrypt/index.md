@@ -6,19 +6,19 @@ tags: ['tools']
 author: "Ronny Trommer"
 noSummary: false
 ---
-I work from home more than 6 years now and especially when you have to test a few things you start looking around.
-If you've heard about k8s, k{0,3}s or Microk8s but you don't want to use it running your private blog and
-you find yourself in a spot where the benefits running stuff in containers justifying the pain - this article might be something for you :)
+I work from home for over 6 years now and especially when you like networking, want to get stuff up and running and breaking it - you start looking around :)
+You've heard about k8s, k{0,3}s or Microk8s but you don't want to use it to run your private blog and you find yourself in a spot where the benefits running stuff in containers justify the pain - this article might be something for you :)
 
-My use case is, providing public facing web sites for my own stuff.
-The setting is pretty straight forward and always the same.
-You want to make XYZ web application publicly available with a Let's Encrypt TLS certificate.
+My use case is, providing public facing web sites reasonabily quick and simple.
+The setting for me was pretty straight forward and always the same.
+You want to make XYZ web application publicly available and you want a Let's Encrypt TLS certificate.
+
 Setting up TLS in XYZ web application is always differently weird and painful.
-Keep it as it is lock it down and use a TLS reverse proxy instead.
+My receipe for it, keep the web app as it is - lock it down and use a TLS reverse proxy instead.
 
-The TLS reverse proxy I've named TLS ingress and used mostly nginx for it.
-What I've found cumbersome was the certbot TLS Let's Encrypt dance and never liked the setup nor the maintenance.
-I've ditched nginx for this job a while ago and use [Traefik](https://doc.traefik.io) in my container environments as TLS ingress pretty happily.
+In my lab environment I've named TLS `ingress` and used mostly [nginx](https://www.nginx.com/) for it.
+I've found it cumbersome with the certbot TLS Let's Encrypt dance, I got it running but never liked the setup nor the maintenance of it.
+I've ditched nginx for this job a while ago and use [Traefik](https://doc.traefik.io) instead in my container environments and so far I'm happy with it.
 
 The Traefik killer features for me:
 
