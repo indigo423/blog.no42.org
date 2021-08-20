@@ -20,7 +20,7 @@ In OpenNMS Horizon the Telemetryd can be configured to act as a BMP collector.
 You get immediately an alarm generated as soon the message is received from Telemetryd with information about the peer and which AS is affected.
 The downside is, the router needs to implement BMP leverage from these features.
 
-To configure Telemetryd on Horizon core server you need at minimum the following configuration:
+To configure Telemetryd on Horizon core server you need at minimum the following configuration in `${OPENNMS_HOME}/etc/telemetryd-configuration.xml`:
 
 ```xml
 <?xml version="1.0"?>
