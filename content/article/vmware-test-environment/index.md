@@ -10,9 +10,10 @@ noSummary: false
 To test functions like importing OVA files in VMware ESXi and with vCenter the trial phase and a local deployment can be used. You need the following requirements:
 
 * VMware Workstation on Windows or VMware Fusion on Mac OSX
-* [VMware Hypervisor ISO image](https://mirror.informatik.hs-fulda.de/misc/vmware/VMware%207.0/VMware-VMvisor-Installer-7.0U1c-17325551.x86_64.iso) to install the ESXi host system
-* [VMware vCenter ISO image](https://mirror.informatik.hs-fulda.de/misc/vmware/VMware%207.0/VMware-VCSA-all-7.0.1-17004997.iso) for local deployment
+* VMware Hypervisor ISO image to install the ESXi host system
+* VMware vCenter ISO image for local deployment
 
+If you just want to learn how it works you can get a 60 days trial license registering an account on VMware.
 I had to manually select a Bridged network for the ESXi server. The vCenter appliance used a Bridge network by default. connected them to a bridged network. You can use DHCP if you want, but you need to make sure they get the same IP addresses afterwards.
 
 ## Installing VMware ESXi 7.0.1 Hyper Visor
