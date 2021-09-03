@@ -5,6 +5,15 @@ author: "Ronny Trommer"
 excludeFromTopNav: false
 ---
 
+Die Website blog.no42.org wird privat von Ronny Trommer betrieben und bereitgestellt.
+
+**Ronny Trommer** \
+**August-Lämmle-Straße 7/1** \
+**74199 Untergruppenbach** \
+\
+**Tel +49 (0) 07130 5319759** \
+**Email: hostmaster{et}no42.org** \
+
 #### Disclaimer – rechtliche Hinweise
 
 § 1 Warnhinweis zu Inhalten
