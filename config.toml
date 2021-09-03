@@ -53,7 +53,7 @@ disqusShortname = "bilberry-hugo-theme"
 
   # Header configuration
     # your subtitle if you want to use any
-    subtitle = "...search for answer"
+    subtitle = "...good questions"
 
     # if you want to use gravatar for the header image
     gravatarEMail = "ronny@no42.org"
