@@ -12,13 +12,21 @@ It scrapes the metrics from the provided exporter pages and allows to add data c
 As of speaking today it is not 100% feature complete, scraping data types like histograms is not implemented yet.
 If you want to play around here is a quick way to get the Linux [Node_Exporter](https://github.com/prometheus/node_exporter) installed.
 
+The following steps are executed in a root shell with `sudo -i`.
+
 ### Download Node_Exporter
 
-```
-wget https://github.com/prometheus/node_exporter/releases/download/v1.2.0/node_exporter-1.2.0.linux-amd64.tar.gz
-tar xzf node_exporter-1.2.0.linux-amd64.tar.gz
-mv node_exporter-1.2.0.linux-amd64/node_exporter /usr/local/bin
+```console
+wget https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node_exporter-1.2.2.linux-amd64.tar.gz
+tar xzf node_exporter-1.2.2.linux-amd64.tar.gz
+mv node_exporter-1.2.2.linux-amd64/node_exporter /usr/local/bin
 mkdir -p /var/lib/node_exporter
+```
+
+### Create system user account
+
+```console
+useradd --no-create-home --shell /bin/false node-exp
 ```
 
 ### Authentication
@@ -36,7 +44,7 @@ print(hashed_password.decode())
 
 To create a password hash run it with:
 
-```
+```console
 python3 gen-pass.py
 ```
 
@@ -44,9 +52,18 @@ You should get a prompt for the password and use the hash in your basic auth con
 
 ### Create basic config
 
+Create config directory and create empty configuration file
+
+```console
+mkdir /etc/node_exporter
+/etc/node_exporter/config.yaml
+```
+
+If you want basic authentication add the user credentials in your config file.
+
 File: `/etc/node_exporter/config.yaml`
 
-```
+```yaml
 basic_auth_users:
   prometheus: $2b$09$jlnZqhti2frPWS69U8XmM.vwy6K0J5R0kmaCSb4IvNBXNXOlIKAC.
 ```
@@ -54,7 +71,8 @@ basic_auth_users:
 ### Create systemd unit
 
 File: `/etc/systemd/system/node_exporter.service`
-```
+
+```console
 [Unit]
 Description=Prometheus Node Exporter
 After=network-online.target
@@ -87,5 +105,5 @@ ProtectKernelTunables=yes
 WantedBy=multi-user.target
 ```
 
-1. Reload systemd with `systemctl deaemon-reload`
+1. Reload systemd with `systemctl daemon-reload`
 2. Start up with `systemctl enable --now node_exporter.service`
