@@ -12,7 +12,7 @@ As a note to myself and for some others who want cleaner system logs – here is
 
 The log entries look like these here:
 
-```shell-session
+```shell
 2021-04-07 20:14:21 opennms-bgp multipathd[693]: sda: failed to get sgio uid: No such file or directory
 2021-04-07 20:14:21 opennms-bgp multipathd[693]: sda: failed to get sysfs uid: Invalid argument
 2021-04-07 20:14:21 opennms-bgp multipathd[693]: sda: failed to get udev uid: Invalid argument
@@ -46,7 +46,7 @@ export GOVC_INSECURE="true"
 
 You can test your setup with running `govc about` and you should see something like this:
 
-```shell-session
+```shell
 FullName:     VMware vCenter Server 7.0.1 build-17005016
 Name:         VMware vCenter Server
 Vendor:       VMware, Inc.
