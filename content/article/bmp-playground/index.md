@@ -8,17 +8,18 @@ noSummary: false
 ---
 
 Monitoring BGP can be done in various ways.
-Mostly the first thing people want to know is, if there is a way to get notifications if BGP peering sessions are up and running.
-A pretty common scenario is using SNMP and the RFC1269 MIB.
-In OpenNMS Horizon we have the [BGP session monitor](https://docs.opennms.com/horizon/28.0.2/operation/service-assurance/monitors/BgpSessionMonitor.html) which allows to track the state using the BGP peer table monitor a pecific peer session.
-The downside is, you need to configure for every peering session a monitor which can be cumbersome and hard to maintain.
+First thing people want to know is if there is a way to get notifications in case a BGP peering session goes down.
+A pretty common way monitoring the BGP peering session state is using SNMP and the RFC1269 MIB.
+In OpenNMS Horizon we have the [BGP session monitor](https://docs.opennms.com/horizon/29.0.1/operation/service-assurance/monitors/BgpSessionMonitor.html) which allows to track the state using the BGP peer table.
+The downside is, you need to configure for every peering session a monitor and this can be cumbersome and hard to maintain.
 
-Since OpenNMS Horizon 27 we have implemented the BGP Monitoring Protocol (BMP) to achieve more advanced methods to monitor BGP deployments.
-Instead of polling every few minutes to get track the BGP peer session state, the router connects to BMP collector and sends statistics and state changes as messages to a collector.
+Since OpenNMS Horizon 27 has implemented the BGP Monitoring Protocol (BMP) to achieve more advanced methods to monitor BGP deployments.
+Instead of polling every few minutes to track the BGP peer session state, the router connects to a BMP collector and sends statistics and state changes as messages.
 In OpenNMS Horizon the Telemetryd can be configured to act as a BMP collector.
 
-You get immediately an alarm generated as soon the message is received from Telemetryd with information about the peer and which AS is affected.
-The downside is, the router needs to implement BMP leverage from these features.
+You get immediately an alarm as soon the BGP peer down message is received.
+The alarm shows you information about the peer and which AS is affected.
+Of course there is a catch, your router needs to implement BMP to leverage from these features.
 
 To configure Telemetryd on Horizon core server you need at minimum the following configuration in `${OPENNMS_HOME}/etc/telemetryd-configuration.xml`:
 
@@ -47,10 +48,10 @@ To configure Telemetryd on Horizon core server you need at minimum the following
 </telemetryd-config>
 ````
 
-It will establish an TCP listener on port 11019 and we assign the BMP telemetry parser to this port.
+It will run a TCP listener on port 11019 and assigns the BMP telemetry parser to this listener.
 To process messages about BGP peer state changes the BMP-PeerStatus-Adapter needs to be enabled.
 
-If you want to use a Minion as BMP collector you can configure a BMP TCP listener by creating a file in `${MINION_HOME}/etc/org.opennms.features.telemetry.listeners-bmp-11019.cfg` with the following content:
+If you want to use a Minion as BMP collector you can configure a BMP TCP listener and parser by creating a file in `${MINION_HOME}/etc/org.opennms.features.telemetry.listeners-bmp-11019.cfg` with the following content:
 
 ```
 name = BMP
@@ -60,7 +61,8 @@ parsers.0.name = BMP
 parsers.0.class-name = org.opennms.netmgt.telemetry.protocols.bmp.parser.BmpParser
 ```
 
-In my playground I've used GoBGP as BGP implementation and we have to tell the router where to connect to send statistics and state messages.
+In my playground I've used GoBGP as BGP implementation which supports BMP.
+The address is your BMP collector endpoint for BMP state and statistic messages.
 
 ```toml
 
@@ -90,10 +92,10 @@ You can disable or enable a BGP peer session of a router in a remote location wi
 docker-compose exec location-r01 gobgp neighbor 10.0.250.6 disable/enable
 ```
 
-The BGP session is shutdown and you should get two corresponding alarms which look like this:
+The BGP session is shutdown, and you should get two corresponding alarms which look like this:
 
 ![](peer-down-alarm.png)
 
-When you enable the neighbor again an the peering session is restored the alarm is cleared accordingly.
+When you enable the neighbor again, the peering session is restored the alarm is cleared accordingly.
 
 So long and thank you for all the fish ...
