@@ -29,7 +29,7 @@ disqusShortname = ""
   # Description and meta data for the search engines
   author = "Ronny Trommer"
   description = "Private blog around tech and live."
-  keywords = "blog,personal,responsive,search,font awesome,pages,posts,multilingual,highlight.js,syntax highlighting,premium,shortcuts"
+  keywords = "opensource,open-source,opennms,networking,it,technology,tech,blog,ronny,ronnytrommer,indigo423,indigo"
 
   # How many articles should be displayed at once?
   paginate = 10
@@ -53,7 +53,7 @@ disqusShortname = ""
 
   # Header configuration
     # your subtitle if you want to use any
-    subtitle = "...good questions"
+    subtitle = "...it's better to have good questions"
 
     # if you want to use gravatar for the header image
     gravatarEMail = "ronny@no42.org"
