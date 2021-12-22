@@ -1,6 +1,6 @@
 ---
 title: "About Me"
-date: "2018-07-01"
+date: "2021-12-22"
 author: "Ronny Trommer"
 excludeFromTopNav: false
 ---
