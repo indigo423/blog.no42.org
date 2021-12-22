@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "https://no42.org"
+  to = "https://blog.no42.org"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.no42.org"
+  to = "https://blog.no42.org"
+  status = 301
+  force = true
