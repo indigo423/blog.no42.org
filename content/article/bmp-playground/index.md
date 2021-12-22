@@ -65,7 +65,6 @@ In my playground I've used GoBGP as BGP implementation which supports BMP.
 The address is your BMP collector endpoint for BMP state and statistic messages.
 
 ```toml
-
 [[bmp-servers]]
     [bmp-servers.config]
         address = "192.168.50.4"
