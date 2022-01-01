@@ -4,18 +4,18 @@ date: "2021-12-22"
 author: "Ronny Trommer"
 excludeFromTopNav: false
 ---
-Work in Open Source and grew up with an Amiga 500 in the early 90s, a full-time contributor with [@opennms](https://twitter.com/opennms).
+Work in Open Source and grew up with an Amiga 500 in the early 90s, a full-time contributor [@opennms](https://twitter.com/opennms).
 
 #### What I'm doing today
 
-* I work full time for [The OpenNMS Group](https://www.opennms.com) and help in various places, mainly around product management and UX
-* Beta testing new features and trying to find bugs in software and concepts
-* Train people on OpenNMS
-* Build content for documentation for OpenNMS
-* Help structuring content for documentation in OpenNMS
-* Help maintain the Antora infrastructure in OpenNMS
-* Help maintain public Docker container images in the OpenNMS project
+* I work full time for [The OpenNMS Group](https://www.opennms.com) and help in various places, mainly around product management, UX and documentation
 * Think a lot about how to make the world a better place with open source in the network and system monitoring domain
+* Housekeeping for our development team in Germany
+* First point of contact for OpenNMS customers and partners in Europe
+* Beta tester
+* Train people on OpenNMS
+* Help structuring content for documentation
+* Help maintain the Antora infrastructure and Docker container images driven by our CircleCI CI/CD environment 
 
 ### Research and Eduction
 
@@ -27,30 +27,32 @@ Work in Open Source and grew up with an Amiga 500 in the early 90s, a full-time 
   * Distributed systems
   * Network communication
   * Network and system monitoring and introduction to configuration management
-  * Cisco Academy program Cisco IP telephony and CCNA
-* Wrote my degree dissertation about the outsourcing of network monitoring functions
+  * Cisco Academy program Cisco IP telephony and CCNA and volunteered in lab documentation for the CCNP course program
+* Wrote Diplom degree dissertation about outsourcing of network monitoring functions
 
 ### Volunteering
 
 * Mentor [GSoC 2013](https://www.google-melange.com/archive/gsoc/2013/orgs/opennms/projects/jwhite.html): Distribute an instance of OpenNMS across different physical machines to improve availability and scalability
 * Mentor [GSoC 2012](https://www.google-melange.com/archive/gsoc/2012/orgs/opennms/projects/fooker.html): Integration of Flume and ElasticSearch to analyze big log data
-* Speaker about open culture and open source technology at various events
+* Speaker about open culture and open source technology at various events, OSMC, OUCE, FOSDEM, Linux Tag
 * Event coordinator and speaker OpenNMS User Conference Europe (OUCE) 2009 - 2018
-* Co-founder OpenNMS Foundation Europe e.V.
-* Co-founder hackerspace [Magrathea Laboratories e.V.](https://maglab.space)
-* Co-founder MCL2k organizing LAN-Parties for up to 828 people
+* 2010: Co-founder OpenNMS Foundation Europe e.V.
+* 2010: Co-founder Hacker space [Magrathea Laboratories e.V.](https://maglab.space)
+* 2000: Co-founder MCL2k organizing LAN-Parties up to 828 people
 
 ### Places I've worked
 
-* University of Applied Sciences Hochschule Fulda
-* NETHINKS GmbH
-* Drimalski & Partner GmbH
+* 2015 - today, full-time contributor for the OpenNMS project 
+* 2011 - 2015, University of Applied Sciences Hochschule Fulda, research assistant Computer Science department
+* 2010 - 2015, Open Source network monitoring with OpenNMS, Freelancer 
+* 2007 - 2010, NETHINKS GmbH, provide network monitoring services with OpenNMS 
+* 1998 - 2004, Drimalski & Partner GmbH, IT network infrastructure, network security, and MS Active Directory design and implementation
 
 ### Education
 
-* 2001 - 2007 Diplom-Inform. (HS), University of Applied Sciences in Fulda, Telecommunication / Network Engineering
-* 2000 - 2001 Worked as an IT system engineer, did some industry certifications around network security, network design
-* 1998 - 2000 Apprenticeship IT system engineer
+* 2001 - 2006, Diplom-Inform. (HS), University of Applied Sciences in Fulda, Telecommunication / Network Engineering
+* 2000 - 2001, Worked as an IT system engineer, did some industry certifications around network security, network design
+* 1998 - 2000, Apprenticeship IT system engineer
 
 ### Publications
 
