@@ -53,7 +53,7 @@ disqusShortname = ""
 
   # Header configuration
     # your subtitle if you want to use any
-    subtitle = "...it's better to have good questions"
+    subtitle = "... it's better to have good questions"
 
     # if you want to use gravatar for the header image
     gravatarEMail = "ronny@no42.org"
