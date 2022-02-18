@@ -8,32 +8,31 @@ noSummary: false
 ---
 
 In my last weeks, I have to work with deployments of OpenNMS with Kubernetes.
-Instead of spending dollars on cloud providers for my lab playgrounds, I've bought a beefy cheap box for my home network for less than 1.500,-€ about a year ago.
-It saved me probably already more than I would have spent on similar resources in the cloud for my lab playground.
+Instead of spending dollars on cloud providers for my lab, I've bought a beefy cheap box for my home network for less than 1.500,-€ about a year ago.
+It saved me probably already more than I would have spent on similar resources in the cloud for my playgrounds.
 It has an Intel(R) Core(TM) i9-10880H CPU, 64 GB RAM, and 2 TB SSD which has enough steam to run VMware ESXi on it.
+The main goal for this lab is, to have something you can quickly ditch into the bin and rebuild from scratch without worrying, and at the beginning of something new, you'll break it a lot for sure :)
 
-In my recent time, I had to dig a bit to deploy OpenNMS into k8s.
 I've quickly found [k0s](https://k0sproject.io/) which made it super easy to deploy a 3 node cluster in VMs.
 All you need are 3 Ubuntu machines, SSH access, and following the ["Install using k0sctl"](https://docs.k0sproject.io/v1.23.3+k0s.0/k0sctl-install/) instructions.
-With a 3 node cluster I need shared storage, I've found a few descriptions using good old NFS which sounds good.
-It makes it also very easy to get access to the storage from other systems, so it seems it will do it for me and can make my life easier.
-To get traffic into my cluster, I use [MetalLB](https://metallb.universe.tf/) which is also mentioned in the k0s docs and is pretty straightforward to set up.
+With a 3 node cluster I need shared storage, I've found a few descriptions using good old NFS which sounds good for my needs.
+It makes it also very easy to get access to the storage from other systems and it seems it can make my life easier.
+I've used [MetalLB](https://metallb.universe.tf/) to get traffic into my cluster, which is also mentioned in the k0s docs.
+It is a pretty straightforward setup when you use kustomize.
 
-I really like Traefik in my current Docker environments, especially when you use Let's Encrypt and I wanted to use it in my k8s lab as well.
-The goal for this lab is, to have something you can quickly ditch into the bin and rebuild from scratch without worrying.
-It just is something which I want to get me more confident as I go breaking things, and at the beginning of something new, you'll break it a lot for sure :)
+I like Traefik in my current Docker environments, especially when you use Let's Encrypt as I do.
 Here is the cookbook for my future self and some people who want to break stuff as well :)
 
 ## Let's start with shared storage, NFS for the rescue
 
 Having more than 2 K8s nodes which can run pods, gets you a bit closer to what happens in the real world.
-NFS is pretty simple and exporting a shared directory in `/data` is easy.
+I describe using NFS as shared storage and I've exported a shared directory in `/data`.
 
 ```
 /data *(rw,no_root_squash,insecure,async,no_subtree_check,anonuid=1002,anongid=1002)
 ```
 
-Installing the NFS provisioner is pretty straight with Helm:
+Installing the NFS provisioner comes with a Helm chart and is pretty straightforward.
 
 ```
 helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
@@ -43,12 +42,12 @@ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs
 
 ## There is nothing without networking
 
-Deploying a pod is one piece, but actual serving traffic is another one.
+Deploying a pod is one piece, but actual serving traffic is a different one.
 [MetalLB](https://metallb.universe.tf/) is pretty awesome and offers L2 and L3 load balancing services for your cluster.
 I've started with the simple L2 approach to get things done.
 The fact of having a per node traffic bottleneck is a luxury problem I don't have right now :)
 Configuring and deploying MetalLB is similar, I use kustomize and a `configmap.yaml` file.
-You give it an IP range from your local network, and you are good to go.
+Give it an IP range from your local network, and you are good to go.
 I have these files in a `metallb` folder which you can dump into a GitHub repo.
 
 ```yaml
@@ -76,7 +75,7 @@ Create a `kustomization.yaml` in the same folder as the `configmap.yaml` file.
 namespace: metallb-system
 
 resources:
-  - github.com/metallb/metallb//manifests?ref=v0.11.0
+  - github.com/metallb/metallb/manifests?ref=v0.11.0
   - configmap.yaml
 ```
 So all you need to do for a deployment is run the kustomize build command:
@@ -91,13 +90,13 @@ kustomize build | kubectl apply -f -
 I want to deploy web services with HTTP and TLS.
 I'm using [Traefik](https://doc.traefik.io/traefik/) with [Let's Encrypt](https://letsencrypt.org) in my docker-compose stacks.
 I've described this use case [here](/article/docker-traefik-letsencrypt/).
-Having the same in my k8s playground would be nice, and it wasn't hard to figure it out.
+Having the same in my k8s playground would be nice.
 
-Getting Let's Encrypt certificates, I use TLS challenges.
-To get traffic into my network, I use HTTP/HTTPs port forwarding to the load balancer IP assigned to my Traefik service.
-I've stored the certificates in volume, that way I can reuse them and don't have to recreate them all the time.
-It helped me to have two certificate resolvers, one is called `le-staging` and the other one is called just `le`.
-I can use the `le-staging` resolver to get things working without worrying to hit the Let's Encrypt rate limiting.
+To get Let's Encrypt certificates, I've used the TLS challenge.
+The traffic comes into my network with a simple port forwarding for HTTP/HTTPs to the assigned ingress service IP from my Traefik deployment.
+I've stored the certificates in volume, that way I can reuse them and don't have to recreate them all the time when pods restart.
+It was very helpful having two certificate resolvers, one I've called `le-staging` and the other one `le`.
+I can use the `le-staging` resolver for troubleshooting and first trials, without worrying to hit the Let's Encrypt rate limits.
 
 The default TLS options are here to get a better [SSL Labs](https://www.ssllabs.com/9) rating.
 
@@ -178,8 +177,7 @@ spec:
 ```
 
 Traefik takes care of the cert handling.
-If you want to test and troubleshoot first, just use the `le-staging` resolver instead of `le`.
-When troubleshooting Let's Encrypt the site [letsdebug](https://letsdebug.net/) helped me quite a lot to figure things out.
+In case you need Let's Encrypt troubleshooting, the site [letsdebug](https://letsdebug.net/) helped me quite a lot to figure things out.
 Watch out if you have IPv6 services reachable, your cluster in this setup is IPv4 only.
 IPv6 is preferred which leads to weird behaviors getting Let's Encrypt certificates for FDQNs published with IPv6 in DNS.  
 So hope this helps, greetings to my future self from the past and anyone else who find this useful.
