@@ -1,6 +1,6 @@
 ---
 title: "Kilez More - Leben und Tod des Imperialismus"
-date: 2017-11-01T16:23:40+01:00
+date: 2021-11-01T16:23:40+01:00
 
 categories: ['Video', 'Musik', 'Politik']
 tags: ['Kilez More']
@@ -9,7 +9,7 @@ tags: ['Kilez More']
 youtube: "M7IjJiZUutk"
 vimeo: ""       # https://vimeo.com/239830182 -> "239830182"
 ---
-Kilez More ist ein großartiger Österreichischer Musiker.
+Kilez More ist ein großartiger österreichischer Musiker.
 Die meisten seiner Songs haben einen politischen Hintergrund und geniale Texte!
 
 <!--more-->

@@ -1,6 +1,11 @@
 title = "My cool new Blog"
 baseURL = "https://example.com/"
-theme = "bilberry-hugo-theme"
+
+# Option 1 (recommended): adding the theme as a Hugo module
+theme = "github.com/Lednerb/bilberry-hugo-theme/v3"
+
+# Option 2: cloning/copying the theme files
+# theme = "bilberry-hugo-theme"
 
 # Generate the robots.txt file for SEO
 enableRobotsTXT = true
@@ -149,7 +154,7 @@ disqusShortname = ""
 
     # credits line configuration
     copyrightBy = "by Lednerb"
-    copyrightUseCurrentYear = false  # set to true to always display the current year in the copyright
+    copyrightUseCurrentYear = true  # set to true to always display the current year in the copyright
     copyrightYearOverride = "2017"
     copyrightUrl = "https://github.com/Lednerb"
     creditsText = "Bilberry Hugo Theme"
@@ -157,7 +162,7 @@ disqusShortname = ""
 
 
 # customize your available languages for your multi-lingual site
-# or delete the [Languages] blog to use the theme with only one supported language
+# or delete one of the [Languages.xx] blocks to use the theme with only one supported language
 [Languages]
   [Languages.en]
     weight = 1
@@ -181,7 +186,7 @@ disqusShortname = ""
   defaultMarkdownHandler = 'goldmark'
   [markup.goldmark]
     [markup.goldmark.renderer]
-      # Change to 'true' if you need to render raw HTML whithin your markdown content
+      # Change to 'true' if you need to render raw HTML within your markdown content
       unsafe = false
 
   [markup.tableOfContents]
