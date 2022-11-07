@@ -34,9 +34,15 @@ I describe using NFS as shared storage and I've exported a shared directory in `
 
 Installing the NFS provisioner comes with a Helm chart and is pretty straightforward.
 
+Add the NFS storage provisioner to your Helm repository.
+```
+helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+```
+
+Install and configure the NFS provisioner and adjust the `my-nfs-server` and the `/data` path accordingly. 
 ```
 helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
-  --set nfs.server=<my-nfs-server> \
+  --set nfs.server=my-nfs-server \
   --set nfs.path=/data
 ```
 
