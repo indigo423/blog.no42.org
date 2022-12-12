@@ -155,3 +155,16 @@ disqusShortname = ""
     endLevel = 5
     ordered = false
     startLevel = 2
+  [markup.goldmark.extensions]
+    definitionList = true
+    footnote = true
+    linkify = true
+    strikethrough = true
+    table = true
+    taskList = true
+    typographer = true
+  [markup.highlight]
+    codeFences = true
+    noClasses = false
+
+
