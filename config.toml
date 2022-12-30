@@ -119,7 +119,8 @@ disqusShortname = ""
       { link = "https://github.com/indigo423", icon = "fab fa-github" },
       { link = "https://www.linkedin.com/in/ronnytrommer/", icon = "fab fa-linkedin-in" },
       { link = "https://www.xing.com/profile/Ronny_Trommer", icon = "fab fa-xing" },
-      { link = "https://social.labmonkeys.space/@indigo", icon = "fab fa-mastodon" }
+      { link = "https://social.labmonkeys.space/@indigo", icon = "fab fa-mastodon" },
+      { link = "https://wishlist.no42.org/wishlist/indigo", icon = "fas fa-gifts"}
     ]
 
   # credits line configuration
