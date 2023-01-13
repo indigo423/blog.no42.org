@@ -5,7 +5,7 @@ author: "Ronny Trommer"
 excludeFromTopNav: false
 ---
 Work in Open Source and grew up with an Amiga 500 in the early 90s, a full-time contributor [@opennms](https://twitter.com/opennms).
-I maintain some web services just for fun, the current status is shown on [https://no42.betteruptime.com](https://status.no42.org).
+I maintain some web services just for fun, the current operational status is shown on [Uptime Status](https://uptime.labmonkeys.space/status/no42).
 
 #### What I'm doing today
 
