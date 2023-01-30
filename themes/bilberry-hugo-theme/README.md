@@ -5,7 +5,7 @@
 [![Hugo Themes](https://img.shields.io/badge/Hugo_Themes-@Bilberry-ff4088)](https://themes.gohugo.io/themes/bilberry-hugo-theme/)
 
 [![Build GH-Pages](https://github.com/Lednerb/bilberry-hugo-theme/workflows/Update%20GitHub%20Pages/badge.svg)](https://github.com/Lednerb/bilberry-hugo-theme/deployments/activity_log?environment=github-pages)
-[![Contributors](https://img.shields.io/badge/contributors-42-orange.svg?style=flat-square)](#contributors)
+[![Contributors](https://img.shields.io/badge/contributors-45-orange.svg?style=flat-square)](#contributors)
 [![License](https://img.shields.io/github/license/Lednerb/bilberry-hugo-theme.svg?style=flat-square)](https://github.com/Lednerb/bilberry-hugo-theme/blob/master/LICENSE.md)
 
 **Bilberry** is a premium [Hugo](https://gohugo.io) theme with many great features.
@@ -18,13 +18,11 @@ Here's a live [demo site](https://lednerb.github.io/bilberry-hugo-theme) to see 
 
 Support for this theme is provided through the [Issues](https://github.com/Lednerb/bilberry-hugo-theme/issues)
 and [Discussions](https://github.com/Lednerb/bilberry-hugo-theme/discussions) sections of the project.
-Please use the **Issues** section if you would like to report a defect or bug. For any other requests, use the **
-Discussions** section.
+Please use the **Issues** section if you would like to report a defect or bug. For any other requests, use the **Discussions** section.
 
 Please use the following guidelines if you want to start a discussion:
 
-- For any questions regarding a specific feature, or if you need help using or customizing the theme, use the **
-  Questions & Answers** (**Q&A**) category.
+- For any questions regarding a specific feature, or if you need help using or customizing the theme, use the **Questions & Answers** (**Q&A**) category.
 - To propose a new feature or any other improvements, use the **Ideas** category.
 - To showcase your blog or website powered by Bilberry theme, use the **Show and tell** category.
 - For any other inquiries, please use the **General** type discussion.
@@ -60,6 +58,7 @@ Please use the following guidelines if you want to start a discussion:
     - [Manual Summary Split](#manual-summary-split)
     - [Front Matter Summary Split](#front-matter-summary-split)
     - [No Summary Split](#no-summary-split)
+  - [Open Graph Metadata](#open-graph-metadata)
   - [Table of Contents (TOC)](#table-of-contents-toc)
   - [Series Taxonomy](#series-taxonomy)
   - [External Images](#external-images)
@@ -375,6 +374,30 @@ This summary will also be followed by the _Continue reading_ link.
 If you want to display the entire article without the _Continue Reading_ link, set the `noSummary` variable to `true` in
 your content file.
 
+### Open Graph Metadata
+
+The following base Open Graph metadata is included by default in all pages: `og:site_name`, `og:title`, `og:description`, `og:type`, `og:url`, `article:section`, `article:published_time`, and `article:modified_time` where
+the `article:published_time` tag will have the same timestamp value as the `date` front matter variable.
+
+Additional metadata can be included by adding the following front matter variables:
+- `publishDate` for `article:published_time`
+- `images` for `og:image` 
+- `audio` for `og:audio`
+- `videos` for `og:video`
+- `series` for `og:see_also`
+
+For example:
+```markdown
+title: "Open Graph Metadata with Extra Front Matter Variables"
+date: 2022-12-19T19:00:00-05:00
+publishDate: 2022-12-19T20:00:00-05:00
+lastmod: 2022-12-19T21:00:00-05:00
+images: ["/img/content/article/open-graph-metadata-with-extra-front-matter-variables/thumbnail.jpg"]
+audio: "/audio/icq-remix.mp3"
+videos: ["/video/test_mp4_video.mp4"]
+series: ["My Cool Series"]
+```
+
 ### Table of Contents (TOC)
 
 To enable the automatic creation of a table of contents (TOC), set the `toc` front matter variable to `true` in your
@@ -396,7 +419,7 @@ and use the `toc` shortcode like this:
 ### Series Taxonomy
 
 In case you want to group some articles as a series, you have to add the `series` front matter variable to each article
-and set its value to the name of the series, for example, `series: "My New Super Series"`.
+and set its value to the name of the series, for example, `series: ["My New Super Series"]`.
 
 The page at `<site-base-url>/series/` will list all the series. To list all articles for a particular series within
 markdown, you can use the `series` shortcode with the series name in question, for instance:
@@ -605,6 +628,12 @@ In that case, you should use the v4 value in the `config.toml` file.
 
 To allow readers to comment under your articles, you can use either [Commento](https://commento.io/)
 , [Disqus](https://disqus.com/), [Giscus](https://giscus.app/), or [Utterances](https://utteranc.es/).
+
+**Note to developers/contributors**: if you want to submit a new commenting engine for integration with the Bilberry theme, it must meet the following criteria:
+1. The engine should be offered as a SAAS, i.e., you only need to create an account and configure the necessary settings on the engine's website.
+2. If the engine is offered as a SAAS, it must have a free tier plan.
+3. All the configuration steps needed to integrate a third-party commenting service must occur only in the `config.toml` file and not within additional configuration in the partial files or any other.
+
 
 #### Commento
 
