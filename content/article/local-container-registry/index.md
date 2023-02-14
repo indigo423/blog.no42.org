@@ -91,6 +91,8 @@ docker tag busybox cri.no42.org/busybox
 docker push cri.no42.org/busybox
 ```
 
+If you need it a bit more automated, I can recommend to look at [lego](https://go-acme.github.io/lego/) which adds automations on the things described above.
+
 gl & hf
 
 
