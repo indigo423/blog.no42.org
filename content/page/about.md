@@ -4,19 +4,16 @@ date: "2021-12-22"
 author: "Ronny Trommer"
 excludeFromTopNav: false
 ---
-Work in Open Source and grew up with an Amiga 500 in the early 90s, a full-time contributor [@opennms](https://twitter.com/opennms).
-I maintain some web services just for fun, the current operational status is shown on [Uptime Status](https://uptime.labmonkeys.space/status/no42).
+Work in Open Source and grew up with an Amiga 500 in the early 90s, a full-time contributor [@opennms](https://www.opennms.com).
+I run some internet services just for fun.
+The current operational status is shown on [Uptime Status](https://uptime.labmonkeys.space/status/no42).
 
 #### What I'm doing today
 
-* I work full time for [The OpenNMS Group](https://www.opennms.com) and help in various places, mainly around product management, UX and documentation
+* I work full time for [The OpenNMS Group](https://www.opennms.com) in product management for network diagnostics and performance management
+* Lead for our german development team and First point of contact for OpenNMS customers and partners in Europe
+* Subject matter expert in building network monitoring solutions
 * Think a lot about how to make the world a better place with open source in the network and system monitoring domain
-* Housekeeping for our development team in Germany
-* First point of contact for OpenNMS customers and partners in Europe
-* Beta tester
-* Train people on OpenNMS
-* Help structuring content for documentation
-* Help maintain the Antora infrastructure and Docker container images driven by our CircleCI CI/CD environment 
 
 ### Research and Eduction
 
@@ -43,7 +40,8 @@ I maintain some web services just for fun, the current operational status is sho
 
 ### Places I've worked
 
-* 2015 - today, full-time contributor for the OpenNMS project 
+* 2022 - today, joined the product management team at OpenNMS as subject matter expert for network monitoring and performance management
+* 2015 - 2022, full-time contributor for the OpenNMS as open-source network monitoring advocate
 * 2011 - 2015, University of Applied Sciences Hochschule Fulda, research assistant Computer Science department
 * 2010 - 2015, Open Source network monitoring with OpenNMS, Freelancer 
 * 2007 - 2010, NETHINKS GmbH, provide network monitoring services with OpenNMS 
