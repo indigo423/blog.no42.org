@@ -11,7 +11,7 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 #### What I'm doing today
 
 * I work full time for [The OpenNMS Group](https://www.opennms.com) in product management for network diagnostics and performance management
-* Lead for our german development team and First point of contact for OpenNMS customers and partners in Europe
+* Contact manager for our german development team and first point of contact for OpenNMS customers and partners in Europe
 * Subject matter expert in building network monitoring solutions
 * Think a lot about how to make the world a better place with open source in the network and system monitoring domain
 
