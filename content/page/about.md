@@ -14,6 +14,7 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 * Contact manager for our german development team and first point of contact for OpenNMS customers and partners in Europe
 * Subject matter expert in building network monitoring solutions
 * Think a lot about how to make the world a better place with open source in the network and system monitoring domain
+* I've managed to work as a digital nomad since 2010 with people in different culture and different time zones
 
 ### Research and Eduction
 
@@ -41,7 +42,7 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 ### Places I've worked
 
 * 2022 - today, joined the product management team at OpenNMS as subject matter expert for network monitoring and performance management
-* 2015 - 2022, full-time contributor for the OpenNMS as open-source network monitoring advocate
+* 2015 - 2022, full-time contributor at The OpenNMS Group as an open source network monitoring advocate
 * 2011 - 2015, University of Applied Sciences Hochschule Fulda, research assistant Computer Science department
 * 2010 - 2015, Open Source network monitoring with OpenNMS, Freelancer 
 * 2007 - 2010, NETHINKS GmbH, provide network monitoring services with OpenNMS 
