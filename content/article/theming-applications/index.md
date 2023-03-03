@@ -7,17 +7,17 @@ author: "Ronny Trommer"
 noSummary: false
 ---
 
-Open Source software is great.
+Open-source software is great.
 If there is something you don't like, you can at least - try to change it.
-A lot of Open Source software out there is not primarily used by private people.
-There are many companies who provide professional services around Open Source software.
+A lot of open-source software out there is not primarily used by private people.
+There are many companies who provide professional services around open-source software.
 Some of them try to enhance the appearance with custom User Interfaces, their company logo to fit their own Corporate Identity.
 There are several motivations, mostly they want to be distinguished on the marked or need some easy to maintain little customization which allows their sales guys easier to sell a project and not using the software from the community projects website.
 How hard could it be to make something pretty, right?
 
-## Open Source and User Experience Design
+## Open-source and User Experience Design
 
-Open Source software is mostly driven by very enthusiastic technical people.
+Open-source software is mostly driven by very enthusiastic technical people.
 These people build stunning flexible and valuable tools and allow every user and commercial entity to get involved adding value in freedom.
 
 When it comes to User Experience Design, you will run inevitably into some problems.
@@ -38,7 +38,7 @@ It is extremely hard to build a really good User Experience for complex applicat
 Do you seriously think having multiple bad User Interfaces makes the world for your users any better?
 
 Web applications built in the early 2000 didn't had that luxury.
-If you start building and Open Source tool you should seriously have a look at free and Open Source UI frameworks.
+If you start building and open-source tool you should seriously have a look at free and open-source UI frameworks.
 That way you have at least a chance to get a working homogeneous look and feel.
 
 * [PatternFly](https://www.patternfly.org)

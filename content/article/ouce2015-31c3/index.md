@@ -7,7 +7,7 @@ author: "Ronny Trommer"
 noSummary: false
 ---
 
-I spent some time with preparing the [OUCE 2015](http://www.opennms.eu/2014/12/ouce-2015-university-of-applied-science-in-fulda/) and we use the free an open source software [frab](http://frab.github.io/frab/) as conference management system.
+I spent some time with preparing the [OUCE 2015](http://www.opennms.eu/2014/12/ouce-2015-university-of-applied-science-in-fulda/) and we use the free an open-source software [frab](http://frab.github.io/frab/) as conference management system.
 I do most of my server automation with [Chef](https://www.chef.io/) and my playground is running with [Vagrant](https://www.vagrantup.com/).
 For this reason I decided to spend some time an built a [Vagrant](https://github.com/frab/vagrant-frab) / [Chef environment](https://github.com/frab/chef-frab) and contributed it back to the frab project.
 This guys do a really good job and IMHO it is the best free conference management system you can get.

@@ -75,7 +75,7 @@ As you can imagine just a single area in his own is huge.
 To get a checkmark on all of the you have to look at the tools of the _Big Four_ with BMC, CA, HP and IBM.
 So in reality you don't by one tool from one of these vendors, they try to sell you many tools they bought during the time and munched together as a solution.
 
-The Open Source world followed more or less the one tool for a job approach.
+The open-source world followed more or less the one tool for a job approach.
 Monitoring tools do mainly their job in the fault- and performance-management area.
 A lot of them can read _SNMP_ but they don't fully rely on it and bring mostly also their own agents.
 

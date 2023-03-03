@@ -7,7 +7,7 @@ author: "Ronny Trommer"
 noSummary: false
 ---
 
-This week was great, [Microsoft](https://www.microsoft.com) bought [GitHub](https://github.com)! All the Hipsters went crazy and a lot of open source people move now their repos to [GitLab](https://gitlab.com). There is even a Hashtag [#movingtogitlab](https://twitter.com/hashtag/movingtogitlab?src=hash) floating around.
+This week was great, [Microsoft](https://www.microsoft.com) bought [GitHub](https://github.com)! All the Hipsters went crazy and a lot of open-source people move now their repos to [GitLab](https://gitlab.com). There is even a Hashtag [#movingtogitlab](https://twitter.com/hashtag/movingtogitlab?src=hash) floating around.
 
 [![GitLab importer statistics](/images/gitlab-importer-movingtogitlab.png)](https://monitor.gitlab.net/dashboard/db/github-importer?orgId=1)
 
@@ -15,7 +15,7 @@ The [GitLab importer](https://monitor.gitlab.net/dashboard/db/github-importer?or
 
 ## GitHub is the new SourceForge
 
-GitHub was cool, it made [Git](https://git-scm.com) to shine. GitHub was the platform to collaborate on software development in public and helped to make Git the de-facto standard as a free and decentralized version control system. It helped to make development workflows transparent for everyone. The interface was quick, simple, well accepted and it was not plastered with popups and advertisements. It was started in 2007 by the company [GitHub, Inc.](https://de.wikipedia.org/wiki/GitHub) in San Francisco. In a very short amount of time it was so well accepted, it [killed](https://www.heise.de/developer/meldung/GitHub-populaerer-als-SourceForge-und-Google-Code-1255416.html) SourceForge and Google Code. It was the prototype of "disrupting" the way how people collaborate in software development, especially in open source projects.
+GitHub was cool, it made [Git](https://git-scm.com) to shine. GitHub was the platform to collaborate on software development in public and helped to make Git the de-facto standard as a free and decentralized version control system. It helped to make development workflows transparent for everyone. The interface was quick, simple, well accepted and it was not plastered with popups and advertisements. It was started in 2007 by the company [GitHub, Inc.](https://de.wikipedia.org/wiki/GitHub) in San Francisco. In a very short amount of time it was so well accepted, it [killed](https://www.heise.de/developer/meldung/GitHub-populaerer-als-SourceForge-und-Google-Code-1255416.html) SourceForge and Google Code. It was the prototype of "disrupting" the way how people collaborate in software development, especially in open-source projects.
 
 ... and now Microsoft is coming, the dark shadow everyone tried to escape from, is now taking our little rainbow island full of unicorns, freedom and love. We can't accept this, we have to do something about it!
 
@@ -34,6 +34,6 @@ The only believe GitLab is a better choice than Microsoft is  the "hopefully" be
 
 ## Software vs. Services
 
-Decide to use and operate software under an [OSI](https://opensource.org) open source license is one thing, using a service operated by people is another thing. I haven't found people who operate services for you at 0 cost. You have to pay them, with your data or with your money. There is no free and open service definition which guarantees you the service is operated for you free - always and forever - even when peoples mind change. There is no similar thing for a service guarantee like what we have with open source code licenses.
+Decide to use and operate software under an [OSI](https://opensource.org) open-source license is one thing, using a service operated by people is another thing. I haven't found people who operate services for you at 0 cost. You have to pay them, with your data or with your money. There is no free and open service definition which guarantees you the service is operated for you free - always and forever - even when peoples mind change. There is no similar thing for a service guarantee like what we have with open-source code licenses.
 
-If you really want to own as much as possible, then you have to do it the hard way and run your infrastructure by yourself with software which uses an OSI open source license and is governed and owned by a public non-profit association, e.g. [Linux Foundation](https://www.linuxfoundation.org) or [Cloud Native Foundation](https://www.cncf.io).
+If you really want to own as much as possible, then you have to do it the hard way and run your infrastructure by yourself with software which uses an OSI open-source license and is governed and owned by a public non-profit association, e.g. [Linux Foundation](https://www.linuxfoundation.org) or [Cloud Native Foundation](https://www.cncf.io).

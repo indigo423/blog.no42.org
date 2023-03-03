@@ -4,7 +4,7 @@ date: "2021-12-22"
 author: "Ronny Trommer"
 excludeFromTopNav: false
 ---
-Work in Open Source and grew up with an Amiga 500 in the early 90s, a full-time contributor [@opennms](https://www.opennms.com).
+Work in open-source and grew up with an Amiga 500 in the early 90s, a full-time contributor [@opennms](https://www.opennms.com).
 I run some internet services just for fun.
 The current operational status is shown on [Uptime Status](https://uptime.labmonkeys.space/status/no42).
 
@@ -13,7 +13,7 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 * I work full time for [The OpenNMS Group](https://www.opennms.com) in product management for network diagnostics and performance management
 * Contact manager for our german development team and first point of contact for OpenNMS customers and partners in Europe
 * Subject matter expert in building network monitoring solutions
-* Think a lot about how to make the world a better place with open source in the network and system monitoring domain
+* Think a lot about how to make the world a better place with open-source in the network and system monitoring domain
 * I've managed to work as a digital nomad since 2010 with people in different culture and different time zones
 
 ### Research and Eduction
@@ -33,7 +33,7 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 
 * Mentor [GSoC 2013](https://www.google-melange.com/archive/gsoc/2013/orgs/opennms/projects/jwhite.html): Distribute an instance of OpenNMS across different physical machines to improve availability and scalability
 * Mentor [GSoC 2012](https://www.google-melange.com/archive/gsoc/2012/orgs/opennms/projects/fooker.html): Integration of Flume and ElasticSearch to analyze big log data
-* Speaker about open culture and open source technology at various events, OSMC, OUCE, FOSDEM, Linux Tag
+* Speaker about open culture and open-source technology at various events, OSMC, OUCE, FOSDEM, Linux Tag
 * Event coordinator and speaker OpenNMS User Conference Europe (OUCE) 2009 - 2018
 * 2010: Co-founder OpenNMS Foundation Europe e.V.
 * 2010: Co-founder Hacker space [Magrathea Laboratories e.V.](https://maglab.space)
@@ -41,11 +41,11 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 
 ### Places I've worked
 
-* 2022 - today, joined the product management team at OpenNMS as subject matter expert for network monitoring and performance management
-* 2015 - 2022, full-time contributor at The OpenNMS Group as an open source network monitoring advocate
+* 2022 - today, joined the product management team at OpenNMS as subject-matter expert for network monitoring and performance management
+* 2015 - 2022, full-time contributor at The OpenNMS Group as an open-source network monitoring advocate
 * 2011 - 2015, University of Applied Sciences Hochschule Fulda, research assistant Computer Science department
-* 2010 - 2015, Open Source network monitoring with OpenNMS, Freelancer 
-* 2007 - 2010, NETHINKS GmbH, provide network monitoring services with OpenNMS 
+* 2010 - 2015, Advocate for the open-source network monitoring tool OpenNMS, Freelancer
+* 2007 - 2010, NETHINKS GmbH, building solutions and network monitoring services with OpenNMS and various other open-source monitoring tools 
 * 1998 - 2004, Drimalski & Partner GmbH, IT network infrastructure, network security, and MS Active Directory design and implementation
 
 ### Education

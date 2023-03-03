@@ -7,7 +7,7 @@ author: "Ronny Trommer"
 noSummary: false
 ---
 
-Being able to compiling an Open Source project is important.
+Being able to compiling an open-source project is important.
 You can change the code, so you should also able to build it.
 
 Why is there a dedicated Docker image for the build environment?
