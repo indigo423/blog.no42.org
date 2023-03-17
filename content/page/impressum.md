@@ -1,6 +1,6 @@
 ---
 title: "Impressum"
-date: "2018-07-01"
+date: "2023-03-17"
 author: "Ronny Trommer"
 excludeFromTopNav: false
 ---
@@ -8,7 +8,7 @@ excludeFromTopNav: false
 Die Website blog.no42.org wird privat von Ronny Trommer betrieben und bereitgestellt.
 
 **Ronny Trommer** \
-**August-Lämmle-Straße 7/1** \
+**Steinsfelder Weg 22** \
 **74199 Untergruppenbach** \
 \
 **Tel +49 (0) 07130 5319759** \
