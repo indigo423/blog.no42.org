@@ -56,9 +56,10 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 
 ### Publications
 
-* 03 / 2014: OCS Integration mit OpenNMS in [ADMIN-Magazin](https://www.admin-magazin.de/Das-Heft/2014/03/OCS-Informationen-in-die-Ueberwachung-mit-OpenNMS-integrieren/(language)/ger-DE)
-* 05 / 2013: X-rayed: VMware monitoring with OpenNMS in [Linux Magazine](https://www.linux-magazine.com/Issues/2013/150/VMware-Monitoring)
-* 02 / 2013: Durchleuchtet: VMware-Monitoring mit OpenNMS in [ADMIN-Magazin](https://www.admin-magazin.de/Das-Heft/2013/02)
+* 05 / 2023: Fischen im Fluss, Mehr Durchblick im Netzwerk mit OpenNMS Horizon und Flows im [Linux Magazin](https://www.linux-magazin.de/magazine/2023/05/).
+* 03 / 2014: OCS Integration mit OpenNMS im [ADMIN-Magazin](https://www.admin-magazin.de/Das-Heft/2014/03/OCS-Informationen-in-die-Ueberwachung-mit-OpenNMS-integrieren/(language)/ger-DE)
+* 05 / 2013: X-rayed: VMware monitoring with OpenNMS im [Linux Magazine](https://www.linux-magazine.com/Issues/2013/150/VMware-Monitoring)
+* 02 / 2013: Durchleuchtet: VMware-Monitoring mit OpenNMS im [ADMIN-Magazin](https://www.admin-magazin.de/Das-Heft/2013/02)
 * 07 / 2012: [Monitoring VMware-based Virtual Infrastructures with OpenNMS](https://wiki.opennms.org/documentation/CSECS2012-Pape-Trommer.pdf) 8th CSECS Boston University
 * 06 / 2010: OpenNMS – Netzwerkmanagement mit feier Software [dpunkt Verlag](https://dpunkt.de/produkt/opennms/)
 * 05 / 2009: Rundumkontrolle – Enterprise-Netzwerk-Management mit OpenNMS in [iX](https://shop.heise.de/katalog/rundumkontrolle)
