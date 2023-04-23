@@ -1,6 +1,6 @@
 ---
 title: "About Me"
-date: "2021-12-22"
+date: "2023-04-23"
 author: "Ronny Trommer"
 excludeFromTopNav: false
 ---
@@ -10,7 +10,7 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 
 #### What I'm doing today
 
-* I work full time for [The OpenNMS Group](https://www.opennms.com) in product management for network diagnostics and performance management
+* I work full time for [The OpenNMS Group](https://www.opennms.com) in product management and help building tools for network diagnostics and performance management.
 * Contact manager for our german development team and first point of contact for OpenNMS customers and partners in Europe
 * Subject matter expert in building network monitoring solutions
 * Think a lot about how to make the world a better place with open-source in the network and system monitoring domain
@@ -31,10 +31,11 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 
 ### Volunteering
 
+* Mentor for students organizing [HHN Barcamp 2023](https://www.hs-heilbronn.de/de/nicole.ondrusch/innovative-lehre/barcamp) with [KI Salon](https://www.ki-salon.net/) at Heilbronn University of Applied Sciences
 * Mentor [GSoC 2013](https://www.google-melange.com/archive/gsoc/2013/orgs/opennms/projects/jwhite.html): Distribute an instance of OpenNMS across different physical machines to improve availability and scalability
 * Mentor [GSoC 2012](https://www.google-melange.com/archive/gsoc/2012/orgs/opennms/projects/fooker.html): Integration of Flume and ElasticSearch to analyze big log data
 * Speaker about open culture and open-source technology at various events, OSMC, OUCE, FOSDEM, Linux Tag
-* Event coordinator and speaker OpenNMS User Conference Europe (OUCE) 2009 - 2018
+* Event coordinator and speaker at annually OpenNMS User Conference Europe (OUCE) from 2009 - 2018
 * 2010: Co-founder OpenNMS Foundation Europe e.V.
 * 2010: Co-founder Hacker space [Magrathea Laboratories e.V.](https://maglab.space)
 * 2000: Co-founder MCL2k organizing LAN-Parties up to 828 people
@@ -45,7 +46,7 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 * 2015 - 2022, full-time contributor at The OpenNMS Group as an open-source network monitoring advocate
 * 2011 - 2015, University of Applied Sciences Hochschule Fulda, research assistant Computer Science department
 * 2010 - 2015, Advocate for the open-source network monitoring tool OpenNMS, Freelancer
-* 2007 - 2010, NETHINKS GmbH, building solutions and network monitoring services with OpenNMS and various other open-source monitoring tools 
+* 2007 - 2010, NETHINKS GmbH, building solutions and network monitoring services with OpenNMS. and various other open-source monitoring tools 
 * 1998 - 2004, Drimalski & Partner GmbH, IT network infrastructure, network security, and MS Active Directory design and implementation
 
 ### Education
