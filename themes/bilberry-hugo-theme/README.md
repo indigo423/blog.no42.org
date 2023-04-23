@@ -5,7 +5,7 @@
 [![Hugo Themes](https://img.shields.io/badge/Hugo_Themes-@Bilberry-ff4088)](https://themes.gohugo.io/themes/bilberry-hugo-theme/)
 
 [![Build GH-Pages](https://github.com/Lednerb/bilberry-hugo-theme/workflows/Update%20GitHub%20Pages/badge.svg)](https://github.com/Lednerb/bilberry-hugo-theme/deployments/activity_log?environment=github-pages)
-[![Contributors](https://img.shields.io/badge/contributors-45-orange.svg?style=flat-square)](#contributors)
+[![Contributors](https://img.shields.io/badge/contributors-47-orange.svg?style=flat-square)](#contributors)
 [![License](https://img.shields.io/github/license/Lednerb/bilberry-hugo-theme.svg?style=flat-square)](https://github.com/Lednerb/bilberry-hugo-theme/blob/master/LICENSE.md)
 
 **Bilberry** is a premium [Hugo](https://gohugo.io) theme with many great features.
@@ -39,6 +39,7 @@ Please use the following guidelines if you want to start a discussion:
     - [Option 2: Cloning/Copying the Theme Files](#option-2-cloningcopying-the-theme-files)
   - [Configuration](#configuration)
   - [Webserver](#webserver)
+  - [Free Hosting](#free-hosting)
   - [Other Tutorials](#other-tutorials)
 - [Features](#features)
   - [Default Post Types](#default-post-types)
@@ -77,16 +78,18 @@ Please use the following guidelines if you want to start a discussion:
   - [Archive Page](#archive-page)
   - [Responsive Design](#responsive-design)
   - [MathJAX Markup](#mathjax-markup)
-  - [Disabled Javascript Support](#disabled-javascript-support)
+  - [Disabled JavaScript Support](#disabled-javascript-support)
+  - [Trimmed JavaScript Size](#trimmed-javascript-size)
   - [Raw HTML](#raw-html)
 - [Customizations](#customizations)
+  - [Hooks](#hooks)
   - [Favicons](#favicons)
   - [404 Page](#404-page)
   - [Custom Post Types](#custom-post-types)
   - [Individual Posts](#individual-posts)
   - [Colors and Fonts](#colors-and-fonts)
   - [CSS and JS modules](#css-and-js-modules)
-  - [Cookie Disclaimer](#cookie-disclaimer)
+  - [Cookie Disclaimer (GDPR)](#cookie-disclaimer-gdpr)
 - [Translations](#translations)
 - [Credits](#credits)
 - [Contributors](#contributors)
@@ -200,6 +203,14 @@ cd my-new-blog
 hugo server
 ```
 
+### Free Hosting
+
+To deploy and host your website for free, you can use either [GitHub Pages](https://pages.github.com/)
+or [Netlify](https://www.netlify.com/).
+
+**Important**: When hosting on GitHub Pages, you should add an empty file named `.nojekyll` to the site's root to avoid
+the [issue](https://github.com/Lednerb/bilberry-hugo-theme/discussions/448) with Font Awesome's icons not being loaded.
+
 ### Other Tutorials
 
 - [Start Blogging With Hugo, GitHub, and Netlify](https://www.kiroule.com/article/start-blogging-with-github-hugo-and-netlify/)
@@ -252,6 +263,9 @@ The `link` post type always links to an external site and can be used with or wi
 
 If you want to permanently display the top navigation bar with the search text field and `page` items, set
 the `permanentTopNav` parameter to `true` in the `config.toml` file.
+
+If you want to display the top navigation bar when scrolling down the page, set the `stickyNav` parameter to `true`. But
+this will only work when the `permanentTopNav` is also set to `true`.
 
 Please note that the top navigation bar is minimized by default on mobile devices.
 
@@ -745,7 +759,7 @@ Bilberry theme is optimized to look good on all devices, namely desktops, tablet
 To enable the [MathJAX](https://www.mathjax.org) markup support, set the `enable_mathjax` parameter to `true` in
 the `config.toml` file.
 
-### Disabled Javascript Support
+### Disabled JavaScript Support
 
 Although this theme has a lot of features that only work with enabled JavaScript, it also fully supports disabled
 JavaScript.
@@ -753,6 +767,18 @@ Disabled Javascript will not break any styling or essential functionalities of y
 
 You can test the behavior of the [demo site](https://lednerb.github.io/bilberry-hugo-theme) by disabling JavaScript in
 your browser.
+
+### Trimmed JavaScript Size
+
+By default, this theme's JavaScript bundle contains the [highlight.js](https://highlightjs.org/) and [Moment.js](https://momentjs.com/) libraries, which are pretty large, though they add real value.
+
+Therefore, to reduce the size of the downloaded JavaScript bundle, you can choose whether these features should remain enabled (which is currently the default) via two configuration parameters
+
+```toml
+[params]
+enableHighlightJs = true # false would save ~127KiB gzipped
+enableMomentJs = true    # false would save ~262KiB gzipped
+```
 
 ### Raw HTML
 
@@ -765,6 +791,21 @@ unsafe = true
 ```
 
 ## Customizations
+
+### Hooks
+
+If you need to integrate your website with a third-party service or to customize it further, you can use the following
+hook partials: [hooks/head-end.html](https://github.com/Lednerb/bilberry-hugo-theme/blob/master/layouts/partials/hooks/head-end.html), 
+[hooks/body-start.html](https://github.com/Lednerb/bilberry-hugo-theme/blob/master/layouts/partials/hooks/body-start.html), 
+and [hooks/body-end.html](https://github.com/Lednerb/bilberry-hugo-theme/blob/master/layouts/partials/hooks/body-end.html). 
+Copy the file in question into your site root's `layouts/partials/hooks` folder and add the necessary code, for
+example, as in this [hooks/body-end.html](https://github.com/igor-baiborodine/bilberry-hugo-theme-sandbox/blob/9c492fad08771295f529b9acdc17aa03865a52ad/layouts/partials/hooks/body-end.html)
+file that contains integration with Umami web analytics.
+
+```html
+<script async defer src="https://analytics.umami.is/script.js"
+        data-website-id="29b02d61-3df1-433f-8bb7-cba0ec70c9f7"></script>
+```
 
 ### Favicons
 
@@ -851,7 +892,7 @@ URL.
 Modules are imported in the order they appear in the list, and immediately after the default Bilberry CSS and JS files
 are imported.
 
-### Cookie Disclaimer
+### Cookie Disclaimer (GDPR)
 
 You can use the [cookie consent](https://cookieconsent.insites.com/) solution to add cookie consent information by
 loading the needed resources as external CSS and JS modules.
