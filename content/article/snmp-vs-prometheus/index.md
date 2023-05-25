@@ -39,17 +39,17 @@ With an out-of-the-box configuration, OpenNMS collects 1116 metrics[^1].
 When you install the Prometheus Node-Exporter you get 1965 metrics[^2].
 The question is, which one is more efficient on the wire? Pretty easy to look at, run a TCP dump and analyze the conversation.
 
-![](flow-snmp.png)
+![](flow-snmp.webp)
 
-![](flow-prometheus.png)
+![](flow-prometheus.webp)
 
 Comparing SNMP and Prometheus, shows UDP isn't as efficient when it comes to packets and collection time.
 It ends up with more messages to get the 1116 data points across the wire.
 Traversing the SNMP tree and getting the response is also slower then just getting the metrics from an /metrics endpoint.
 
-![](conversation-snmp.png)
+![](conversation-snmp.webp)
 
-![](conversation-prometheus.png)
+![](conversation-prometheus.webp)
 
 It takes ~4.3 seconds to fetch it from SNMP, whereas the Prometheus agent can scrape it in 0.06 seconds, ~70x faster collecting 849 additional data points.
 Using SNMP, your network needs to forward 106 packets vs. just 21 packets using Prometheus.

@@ -21,12 +21,12 @@ First of all, see if your ISP gives you the ability to delegate IPv6 networks to
 My provider gives me an IPv6 /64 network and you should also get a second prefix for delegation.
 In my case, I get a /56 prefix all looks good to dig into IPv6 delegation.
 
-![](FritzBox-IPv6.png)
+![](FritzBox-IPv6.webp)
 
 The next step is requesting a prefix and delegating to your router behind.
 Enable the prefix delegation option (IA_PD) and save your settings.
 
-![](FritzBox-IPv6-delegation.png)
+![](FritzBox-IPv6-delegation.webp)
 
 The Ubiquiti router can now request individual prefixes from the /56 network and can assign them to your internal networks.
 My network setup with network interfaces looks like this.
@@ -72,11 +72,11 @@ indigo@spiffy# show interfaces ethernet eth0
 
 You can verify on your FRITZ!Box if a /57 prefix is delegated.
 
-![](IPv6-prefix-delegated.png)
+![](IPv6-prefix-delegated.webp)
 
 For each interface, a request for a prefix is requested, and stateless address autoconfiguration for IPv6 is used.
 The interfaces get now a public IPv6 address assigned and are distributed accordingly to the clients in the networks.
 
-![](ubiquiti-ipv6.png)
+![](ubiquiti-ipv6.webp)
 
 So long, and thanks for all the fish!

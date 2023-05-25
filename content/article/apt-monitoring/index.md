@@ -16,7 +16,7 @@ I had to tweak the scripts a bit to get it running.
 He integrated an APT hook which runs a command on apt update and after installing packages.
 The hooks create a Prometheus file which can be easily shipped with the Node_Exporter.
 
-![](apt-monitoring-screenshot.png)
+![](apt-monitoring-screenshot.webp)
 
 The high level steps are pretty straight forward.
 1. Add a wrapper script which creates the `apt.prom` file format for you.

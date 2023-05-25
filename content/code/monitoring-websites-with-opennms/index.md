@@ -12,7 +12,7 @@ Using OpenNMS to monitor websites can be done by using the built in HTTP/HTTPS b
 While a "Node" can be pretty much everything in a network, the internal model to monitor something is pretty old-fashioned and static.
 Monitoring a service requires to assign a service to an IP address.
 
-![OpenNMS Node Model](node-model.png)
+![OpenNMS Node Model](node-model.webp)
 
 This article describes a pattern how you can monitor web sites with low maintenance and without the need to maintain for each website a monitor which is cumbersome in maintenance.
 
@@ -101,7 +101,7 @@ The tricky question is: "Which IP should I assign to a node, cause it is mandant
 If you run OpenNMS on a Linux system you can pick a unique IP address for each website from the `127/8` loopback IP range.
 They will always be reachable and respond to ICMP by the systems local IP stack.
 
-![Node Provisioning for websites](provision-node.png)
+![Node Provisioning for websites](provision-node.webp)
 
 Assign the _Web-Page-Landing-SSL_ monitor to the loopback IP.
 If you want to have a more detailed error message and not just a _nodeDown_ event in case the website is unavailable, provision the _ICMP_ service on the loopback IP.

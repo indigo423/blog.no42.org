@@ -18,10 +18,10 @@ We want to have two Active Directory groups, one named `OpenNMS-Admins` and a se
 The user within the group `OpenNMS-Admins` can configure OpenNMS Horizon and the user in `OpenNMS-Users` are regular OpenNMS Horizon users without access to the administration area in the Web UI.
 
 ***Step 1: Create an user which to bind against LDAP to execute search queries***
-![](opennms-bind-user.png)
+![](opennms-bind-user.webp)
 
 ***Step 2: Create the Groups in Active Directory and assign the Users into the groups***
-![](users-and-groups.png)
+![](users-and-groups.webp)
 
 ***Step 3: Test the connection with ldapsearch and the bind user from your OpenNMS Horizon server***
 ```sh

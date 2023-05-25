@@ -103,27 +103,27 @@ Restart OpenNMS so the changes will be applied.
 
 Create a notification *destination path* which uses your newly created *signal-cli* notification command.
 
-[![](destination-path-thumb.png)](destination-path.gif)
+[![](destination-path-thumb.webp)](destination-path.gif)
 
 **Step 6: Add a mobile phone number in your user account**
 
-[![](mobile-number-thumb.png)](mobile-number.gif)
+[![](mobile-number-thumb.webp)](mobile-number.gif)
 
 **Step 7: Configure a notification to use our new destination path**
 
-[![](notification-thumb.png)](notification.gif)
+[![](notification-thumb.webp)](notification.gif)
 
 **Step 8: Enable Notifications**
 
-[![](enable-notification-thumb.png)](enable-notification.gif)
+[![](enable-notification-thumb.webp)](enable-notification.gif)
 
 **Step 9: Test Notification**
 
-[![](test-notification-thumb.png)](test-notification.gif)
+[![](test-notification-thumb.webp)](test-notification.gif)
 
 Check if you get a notification for a node outage and a resolved message.
 
-[![](notification-phone.png)](notification-phone.png)
+[![](notification-phone.webp)](notification-phone.webp)
 
 #### Troubleshooting
 

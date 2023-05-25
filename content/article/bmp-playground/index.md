@@ -78,7 +78,7 @@ If you have a Minion in the network you should use the Minions IP address instea
 
 If you want to play around with the environment, I've created a [BMP Playground](https://github.com/opennms-forge/bmp-playground) which has all components and a little BGP network to play with.
 
-![](bgp-playground.png)
+![](bgp-playground.webp)
 
 The playground has 6 BGP routers, 3 running in the same network as the Horizon core server instance and 3 are in a remote network using our Minion as a BMP collector.
 
@@ -93,7 +93,13 @@ docker-compose exec location-r01 gobgp neighbor 10.0.250.6 disable/enable
 
 The BGP session is shutdown, and you should get two corresponding alarms which look like this:
 
-![](peer-down-alarm.png)
+![](peer-down-alarm.webp)
+
+The status is also reflected in the BGP and IP topology as shown below.
+
+![](bgp-topology.webp)
+
+![](ip-network-topology.webp)
 
 When you enable the neighbor again, the peering session is restored the alarm is cleared accordingly.
 
