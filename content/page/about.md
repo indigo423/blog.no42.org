@@ -57,7 +57,8 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 
 ### Publications
 
-* 05 / 2023: Fischen im Fluss, Mehr Durchblick im Netzwerk mit OpenNMS Horizon und Flows im [Linux Magazin](https://www.linux-magazin.de/magazine/2023/05/).
+* 09 / 2023: OpenNMS Horizon and Flows [ADMIN-Magazine Issue 77](https://www.admin-magazine.com/Archive/2023/77)
+* 05 / 2023: Fischen im Fluss, Mehr Durchblick im Netzwerk mit OpenNMS Horizon und Flows im [Linux Magazin](https://www.linux-magazin.de/magazine/2023/05/)
 * 03 / 2014: OCS Integration mit OpenNMS im [ADMIN-Magazin](https://www.admin-magazin.de/Das-Heft/2014/03/OCS-Informationen-in-die-Ueberwachung-mit-OpenNMS-integrieren/(language)/ger-DE)
 * 05 / 2013: X-rayed: VMware monitoring with OpenNMS im [Linux Magazine](https://www.linux-magazine.com/Issues/2013/150/VMware-Monitoring)
 * 02 / 2013: Durchleuchtet: VMware-Monitoring mit OpenNMS im [ADMIN-Magazin](https://www.admin-magazin.de/Das-Heft/2013/02)
