@@ -2,7 +2,7 @@
 title: "SNMP vs. Prometheus – On The Wire"
 date: "2022-11-15"
 author: "Ronny Trommer"
-categories: ['technology']
+categories: ['Technology']
 tags: ['monitoring', 'snmp', 'prometheus']
 noSummary: false
 ---

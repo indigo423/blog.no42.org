@@ -1,7 +1,7 @@
 ---
 title: "IPv6 prefix delegation with FRITZ!OS 7.50 and Ubiquiti ER-4"
 date: "2023-02-14"
-categories: ['networking', 'homelab', 'ipv6' ]
+categories: ['Networking', 'Homelab', 'IPv6' ]
 tags: [ 'fritzbox' , 'ubiquiti', 'ipv6' ]
 author: "Ronny Trommer"
 noSummary: false

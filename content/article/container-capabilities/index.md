@@ -2,7 +2,7 @@
 title: "Containers and Capabilities"
 date: "2022-07-14"
 author: "Ronny Trommer"
-categories: ['technology']
+categories: ['Technology']
 tags: ['k8s', 'container', 'linux']
 noSummary: false
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Running a private container registry for testing"
 date: "2023-02-14"
-categories: ['container', 'microservices', 'homelab', 'tls' ]
+categories: ['Container', 'Microservices', 'Homelab', 'TLS' ]
 tags: [ 'container' , 'tls', 'registry', 'ssl', 'dns' ]
 author: "Ronny Trommer"
 noSummary: false
