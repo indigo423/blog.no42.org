@@ -1,5 +1,5 @@
 ---
-title: "Make your visible using network flows"
+title: "Make your network traffic visible using flows"
 date: "2023-12-01"
 tags: ['opennms', 'snmp', 'netflow', 'sflow', 'xflow']
 author: "Ronny Trommer"
