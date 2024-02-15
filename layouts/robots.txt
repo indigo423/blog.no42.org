@@ -16,4 +16,87 @@ Disallow: /
 User-Agent: FacebookBot
 Disallow: /
 
+User-agent: Yandex
+Disallow: /
+Crawl-delay: 300
+
+User-Agent: rogerbot
+Disallow: /
+Crawl-delay: 300
+
+user-agent: AhrefsBot
+disallow: /
+
+user-agent: MJ12bot
+disallow: /
+
+user-agent: 008
+disallow: /
+
+user-agent: sistrix
+disallow: /
+
+User-agent: grapeshot
+Disallow: /
+
+User-agent: proximic
+Disallow: /
+
+User-agent: MaxPoint Bot
+Disallow: /
+
+User-agent: MaxPointCrawler
+Disallow: /
+
+User-agent: Sistrix Crawler
+Disallow: /
+
+User-agent: HTTrack
+Disallow: /
+
+User-agent: RavenCrawler
+Disallow: /
+
+User-agent: ZumBot*
+Disallow: /
+
+User-agent: SputnikBot
+Disallow: /
+
+User-agent: Sputnik
+Disallow: /
+
+User-agent: SputnikBot/2.3
+Disallow: /
+
+User-agent: spbot
+Disallow: /
+
+User-agent: spbot/4.0.9
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: Spinn3r
+Disallow: /
+
+User-agent: Zing-BottaBot/2.0
+Disallow: /
+
+User-agent: crawler4j
+Disallow: /
+
+User-agent: Diffbot/0.1
+Disallow: /
+
+User-agent: 360Spider
+Disallow: /
+
+User-agent: Caliperbot/1.0
+Crawl-delay: 5
+
+User-agent: Sogou+web+spider/4.0
+Disallow: /
+
 User-agent: *
