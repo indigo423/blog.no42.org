@@ -67,7 +67,7 @@ Controller for the purposes of the General Data Protection Regulation (GDPR), ot
 
 ```
 Ronny Trommmer
-August-Laemmle-Str 7-1
+Steinsfelder Weg 22
 74199 Untergruppenbach
 Deutschland
 
