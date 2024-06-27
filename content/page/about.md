@@ -4,7 +4,7 @@ date: "2023-04-23"
 author: "Ronny Trommer"
 excludeFromTopNav: false
 ---
-Work in open-source and grew up with an Amiga 500 in the early 90s, a full-time contributor [@opennms](https://www.opennms.com).
+Work in open source and grew up with an Amiga 500 in the early 90s, a full-time contributor [@opennms](https://www.opennms.com).
 I run some internet services just for fun.
 The current operational status is shown on [Uptime Status](https://uptime.labmonkeys.space/status/no42).
 
@@ -31,10 +31,11 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 
 ### Volunteering
 
-* Mentor for students organizing [HHN Barcamp 2023](https://www.hs-heilbronn.de/de/nicole.ondrusch/innovative-lehre/barcamp) with [KI Salon](https://www.ki-salon.net/) at Heilbronn University of Applied Sciences
+* Speaker about open culture and open source technology at various events like OSMC, OUCE, FOSDEM, Linux Tag
+* Mentor [HHN Barcamp 2023 - Green IT & Nachhaltigkeit](https://www.hs-heilbronn.de/de/nicole.ondrusch/innovative-lehre/barcamp)
+* Mentor [HHN Barcamp 2023 - KI](https://www.hs-heilbronn.de/de/nicole.ondrusch/innovative-lehre/barcamp) with [KI Salon](https://www.ki-salon.net/) at Heilbronn University of Applied Sciences
 * Mentor [GSoC 2013](https://www.google-melange.com/archive/gsoc/2013/orgs/opennms/projects/jwhite.html): Distribute an instance of OpenNMS across different physical machines to improve availability and scalability
 * Mentor [GSoC 2012](https://www.google-melange.com/archive/gsoc/2012/orgs/opennms/projects/fooker.html): Integration of Flume and ElasticSearch to analyze big log data
-* Speaker about open culture and open-source technology at various events, OSMC, OUCE, FOSDEM, Linux Tag
 * Event coordinator and speaker at annually OpenNMS User Conference Europe (OUCE) from 2009 - 2018
 * 2010: Co-founder OpenNMS Foundation Europe e.V.
 * 2010: Co-founder Hacker space [Magrathea Laboratories e.V.](https://maglab.space)
@@ -42,11 +43,12 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 
 ### Places I've worked
 
-* 2022 - today, joined the product management team at OpenNMS as subject-matter expert for network monitoring and performance management
-* 2015 - 2022, full-time contributor at The OpenNMS Group as an open-source network monitoring advocate
+* 2023 - today, help
+* 2022 - 2023, joined the product management team at OpenNMS as subject-matter expert for network monitoring and performance management
+* 2015 - 2022, full-time contributor at The OpenNMS Group as an open source network monitoring advocate
 * 2011 - 2015, University of Applied Sciences Hochschule Fulda, research assistant Computer Science department
-* 2010 - 2015, Advocate for the open-source network monitoring tool OpenNMS, Freelancer
-* 2007 - 2010, NETHINKS GmbH, building solutions and network monitoring services with OpenNMS. and various other open-source monitoring tools 
+* 2010 - 2015, Advocate for the open source network monitoring tool OpenNMS, Freelancer
+* 2007 - 2010, NETHINKS GmbH, building solutions and network monitoring services with OpenNMS. and various other open source monitoring tools
 * 1998 - 2004, Drimalski & Partner GmbH, IT network infrastructure, network security, and MS Active Directory design and implementation
 
 ### Education
