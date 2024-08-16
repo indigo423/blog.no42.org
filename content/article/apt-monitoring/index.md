@@ -1,7 +1,7 @@
 ---
 title: "APT Monitoring with Prometheus"
 date: "2022-12-24"
-categories: ['Monitoring']
+categories: ['Monitoring', 'How-To']
 tags: ['grafana', 'prometheus']
 author: "Ronny Trommer"
 noSummary: false

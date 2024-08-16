@@ -1,8 +1,8 @@
 ---
 title: "OpenNMS Horizon, Docker, Traefik and Let's Encrypt"
 date: "2021-08-11"
-categories: ['Technology']
-tags: ['tools']
+categories: ['Container', 'How-To', 'OpenNMS']
+tags: ['container', 'kubernetes', 'traefik', 'tls']
 author: "Ronny Trommer"
 noSummary: false
 ---

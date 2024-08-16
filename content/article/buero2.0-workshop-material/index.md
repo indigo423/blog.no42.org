@@ -1,7 +1,7 @@
 ---
 title: "Material Workshop OpenNMS im Büro 2.0"
 date: "2015-03-31"
-categories: ['Events', 'OpenNMS']
+categories: ['Events', 'OpenNMS', 'Workshop']
 tags: ['events', 'opennms']
 author: "Ronny Trommer"
 noSummary: true

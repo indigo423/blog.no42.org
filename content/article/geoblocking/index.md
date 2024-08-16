@@ -2,8 +2,8 @@
 title: "This website is not available in your country"
 date: "2021-12-22"
 author: "Ronny Trommer"
-categories: ['Technology']
-tags: [ 'hack' ]
+categories: ['Technology', 'How-To']
+tags: [ 'hack', 'tor', 'networking' ]
 noSummary: false
 ---
 

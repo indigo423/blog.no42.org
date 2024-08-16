@@ -1,7 +1,7 @@
 ---
 title: "BGP monitoring playground"
 date: "2021-08-20"
-categories: ['Monitoring']
+categories: ['Monitoring', 'How-To', 'BGP', 'OpenNMS']
 tags: ['networking', 'bgp', 'bmp', 'opennms']
 author: "Ronny Trommer"
 noSummary: false

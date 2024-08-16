@@ -2,8 +2,8 @@
 title: "A cookbook for a K8s playground"
 date: "2022-02-11"
 author: "Ronny Trommer"
-categories: ['Technology']
-tags: ['k8s', 'playground']
+categories: ['Technology', 'How-To', 'Containers']
+tags: ['kubernetes', 'playground', 'k0s']
 noSummary: false
 ---
 

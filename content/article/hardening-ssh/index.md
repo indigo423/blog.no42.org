@@ -1,8 +1,8 @@
 ---
 title: "Hardening SSH for audit"
 date: "2021-02-19"
-categories: ['Technology']
-tags: ['tools']
+categories: ['Technology', 'How-To']
+tags: ['tools', 'ssh', 'security']
 author: "Ronny Trommer"
 noSummary: false
 ---

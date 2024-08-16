@@ -2,8 +2,8 @@
 title: "ioquake3 in a container"
 date: "2022-01-06"
 author: "Ronny Trommer"
-categories: ['Technology', 'Games']
-tags: [ 'fun', 'dedicated server', 'lan parties' ]
+categories: ['Technology', 'Games', 'How-To']
+tags: [ 'fun', 'dedicated server', 'lan parties', 'quake-3-arene' ]
 noSummary: false
 ---
 
