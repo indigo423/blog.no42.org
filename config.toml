@@ -115,7 +115,6 @@ disqusShortname = ""
     # all icons https://fontawesome.com/icons?d=gallery&m=free
     # brand icons https://fontawesome.com/icons?d=gallery&s=brands&m=free
     socialMediaLinks = [
-      { link = "https://www.biodrop.io/indigo423", icon = "fab fa-pagelines"},
       { link = "https://github.com/indigo423", icon = "fab fa-github" },
       { link = "https://www.linkedin.com/in/ronnytrommer/", icon = "fab fa-linkedin-in" },
       { link = "https://www.xing.com/profile/Ronny_Trommer", icon = "fab fa-xing" },
@@ -166,5 +165,3 @@ disqusShortname = ""
   [markup.highlight]
     codeFences = true
     noClasses = false
-
-
