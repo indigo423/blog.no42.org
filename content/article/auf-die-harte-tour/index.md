@@ -31,6 +31,10 @@ The hardware specs for this session:
 * Internet access
 * Working directory is the home directory of a user who can do administrative tasks with `sudo` , in this case a user `rocky` in `/home/rocky`
 
+If you want to build a different version here is an overview which OpenJDK you can use for various versions.
+
+![OpenJDK compatibility](OpenJDK-compatibility.drawio.svg)
+
 ## Milestone 1: Build OpenNMS Horizon Snapshot
 
 We build three components:
