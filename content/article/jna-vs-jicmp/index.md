@@ -212,7 +212,7 @@ There are now additional steps we can take from here, most notably:
 
 * Compile and install IPLIKE stored procedure in PostgreSQL
 * Compile and install RRDTool support using JRRD2
-* Building RPM packages
+* Building Core, Minion, and Sentinel RPM packages
 * Create Docker container images
 
 Stay tuned and so long
