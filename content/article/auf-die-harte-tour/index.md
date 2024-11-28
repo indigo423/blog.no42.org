@@ -476,9 +476,7 @@ Covering this topic specifically is worth investigating in a dedicated article.
 
 There are now additional steps we can take from here, most notably:
 
-* JNA vs. JNI ICMP performance implications
-* Compile and install JNI ICMP with JICMP6
-* JNA vs. JNI ICMP performance implications
+* [JNA vs. JNI ICMP performance implications]({{< ref "/article/jna-vs-jicmp" >}})
 * Compile and install IPLIKE stored procedure in PostgreSQL
 * Compile and install RRDTool support using JRRD2
 * Building RPM packages
