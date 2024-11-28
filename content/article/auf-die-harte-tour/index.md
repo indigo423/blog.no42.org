@@ -54,6 +54,14 @@ Install `git` and the OpenJDK 17 development kit
 sudo dnf -y install git java-17-openjdk-devel
 ```
 
+Get the source code from GitHub with
+
+```bash
+git clone https://github.com/opennms/opennms
+```
+**💁‍♀️** This will get you automatically the `develop` branch which is the release candidate for the next major version of OpenNMS Horizon.
+Our example `34.0.0-SNAPSHOT`.
+
 ### Step 2: Compile the source code
 Compile the Java source code
 ```bash
