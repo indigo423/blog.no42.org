@@ -7,18 +7,18 @@ author: "Ronny Trommer"
 noSummary: false
 ---
 
-As described in the [previous article]({{< ref "/article/auf-die-harte-tour" >}}) we have build an installed an OpenNMS Horizon Core component from source.
+As described in the [previous article]({{< ref "/article/auf-die-harte-tour" >}}) we have built and installed an OpenNMS Horizon Core component from the source.
 
 With setting up the database schema with `${OPENNMS_HOME}/bin/install -dis` a function `IPLIKE` is created for the OpenNMS database.
 
-It allows to get IP address matches for IPv4 and IPv6 addresses with filters used in all IP filters in the tool, e.g. `IPADDR IPLIKE 192.168.0-3.0-255`.
+It allows us to get IP address matches for IPv4 and IPv6 addresses with filters used in all IP filters in the tool, e.g. `IPADDR IPLIKE 192.168.0-3.0-255`.
 
-By default the function is implemented in a SQL procedural language (PL/pgSQL).
+By default, the function is implemented in a SQL procedural language (PL/pgSQL).
 As OpenNMS had to deal with larger IP address inventories, an optimized version in C was created which is available as the IPLIKE package.
-The C version of this stored procedure has to built against header files from specific PostgreSQL major versions.
+The C version of this stored procedure has to be built against header files from specific PostgreSQL major versions.
 This is the reason you see `iplike-pgsql{12,13,14,15}` packages in the [OpenNMS repositories](https://cloudsmith.io/~opennms/repos/common/packages/?q=iplike).
 
-If you don't install the iplike package aa `plpgsql` function will be created.
+If you don't install the iplike package a `plpgsql` function will be created.
 You can verify the IPLIKE implementation language by connecting to your database and inspecting the details of the iplike function.
 
 ```bash
@@ -31,7 +31,7 @@ Get the details of the iplike function with
 my-hzn-db=> \df+ iplike
 ```
 
-The first line in the column `Language` should give you `plpgsql` followed by the code of the function.
+The first line in the column `Language` should give you `plpgsql` followed by the function itself.
 
 ```psql
 public | iplike | boolean          | i_ipaddress text, i_rule text | func | volatile   | unsafe   | opennms | invoker  |                   | plpgsql  |
@@ -41,7 +41,7 @@ public | iplike | boolean          | i_ipaddress text, i_rule text | func | vola
 
 ![](pgadmin-iplike.png)
 
-You can test function with an SQL command by enable the `\timing` function to measure the execution time.
+You can test the function with an SQL command and enable `\timing` to measure the execution time.
 In the example, I have loaded ~16k Nodes into the inventory with a unique address from the 10.0.0.0/18 IP range.
 
 ```psql
@@ -57,7 +57,7 @@ Time: 194.280 ms
 ```
 
 Matching addresses takes ~194 ms with the plpsql implemented function.
-If we do the exact same thing with the C implemented iplike function you will see the following output:
+If we do the same thing with the C-implemented iplike function you will see the following output:
 
 ```psql
 my-hzn-db=# \df+ iplike
@@ -71,7 +71,7 @@ e      |
 (1 row)
 ```
 
-Running the same query against the inventory gives to following output:
+Running the same query against the inventory gives the following output:
 
 ```psql
 my-hzn-db=> \timing
@@ -85,8 +85,8 @@ my-hzn-db=# select count(IPLIKE(ipaddr,'10.*.*.*')) from ipinterface;
 Time: 19.093 ms
 ```
 
-As you can see we have 10x faster response from the C implemented function.
-The iplike function helps to reduce internal latency of the monitoring system which allows us to deal with larger workloads.
+As you can see we have a 10x faster response from the C-implemented function.
+The iplike function helps to reduce the internal latency of the monitoring system which allows us to deal with larger workloads.
 
 ## Build Iplike from source
 
@@ -101,7 +101,7 @@ If you want to use newer PostgreSQL versions where OpenNMS hasn't published RPM 
 * Working directory is the home directory for a user `rocky` (`/home/rocky`)
 * Make sure you don't have an OpenNMS Horizon Core instance running
 
-Install the PostgreSQL repository and the development header files from the PostgreSQL major version you want to run in your environment.
+Install the PostgreSQL repository and the development header files from the major version you want to run in your environment.
 I use PostgreSQL 17 here as an example.
 
 Install the build dependencies
@@ -123,29 +123,29 @@ Error:
 (try to add '--skip-broken' to skip uninstallable packages or '--nobest' to use not only best candidate packages)
 ```
 
-Install the official PostgreSQL 17 repository, server and developer files.
+Install the official PostgreSQL 17 repository, server, and developer files.
 ```bash
 sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 sudo dnf install -y postgresql17-server postgresql17-devel
 ```
 
-Checkout the source code from GitHub
+Checkout the source code from GitHub.
 ```bash
 git clone https://github.com/opennms/iplike
 ```
 
-Get the git submodules for autotools
+Get the git submodules for autotools.
 ```bash
 cd iplike
 git submodule update --init
 ```
 
-Generate the configure scripts
+Generate the configure scripts.
 ```bash
 ./configure
 ```
 
-You will get an error message
+You will get an error message.
 ```
 configure: error: PostgreSQL is required
 ```
@@ -170,20 +170,20 @@ The libraries and an install script are installed in the following locations:
 -rwxr-xr-x. 1 root root 2189 Nov 29 17:19 /usr/local/sbin/install_iplike.sh
 ```
 
-Initialize the PostgreSQL 17 database
+Initialize the PostgreSQL 17 database.
 ```bash
 sudo postgresql-17-setup initdb
 ```
 
-Prepare the database for the OpenNMS Horizon installation
+Prepare the database for the OpenNMS Horizon installation.
 
 
 ```bash
 sudo -i -u postgres createuser -P my-hzn-user
 ```
 
-Set a secure password, in this example I use `my-hzn-user-pass` as a password to describe these steps.
-Create a database and set the owner accordingly
+Set a secure password, in this example, I use `my-hzn-user-pass` as a password to describe these steps.
+Create a database and set the owner accordingly.
 ```bash
 sudo -i -u postgres createdb -O my-hzn-user my-hzn-db
 ```
@@ -193,20 +193,19 @@ Set a secure password for the `postgres` user.
 sudo -i -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'my-postgres-pass';"
 ```
 
-Install the iplike function into the OpenNMS Horizon database
-
+Install the iplike function into the OpenNMS Horizon database.
 ```bash
 [rocky@rocky-dev iplike]$ /usr/local/sbin/install_iplike.sh -d my-hzn-db
 Password for user postgres:
 CREATE FUNCTION
 ```
 
-Initialize the database schema for OpenNMS Horizon
+Initialize the database schema for OpenNMS Horizon.
 ```bash
 sudo -u opennms /opt/opennms/bin/install -dis
 ```
 
-You get an "Unsupported database version" error message:
+You get an "Unsupported database version" error message.
 ```
 17:37:33.696 [Main] INFO  org.opennms.core.schema.Migrator - validating database version
 java.lang.reflect.InvocationTargetException
@@ -224,13 +223,12 @@ Caused by: org.opennms.core.schema.MigrationException: Unsupported database vers
         ... 6 more
 ```
 
-You need to run the `install` tool with the option `-Q` to ignore the database version
+You need to run the `install` tool with the option `-Q` to ignore the database version.
 ```bash
 sudo -u opennms /opt/opennms/bin/install -disQ
 ```
 
-Verify the language of the installed iplike function
-
+Verify the language of the installed iplike function.
 ```bash
 [rocky@rocky-dev iplike]$ psql -U my-hzn-user -d my-hzn-db -h localhost
 Password for user my-hzn-user:
@@ -251,7 +249,6 @@ my-hzn-db=>
 ```
 
 Start OpenNMS Horizon core with
-
 ```
 [rocky@rocky-dev iplike]$ sudo systemctl start opennms
 ```
