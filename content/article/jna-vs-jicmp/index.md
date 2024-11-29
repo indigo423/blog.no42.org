@@ -149,7 +149,7 @@ If you don't want to rely on the algorithm to determine the best ICMP implementa
 #org.opennms.netmgt.icmp.pingerClass=org.opennms.netmgt.icmp.jna.JnaPinger
 ```
 
-**☢️** You can't install just JICMP6 alone. When I started OpenNMS with that configuration. The Ping implementation algorithm will fallback to JNA. If you enforce it with the property, the startup will crash with a thread dump like shown below with `journalctl -u opennms`.
+**☢️** You can't install just JICMP6 alone, you need JICMP as well. When I started OpenNMS with that configuration. The Ping implementation algorithm will fallback to JNA. If you enforce it with the property, the startup will crash with a thread dump like shown below with `journalctl -u opennms`.
 
 ```
 Nov 28 13:16:55 rocky-dev systemd[1]: opennms.service: Supervising process 2701 which is not our child. We'll most likely not notice when it exits.
@@ -170,7 +170,7 @@ Nov 28 13:22:05 rocky-dev opennms[2701]: 0x00007f8328caec90, 0x00007f8328cb18e0,
 
 ## Creating RPM packages
 
-When you run the `./configurè` scripts, you need verify the following output:
+When you run the `./configure` scripts, you need verify the following output:
 
 ```
 checking for rpmbuild... no
@@ -211,7 +211,7 @@ The procedure for JICMP and JICMP6 is exactly the same.
 There are now additional steps we can take from here, most notably:
 
 * [Compile and install IPLIKE stored procedure in PostgreSQL]({{< ref "/article/iplike-and-postgresql" >}})
-* Compile and install RRDTool support using JRRD2
+* [Compile and install RRDTool support using JRRD2]({{< ref "/article/rrdtool-with-jrrd2" >}})
 * Building Core, Minion, and Sentinel RPM packages
 * Create Docker container images
 

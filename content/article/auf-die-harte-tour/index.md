@@ -476,7 +476,7 @@ There are now additional steps we can take from here, most notably:
 
 * [JNA vs. JNI ICMP performance implications]({{< ref "/article/jna-vs-jicmp" >}})
 * [Compile and install IPLIKE stored procedure in PostgreSQL]({{< ref "/article/iplike-and-postgresql" >}})
-* Compile and install RRDTool support using JRRD2
+* [Compile and install RRDTool support using JRRD2]({{< ref "/article/rrdtool-with-jrrd2" >}})
 * Building Core, Minion, and Sentinel RPM packages
 * Create Docker container images
 
