@@ -210,7 +210,7 @@ The procedure for JICMP and JICMP6 is exactly the same.
 
 There are now additional steps we can take from here, most notably:
 
-* * [Compile and install IPLIKE stored procedure in PostgreSQL]({{< ref "/article/iplike-and-postgresql" >}})
+* [Compile and install IPLIKE stored procedure in PostgreSQL]({{< ref "/article/iplike-and-postgresql" >}})
 * Compile and install RRDTool support using JRRD2
 * Building Core, Minion, and Sentinel RPM packages
 * Create Docker container images
