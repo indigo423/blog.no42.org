@@ -181,7 +181,7 @@ See "systemctl status postgresql-15.service" and "journalctl -xeu postgresql-15.
 The detailed log
 
 ```bash
-journalctl -u postgresql-15.service`
+journalctl -u postgresql-15.service
 ```
 
 ```bash
@@ -312,8 +312,6 @@ If you want to use a specific JDK you can set it with
 ```bash
 /opt/opennms/bin/runjava -S /path/to/jdk`
 ```
-
-**💁‍♀️ Tipp:** OpenNMS Horizon >32.x can use OpenJDK 17 and 18.
 
 Re-run the command from step 7 again.
 
@@ -477,7 +475,7 @@ Covering this topic specifically is worth investigating in a dedicated article.
 There are now additional steps we can take from here, most notably:
 
 * [JNA vs. JNI ICMP performance implications]({{< ref "/article/jna-vs-jicmp" >}})
-* Compile and install IPLIKE stored procedure in PostgreSQL
+* [Compile and install IPLIKE stored procedure in PostgreSQL]({{< ref "/article/iplike-and-postgresql" >}})
 * Compile and install RRDTool support using JRRD2
 * Building Core, Minion, and Sentinel RPM packages
 * Create Docker container images
