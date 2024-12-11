@@ -53,7 +53,7 @@ To process messages about BGP peer state changes the BMP-PeerStatus-Adapter need
 
 If you want to use a Minion as BMP collector you can configure a BMP TCP listener and parser by creating a file in `${MINION_HOME}/etc/org.opennms.features.telemetry.listeners-bmp-11019.cfg` with the following content:
 
-```
+```plain
 name = BMP
 class-name = org.opennms.netmgt.telemetry.listeners.TcpListener
 parameters.port = 11019
@@ -87,7 +87,7 @@ It will add the nodes and creates a custom BGP and IP network topology.
 
 You can disable or enable a BGP peer session of a router in a remote location with the docker command
 
-```shell
+```bash
 docker-compose exec location-r01 gobgp neighbor 10.0.250.6 disable/enable
 ```
 

@@ -2,7 +2,8 @@
 title: "Impressum"
 date: "2023-03-17"
 author: "Ronny Trommer"
-excludeFromTopNav: false
+menu: topnav
+weight: 2
 ---
 
 Die Website blog.no42.org wird privat von Ronny Trommer betrieben und bereitgestellt.

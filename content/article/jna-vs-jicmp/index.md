@@ -64,7 +64,7 @@ make && sudo make install
 ```
 The JAR and the library will be installed to
 
-```
+```plain
 /usr/local/share/java/jicmp.jar
 /usr/local/lib/libjicmp.so
 /usr/local/lib/libjicmp.la
@@ -103,7 +103,7 @@ make && sudo make install
 ```
 The JAR and the library will be installed to
 
-```
+```plain
 /usr/local/share/java/jicmp6.jar
 /usr/local/lib/libjicmp6.so
 /usr/local/lib/libjicmp6.la
@@ -121,7 +121,7 @@ sudo -u opennms /opt/opennms/bin/install -dS
 
 The following lines are important:
 
-```
+```plain
 DEBUG: Platform is IPv6 ready: true
 - searching for libjicmp.so:
   - trying to load /usr/local/lib/libjicmp.so: OK
@@ -138,7 +138,7 @@ If you see permission errors look at the [Troubleshooting ICMP permissions](http
 
 If you don't want to rely on the algorithm to determine the best ICMP implementation for Ping, you can enforce it by setting the `org.opennms.netmgt.icmp.pingerClass` property in `/opt/opennms/etc/opennms.properties.d/icmp.properties`.
 
-```
+```plain
 # To use the JNI ICMPv4/ICMPv6 implementation, use the following property:
 #org.opennms.netmgt.icmp.pingerClass=org.opennms.netmgt.icmp.jni6.Jni6Pinger
 #
@@ -151,7 +151,7 @@ If you don't want to rely on the algorithm to determine the best ICMP implementa
 
 **☢️** You can't install just JICMP6 alone, you need JICMP as well. When I started OpenNMS with that configuration. The Ping implementation algorithm will fallback to JNA. If you enforce it with the property, the startup will crash with a thread dump like shown below with `journalctl -u opennms`.
 
-```
+```plain
 Nov 28 13:16:55 rocky-dev systemd[1]: opennms.service: Supervising process 2701 which is not our child. We'll most likely not notice when it exits.
 Nov 28 13:17:22 rocky-dev systemd[1]: opennms.service: Supervising process 2701 which is not our child. We'll most likely not notice when it exits.
 Nov 28 13:22:03 rocky-dev systemd[1]: Stopping OpenNMS server...
@@ -172,7 +172,7 @@ Nov 28 13:22:05 rocky-dev opennms[2701]: 0x00007f8328caec90, 0x00007f8328cb18e0,
 
 When you run the `./configure` scripts, you need verify the following output:
 
-```
+```plain
 checking for rpmbuild... no
 *** RPM Configuration Failed
 *** Failed to find the rpmbuild program.  If you want to build rpm packages
@@ -187,7 +187,7 @@ sudo dnf install -y rpm-build
 
 Re-run `./configure` and you should have now a RPM configuration which should look like this:
 
-```
+```plain
 checking for rpmbuild... /usr/bin/rpmbuild
 checking how rpm sets %{_rpmdir}... /home/rocky/rpmbuild/RPMS
 checking how rpm sets %{_srcrpmdir}... /home/rocky/rpmbuild/SRPMS

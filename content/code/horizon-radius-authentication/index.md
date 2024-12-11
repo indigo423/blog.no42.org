@@ -17,20 +17,20 @@ To run the services locally, you can use all components in a [Docker Compose](ht
 
 ***Step 1: Checkout the repository***
 
-```sh
+```bash
 git clone https://github.com/indigo423/opennms-radius-auth.git
 cd opennms-radius-auth
 ```
 
 ***Step 2: Initialize the service stack***
 
-```
+```bash
 docker-compose up -d
 ```
 
 ***Step 3: Install OpenNMS Horizon Plugin protocol for RADIUS and restart***
 
-```sh
+```bash
 docker-compose exec horizon yum install -y opennms-plugin-protocol-radius
 docker-compose stop horizon
 docker-compose up -d

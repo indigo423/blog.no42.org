@@ -15,7 +15,7 @@ This section here is a very condensed way to get an A rating.
 
 Just use strong host key for authentication of the host
 
-```
+```bash
 # file: /etc/ssh/sshd_config
 HostKey /etc/ssh/ssh_host_ed25519_key
 HostKey /etc/ssh/ssh_host_rsa_key
@@ -23,7 +23,7 @@ HostKey /etc/ssh/ssh_host_rsa_key
 
 Delete existing keys and re-generate the RSA and ED25519 keys
 
-```
+```bash
 cd /etc/ssh
 rm ssh_host_*key*
 ssh-keygen -t ed25519 -q -N "" -f ssh_host_ed25519_key
@@ -32,13 +32,13 @@ ssh-keygen -t rsa -b 4096 -q -N "" -f ssh_host_rsa_key
 
 Restrict supported key exchange, cipher, and MAC algorithms
 
-```
+```bash
 echo -e "\n# Restrict key exchange, cipher, and MAC algorithms, as per sshaudit.com\n# hardening guide.\nKexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha256\nCiphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr\nMACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com\nHostKeyAlgorithms ssh-ed25519,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,rsa-sha2-256,rsa-sha2-512,rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com" > /etc/ssh/sshd_config.d/ssh-audit_hardening.conf
 ````
 
 Remove small Diffie-Hellman moduli
 
-```
+```bash
 cp /etc/ssh/moduli /etc/ssh/moduli.backup
 awk '$5 > 4095' /etc/ssh/moduli > "/etc/ssh/moduli.safe"
 mv /etc/ssh/moduli.safe /etc/ssh/moduli
@@ -46,7 +46,7 @@ mv /etc/ssh/moduli.safe /etc/ssh/moduli
 
 If there is no moduli file you can create it (may take hours)
 
-```
+```bash
 ssh-keygen -G /etc/ssh/moduli.all -b 4096
 ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all
 mv /etc/ssh/moduli.safe /etc/ssh/moduli
@@ -55,13 +55,13 @@ rm /etc/ssh/moduli.all
 
 Restart OpenSSH server
 
-```
+```bash
 systemctl restart sshd
 ```
 
 Clients should use strong encryption
 
-```
+```plain
 # file: /etc/ssh/ssh_config
 HashKnownHosts yes
 ConnectTimeout 30

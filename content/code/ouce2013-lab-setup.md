@@ -16,7 +16,7 @@ noSummary: false
 
 # Admins toolbox
 
-```sh
+```bash
 sudo -s
 apt-get install openssh-server
 apt-get install vim tcpdump git-core htop joe nmap iftop
@@ -25,7 +25,7 @@ apt-get install snmp snmpd snmp-mibs-downloader
 
 # Maven2 and Oracle Java 1.6
 
-```sh
+```bash
 apt-get install maven2
 wget http://files.opennms-edu.net/jdk-6u41-linux-x64.bin
 chmod +x jdk-6u41-linux-x64.bin
@@ -41,14 +41,14 @@ update-alternatives --config java
 
 # Some privacy and data leak stuff
 
-```sh
+```bash
 apt-get remove unity-lens-shopping
 System Settings -> Privacy Include Online Search results OFF / Record Activity OFF
 ```
 
 # Installing OpenNMS
 
-```sh
+```bash
 update-alternatives --config java
 vi /etc/apt/sources.list.d/opennms.list
 deb http://debian.opennms.org stable main
@@ -74,7 +74,7 @@ apt-get install libwww-perl libxml-twig-perl
 
 # iReport installieren
 
-```sh
+```bash
 cd ~
 wget http://files.opennms-edu.net/iReport-3.7.6.tar.gz
 tar xzf iReport-3.7.6.tar.gz
@@ -90,7 +90,7 @@ Comment: Jasper Reports-Report Designer
 
 # Wallpaper
 
-```sh
+```bash
 cd ~/Pictures
 wget http://files.opennms-edu.net/wallpaper/free-software-ulf.jpg
 cd /usr/share/backgrounds
@@ -105,13 +105,13 @@ gsettings set com.canonical.unity-greeter background '/usr/share/backgrounds/war
 
 # RRD-Tool
 
-```sh
+```bash
 sudo apt-get install rrdtool
 ```
 
 # Groovy
 
-```sh
+```bash
 sudo -s
 cd /root
 wget http://files.opennms-edu.net/groovy-binary-2.1.1.zip
@@ -126,7 +126,7 @@ ln -s /opt/groovy-2.1.1/bin/groovysh /usr/local/bin/groovysh
 
 # Gradle
 
-```sh
+```bash
 wget http://files.opennms-edu.net/gradle-1.4-all.zip
 unzip gradle-1.4-all.zip
 mv gradle-1.4 /opt

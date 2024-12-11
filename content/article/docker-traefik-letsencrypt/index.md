@@ -31,7 +31,7 @@ In this example here you run both on the same box.
 
 I create a dedicated network bridge on my Linux box which has all the external traffic between Traefik an the app containers.
 
-```console
+```bash
 docker create network public-ingress
 ```
 
@@ -93,7 +93,7 @@ We have some [OpenNMS stacks preconfigured](https://github.com/opennms-forge/sta
 Set your OpenNMS web UI to use `https` instead of `http` by creating a properties file.
 When you use the stack-play example you can do it like this:
 
-```console
+```bash
 cd minimal-horizon
 mkdir ./container-fs/opt/opennms-overlay/etc/opennms.properties.d
 echo "opennms.web.base-url = https://%x%c/" > ./container-fs/opt/opennms-overlay/etc/opennms.properties.d/jetty.properties

@@ -15,7 +15,7 @@ Be aware you talk about permission to run this test otherwise somebody can get a
 
 Create a file with the communities you want to test, in this example we call it `snmpcommunities.lst`.
 
-```
+```bash
 indigo@blinky ~ cat snmpcommunities.lst
 wtfgoaway
 public
@@ -23,14 +23,14 @@ public
 
 Scan a network with the community strings goes like this:
 
-```
+```bash
 sudo nmap -sU -p161 --script snmp-brute 172.24.23.0/24 \
   --script-args snmp-brute.communitiesdb=./snmpcommunities.lst
 ```
 
 The output is a list with IP addresses and the working SNMP communities:
 
-```
+```plain
 Starting Nmap 7.60 ( https://nmap.org ) at 2018-03-02 16:57 CET
 Nmap scan report for 172.24.23.100
 Host is up (0.061s latency).

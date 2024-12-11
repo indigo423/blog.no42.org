@@ -181,7 +181,7 @@ If you want to promote your dedicated server just add in your master server in y
 
 As soon your dedicated server started you will see in your dpmaster log `docker-compose logs` something like this:
 
-```
+```plain
 dpmaster    | * 2022-01-06 22:47:53 UTC
 dpmaster    | > New packet received from 192.168.32.1:57963: "\xFF\xFF\xFF\xFFheartbeat QuakeArena-1\x0A" (27 bytes)
 dpmaster    | > 192.168.32.1:57963 ---> heartbeat (QuakeArena-1)

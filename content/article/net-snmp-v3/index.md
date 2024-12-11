@@ -26,7 +26,7 @@ Net-SNMP gives you the possibility to use an include drop-in folder to extend th
 
 All you have to do is to add the following line in your `snmpd.conf`
 
-```sh
+```bash
 includeDir /etc/snmp/conf.d
 ```
 
@@ -38,7 +38,7 @@ This makes it using configuration management tools to add device dependent disk,
 The first step, create a user with password and tell the agent what methods for encryption and signature should be used.
 You can create for example a file in `/etc/snmp/conf.d/version-3.conf` with the following content:
 
-```sh
+```bash
 createUser opennms SHA-512 "mGzcWqsQBpw7YXJFJKzYbprP7yGXvq6e" AES-256 "hT7q6L6V2tuevVWkarPPBvoQiexX9iWJ"
 rouser opennms authpriv
 ```
@@ -49,7 +49,7 @@ I can recommend using something like [apg](http://linux.die.net/man/1/apg) to cr
 
 Once you added the configuration you have to restart the Net-SNMP daemon and you can test it with the following command:
 
-```sh
+```bash
 snmpget -v 3 -u opennms -l authPriv -a SHA-512 -A "mGzcWqsQBpw7YXJFJKzYbprP7yGXvq6e" -x AES-256 -X "hT7q6L6V2tuevVWkarPPBvoQiexX9iWJ" localhost .1.3.6.1.2.1.1.6.0
 ```
 

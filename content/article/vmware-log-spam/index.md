@@ -12,7 +12,7 @@ As a note to myself and for some others who want cleaner system logs – here is
 
 The log entries look like these here:
 
-```shell
+```bash
 2021-04-07 20:14:21 opennms-bgp multipathd[693]: sda: failed to get sgio uid: No such file or directory
 2021-04-07 20:14:21 opennms-bgp multipathd[693]: sda: failed to get sysfs uid: Invalid argument
 2021-04-07 20:14:21 opennms-bgp multipathd[693]: sda: failed to get udev uid: Invalid argument
@@ -28,25 +28,25 @@ I've came along [govc](https://github.com/vmware/govmomi/tree/master/govc) which
 The tool itself is written in golang which gives you some freedom of choice with pre-compiled binaries for the AMD64 architecture, if you use other operating systems.
 As I'm running on OSX it's a no-brainer to install it with [homebrew](https://brew.sh).
 
-```shell
+```bash
 brew install govc
 ```
 
 For access and authentication to you vCenter you can export the environment variable `GOVC_URL` like this.
 
-```shell
+```bash
 export GOVC_URL="https://administrator@vpshere.local:mypass@myvCenter:/sdk"
 ```
 
 If you don't provide trusted SSL certificates and want to accept the default insecure SSL certificates in your lab environment you can set the `GOVC_INSECURE` environment to `true`.
 
-```shell
+```bash
 export GOVC_INSECURE="true"
 ```
 
 You can test your setup with running `govc about` and you should see something like this:
 
-```shell
+```plain
 FullName:     VMware vCenter Server 7.0.1 build-17005016
 Name:         VMware vCenter Server
 Vendor:       VMware, Inc.
@@ -64,19 +64,19 @@ If you have fancy VM names with special characters or whitespaces, it's the best
 
 Here an example to get the UUID from one of my VMs:
 
-```shell
+```bash
 govc vm.info /Labmonkeys-DC/vm/cortex
 ```
 
 You can set it now with `-vm.uuid` instead of the `-vm` argument.
 
-```shell
+```bash
 govc vm.change -e="disk.EnableUUID=TRUE" -vm.uuid="564d19e5-b64e-1a59-5986-9e417ace343b"
 ```
 
 Here is the one liner to enable the UUID disk attribute by the VM name:
 
-```shell
+```bash
 for vm in $(govc ls vm); do govc vm.change -e="disk.EnableUUID=TRUE" -vm="${vm}"; done
 ```
 

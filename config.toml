@@ -49,7 +49,7 @@ disqusShortname = ""
     # let hugo automatically resize and crop your images to the correct sizes
     # NB: When enabled the image files get renamed by adding additional information,
     #     even if the image has the correct sizes.
-    resizeImages = true
+    resizeImages = false
 
   # Header configuration
     # your subtitle if you want to use any
@@ -79,6 +79,10 @@ disqusShortname = ""
     # pinnedPost = "/article/installing-bilberry-theme/"
     # Set to true to pin only to the first page, false to all pages
     # pinOnlyToFirstPage = true
+
+    # enable highlight.js for syntax highlighting or (if set to false) use
+    # the hugo built-in chroma highlighter
+    enableHighlightJs = true
 
     # enable automatical localization of the article's PublishedDate with momentjs
     enableMomentJs = true
@@ -163,5 +167,4 @@ disqusShortname = ""
     taskList = true
     typographer = true
   [markup.highlight]
-    codeFences = true
-    noClasses = false
+    style = 'monokailight'

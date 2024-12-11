@@ -27,7 +27,7 @@ to
 
 but unfortunately you will notice an exception in your `${OPENNMS_HOME}/logs/web.log` with the following content:
 
-```terminal
+```plain
 sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
   at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:387)
   at sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:292)
@@ -57,7 +57,7 @@ This means your certificate is not trusted by the Java Virtual machine and you h
 
 ***Step 1: Optain the certificate from the server***
 
-```terminal
+```bash
 openssl \
   s_client \
   -showcerts \
@@ -71,7 +71,7 @@ The certificate is downloaded and stored in your current directory named `my-cer
 
 ***Step 2: Create a trust-store file with your cerfiticate***
 
-```terminal
+```bash
 keytool \
   -import \
   -v \
@@ -88,13 +88,13 @@ You will be asked for a password when you create the trust-store file, remember 
 
 Download a SSL Poke test class which can be easily executed and allows you to verify your trust store file.
 
-```terminal
+```bash
 wget https://confluence.atlassian.com/kb/files/779355358/779355357/1/1441897666313/SSLPoke.class
 ```
 
 Run the SSL test using the your custom trust store file using the following command:
 
-```terminal
+```bash
 java -Djavax.net.debug=ssl -Djavax.net.ssl.trustStore=<path/to/your/trust-store.jks> SSLPoke your-ads.example.org 636
 Successfully connected
 ```
@@ -105,7 +105,7 @@ When you use this trust store you can now connect to your Active Directory serve
 
 On startup you can add Java options in `${OPENNMS_HOME}/etc/opennms.conf` with adding the following content:
 
-```terminal
+```bash
 ADDITIONAL_MANAGER_OPTIONS="${ADDITIONAL_MANAGER_OPTIONS} -Djavax.net.ssl.trustStore=/path/to/trust-store.jks"
 ```
 
@@ -132,7 +132,7 @@ services:
 You should be aware there is a catch using a custom trust store file, your JVM trusts now ***only*** those certificates in your trust store.
 If you want to add them globally to the Java Virtual Machine certificates you need to add them to the global `%JAVA_HOME%\lib\security\cacerts` of your Java installation.
 
-```terminal
+```bash
 keytool \
   -import \
   -v \

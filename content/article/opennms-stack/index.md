@@ -15,26 +15,26 @@ Here a few quick notes how to get the bare minimum up and running.
 
 Install OpenJDK 11 JRE
 
-```terminal
+```bash
 sudo apt install -y openjdk-11-jre
 ```
 
 Create a user for zookeeper
 
-```terminal
+```bash
 sudo adduser --system --home /opt/zookeeper --disabled-login zookeeper
 ```
 
 Create a logs directory
 
-```terminal
+```bash
 sudo mkdir /var/log/zookeeper
 sudo chown zookeeper:nogroup /var/log/zookeeper -R
 ```
 
 Install zookeeper
 
-```terminal
+```bash
 curl -L https://downloads.apache.org/zookeeper/zookeeper-3.7.0/apache-zookeeper-3.7.0-bin.tar.gz | tar xz
 sudo mv apache-zookeeper-3.7.0-bin/* /opt/zookeeper && rm -r apache-zookeeper-3.7.0-bin/
 sudo chown zookeeper:nogroup /opt/zookeeper -R
@@ -44,11 +44,11 @@ sudo chown zookeeper:nogroup /var/zookeeper -R
 
 Configure Zookeeper
 
-```terminal
+```bash
 sudo -u zookeeper vi /opt/zookeeper/conf/zoo.cfg
 ```
 
-```bash
+```plain
 tickTime=2000
 dataDir=/var/zookeeper
 clientPort=2181
@@ -70,7 +70,7 @@ clientPort=2181
 
 Create Zookeepr system unit
 
-```terminal
+```bash
 sudo vi /etc/systemd/system/zookeeper.service
 ```
 
@@ -93,7 +93,7 @@ WantedBy=multi-user.target
 
 Reload systemd and run Zookeeper
 
-```terminal
+```bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now zookeeper
 ```
@@ -102,26 +102,26 @@ sudo systemctl enable --now zookeeper
 
 Install OpenJDK 11 JRE
 
-```terminal
+```bash
 sudo apt install -y openjdk-11-jre
 ```
 
 Create a user for Kafka
 
-```terminal
+```bash
 sudo adduser --system --home /opt/kafka --disabled-login kafka
 ```
 
 Create logs directory
 
-```terminal
+```bash
 sudo mkdir /var/log/kafka
 sudo chown kafka:nogroup /var/log/kafka -R
 ```
 
 Install Kafka
 
-```terminal
+```bash
 curl https://downloads.apache.org/kafka/2.8.0/kafka_2.13-2.8.0.tgz | tar xz
 sudo mv kafka_2.13-2.8.0/* /opt/kafka && rm -r kafka_2.13-2.8.0
 sudo chown kafka:nogroup /opt/kafka -R
@@ -129,11 +129,11 @@ sudo chown kafka:nogroup /opt/kafka -R
 
 Configure log directory
 
-```terminal
+```bash
 vi /opt/kafka/config/server.properties
 ```
 
-```terminal
+```bash
 log.dirs=/var/log/kafka
 ```
 
@@ -158,7 +158,7 @@ WantedBy=multi-user.target
 
 Reload systemd and run Zookeeper
 
-```terminal
+```bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now zookeeper
 ```
@@ -167,13 +167,13 @@ sudo systemctl enable --now zookeeper
 
 Install OpenJDK 11 JDK
 
-```terminal
+```bash
 apt update && apt -y install openjdk-11-jdk
 ```
 
 Run the OpenNMS installer
 
-```terminal
+```bash
 wget https://raw.githubusercontent.com/opennms-forge/opennms-install/master/bootstrap-debian.sh
 bash bootstrap-debian.sh
 ```

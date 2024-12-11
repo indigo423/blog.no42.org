@@ -1,15 +1,9 @@
-// dependencies
-require('jquery');
-require('flexslider');
-require('algoliasearch/dist/algoliasearch.jquery');
-require('autocomplete.js/dist/autocomplete.jquery');
-require('tooltipster');
-require('magnific-popup');
+/*
+ * theme.js
+ */
 
-let ClipboardJs = require('clipboard')
-
-// Add ClipboardJs to enable copy button functionality
-new ClipboardJs('.copy-button', {
+// Add copy button functionality
+new ClipboardJS('.copy-button', {
     target: function(trigger) {
         return trigger.previousElementSibling;
     }
@@ -82,118 +76,46 @@ $(document).ready(function () {
         pauseOnHover: true,
     });
 
-    // Magnific Popup for images within articles to zoom them
-    // Rendered with Markdown
-    $('p img, figure img').not('p a img').magnificPopup({
-        type: "image",
-        image: {
-            verticalFit: true,
-            titleSrc: 'alt'
-        },
-        zoom: {
-            enabled: true
-        },
-        callbacks: {
-            // Get the src directly from the img-tag instead of an additional tag
-            elementParse: function(item) {
-              // Function will fire for each target element
-              // "item.el" is a target DOM element (if present)
-              // "item.src" is a source that you may modify
+    dimbox.setConfig({
+        showDownloadButton: false
+    });
+    dimbox.init();
 
-              item.src = item.el.attr('src')
-            }
-        },
-        // https://github.com/dimsemenov/Magnific-Popup/pull/1017
-        // Enabled popup only when image size is greater than content area
-        disableOn: function(e) {
-            let img = e.target;
-            return img.naturalWidth > img.clientWidth;
+    // Back to top button
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 300) {
+            $('#back-to-top-button').addClass('show');
+        } else {
+            $('#back-to-top-button').removeClass('show');
         }
     });
 
-    // Magnific Popup for images within articles to zoom them
-    // Rendered with Asciidoc
-    $('.image-block>img').magnificPopup({
-        type: "image",
-        image: {
-            verticalFit: true,
-            titleSrc: function (item) {
-                return item.el.parent().find('figcaption').text();
-            }
-        },
-        zoom: {
-            enabled: true
-        },
-        callbacks: {
-            elementParse: function(item) {
-                item.src = item.el.attr('src')
-            }
-        },
-        // https://github.com/dimsemenov/Magnific-Popup/pull/1017
-        // Enabled popup only when image size is greater than content area
-        disableOn: function(e) {
-            let img = e.target;
-            return img.naturalWidth > img.clientWidth;
-        }
+    $('#back-to-top-button').on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop:0}, '300');
     });
 
-    // Magnific Popup for images within articles to zoom them
-    // Rendered with Asciidoc
-    $('.image-block').magnificPopup({
-        type: "image",
-        delegate: "a",
-        image: {
-            titleSrc: function (item) {
-                return item.el.parent().find('figcaption').text();
-            },
-            verticalFit: true
-        },
-        zoom: {
-            enabled: true
+// Light dark theme mode switcher
+    const lightDarkToggle = document.getElementById("light-dark-toggle");
+    const docEle = document.documentElement;
+    if (lightDarkToggle) {
+        updateToggle();
+        switchTheme();
+    };
+
+    function switchTheme() {
+        lightDarkToggle.addEventListener("click", () => {
+            docEle.classList.toggle("dark-mode");
+            localStorage.setItem("dark-store", docEle.classList.contains("dark-mode"));
+            updateToggle();
+        });
+    }
+
+    function updateToggle() {
+        if (docEle.classList.contains("dark-mode")) {
+            lightDarkToggle.className = "fa fa-moon";
+        } else {
+            lightDarkToggle.className = "fa fa-sun";
         }
-    });
-
-    // Algolia-Search
-    if ($('#activate-algolia-search').length) {
-        let client = algoliasearch($('#algolia-search-appId').val(), $('#algolia-search-apiKey').val());
-        let index = client.initIndex($('#algolia-search-indexName').val());
-
-        let autocompleteSource = $.fn.autocomplete.sources.hits(index, { hitsPerPage: 10 });
-        if ($('#algolia-search-currentLanguageOnly').length) {
-            autocompleteSource = $.fn.autocomplete.sources.hits(index, { hitsPerPage: 5, filters: 'language: ' + $('html').attr('lang') });
-        }
-
-        $('#search').autocomplete({ hint: false, autoselect: true, debug: false },
-            [
-                {
-                    source: autocompleteSource,
-                    displayKey: function (suggestion) {
-                        return suggestion.title || suggestion.author
-                    },
-                    templates: {
-                        suggestion: function (suggestion) {
-                            return "<span class='entry " + suggestion.type + "'>"
-                                + "<span class='title'>" + suggestion.title + "</span>"
-                                + "<span class='fas fa-fw " + suggestion.iconClass + "'></span>"
-                                + "</span>"
-                                ;
-                        },
-                        empty: function () {
-                            return "<span class='empty'>" + $('#algolia-search-noSearchResults').val() + "</span>"
-                        },
-                        footer: function () {
-                            return '<div class="branding">Powered by <img src="' + $('meta[name=siteBaseUrl]').attr("content") + '/algolia-logo-light.svg" alt="algolia" /></div>'
-                        }
-                    },
-                }
-            ])
-            .on('autocomplete:selected', function (event, suggestion, dataset) {
-                window.location = (suggestion.url);
-            })
-            .keypress(function (event, suggestion) {
-                if (event.which == 13) {
-                    window.location = (suggestion.url);
-                }
-            });
     }
 });

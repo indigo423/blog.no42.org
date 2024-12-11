@@ -12,7 +12,7 @@ If you have [OpenNMS](http://www.opennms.org/) with [RRDtool](http://www.rrdtool
 * `response-graph.properties`
 * `response-adhoc-graph.properties`
 
-```sh
+```bash
 command.prefix=/usr/bin/rrdtool graph - --imgformat PNG --font DEFAULT:7 --font TITLE:10 --start {startTime} --end {endTime} -E --width=1000 --height=180
 ```
 
@@ -23,7 +23,7 @@ The command will also overwrite the width and height for all graphs, so they hav
 You have to be careful if you have KSC reports with multiple columns.
 If you have RRDtool running, you can improve the graphs with anti-aliasing using a few additional parameters:
 
-```sh
+```bash
 command.prefix=/usr/bin/rrdtool graph - --imgformat PNG -R normal --font-render-mode normal -l 0 -E --font DEFAULT:7 --font TITLE:10 --start {startTime} --end {endTime} -c ARROW#5e5e5e --width=1000 --height=180
 ```
 

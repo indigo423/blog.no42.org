@@ -71,7 +71,7 @@ CMake Error at CMakeLists.txt:2 (project):
 ```
 
 Install GNU C++ and run the build script again
-```
+```bash
 [rocky@rocky-dev jrrd2]$ sudo dnf install -y g++
 ```
 
@@ -87,7 +87,7 @@ Call Stack (most recent call first):
 ```
 
 Install `rrdtool-devel` and RRDTool and run the build script again.
-```
+```bash
 [rocky@rocky-dev jrrd2]$ sudo dnf install rrdtool rrdtool-devel
 [rocky@rocky-dev jrrd2]$ ./build.sh
 ```
@@ -106,7 +106,7 @@ total 104
 ## Installing JRRD2 and configure OpenNMS Horizon
 
 Install the JAR and libjrrd2 in your environment
-```
+```bash
 [rocky@rocky-dev jrrd2]$ sudo cp dist/jrrd2-api-2.0.7-SNAPSHOT.jar /usr/share/java/jrrd2.jar
 [rocky@rocky-dev jrrd2]$ sudo cp dist/libjrrd2.so /usr/lib64/
 ```
@@ -157,7 +157,7 @@ Build the converter with
 ```
 
 Run the converter as user root, otherwise you get file permission errors.
-```
+```bash
 [rocky@rocky-dev jrobin-to-rrdtool-converter]$ sudo -i
 [root@rocky-dev ~]# cd /home/rocky/jrobin-to-rrdtool-converter/target/
 [root@rocky-dev ~]# java -jar ./convertjrb-1.1-SNAPSHOT.jar -threads 4 -rrdtool /usr/bin/rrdtool /opt/opennms/share/rrd

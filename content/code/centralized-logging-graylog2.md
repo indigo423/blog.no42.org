@@ -45,7 +45,7 @@ The _GELF UDP_ input is used to receive log messages from my _OpenNMS_ applicati
 On my systems is [rsyslog](http://www.rsyslog.com) running.
 It is required to configure _rsyslogd_ and I use _Ansible_ to create a file in `/etc/rsyslog.d/50-graylog-forwarding` with following content:
 
-```sh
+```bash
 if $programname == 'snmpd' and $msg contains 'statfs' then {
     stop
 }
@@ -70,7 +70,7 @@ Different OpenNMS instances running various versions are identified by an applic
 
 To get logs from my applications running in Docker container, I have configured them to use the GELF driver by just adding this snippet to my service definition:
 
-```sh
+```yaml
 logging:
   driver: "gelf"
   options:

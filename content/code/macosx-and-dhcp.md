@@ -17,19 +17,19 @@ Here is what I did to prevent my computer changing the host name.
 
 User Friendly Name, showed in _Sharing Preference Panel_
 
-```sh
+```bash
 sudo scutil --set ComputerName blinky
 ```
 
 SSH and Remote login
 
-```sh
+```bash
 sudo scutil --set HostName blinky
 ```
 
 Name for _Bonjour_, e.g. _Airdrop_
 
-```sh
+```bash
 sudo scutil --set LocalHostName blinky
 ```
 

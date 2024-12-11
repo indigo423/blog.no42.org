@@ -2,7 +2,8 @@
 title: "About Me"
 date: "2023-04-23"
 author: "Ronny Trommer"
-excludeFromTopNav: false
+menu: topnav
+weight: 1
 ---
 Work in open source and grew up with an Amiga 500 in the early 90s, a full-time contributor [@opennms](https://www.opennms.com).
 I run some internet services just for fun.

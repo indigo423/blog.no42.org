@@ -20,7 +20,7 @@ You have to do a `skopeo login` to Quay.io to be able to push images.
 Instead of Quay.io you can use your internal installed registry.
 The argument `--all` fetches all architecture images for a given tag.
 
-```
+```bash
 skopeo copy --all docker://opennms/horizon:33.0.7 docker://quay.io/labmonkeys/onms-horizon:33.0.7
 ```
 

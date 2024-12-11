@@ -2,7 +2,8 @@
 title: "Privacy"
 date: "2018-07-01"
 author: "Ronny Trommer"
-excludeFromTopNav: false
+menu: topnav
+weight: 3
 ---
 
 #### Privacy Policy

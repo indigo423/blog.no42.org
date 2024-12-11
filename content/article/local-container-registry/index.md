@@ -51,14 +51,14 @@ services:
 
 Before running the registry I need certificates. 
 
-```
+```bash
 cd certs
 docker run -it -v $(pwd):/etc/letsencrypt/archive certbot/certbot certonly --preferred-challenges dns --manual
 ```
 
 Following the interactive dialog and entered the domain I wanted to use. I get prompted to create a DNS TXT record to verify ownership with something like this:
 
-```
+```plain
 _acme-challenge.cri.no42.org.
 
 with the following value:
@@ -69,7 +69,7 @@ WDvzxagOMbe4GSSR75rIvcYNUw14TWZyCY9egDJCEmA
 I would recommend using a short TTL like 300s when you create the TXT record. It will make it easier if you make a mistake and you have to redo it again. They provide a [handy link](https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.cri.no42.org) which allows verifying if the text record is populated accordingly.
 Another method is using your local DNS resolver using a command like this:
 
-```
+```bash
 nslookup -type=TXT _acme-challenge.cri.no42.org
 ```
 
@@ -85,7 +85,7 @@ Make sure the name resolution for the internal registry host is working. In my c
 
 I can now use the registry with tagging the images accordingly, like here in this quick example:
 
-```
+```bash
 docker pull busybox
 docker tag busybox cri.no42.org/busybox
 docker push cri.no42.org/busybox

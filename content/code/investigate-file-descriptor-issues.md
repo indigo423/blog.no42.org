@@ -9,7 +9,7 @@ If you run a centralized monitoring system in large environment you can run in s
 
 The default values for soft and hard limits can be checked with
 
-```sh
+```bash
 ulimit -a
 ulimit -a -H
 ```
@@ -17,51 +17,51 @@ ulimit -a -H
 The value is per user and each new process inherits these limits.
 OpenNMS changes the hard limit during the start with the default init script and changes with
 
-```sh
+```bash
 ulimit -n 20480
 ```
 
 from normally `4096` to `20480`.
 You can change this value by adding the following line to your `/etc/opennms/opennms.conf`.
 
-```sh
+```bash
 MAXIMUM_FILE_DESCRIPTORS=40960
 ```
 
 If you start OpenNMS you can see the limits for the OpenNMS JVM with
 
-```sh
+```bash
 cat /proc/$(cat /var/run/opennms.pid)/limits
 ```
 
 You can see how much file descriptors OpenNMS has allocated with:
 
-```sh
+```bash
 ls -l /proc/$(cat /var/run/opennms.pid)/fd | wc -l
 ```
 
 If you use `lsof` with the process id of OpenNMS you will see a larger number than in `/proc/pid/fd`
 
-```sh
+```bash
 lsof -p $(cat /var/run/opennms.pid) | wc -l
 ```
 
 The reason is memory mapped `.so` files are listed and don’t count for the configured limits and are listed with `lsof`.
 
-```sh
+```bash
 lsof | grep $(cat /var/run/opennms.pid) | wc -l
 ```
 
 If you want to see how many filesystem handles OpenNMS uses, you can run:
 
-```sh
+```bash
 cat /proc/sys/fs/file-nr
 4128	0	262144
 ```
 
 you can see three values:
 
-```sh
+```bash
 number of allocated file handles: 4128
 number of used file handles:      0
 maximum number of file handles:   262144

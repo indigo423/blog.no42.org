@@ -28,19 +28,19 @@ Here is the cookbook for my future self and some people who want to break stuff 
 Having more than 2 K8s nodes which can run pods, gets you a bit closer to what happens in the real world.
 I describe using NFS as shared storage and I've exported a shared directory in `/data`.
 
-```
+```plain
 /data *(rw,no_root_squash,insecure,async,no_subtree_check,anonuid=1002,anongid=1002)
 ```
 
 Installing the NFS provisioner comes with a Helm chart and is pretty straightforward.
 
 Add the NFS storage provisioner to your Helm repository.
-```
+```bash
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
 ```
 
 Install and configure the NFS provisioner and adjust the `my-nfs-server` and the `/data` path accordingly. 
-```
+```bash
 helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
   --set nfs.server=my-nfs-server \
   --set nfs.path=/data

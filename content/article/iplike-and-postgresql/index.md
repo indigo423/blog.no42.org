@@ -27,13 +27,13 @@ You can verify the IPLIKE implementation language by connecting to your database
 
 Get the details of the iplike function with
 
-```psql
+```plain
 my-hzn-db=> \df+ iplike
 ```
 
 The first line in the column `Language` should give you `plpgsql` followed by the function itself.
 
-```psql
+```plain
 public | iplike | boolean          | i_ipaddress text, i_rule text | func | volatile   | unsafe   | opennms | invoker  |                   | plpgsql  |
 ```
 
@@ -44,10 +44,16 @@ public | iplike | boolean          | i_ipaddress text, i_rule text | func | vola
 You can test the function with an SQL command and enable `\timing` to measure the execution time.
 In the example, I have loaded ~16k Nodes into the inventory with a unique address from the 10.0.0.0/18 IP range.
 
-```psql
+```plain
 my-hzn-db=> \timing
 Timing is on.
+```
+
+```plain
 my-hzn-db=# select count(IPLIKE(ipaddr,'10.*.*.*')) from ipinterface;
+```
+
+```plain
  count
 -------
  16391
@@ -59,24 +65,30 @@ Time: 194.280 ms
 Matching addresses takes ~194 ms with the plpsql implemented function.
 If we do the same thing with the C-implemented iplike function you will see the following output:
 
-```psql
+```plain
 my-hzn-db=# \df+ iplike
-                                                                                 List of functions
+```
+
+```plain                                                                                List of functions
  Schema |  Name  | Result data type |      Argument data types      | Type | Volatility | Parallel |  Owner   | Security | Access privileges | Language | Sourc
 e code | Description
---------+--------+------------------+-------------------------------+------+------------+----------+----------+----------+-------------------+----------+------
--------+-------------
- public | iplike | boolean          | i_ipaddress text, i_rule text | func | volatile   | unsafe   | postgres | invoker  |                   | c        | iplik
-e      |
+--------+--------+------------------+-------------------------------+------+------------+----------+----------+----------+-------------------+----------+-------------+-------------
+ public | iplike | boolean          | i_ipaddress text, i_rule text | func | volatile   | unsafe   | postgres | invoker  |                   | c        | iplike      |
 (1 row)
 ```
 
 Running the same query against the inventory gives the following output:
 
-```psql
+```plain
 my-hzn-db=> \timing
 Timing is on.
+```
+
+```plain
 my-hzn-db=# select count(IPLIKE(ipaddr,'10.*.*.*')) from ipinterface;
+```
+
+```plain
  count
 -------
  16391
@@ -116,7 +128,7 @@ sudo dnf config-manager --enable crb
 
 Without access to the `crb` repository, you get the following error message when you try to install the `postgresql17-devel` package:
 
-```bash
+```plain
 Error:
  Problem: cannot install the best candidate for the job
   - nothing provides perl(IPC::Run) needed by postgresql17-devel-17.2-1PGDG.rhel9.x86_64 from pgdg17
@@ -146,7 +158,7 @@ Generate the configure scripts.
 ```
 
 You will get an error message.
-```
+```plain
 configure: error: PostgreSQL is required
 ```
 
@@ -156,17 +168,25 @@ You need to tell the configure script the location of your `pg_config` binary fo
 ```
 
 Compile and install the library with
-```
+```plain
 make && sudo make install
 ```
 
 The libraries and an install script are installed in the following locations:
 ```bash
-[rocky@rocky-dev iplike]$ ls -l /usr/pgsql-17/lib/iplike.*
+ls -l /usr/pgsql-17/lib/iplike.*
+```
+
+```plain
 -rwxr-xr-x. 1 root root   915 Nov 29 17:19 /usr/pgsql-17/lib/iplike.la
 -rwxr-xr-x. 1 root root 59176 Nov 29 17:19 /usr/pgsql-17/lib/iplike.so
+```
 
-[rocky@rocky-dev iplike]$ ls -l /usr/local/sbin/*iplike*
+```bash
+ls -l /usr/local/sbin/*iplike*
+```
+
+```plain
 -rwxr-xr-x. 1 root root 2189 Nov 29 17:19 /usr/local/sbin/install_iplike.sh
 ```
 
@@ -176,7 +196,6 @@ sudo postgresql-17-setup initdb
 ```
 
 Prepare the database for the OpenNMS Horizon installation.
-
 
 ```bash
 sudo -i -u postgres createuser -P my-hzn-user
@@ -206,7 +225,7 @@ sudo -u opennms /opt/opennms/bin/install -dis
 ```
 
 You get an "Unsupported database version" error message.
-```
+```plain
 17:37:33.696 [Main] INFO  org.opennms.core.schema.Migrator - validating database version
 java.lang.reflect.InvocationTargetException
         at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -234,22 +253,23 @@ Verify the language of the installed iplike function.
 Password for user my-hzn-user:
 psql (17.2)
 Type "help" for help.
-
+```
+```plain
 my-hzn-db=> \df+ iplike
-                                                                                  List of functions
- Schema |  Name  | Result data type |      Argument data types      | Type | Volatility | Parallel |  Owner   | Security | Access privileges | Language | Inte
-rnal name | Description
---------+--------+------------------+-------------------------------+------+------------+----------+----------+----------+-------------------+----------+-----
-----------+-------------
- public | iplike | boolean          | i_ipaddress text, i_rule text | func | volatile   | unsafe   | postgres | invoker  |                   | c        | ipli
-ke        |
+```
+
+```plain
+List of functions
+ Schema |  Name  | Result data type |      Argument data types      | Type | Volatility | Parallel |  Owner   | Security | Access privileges | Language | Internal name | Description
+--------+--------+------------------+-------------------------------+------+------------+----------+----------+----------+-------------------+----------+---------------+-------------
+ public | iplike | boolean          | i_ipaddress text, i_rule text | func | volatile   | unsafe   | postgres | invoker  |                   | c        | iplike        |
 (1 row)
 
 my-hzn-db=>
 ```
 
 Start OpenNMS Horizon core with
-```
+```bash
 [rocky@rocky-dev iplike]$ sudo systemctl start opennms
 ```
 

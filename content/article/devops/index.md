@@ -10,7 +10,7 @@ noSummary: false
 I started in 1998 in IT-Services and I did all the funny stuff – was involved building new networks for companies, migrated software from commercial vendors from version A to B to C to D and I have wasted too much lifetime on broken RAID 5s, backups and restores.
 
 If you want to learn how to operate a computer network – this is a good place.
-You will be always called for the complicated problems nobody can solve with a simple Google search.
+You will always be called for the complicated problems nobody can solve with a simple Google search.
 You get also a good feeling, which solution is maintainable over a longer period of time.
 Fortunately people developing software experienced enough pain and started thinking about how to make code maintainable.
 Good developers realized years ago, people spend more time maintaining software than writing it.

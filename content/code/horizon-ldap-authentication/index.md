@@ -24,14 +24,14 @@ The user within the group `OpenNMS-Admins` can configure OpenNMS Horizon and the
 ![](users-and-groups.webp)
 
 ***Step 3: Test the connection with ldapsearch and the bind user from your OpenNMS Horizon server***
-```sh
+```bash
 ldapsearch -x \
   -D 'cn=OpenNMS Bind User,cn=Users,dc=labmonkeys,dc=local' -W \
   -b 'cn=Users,dc=labmonkeys,dc=local' -h 192.168.178.220
 ```
 
 ***Step 4: Enable external authentication in OpenNMS Horizons Spring security context***
-```sh
+```bash
 vi ${OPENNMS_HOME}/jetty-webapps/opennms/WEB-INF/applicationContext-spring-security.xml
 ```
 
@@ -41,7 +41,7 @@ Uncomment the following line:
 ```
 
 ***Step 5: Enable the external Active Directory Authentication security context***
-```sh
+```bash
 cd ${OPENNMS_HOME}/jetty-webapps/opennms/WEB-INF/spring-security.d/
 cp activeDirectory.xml.disabled activeDirectory.xml
 ```
@@ -98,6 +98,6 @@ cp activeDirectory.xml.disabled activeDirectory.xml
 ***Step 10: Restart OpenNMS Horizon and login with your Active Directory User***
 
 For troubleshooting you can watch the Jetty web log.
-```sh
+```bash
 tail -f ${OPENNMS_HOME}/logs/jetty-server.log | grep "LDAP:"
 ```

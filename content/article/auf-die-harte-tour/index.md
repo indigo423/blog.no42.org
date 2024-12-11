@@ -49,13 +49,13 @@ The components can be installed to:
 * Sentinel: `/opt/sentinel`, specified with `INSTPREFIX` for creating the RPM or Debian packages, default is set to `/opt/sentinel`
 
 ### Step 1: Get the source code and a JDK
+
 Install `git` and the OpenJDK 17 development kit
 ```bash
 sudo dnf -y install git java-17-openjdk-devel
 ```
 
 Get the source code from GitHub with
-
 ```bash
 git clone https://github.com/opennms/opennms
 ```
@@ -63,6 +63,7 @@ git clone https://github.com/opennms/opennms
 Our example `34.0.0-SNAPSHOT`.
 
 ### Step 2: Compile the source code
+
 Compile the Java source code
 ```bash
 cd opennms
@@ -70,7 +71,7 @@ cd opennms
 ```
 
 #### Error message:
-```bash
+```plain
 [ERROR] File descriptor limit ('ulimit -n') must be >= 20000 but is 1024. Use 'ulimit -n 20000' to set.
 ```
 
@@ -86,7 +87,6 @@ Depending on your system and the internet bandwidth available, it will take ~25 
 ### Step 3: Assemble the components
 
 Assemble the compiled modules so you can deploy it to `/opt/opennms`
-
 ```bash
 ./assemble.pl -DskipTests -Dopennms.home=/opt/opennms
 ```
@@ -106,13 +106,11 @@ For a tarball deployment you need to manage the Jar files in the lib directory a
 ### Step 4: Deploy the Core server component.
 
 Create a system account to run the Core application as a non-root user:
-
 ```bash
 sudo adduser --system opennms --home /opt/opennms
 ````
 
 Extract the application to `/opt/opennms` and set the owner
-
 ```bash
 sudo mkdir /opt/opennms
 sudo tar -xzf opennms-full-assembly/target/opennms-full-assembly-34.0.0-SNAPSHOT-core.tar.gz -C /opt/opennms
@@ -120,7 +118,6 @@ sudo chown opennms:opennms /opt/opennms/ -R
 ```
 
 Install the system unit and try to start it:
-
 ```bash
 sudo cp /opt/opennms/etc/opennms.service /etc/systemd/system
 sudo systemctl daemon-reload
@@ -131,12 +128,15 @@ sudo systemctl start opennms.service
 
 ```bash
 sudo systemctl start opennms.service
+```
+
+```plain
 Job for opennms.service failed because the control process exited with error code.
 See "systemctl status opennms.service" and "journalctl -xeu opennms.service" for details.
 ```
 
 We see more details with `journalctl -u opennms.service`:
-```bash
+```plain
 Nov 25 22:55:22 rocky-dev systemd[1]: Failed to start OpenNMS server.
 Nov 25 22:57:42 rocky-dev systemd[1]: Starting OpenNMS server...
 Nov 25 22:57:42 rocky-dev opennms[40195]: Starting OpenNMS:
@@ -157,7 +157,7 @@ We have no PostgreSQL database.
 
 ### Step 5: Install PostgreSQL 15
 
-At this point in time, PostgreSQL 15 is latest version supported with OpenNMS Horizon.
+At this point in time, PostgreSQL 15 is the latest version supported with OpenNMS Horizon.
 
 Install from the official PostgreSQL repository
 ```bash
@@ -171,20 +171,21 @@ sudo systemctl enable --now postgresql-15.service
 ```
 
 You will get the following error message:
-
 ```bash
 Created symlink /etc/systemd/system/multi-user.target.wants/postgresql-15.service → /usr/lib/systemd/system/postgresql-15.service.
+```
+
+```plain
 Job for postgresql-15.service failed because the control process exited with error code.
 See "systemctl status postgresql-15.service" and "journalctl -xeu postgresql-15.service" for details.
 ```
 
 The detailed log
-
 ```bash
 journalctl -u postgresql-15.service
 ```
 
-```bash
+```plain
 Nov 25 23:22:26 rocky-dev systemd[1]: Starting PostgreSQL 15 database server...
 Nov 25 23:22:26 rocky-dev postgresql-15-check-db-dir[40806]: "/var/lib/pgsql/15/data/" is missing or empty.
 Nov 25 23:22:26 rocky-dev postgresql-15-check-db-dir[40806]: Use "/usr/pgsql-15/bin/postgresql-15-setup initdb" to initialize the database cluster.
@@ -195,19 +196,17 @@ Nov 25 23:22:26 rocky-dev systemd[1]: Failed to start PostgreSQL 15 database ser
 ```
 
 We need to initialize the database directory first with
-
 ```bash
 sudo postgresql-15-setup initdb
 ```
 
 Restart the PostgreSQL database with `sudo systemctl enable --now postgresql-15.service`.
-
 ```bash
 ss -lnpt sport = :5432
 ```
-The database should now be running an listening on 5432 on the IPv4 and IPv6 loopback address.
 
-```bash
+The database should now be running an listening on 5432 on the IPv4 and IPv6 loopback address.
+```plain
 State                   Recv-Q                  Send-Q                                   Local Address:Port                                   Peer Address:Port                 Process
 LISTEN                  0                       244                                          127.0.0.1:5432                                        0.0.0.0:*
 LISTEN                  0                       244                                              [::1]:5432                                           [::]:*
@@ -232,7 +231,6 @@ sudo -i -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'my-postgres-pass
 ```
 
 Create a secure vault and add the database credentials in OpenNMS Horizon
-
 ```bash
 sudo -u opennms /opt/opennms/bin/scvcli set postgres my-hzn-user my-hzn-user-pass
 sudo -u opennms /opt/opennms/bin/scvcli set postgres-admin postgres my-postgres-pass
@@ -243,8 +241,7 @@ The key syntax from the scvcli set command:
 The literal `postgres` is a reference name for the credential set for the user `my-hzn-user` with the password `my-hzn-user-pass`.
 
 Configure the database connection in OpenNMS Horizon Core
-
-```
+```bash
 sudo vi /opt/opennms/etc/opennms-datasources.xml
 ```
 
@@ -291,7 +288,7 @@ sudo -u opennms /opt/opennms/bin/install -dis
 
 #### Error message
 
-```
+```plain
 runjava: Error: /opt/opennms/etc/java.conf file not found.
 runjava: Run "/opt/opennms/bin/runjava -s" to set up the java.conf file.
 runjava:
@@ -316,21 +313,18 @@ If you want to use a specific JDK you can set it with
 Re-run the command from step 7 again.
 
 Start OpenNMS Horizon core and enable it on system startup with
-
 ```bash
 sudo systemctl enable --now opennms
 ```
 
 #### Error: Can't connect to the web user interface
 Verify if the web application is running on port 8980/tcp
-
 ```bash
 ss -lnpt sport = :8980
 ```
 
 Firewalld is running by default and is blocking 8980/tcp access to the web user interface.
-You can allow the connction with
-
+You can allow the connection with
 ```bash
 sudo firewall-cmd --permanent --add-port=8980/tcp
 sudo systemctl reload firewalld
@@ -355,7 +349,6 @@ With the built-in default detectors you get HTTP and HTTPS detected as well and 
 ### Step 9: Simulate an outage
 
 Simulate an outage with the given node setting a blackhole route with
-
 ```bash
 sudo ip route add blackhole 172.217.16.196/32
 ```
@@ -366,13 +359,11 @@ You can do the same thing with the IPv6 interface.
 ### Step 10: Install and configure SNMP
 
 Let's add Net-SNMP and monitor the system and see what happens.
-
 ```bash
 sudo dnf install net-snmp net-snmp-utils
 ```
 
-For simplicity we give the public community read access to the whole subtree .1 by adding this line:
-
+For simplicity, we give the public community read access to the whole subtree .1 by adding this line:
 ```bash
 view    systemview    included   .1
 ````
@@ -384,7 +375,6 @@ sudo systemctl enable --now snmpd
 ```
 
 You should be able to get access to the SNMP agent with
-
 ```bash
 snmpwalk -v 2c -c public localhost
 ```
@@ -420,7 +410,7 @@ It is highly recommended to migrate at least to a maintained RRDTool version.
 For ICMP the JNA implementation is used.
 In the `manager.log` you will see on startup an algorithm to determine the best available ICMP implementation:
 
-```bash
+```plain
 2024-11-25 23:59:15,882 INFO  [Main] o.o.n.i.b.BestMatchPingerFactory: Searching for best available pinger...
 2024-11-25 23:59:15,904 INFO  [Main] o.o.n.i.b.BestMatchPingerFactory: Found pinger class org.opennms.netmgt.icmp.jni.JniPinger, but it was unable to ping localhost: no jicmp in java.library.path: :/opt/opennms/lib:/opt/opennms/lib/linux64:/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib
 2024-11-25 23:59:15,904 INFO  [Main] o.o.n.i.b.BestMatchPingerFactory: Found pinger class org.opennms.netmgt.icmp.jni.JniPinger, but it was unable to ping localhost: no jicmp in java.library.path: :/opt/opennms/lib:/opt/opennms/lib/linux64:/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib
@@ -447,10 +437,10 @@ In the `manager.log` you will see on startup an algorithm to determine the best 
 2024-11-25 23:59:15,995 INFO  [Main] o.o.n.v.Manager: IPv6 ICMP available? true
 ```
 
-By default in your `log4j2.xml` the daemons are set to log level `DEBUG`.
+By default, in your `log4j2.xml` the daemons are set to log level `DEBUG`.
 You can see what Pollerd is using for ICMP in log entries like this one:
 
-```bash
+```plain
 2024-11-26 12:05:52,960 DEBUG [pool-20-thread-146] o.o.n.i.j.JnaPingRequest: 1732619152960: Sending Ping Request: [ID=JnaPingRequestId[addr = /172.217.16.196, ident = 29237, seqNum = 1, tId = 235],Retries=2,Timeout=3000,Packet-Size=64,Expiration=-1,Callback=org.opennms.netmgt.icmp.LogPrefixPreservingPingResponseCallb
 ack@351c06ec]
 2024-11-26 12:05:52,960 DEBUG [pool-20-thread-146] o.o.c.t.RequestTracker: Scheduling timeout for request to [ID=JnaPingRequestId[addr = /172.217.16.196, ident = 29237, seqNum = 1, tId = 235],Retries=2,Timeout=3000,Packet-Size=64,Expiration=1732619155960,Callback=org.opennms.netmgt.icmp.LogPrefixPreservingPingResponseCallback@351c06ec] in 3000 ms

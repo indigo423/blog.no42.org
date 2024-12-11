@@ -16,7 +16,7 @@ The following steps are executed in a root shell with `sudo -i`.
 
 ### Download Node_Exporter
 
-```console
+```bash
 wget https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node_exporter-1.2.2.linux-amd64.tar.gz
 tar xzf node_exporter-1.2.2.linux-amd64.tar.gz
 mv node_exporter-1.2.2.linux-amd64/node_exporter /usr/local/bin
@@ -25,7 +25,7 @@ mkdir -p /var/lib/node_exporter
 
 ### Create system user account
 
-```console
+```bash
 useradd --no-create-home --shell /bin/false node-exp
 ```
 
@@ -44,7 +44,7 @@ print(hashed_password.decode())
 
 To create a password hash run it with:
 
-```console
+```bash
 python3 gen-pass.py
 ```
 
@@ -54,7 +54,7 @@ You should get a prompt for the password and use the hash in your basic auth con
 
 Create config directory and create empty configuration file
 
-```console
+```bash
 mkdir /etc/node_exporter
 /etc/node_exporter/config.yaml
 ```
@@ -72,7 +72,7 @@ basic_auth_users:
 
 File: `/etc/systemd/system/node_exporter.service`
 
-```console
+```bash
 [Unit]
 Description=Prometheus Node Exporter
 After=network-online.target

@@ -13,7 +13,7 @@ In most cases the CMD is the `--help` argument to provide a useful default behav
 
 In my case I've built a Ruby based executable and for the reason I need the environment variables, I've used as ENTRYPOINT the `bash -c <command>` command and used the CMD default argument `--help` like this:
 
-```sh
+```bash
 ENTRYPOINT ["/bin/bash", "-c", "/path/to/myRuby"]
 
 CMD ["--help"]
@@ -22,7 +22,7 @@ CMD ["--help"]
 I've noticed the `--help` argument was not used when you just run the container.
 To verify the problem and isolate the environment, I've created a small example for investigation:
 
-```sh
+```bash
 FROM alpine
 
 ENTRYPOINT ["/bin/bash", "-c", "ps"]
@@ -34,7 +34,7 @@ When I ran this container I've noticed the `ps` command is executed but not the 
 It turned out the problem is `/bin/bash -c` usage as ENTRYPOINT.
 When you execute `/bin/bash -c 'echo ${0}' myFirstArgument` you will notice the `myFirstArgument` becomes ${0} which is the name of the script itself.
 
-```sh
+```bash
 man /bin/bash:
 ```
 

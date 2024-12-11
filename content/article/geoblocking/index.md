@@ -17,13 +17,13 @@ Edit the torrc file and set a strict exit node from a country of your choice.
 
 On Mac OSX you find the file in the following location
 
-```shell
+```bash
 vi ~/Library/Application\ Support/TorBrowser-Data/Tor/torrc
 ```
 
 Add the following lines to pick always an exit node in Canada:
 
-```shell
+```plain
 StrictNodes 1
 ExitNodes {ca}
 ```
@@ -33,7 +33,7 @@ Some people truly rely on the limited resources and bandwidth of the project.
 
 Here is a copy of the country codes with all the kudos to [b3rn3d](https://b3rn3d.herokuapp.com/blog/2014/03/05/tor-country-codes/) which you should read for even more complex details.
 
-```console
+```plain
 Country                               Abbrev
 ASCENSION ISLAND                      {ac}
 AFGHANISTAN                           {af}

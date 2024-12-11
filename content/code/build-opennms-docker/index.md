@@ -33,20 +33,20 @@ As soon you have a box which has a running Docker daemon running you can use our
 This example gives you the possiblity to build and run multiple branches, so every branch gets his own directory with the branch name as a namespace.
 
 ***Step 1: Make a workspace directory where we mess around.***
-```sh
+```bash
 cd ${HOME}
 mkdir workspace
 cd workspace
 ```
 
 ***Step 2: Checkout the OpenNMS Horizon source code from GitHub***
-```sh
+```bash
 git clone https://github.com/OpenNMS/opennms.git develop/opennms
 # Develop is checkout by default, if you want a custom branch check it out with git checkout origin/<branch-name>
 ```
 
 ***Step 3: Compile OpenNMS Horizon and tag the running docker instance to make it easier to identify the running build process***
-```sh
+```bash
 docker run --rm \
     -l "branch=develop" \
     -v $(pwd)/develop/opennms:/usr/src/opennms \
@@ -56,7 +56,7 @@ docker run --rm \
 ```
 
 ***Step 4: Assemble OpenNMS Horizon so it can be started from /opt/opennms***
-```sh
+```bash
 docker run --rm \
     -l "branch=develop" \
     -v $(pwd)/develop/opennms:/usr/src/opennms \
@@ -84,7 +84,7 @@ If you want to build multiple branches they can mess things up.
 So we have to isolate all OpenNMS related artifacts from each other.
 We just mount `.m2/repository/org/opennms` directory to a dedicated place in the branch directory.
 
-```sh
+```bash
 -v $(pwd)/develop/m2:/root/.m2/repository/org/opennms \
 ```
 
@@ -92,7 +92,7 @@ That way we can leverage from a shared local Maven repository and have branch sp
 
 I've put things described here in a convinient [bash script](https://github.com/opennms-forge/build-workbench/blob/master/docker-build.sh) which can be run from a workspace directory.
 
-```sh
+```bash
 ./docker-build.sh -b jira/NMS-9858
 ```
 
