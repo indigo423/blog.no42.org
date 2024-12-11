@@ -15,4 +15,10 @@
             {{ partial "utterances.html" . }}
         </div>
     {{ end }}
+    <div class="post-content">
+        <!-- Add mermaid min js file -->
+        {{ if (.Params.mermaid) }}
+        {{ partial "mermaid.html" }}
+        {{ end }}
+    </div>
 {{ end }}
