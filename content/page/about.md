@@ -11,9 +11,9 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 
 #### What I'm doing today
 
-* I work full time for [The OpenNMS Group](https://www.opennms.com) in product management and help building tools for network diagnostics and performance management
+* I work full-time for [The OpenNMS Group](https://www.opennms.com) in product management and help building tools for network diagnostics and performance management
 * Contact manager for our german development team and first point of contact for OpenNMS customers and partners in Europe
-* Subject matter expert in building network monitoring solutions with people working in ISP, MSP and large network deployments
+* Subject-matter expert in building network monitoring solutions with people working in ISP, MSP and large network deployments
 * Work as a digital nomad since 2010 with people in different culture and different time zones
 * Help People, Have Fun, Make Money and I try to spend less than I earn which I've adopted from one of my Sensei's Tarus Balog
 
@@ -37,14 +37,14 @@ The current operational status is shown on [Uptime Status](https://uptime.labmon
 * Mentor [HHN Barcamp 2023 - KI](https://www.hs-heilbronn.de/de/nicole.ondrusch/innovative-lehre/barcamp) with [KI Salon](https://www.ki-salon.net/) at Heilbronn University of Applied Sciences
 * Mentor [GSoC 2013](https://www.google-melange.com/archive/gsoc/2013/orgs/opennms/projects/jwhite.html): Distribute an instance of OpenNMS across different physical machines to improve availability and scalability
 * Mentor [GSoC 2012](https://www.google-melange.com/archive/gsoc/2012/orgs/opennms/projects/fooker.html): Integration of Flume and ElasticSearch to analyze big log data
-* Event coordinator and speaker at annually OpenNMS User Conference Europe (OUCE) from 2009 - 2018
 * 2010: Co-founder OpenNMS Foundation Europe e.V.
 * 2010: Co-founder Hacker space [Magrathea Laboratories e.V.](https://maglab.space)
+* Event coordinator and speaker at annually OpenNMS User Conference Europe (OUCE) from 2009 - 2018
 * 2000: Co-founder MCL2k organizing LAN-Parties up to 828 people
 
 ### Places I've worked
 
-* 2023 - today, help
+* 2023 - today, counselor for product management and product strategy building the open-source network monitoring platform OpenNMS Horizon/Meridian
 * 2022 - 2023, joined the product management team at OpenNMS as subject-matter expert for network monitoring and performance management
 * 2015 - 2022, full-time contributor at The OpenNMS Group as an open source network monitoring advocate
 * 2011 - 2015, University of Applied Sciences Hochschule Fulda, research assistant Computer Science department
