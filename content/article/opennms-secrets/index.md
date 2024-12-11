@@ -1,6 +1,6 @@
 ---
 title: "Dealing with secrets in OpenNMS Horizon"
-date: "2024-12-11"
+date: "2025-12-11"
 categories: ['Monitoring', 'How-To', 'OpenNMS']
 tags: ['opennms', 'secrets', 'vault']
 author: "Ronny Trommer"
