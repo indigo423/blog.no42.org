@@ -468,6 +468,7 @@ There are now additional steps we can take from here, most notably:
 * [Compile and install IPLIKE stored procedure in PostgreSQL]({{< ref "/article/iplike-and-postgresql" >}})
 * [Compile and install RRDTool support using JRRD2]({{< ref "/article/rrdtool-with-jrrd2" >}})
 * Building Core, Minion, and Sentinel RPM packages
-* Create Docker container images
+* [Build Docker container images]({{ ref "/article/opennms-oci" >}})
+* [Dealing with secrets]({{< ref "/article/opennms-secrets" >}})
 
 Stay tuned and so long

@@ -169,4 +169,10 @@ disqusShortname = ""
   [markup.highlight]
     style = 'monokailight'
 
+[module]
+  [[module.imports]]
+    path = "hugo-admonitions"
+  [[module.imports]]
+    path = "bilberry-hugo-theme"
+
 [merm]
