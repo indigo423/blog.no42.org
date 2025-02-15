@@ -126,7 +126,7 @@ disqusShortname = ""
   ]
 
   # credits line configuration
-  copyrightBy = "by Ronny Trommer"
+  copyrightBy = "made in 🇪🇺 by Ronny Trommer with ❤️ for Open Source "
   copyrightUseCurrentYear = true  # set to true to always display the current year in the copyright
   # copyrightYearOverride = "2021"
   copyrightUrl = "https://github.com/indigo423"
