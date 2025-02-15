@@ -5,17 +5,13 @@ author: "Ronny Trommer"
 menu: topnav
 weight: 1
 ---
-Work in open source and grew up with an Amiga 500 in the early 90s, a full-time contributor [@opennms](https://www.opennms.com).
-I run some internet services just for fun.
-The current operational status is shown on [Uptime Status](https://uptime.labmonkeys.space/status/no42).
 
 #### What I'm doing today
 
-* I work full-time for [The OpenNMS Group](https://www.opennms.com) in product management and help building tools for network diagnostics and performance management
+* I work full-time for [The OpenNMS Group](https://www.opennms.com) as a subject-matter expert for OpenNMS and advocate for Open Source working with people in providing internet infrastructure or managed services
 * Contact manager for our german development team and first point of contact for OpenNMS customers and partners in Europe
-* Subject-matter expert in building network monitoring solutions with people working in ISP, MSP and large network deployments
 * Work as a digital nomad since 2010 with people in different culture and different time zones
-* Help People, Have Fun, Make Money and I try to spend less than I earn which I've adopted from one of my Sensei's Tarus Balog
+* Adopted the principles from Tarus Balog, help people, have fun, make money and I try to spend less than I earn
 
 ### Research and Eduction
 
