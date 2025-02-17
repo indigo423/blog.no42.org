@@ -9,14 +9,29 @@ noSummary: false
 
 Running a Java application in a container seems to be very easy.
 The devil is in the details and I want to shed some light on the PID 1 problem when you run Java applications in containers.
-In a general running applications in containers should not have any state so you just don't care, but reality is different forces you to have to.
+Theoretical, processes in containers should not have state so you just don't care, but reality is different. 
 
-Signals are used to a running process to behave in a certain ways.
-Some can be caught by a running process and give people possibilities to implement logic to shutdown the application gracefully.
+Signals are used to message running process to behave in certain ways.
 A common case is to terminate a process nicely sending a `SIGTERM` to the process identified by the process id using the tool `ps`.
+People can implement logic shutting down an application gracefully. 
+When you issue the command `kill <pid>` you send a SIGTERM to a process.
+We have other signals you can use, especially when application provide terminals.
+Hitting `CTRL + C` sends `SIGINT` to the terminal process.
+Some signals are quite out of time, the signal to hangup `SIGHUP` comes from terminal applications.
+It is often used nowadays telling a running process to re-read configurations.
 
-So when you issue the command `kill <pid>` you send a SIGTERM to a process.
-When you have a process running in foreground and you hit `CTRL + C` you send the signal `SIGINT` to the process.
+The second and much more important thing is about spawning processes.
+If your application process creates child processes, disappear without waiting for the children to exit, you get zombies.
+The init systems job is to take over as a parent and can clean them up.
+Running an operating system your init system like systemd is pid 1 and does the job for signal handling and protecting your system from accidentally creating zombies, that can starve your systems for PIDs.
+In containers, there is just your application running as a process.
+You are pid 1 and your process has to deal with it.
+When you have a long-running container process which spawns processes, the process cleanup mechanism is more severe.
+Side note: A container is a cgroup of processes running a namespace.
+The container stops and all zombies will be removed and won't bother the host systems init system.
+
+With OpenNMS we give users some flexibility running custom scripts which can fork all kinds of processes in a non-Java language.
+This article is about the signal handling with some simple examples, to illustrate the problem and how you can deal with it. 
 
 ### Java application and signals
 
