@@ -133,6 +133,12 @@ disqusShortname = ""
   creditsText = ""
   creditsUrl = "https://github.com/Lednerb/bilberry-hugo-theme"
 
+  # show an archive link in the footer
+  showArchive = true
+
+  # archive grouping: "2006" by year, "2006-01" by month
+  archiveDateGrouping = "2006"
+
 # customize your available languages for your multi-langual site
 # or delete the [Languages] blog to use the theme with only one supported language
 [Languages]
