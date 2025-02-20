@@ -186,11 +186,13 @@ SNMP functions like SNMP metric collection works as usual and transparently.
 ## What about SNMP bulk requests
 
 An interesting question comes up when we talk about using SNMP bulk requests against the hidden SNMP server.
-In a nutshell, SNMP bulk requests give you two features:
-Request more than just one variable in each request (max varbinds)
-An agent can respond with more than just the requested variables from a repeating table (max repetitions)
-Both address efficiency in the sense of getting data with less communication overhead.
-The default is 10 which means if a monitoring system wants a large table, it gets 10 more rows than it has just asked for.
+In a nutshell, SNMP bulk requests gives you two key features:
+
+1. Request more than just one variable in each request (max varbinds)
+2. An agent can respond with more than just the requested variables from a repeating table (max repetitions)
+
+Both address efficiency in the sense of getting data with less communication overhead with a tradeoff against latency and device workload.
+The default for both is 10 which means if a monitoring system gets 10 variables per SNMP packet and an agent gives you 10 rows more than it has just asked when you have a large table.
 Let's see what this looks like on the wire for the SNMP agent we proxy for.
 
 ![Communication for SNMP bulk request](snmp-bulk-request.png)
