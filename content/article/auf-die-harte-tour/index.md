@@ -33,7 +33,7 @@ The hardware specs for this session:
 
 If you want to build a different version here is an overview which OpenJDK you can use for various versions.
 
-![OpenJDK compatibility](OpenJDK-compatibility.drawio.svg)
+![OpenJDK compatibility](OpenJDK-compatibility.drawio.png)
 
 ## Milestone 1: Build OpenNMS Horizon Snapshot
 
