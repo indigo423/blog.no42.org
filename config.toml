@@ -1,6 +1,5 @@
 title = "№42"
 baseURL = "https://blog.no42.org/"
-theme = "bilberry-hugo-theme"
 
 # Generate the robots.txt file for SEO
 enableRobotsTXT = true
@@ -182,3 +181,4 @@ disqusShortname = ""
     path = "bilberry-hugo-theme"
 
 [merm]
+

@@ -16,6 +16,7 @@
                     <li><a href="{{ .URL }}">{{ .Title }}</a></li>
                 {{ end }}
             {{ end }}
+            <li><a href="https://uptime.labmonkeys.space/status/no42" target="_blank">Status Page</a></li>
         </ul>
 
         {{ if and (isset .Site.Params "algolia_search") (eq .Site.Params.algolia_search true) }}
