@@ -6,7 +6,19 @@ menu: topnav
 weight: 1
 ---
 
-#### What I'm doing today
+> “My fascination with technology started with a simple idea: helping people have fun together.
+In the late 1990s and early 2000s, I spent countless nights with my friends transforming community halls into temporary gaming arenas.
+What started as a small gathering of 40 friends quickly grew — by the end, our largest event hosted over 820 people.
+I ran cables across floors, rerouted switches when PCs refused to connect, and battled with the hall’s electrical system to make sure there was enough power for dozens of computers and hundreds of monitors.
+Budgets were tight, deadlines tighter, and every event came with the unpredictability only teenagers can bring.
+>
+> But then the magic happened.
+Hundreds of monitors flickered to life, tournaments erupted, and the room buzzed with laughter, cheers, and the thrill of competition.
+Standing there under the fluorescent lights, seeing friends immersed in the games I’d helped set up, I realized the true reward wasn’t the cables, the switches, or the overloaded circuits — it was creating a space where people could connect and have fun together.
+>
+> Those nights taught me that technology is at its best when it serves people, not the other way around — a lesson that still guides me today in open source, where collaboration and shared excitement drive every project I contribute to.”
+
+### What I'm doing today
 
 * I work full-time for [The OpenNMS Group](https://www.opennms.com) as a subject-matter expert for OpenNMS and advocate for Open Source working with people in providing internet infrastructure or managed services
 * Contact manager for our german development team and first point of contact for OpenNMS customers and partners in Europe
