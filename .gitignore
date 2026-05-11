@@ -5,3 +5,7 @@ resources/_gen
 public/
 \.\$*.bkp
 
+# AI tools
+_bmad-output/
+_bmad/
+openspec/
