@@ -20,8 +20,14 @@
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.26.10",
     "sass-loader": "^8.0.2",
-    "skeleton-css": "^2.0.4",
-    "vue-template-compiler": "^2.6.11"
+    "skeleton-css": "^2.0.4"
+  },
+  "overrides": {
+    "postcss": "^8.5.10",
+    "picomatch": "^2.3.2",
+    "qs": "^6.14.2",
+    "algoliasearch-helper": "^3.11.2",
+    "min-document": "^2.19.1"
   },
   "scripts": {
     "update-deps": "scripts/update-node-deps.sh",
