@@ -2,7 +2,7 @@
 title: "Blitsbom, browser-only SBOM viewer"
 date: "2026-05-20"
 categories: ['Technology']
-tags: ['sbom', 'devops', 'selfhosting', 'open-source']
+tags: ['sbom', 'devops', 'selfhosting', 'open source']
 author: "Ronny Trommer"
 noSummary: false
 ---

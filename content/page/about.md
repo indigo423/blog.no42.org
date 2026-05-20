@@ -52,7 +52,7 @@ Standing there under the fluorescent lights, seeing friends immersed in the game
 
 ### Places I've worked
 
-* 2023 - today, counselor for product management and product strategy building the open-source network monitoring platform OpenNMS Horizon/Meridian
+* 2023 - today, counselor for product management and product strategy building the open source network monitoring platform OpenNMS Horizon/Meridian
 * 2022 - 2023, joined the product management team at OpenNMS as subject-matter expert for network monitoring and performance management
 * 2015 - 2022, full-time contributor at The OpenNMS Group as an open source network monitoring advocate
 * 2011 - 2015, University of Applied Sciences Hochschule Fulda, research assistant Computer Science department

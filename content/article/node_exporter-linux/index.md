@@ -1,7 +1,7 @@
 ---
 title: "Installing Node Exporter on Linux"
 date: "2021-03-11"
-categories: ['Technology', 'Open-Source']
+categories: ['Technology', 'Open Source']
 tags: ['prometheus', 'opennms']
 author: "Ronny Trommer"
 noSummary: false

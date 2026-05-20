@@ -28,7 +28,7 @@ disqusShortname = ""
   # Description and meta data for the search engines
   author = "Ronny Trommer"
   description = "Private blog around tech and live."
-  keywords = "opensource,open-source,opennms,networking,it,technology,tech,blog,ronny,ronnytrommer,indigo423,indigo"
+  keywords = "open source,opensource,open-source,opennms,networking,it,technology,tech,blog,ronny,ronnytrommer,indigo423,indigo"
 
   # How many articles should be displayed at once?
   paginate = 10

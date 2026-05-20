@@ -1,8 +1,8 @@
 ---
 title: "UCARP and High Availability"
 date: "2020-02-07"
-categories: ['Technology', 'Open-Source']
-tags: ['events', 'open-source', 'ucarp', 'high-availability']
+categories: ['Technology', 'Open Source']
+tags: ['events', 'open source', 'ucarp', 'high-availability']
 author: "Ronny Trommer"
 noSummary: false
 ---
