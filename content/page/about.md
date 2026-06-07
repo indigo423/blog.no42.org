@@ -6,17 +6,17 @@ menu: topnav
 weight: 1
 ---
 
-> “My fascination with technology started with a simple idea: helping people have fun together.
-In the late 1990s and early 2000s, I spent countless nights with my friends transforming community halls into temporary gaming arenas.
-What started as a small gathering of 40 friends quickly grew — by the end, our largest event hosted over 820 people.
-I ran cables across floors, rerouted switches when PCs refused to connect, and battled with the hall’s electrical system to make sure there was enough power for dozens of computers and hundreds of monitors.
-Budgets were tight, deadlines tighter, and every event came with the unpredictability only teenagers can bring.
->
-> But then the magic happened.
-Hundreds of monitors flickered to life, tournaments erupted, and the room buzzed with laughter, cheers, and the thrill of competition.
-Standing there under the fluorescent lights, seeing friends immersed in the games I’d helped set up, I realized the true reward wasn’t the cables, the switches, or the overloaded circuits — it was creating a space where people could connect and have fun together.
->
-> Those nights taught me that technology is at its best when it serves people, not the other way around — a lesson that still guides me today in open source, where collaboration and shared excitement drive every project I contribute to.”
+A computer on its own never fascinated me. What fascinated me was what people could create with one, and that wonder took hold early. As a kid I spent every coin of my savings on an Amiga 500. I could read just a tiny little bit of English, had no mentor, and no one to learn from, so I learned the only way I could, one mistake at a time.
+
+The real magic arrived the first time I connected two computers. A null-modem cable, a modem handshake, and suddenly the machine wasn't the point at all. Connection was. That spark grew into my first BNC network, built with my brother and my neighbor. In my early twenties, around the turn of the 2000s, it became something much bigger. My friends and I started turning community halls into gaming arenas, events that grew from 40 people to more than 820. I ran cable across floors, rerouted switches when PCs refused to connect, and wrestled aging electrical systems into powering hundreds of monitors, always on a shoestring budget and an impossible deadline. The reward was never the wiring. It was the moment the room came alive.
+
+My apprenticeship was where it all became real. I designed and built networks for small and medium companies, and that was where I learned what it means to own the full stack, from the cabling in the walls to computers, storage, and networking. Not just to build it, but to keep it running. That foundation carried me into a degree in Telecommunication and Network Engineering at the University of Applied Sciences Fulda, and then into professional network monitoring at an ISP, working in open source.
+
+Open source taught me the same old lesson at first, one mistake at a time. But this time something was different. When I started with OpenNMS, I found people on IRC who helped me grow and answered a stranger's questions with real patience and generosity. They became friends I still admire today. Now we learned together.
+
+Today I'm an individual contributor and advisor to the OpenNMS project. What drives me isn't the code for its own sake. It's the work that makes a genuine difference for the people who use it. I still remember both feelings, the kid alone with a manual he couldn't read, and the newcomer who was finally welcomed in, so I try to build with empathy for the next person walking through the same door.
+
+The rooms have grown over the years, from a lone Amiga, to two cabled computers, to a hall of 820, to entire networks. But the mission has never changed. It's about technology that brings people together, and there's still no greater thrill than watching the room come alive.
 
 ### What I'm doing today
 
@@ -52,12 +52,12 @@ Standing there under the fluorescent lights, seeing friends immersed in the game
 
 ### Places I've worked
 
-* 2023 - today, counselor for product management and product strategy building the open source network monitoring platform OpenNMS Horizon/Meridian
+* 2023 - today, individual contributor and advisor for product management and product strategy, building the open source network monitoring platform OpenNMS Horizon/Meridian. I also help strategic partners and stakeholders turn product and business goals into OpenNMS success
 * 2022 - 2023, joined the product management team at OpenNMS as subject-matter expert for network monitoring and performance management
 * 2015 - 2022, full-time contributor at The OpenNMS Group as an open source network monitoring advocate
 * 2011 - 2015, University of Applied Sciences Hochschule Fulda, research assistant Computer Science department
 * 2010 - 2015, Advocate for the open source network monitoring tool OpenNMS, Freelancer
-* 2007 - 2010, NETHINKS GmbH, building solutions and network monitoring services with OpenNMS. and various other open source monitoring tools
+* 2007 - 2010, NETHINKS GmbH, building solutions and network monitoring services with OpenNMS and various other open source monitoring tools
 * 1998 - 2004, Drimalski & Partner GmbH, IT network infrastructure, network security, and MS Active Directory design and implementation
 
 ### Education
