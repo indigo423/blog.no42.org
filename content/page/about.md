@@ -20,10 +20,14 @@ The rooms have grown over the years, from a lone Amiga, to two cabled computers,
 
 ### What I'm doing today
 
-* I work full-time for [The OpenNMS Group](https://www.opennms.com) as a subject-matter expert for OpenNMS and advocate for Open Source working with people in providing internet infrastructure or managed services
-* Contact manager for our german development team and first point of contact for OpenNMS customers and partners in Europe
-* Work as a digital nomad since 2010 with people in different culture and different time zones
-* Adopted the principles from Tarus Balog, help people, have fun, make money and I try to spend less than I earn
+* Individual contributor and advisor for strategic partners and stakeholders using and building the open source network monitoring platform OpenNMS Horizon/Meridian
+* Contact manager for our German development team and first point of contact for OpenNMS customers and partners in Europe
+* Collaborating with people across different cultures and time zones
+
+Maintainer and contributor to open source projects, including:
+* [nl6](https://nl6.eu) — load testing and performance analysis for monitoring tools
+* [Blitsbom](https://blitsbom.eu) — lightweight SBOM analysis tool for open source projects
+* [Blittermib](https://blittermib.eu) — Web based SNMP MIB browser
 
 ### Research and Eduction
 
@@ -52,13 +56,13 @@ The rooms have grown over the years, from a lone Amiga, to two cabled computers,
 
 ### Places I've worked
 
-* 2023 - today, individual contributor and advisor for product management and product strategy, building the open source network monitoring platform OpenNMS Horizon/Meridian. I also help strategic partners and stakeholders turn product and business goals into OpenNMS success
-* 2022 - 2023, joined the product management team at OpenNMS as subject-matter expert for network monitoring and performance management
-* 2015 - 2022, full-time contributor at The OpenNMS Group as an open source network monitoring advocate
-* 2011 - 2015, University of Applied Sciences Hochschule Fulda, research assistant Computer Science department
-* 2010 - 2015, Advocate for the open source network monitoring tool OpenNMS, Freelancer
-* 2007 - 2010, NETHINKS GmbH, building solutions and network monitoring services with OpenNMS and various other open source monitoring tools
-* 1998 - 2004, Drimalski & Partner GmbH, IT network infrastructure, network security, and MS Active Directory design and implementation
+* 2023 - today: Individual contributor and advisor supporting strategic partners and stakeholders
+* 2022 - 2023: Joined the product management team at OpenNMS as a subject-matter expert for network monitoring and performance management
+* 2015 - 2022: Full-time contributor at The OpenNMS Group, advocating for open source network monitoring solutions
+* 2011 - 2015: Research assistant in the Computer Science Department at Hochschule Fulda
+* 2010 - 2015: Freelance advocate for the open source network monitoring platform OpenNMS
+* 2007 - 2010: Worked at NETHINKS GmbH building network monitoring solutions and services with OpenNMS and other open source monitoring tools
+* 1998 - 2004: Worked at Drimalski & Partner GmbH designing and implementing IT network infrastructure, network security, and Microsoft Active Directory environments
 
 ### Education
 
