@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Network diagram of the six benchmark virtual machines. The load generator and the Minion face each other across the sim bridge, carrying the SNMP walk. The Minion, the Kafka broker and Core sit in a line joined by the kafka bridge, carrying collect RPC in both directions and the metrics topic from Core to the broker. Core also reaches the database over the db bridge, carrying inventory and state but no samples. The monitoring VM reads the metrics topic from the broker and is the only VM with a route off the physical host. A dashed frame around all six marks the management segment that every VM also sits on." font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace">
+<style>
+:root {
+color: #4C5C5A;
+--accent: #2a78d6;
+}
+</style>
+
+<defs>
+<marker id="nd-arrow" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L8,4 L0,8 Z" fill="currentColor"/>
+</marker>
+</defs>
+
+<!-- management segment: every VM sits on it, so it encloses rather than connects -->
+<rect x="14" y="28" width="932" height="362" rx="4" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-dasharray="5 4"/>
+<text x="28" y="382" font-size="11" fill="currentColor" fill-opacity=".65">mgmt 192.0.2.192/26 &mdash; all six VMs: SSH, Ansible, Prometheus scrape</text>
+
+<!-- the only door in -->
+<line x1="601" y1="6" x2="601" y2="42" stroke="currentColor" marker-end="url(#nd-arrow)"/>
+<text x="611" y="20" font-size="11" fill="currentColor" fill-opacity=".65">host uplink &mdash; the only route in</text>
+
+<!-- monitoring -->
+<rect x="535" y="44" width="132" height="56" rx="3" fill="none" stroke="currentColor"/>
+<text x="601" y="68" font-size="13" text-anchor="middle" fill="currentColor">monitoring</text>
+<text x="601" y="86" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity=".65">Prometheus, Grafana</text>
+
+<!-- monitoring reads the topic -->
+<line x1="601" y1="100" x2="601" y2="192" stroke="currentColor" marker-end="url(#nd-arrow)"/>
+<text x="613" y="140" font-size="11" fill="currentColor" fill-opacity=".65">kafka bridge</text>
+<text x="613" y="154" font-size="11" fill="currentColor" fill-opacity=".65">reads the topic</text>
+
+<!-- loadgen -->
+<rect x="51" y="196" width="132" height="56" rx="3" fill="none" stroke="currentColor"/>
+<text x="117" y="220" font-size="13" text-anchor="middle" fill="currentColor">loadgen</text>
+<text x="117" y="238" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity=".65">nl6 &middot; 10.42.0.0/16</text>
+
+<!-- sim bridge: the only hop SNMP takes -->
+<line x1="183" y1="224" x2="293" y2="224" stroke="currentColor" marker-start="url(#nd-arrow)" marker-end="url(#nd-arrow)"/>
+<text x="238" y="212" font-size="11" text-anchor="middle" fill="currentColor">SNMP v2c walk</text>
+<text x="238" y="244" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity=".65">sim bridge</text>
+<text x="238" y="262" font-size="11" text-anchor="middle" style="fill:var(--accent)">11 Mbit/s</text>
+
+<!-- minion -->
+<rect x="293" y="196" width="132" height="56" rx="3" fill="none" stroke="currentColor"/>
+<text x="359" y="220" font-size="13" text-anchor="middle" fill="currentColor">minion</text>
+<text x="359" y="238" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity=".65">SNMP RPC executor</text>
+
+<line x1="425" y1="224" x2="535" y2="224" stroke="currentColor" marker-start="url(#nd-arrow)" marker-end="url(#nd-arrow)"/>
+<text x="480" y="212" font-size="11" text-anchor="middle" fill="currentColor">collect RPC</text>
+<text x="480" y="244" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity=".65">kafka bridge</text>
+<text x="480" y="262" font-size="11" text-anchor="middle" style="fill:var(--accent)">36 Mbit/s</text>
+
+<!-- the broker is where the benchmark is read -->
+<rect x="535" y="196" width="132" height="56" rx="3" fill="none" style="stroke:var(--accent)" stroke-width="2"/>
+<text x="601" y="220" font-size="13" text-anchor="middle" style="fill:var(--accent)">kafka</text>
+<text x="601" y="238" font-size="11" text-anchor="middle" style="fill:var(--accent)">measurement point</text>
+
+<line x1="667" y1="224" x2="777" y2="224" stroke="currentColor" marker-start="url(#nd-arrow)" marker-end="url(#nd-arrow)"/>
+<text x="722" y="212" font-size="11" text-anchor="middle" fill="currentColor">collect RPC</text>
+<text x="722" y="244" font-size="11" text-anchor="middle" fill="currentColor">metrics topic</text>
+<text x="722" y="262" font-size="11" text-anchor="middle" style="fill:var(--accent)">52 Mbit/s</text>
+
+<!-- core -->
+<rect x="777" y="196" width="132" height="56" rx="3" fill="none" stroke="currentColor"/>
+<text x="843" y="220" font-size="13" text-anchor="middle" fill="currentColor">core</text>
+<text x="843" y="238" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity=".65">PoweredBy 2026</text>
+
+<!-- db bridge carries no samples: the claim the diagram exists to make -->
+<line x1="843" y1="252" x2="843" y2="306" stroke="currentColor" marker-start="url(#nd-arrow)" marker-end="url(#nd-arrow)"/>
+<text x="831" y="272" font-size="11" text-anchor="end" fill="currentColor" fill-opacity=".65">db bridge</text>
+<text x="831" y="290" font-size="11" text-anchor="end" fill="currentColor">inventory, not samples</text>
+<text x="855" y="283" font-size="11" text-anchor="start" style="fill:var(--accent)">31 Mbit/s</text>
+
+<!-- database -->
+<rect x="777" y="310" width="132" height="56" rx="3" fill="none" stroke="currentColor"/>
+<text x="843" y="334" font-size="13" text-anchor="middle" fill="currentColor">database</text>
+<text x="843" y="352" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity=".65">PostgreSQL 18</text>
+</svg>
