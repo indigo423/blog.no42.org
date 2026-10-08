@@ -9,3 +9,6 @@
   to = "https://blog.no42.org"
   status = 301
   force = true
+
+[build.environment]
+  HUGO_VERSION = "0.167.0"
