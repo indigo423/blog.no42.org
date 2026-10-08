@@ -2,6 +2,8 @@
 title: "Goodbye"
 date: "2018-07-30"
 author: "Paulo Coelho"
+quoteAuthor: "Paulo Coelho"
+quoteAuthorLink: "/author/paulo-coelho/"
 noSummary: false
 ---
 

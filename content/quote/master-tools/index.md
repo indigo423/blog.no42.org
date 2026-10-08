@@ -2,6 +2,8 @@
 title: "Mastering a tool"
 date: "2024-07-31"
 author: "Kelsey Hightower"
+quoteAuthor: "Kelsey Hightower"
+quoteAuthorLink: "/author/kelsey-hightower/"
 noSummary: false
 ---
 

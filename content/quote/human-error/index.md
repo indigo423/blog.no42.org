@@ -2,6 +2,8 @@
 title: "Human error"
 date: "2021-04-07"
 author: "Jan Schaumann"
+quoteAuthor: "Jan Schaumann"
+quoteAuthorLink: "/author/jan-schaumann/"
 noSummary: false
 ---
 
