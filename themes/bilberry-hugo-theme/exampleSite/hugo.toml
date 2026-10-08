@@ -1,5 +1,14 @@
-title = "My cool new Blog"
+title = "My Cool New Blog"
 baseURL = "https://example.com/"
+
+# Generate the robots.txt file for SEO
+enableRobotsTXT = true
+
+# Change to one of your content languages defined at the end.
+defaultContentLanguage = "en"
+
+# Enable / Disable comments on the articles via Disqus.
+disqusShortname = ""
 
 [module]
   [[module.imports]]
@@ -8,15 +17,6 @@ baseURL = "https://example.com/"
 
     # Options 2 and 3: cloning/copying the theme files
     # path = "bilberry-hugo-theme/v4"
-
-# Generate the robots.txt file for SEO
-enableRobotsTXT = true
-
-# Change to one of your content languages defined at the end.
-DefaultContentLanguage = "en"
-
-# Enable / Disable comments on the articles via Disqus.
-disqusShortname = ""
 
 [params]
   # Custom CSS/JS modules that will be imported by the template.
@@ -27,7 +27,8 @@ disqusShortname = ""
   js_modules = []
 
   # Description and metadata for the search engines
-  author = "Lednerb"
+  authorName = "Lednerb"
+  authorEmail = ""
   description = "Bilberry Premium Theme for Hugo."
   keywords = "blog,personal,responsive,search,font awesome,pages,posts,multilingual,syntax highlighting,premium,shortcuts"
 
@@ -171,7 +172,7 @@ disqusShortname = ""
     weight = 1
   [languages.de]
     weight = 2
-    title = "Mein cooler neuer Blog"
+    title = "Mein Cooler Neuer Blog"
     [languages.de.params]
       subtitle = "Hallo Welt! Dies ist der epischste Untertitel aller Zeiten."
 

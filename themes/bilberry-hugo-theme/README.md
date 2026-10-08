@@ -1,11 +1,11 @@
 # Bilberry Hugo Theme v4
 
 [![GitHub version](https://img.shields.io/github/release/Lednerb/bilberry-hugo-theme/all.svg?style=flat-square)](https://github.com/Lednerb/bilberry-hugo-theme/releases)
-[![Hugo Version](https://img.shields.io/badge/Hugo-%5E0.125.7-ff4088?style=flat-square&logo=hugo)](https://gohugo.io/)
+[![Hugo Version](https://img.shields.io/badge/Hugo-%5E0.153.5-ff4088?style=flat-square&logo=hugo)](https://gohugo.io/)
 [![Hugo Themes](https://img.shields.io/badge/Hugo_Themes-@Bilberry-ff4088)](https://themes.gohugo.io/themes/bilberry-hugo-theme/)
 
 [![Build GH-Pages](https://github.com/Lednerb/bilberry-hugo-theme/workflows/Update%20GitHub%20Pages/badge.svg)](https://github.com/Lednerb/bilberry-hugo-theme/deployments/activity_log?environment=github-pages)
-[![Contributors](https://img.shields.io/badge/contributors-52-orange.svg?style=flat-square)](#contributors)
+[![Contributors](https://img.shields.io/badge/contributors-54-orange.svg?style=flat-square)](#contributors)
 [![License](https://img.shields.io/github/license/Lednerb/bilberry-hugo-theme.svg?style=flat-square)](https://github.com/Lednerb/bilberry-hugo-theme/blob/master/LICENSE.md)
 
 ----
@@ -102,7 +102,7 @@ Please use the following guidelines if you want to start a discussion:
   - [Custom Post Types](#custom-post-types)
   - [Individual Posts](#individual-posts)
   - [Syntax Highlighting](#syntax-highlighting)
-  - [Layout, Colors and Fonts](#layout-colors-and-fonts)
+  - [Layout, Colors, and Fonts](#layout-colors-and-fonts)
   - [CSS and JS modules](#css-and-js-modules)
   - [Cookie Disclaimer (GDPR)](#cookie-disclaimer-gdpr)
 - [Translations](#translations)
@@ -114,9 +114,9 @@ Please use the following guidelines if you want to start a discussion:
 
 ## Requirements
 
-- **Hugo** (version >= 0.125.7 **extended**), see this [guide](https://gohugo.io/getting-started/installing/) on how to install Hugo.
+- **Hugo** (version >= 0.153.5 **extended**), see this [guide](https://gohugo.io/getting-started/installing/) on how to install Hugo.
 - **Git**, see this [guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on how to install Git.
-- **Go** (version >= 1.21), optional, required only when the Bilberry theme is used as a Hugo module; see
+- **Go** (version >= 1.25.7), optional, required only when the Bilberry theme is used as a Hugo module; see
   this [guide](https://go.dev/doc/install) on how to install Go.
 
 ## Quick Start
@@ -956,13 +956,17 @@ personalized: `linenos`, `hl_lines`, `linenostart`, `anchorlinenos`, `lineanchor
 
 Read Hugo's [documentation](https://gohugo.io/content-management/syntax-highlighting/) for more details.
 
-### Layout, Colors and Fonts
+### Layout, Colors, and Fonts
 
-Site layout and styling are implemented using SCSS along with [npm](https://www.npmjs.com/), which is only used for dependency management. Layout, colors and fonts can be customized via variables defined in
-the [`assets/sass/theme.scss`](assets/sass/theme.scss) file.
+Site layout and styling are implemented using SCSS along with [npm](https://www.npmjs.com/), which
+is only used for dependency management. Layout, colors, fonts, and font sizes can be customized via
+variables defined in the [`v4/assets/sass/theme.scss`](../v4/assets/sass/theme.scss) file. Please note that
+currently only the content font size can be customized. If you want to customize other font sizes,
+you may add a new variable to the theme's `v4/assets/sass/theme.scss` file by submitting a pull
+request. For more details, see this [PR](https://github.com/Lednerb/bilberry-hugo-theme/pull/689).
 
-For example, if you want to customize the `$base-color` variable, you should define the `baseColor` parameter in your
-site's `hugo.toml` file.
+For example, if you want to customize the `$base-color` variable, you should define the `baseColor`
+parameter in your site's `hugo.toml` file.
 
 ```sass
 $base-color: {{ .Param "baseColor" | default "#1d1f38" }};
@@ -971,6 +975,59 @@ $base-color: {{ .Param "baseColor" | default "#1d1f38" }};
 ```toml
 [params]
   baseColor = "#ff8080"
+```
+
+In case you want to add and use additional fonts, for
+example, the [Atkinson Hyperlegible](https://www.brailleinstitute.org/freefont/) font, do the following:
+1. Download font files and place them into your site's `/static/fonts` directory.
+2. Create a new `customfonts.css` file and place it into your site's `/static` directory. Add to
+   this new CSS file `@font-face` rules that will allow your custom fonts to be loaded on a webpage.
+   For example:
+
+   <details>
+   <summary>customfonts.css</summary>
+
+   ```
+     @font-face {
+       font-family: 'Atkinson';
+       font-style: normal;
+       font-weight: 400;
+       src: url('/fonts/AtkinsonHyperlegibleNext-Regular.woff2') format('woff2');
+       font-display: swap;
+     }
+     @font-face {
+       font-family: 'Atkinson';
+       font-style: italic;
+       font-weight: 400;
+       src: url('/fonts/AtkinsonHyperlegibleNext-RegularItalic.woff2') format('woff2');
+       font-display: swap;
+     }
+     @font-face {
+       font-family: 'Atkinson';
+       font-style: normal;
+       font-weight: 700;
+       src: url('/fonts/AtkinsonHyperlegibleNext-Bold.woff2') format('woff2');
+       font-display: swap;
+     }
+     @font-face {
+       font-family: 'Atkinson';
+       font-style: italic;
+       font-weight: 700;
+       src: url('/fonts/AtkinsonHyperlegibleNext-BoldItalic.woff2') format('woff2');
+       font-display: swap;
+     } 
+   ```
+   </details>
+3. Set the `contentFont` parameter to `Atkinson` in your site's `hugo.toml` file:
+```toml
+[params]
+  contentFont = "Atkinson"
+```
+
+4. Add your `customfonts.css` to the `css_modules` parameter (see the [CSS and JS modules](#css-and-js-modules) section for more information):
+```toml
+[params]
+  css_modules = ["customfonts.css"]
 ```
 
 ### CSS and JS modules

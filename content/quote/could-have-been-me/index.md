@@ -2,6 +2,8 @@
 title: "Become Quiet"
 date: "2023-07-24"
 author: "The Struts - Could Have Been Me"
+quoteAuthor: "The Struts - Could Have Been Me"
+quoteAuthorLink: "/author/the-struts---could-have-been-me/"
 noSummary: false
 ---
 

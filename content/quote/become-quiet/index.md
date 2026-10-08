@@ -2,6 +2,8 @@
 title: "Become Quiet"
 date: "2022-08-19"
 author: "Tim McClure"
+quoteAuthor: "Tim McClure"
+quoteAuthorLink: "/author/tim-mcclure/"
 noSummary: false
 ---
 
