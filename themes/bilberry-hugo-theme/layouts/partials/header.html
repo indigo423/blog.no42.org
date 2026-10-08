@@ -42,7 +42,7 @@
             <button id="light-dark-toggle" class="fa-solid fa-sun"></button>
           </div>
           {{ end }}
-          {{ if and (gt .Site.Languages 1) (.Site.Params.showHeaderLanguageChooser | default true) }}
+          {{ if and (gt (len hugo.Sites) 1) (.Site.Params.showHeaderLanguageChooser | default true) }}
             {{- $language := .Language -}}
             {{- $pages := .Page.AllTranslations -}}
             <div class="languages">

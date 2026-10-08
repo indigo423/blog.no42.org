@@ -44,7 +44,7 @@
             </div>
             {{ end }}
 
-            {{ if and (gt .Site.Languages 1) (.Site.Params.showFooterLanguageChooser | default true) }}
+            {{ if and (gt (len hugo.Sites) 1) (.Site.Params.showFooterLanguageChooser | default true) }}
                 {{- $language := .Language -}}
                 {{- $pages := .Page.AllTranslations -}}
                 <div class="languages">
