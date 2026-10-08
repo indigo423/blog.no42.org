@@ -4,6 +4,7 @@
   "description": "Bilberry Hugo theme",
   "dependencies": {},
   "devDependencies": {
+    "hugo-extended": "^0.153.5",
     "clipboard": "^2.0.6",
     "dimbox": "^1.0.2",
     "normalize.css": "^8.0.1",
@@ -19,18 +20,8 @@
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.26.10",
     "sass-loader": "^8.0.2",
-    "skeleton-css": "^2.0.4"
-  },
-  "overrides": {
-    "postcss": "^8.5.23",
-    "picomatch": "^2.3.2",
-    "qs": "^6.16.0",
-    "algoliasearch-helper": "^3.11.2",
-    "min-document": "^2.19.1",
-    "fast-uri": "^3.1.6",
-    "immutable": "^5.1.8",
-    "browserslist": "^4.28.7",
-    "baseline-browser-mapping": "^2.11.0"
+    "skeleton-css": "^2.0.4",
+    "vue-template-compiler": "^2.6.11"
   },
   "scripts": {
     "update-deps": "scripts/update-node-deps.sh",
