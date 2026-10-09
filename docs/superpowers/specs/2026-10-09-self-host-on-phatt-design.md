@@ -115,7 +115,7 @@ Template `roles/anubis/templates/managed/phatt/blog/compose.yml.j2`, rendered to
 
 - Service `blog`, image `ghcr.io/indigo423/blog.no42.org:latest`.
 - Network `public-ingress` (external).
-- Healthcheck: HTTP GET on `http://localhost:8080/`.
+- Healthcheck: HTTP GET on `http://127.0.0.1:8080/`.
 - The GHCR package is public, so phatt needs no registry credentials.
 
 `host_vars/phatt/anubis.yaml` gets a new entry `{ name: blog, file: compose.yml }` at the end of `anubis_managed_projects`.
