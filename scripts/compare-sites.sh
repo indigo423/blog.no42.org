@@ -12,6 +12,9 @@
 # Per path, status codes must match. A 3xx compares the redirect target path, with
 # scheme and host stripped. Any other response compares the body bytes.
 # A request that fails (status 000) on either side is a DIFF.
+# When both sides redirect with the same status to the same target path, that target
+# is fetched once more on both sides and compared the same way. At most one hop is
+# followed. The path counts once, and a DIFF names the original path and the target.
 # The Netlify-injected comment is removed from the reference body before comparing.
 # Uses curl's default user agent, which Anubis does not challenge.
 set -uo pipefail
@@ -55,15 +58,14 @@ fi
   printf '%s\n' / /index.xml /index.json /sitemap.xml /robots.txt /does-not-exist/
 } | sort -u >"$tmp/paths"
 
-n=0
-d=0
-while read -r p; do
-  [[ -n $p ]] || continue
-  n=$((n + 1))
+# Fetches one path from both sides and sets ca, ra, cb, rb and why.
+# why is empty when both sides match.
+compare() {
+  local a b
   : >"$tmp/a"
   : >"$tmp/b"
-  a=$(curl -s -m 20 -o "$tmp/a" -w '%{http_code} %{redirect_url}' "$REF$p")
-  b=$(curl -s -m 20 -o "$tmp/b" -w '%{http_code} %{redirect_url}' ${cand_opts[@]+"${cand_opts[@]}"} "https://$HOST$p")
+  a=$(curl -s -m 20 -o "$tmp/a" -w '%{http_code} %{redirect_url}' "$REF$1")
+  b=$(curl -s -m 20 -o "$tmp/b" -w '%{http_code} %{redirect_url}' ${cand_opts[@]+"${cand_opts[@]}"} "https://$HOST$1")
   ca=${a%% *}; ra=${a#* }
   cb=${b%% *}; rb=${b#* }
   perl -0pi -e 's/<!-- This site is hosted on Netlify\..*?-->\n?//s' "$tmp/a"
@@ -78,6 +80,22 @@ while read -r p; do
   else
     cmp -s "$tmp/a" "$tmp/b" || why=body
   fi
+}
+
+n=0
+d=0
+while read -r p; do
+  [[ -n $p ]] || continue
+  n=$((n + 1))
+  compare "$p"
+  via=
+  if [[ -z $why && $ca == 3* ]]; then
+    target=$(strip "$ra")
+    if [[ -n $target ]]; then
+      compare "$target"
+      via=" (redirect target $target)"
+    fi
+  fi
 
   if [[ -n $why ]]; then
     da=; db=
@@ -86,7 +104,7 @@ while read -r p; do
     [[ $ca == 3* ]] && da="-> $(strip "$ra")"
     [[ $cb == 3* ]] && db="-> $(strip "$rb")"
     [[ $why == body ]] && da=body && db=body
-    echo "DIFF $p: reference $ca $da, candidate $cb $db"
+    echo "DIFF $p$via: reference $ca $da, candidate $cb $db"
     d=$((d + 1))
   fi
 done <"$tmp/paths"
