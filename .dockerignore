@@ -1,0 +1,11 @@
+# Copyright 2026 Ronny Trommer <ronny@no42.org>
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+.git
+public/
+docs/
+_bmad/
+_bmad-output/
+.claude/
+.idea/
+**/node_modules/
+.hugo_build.lock
