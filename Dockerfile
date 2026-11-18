@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: CC-BY-NC-SA-4.0
 
 # The Hugo version lives here and nowhere else.
-FROM ghcr.io/gohugoio/hugo:v0.167.0@sha256:7bb99a126eddeea8fbfaacedc5ef6708805411bdeaa01e668405a137fd02d048 AS build
+FROM ghcr.io/gohugoio/hugo:v0.170.1@sha256:4cc9f383086c0fba180efcf7132cf2f025969c462fedf5fcd2bf921915416797 AS build
 # Hugo writes resources/_gen and a lock file into the source tree.
 USER root
 WORKDIR /src
